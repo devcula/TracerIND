@@ -9,15 +9,15 @@ class Patient (models.Model):
                             primary_key=True
                             )
 
-    name = models.CharField(max_length=50, required=True)
-    surname = models.CharField(max_length=50, required=True)
+    name = models.CharField(max_length=50)
+    surname = models.CharField(max_length=50)
     # SonOf/DaughterOf/WifeOf
-    relation = models.CharField(max_length=30, required=True)
-    gaurdian_name = models.CharField(max_length=50, required=True)
+    relation = models.CharField(max_length=30)
+    gaurdian_name = models.CharField(max_length=50)
     age = models.SmallIntegerField(default=0)
-    # M=> Male/F=>Female/N=>NonBinary
+    # M=> Male/F=>Female/NB=>NonBinary
     gender = models.CharField(default='NaN', max_length=3)
-    phone = models.PhoneNumberField()
+    phone = models.CharField(max_length = 10)
     adhaar = models.CharField(max_length=16)  # 16 digit num
     # single/married/separated/divorced/widowed
     maritalstatus = models.CharField(default=None, max_length=15)
