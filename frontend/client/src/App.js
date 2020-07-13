@@ -1,29 +1,28 @@
 import React from 'react';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
-import Anemia from './Anemia';
+
 import Grid from '@material-ui/core/Grid';
-import Header from './Header';
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom'
+
+import Header from './components/Header/Header';
+import Home from './components/Home/Home';
+import MainForm from './components/MainForm/MainForm';
+import Dashboard from './components/Dashboard/Dashboard';
+
 import './App.css';
 
 function App() {
   return (
-    <Grid container direction='column'>
-    <Grid item>
-    <Header/>
+    <Grid container alignItems="center" justify="center">
+      <Router>
+        <Header />
+        <Route exact path="/" component={Home} />
+        <Route path="/new" component={MainForm} />
+        <Route path="/dashboard" component={Dashboard} />
+      </Router>
     </Grid>
-    <Grid item container>
-    <Grid item xs={3}/>
-    <Anemia />
-    <Grid item xs={3}/>
-    
-    </Grid>
-    
-        </Grid>
-
   );
 }
 
