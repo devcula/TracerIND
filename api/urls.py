@@ -11,5 +11,7 @@ urlpatterns = [
     path('DeletePatient/',views.DeletePatient,name = "DeletePatient"),
     path('UpdatePatient/',views.UpdatePatient,name = "UpdatePatient"),
     path('GetPatient/',views.GetPatient,name = "GetPatient"),
+    #ANDROID API
+    path('DroidDump/',views.DroidDump,name = "DroidDump"),
 
 ]
