@@ -7,12 +7,10 @@ export default class Header extends Component {
   render() {
     return (
       <Navbar default collapseOnSelect>
-        <Navbar.Header>
           <Navbar.Brand>
             <Link to="/">TracerIND</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
-        </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
             <NavItem eventKey={1} componentClass={Link} href="/" to="/">

@@ -87,6 +87,7 @@ class BasicDetailsForm extends React.Component {
                                     fullWidth
                                     autoComplete="family-name"
                                     onChange={this.handleChange('lastName')}
+                                    defaultValue={this.props.firstName}
                                 />
                             </Grid>
                             <Grid>

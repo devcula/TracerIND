@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import { Jumbotron, Grid, Row, Col, Image, Button } from 'react-bootstrap';
+import { Jumbotron, Container, Row, Col, Image, Button } from 'react-bootstrap';
 import './Home.css';
 import Circle from '../CircularProgressBar/CircularProgressBar';
 
 export default class Home extends Component {
     render() {
         return (
-            <Grid>
+            <Container>
                 <Jumbotron>
                     <h2>Welcome to TracerIND</h2>
                     <p>**Info in one line**</p>
@@ -26,7 +26,7 @@ export default class Home extends Component {
                         <h4>Deaths</h4>
                     </Col>
                 </Row>
-            </Grid>
+            </Container>
         )
     }
 }
