@@ -1,9 +1,9 @@
 body {
   margin: 0;
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif; */
-    font-family: 'Roboto', sans-serif;
+    sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -28,6 +28,11 @@ legend {
   width: auto;
   /* font-size: 1.2rem; */
   font-weight: bold;
+}
+
+.form-label{
+  letter-spacing: 1px;
+  font-size: 1.5rem;
 }
 
 .row{
