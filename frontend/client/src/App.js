@@ -1,29 +1,24 @@
-import React from 'react';
-
-import { Grid } from '@material-ui/core';
-import {
-  BrowserRouter as Router,
-  Route,
-} from 'react-router-dom'
-
-import Header from './components/Header/Header';
-import Home from './components/Home/Home';
-import MainForm from './components/MainForm/MainForm';
-import Dashboard from './components/Dashboard/Dashboard';
-
+import React, { Component } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Home from './components/Home/Home';
+import About from './components/About/About';
+import Dashboard from './components/Dashboard/Dashboard';
+import Header from './components/Header/Header';
 
-function App() {
-  return (
-    <Grid container alignItems="center" justify="center">
+class App extends Component {
+  render() {
+    return (
       <Router>
-        <Header />
-        <Route exact path="/" component={Home} />
-        <Route path="/new" component={MainForm} />
-        <Route path="/dashboard" component={Dashboard} />
+        <div>
+          <Header />
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/dashboard" component={Dashboard} />
+        </div>
       </Router>
-    </Grid>
-  );
+    );
+  }
 }
 
 export default App;

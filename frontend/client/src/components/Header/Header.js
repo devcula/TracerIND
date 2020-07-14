@@ -1,41 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react'
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import './Header.css'
 
-import { AppBar, Toolbar, Button, Grid } from '@material-ui/core';
+export default class Header extends Component {
+  render() {
+    return (
+      <Navbar default collapseOnSelect>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to="/">TracerIND</Link>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav>
+            <NavItem eventKey={1} componentClass={Link} href="/" to="/">
+              Home
+            </NavItem>
+            <NavItem eventKey={3} componentClass={Link} href="/dashboard" to="/dashboard">
+              Dashboard
+            </NavItem>
+          </Nav>
+          <Nav pullRight>
+            <NavItem eventKey={2} componentClass={Link} href="/about" to="/about">
+              About
+            </NavItem>
 
-import { NavLink } from 'react-router-dom'
-
-function Header() {
-  const defaultStyle = {
-    "textDecoration": "none",
-    "color": "white"
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    )
   }
-
-  const activeStyle = {
-    "color": "#8F8F8F"
-  }
-  
-  return (
-    <AppBar position='static'>
-      <Toolbar>
-        <Grid container justify="flex-end">
-          <NavLink activeStyle={activeStyle} style={defaultStyle} exact to="/">
-            <Button color="inherit">
-              <strong>Home</strong>
-            </Button>
-          </NavLink>
-          <NavLink activeStyle={activeStyle} style={defaultStyle} exact to="/new">
-            <Button color="inherit">
-              <strong>Add</strong>
-            </Button>
-          </NavLink>
-          <NavLink activeStyle={activeStyle} style={defaultStyle} exact to="/dashboard">
-            <Button color="inherit">
-              <strong>Dashboard</strong>
-            </Button>
-          </NavLink>
-        </Grid>
-      </Toolbar>
-    </AppBar>
-  );
 }
-export default Header;
