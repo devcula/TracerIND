@@ -1,44 +1,13 @@
 import React from 'react';
 
-import {
-    Grid,
-    Box,
-    FormControl,
-    InputLabel,
-    OutlinedInput,
-    Button,
-    Typography,
-    TextField,
-    Card,
-    CardContent
-} from '@material-ui/core';
-
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-    root: {
-        minWidth: 275,
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-});
-
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 class BasicDetailsForm extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            firstName: "",
-            lastName: ""
+            name: "",
+            surname: ""
         }
     }
 
@@ -55,50 +24,96 @@ class BasicDetailsForm extends React.Component {
 
     loadNextForm = (formName) => {
         this.props.changeData({ formName: formName });
-    } 
+    }
 
     render() {
-        const classes = useStyles();
         return (
-            <React.Fragment>
-                <Typography variant="h6" gutterBottom>
-                    Basic User Details
-                </Typography>
-                <Grid container spacing={3} justify="center" alignItems="center">
-                    <Card>
-                        <CardContent>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    id="firstName"
-                                    name="firstName"
-                                    label="First name"
-                                    fullWidth
-                                    autoComplete="given-name"
-                                    onChange={this.handleChange('firstName')}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    id="lastName"
-                                    name="lastName"
-                                    label="Last name"
-                                    fullWidth
-                                    autoComplete="family-name"
-                                    onChange={this.handleChange('lastName')}
-                                    defaultValue={this.props.firstName}
-                                />
-                            </Grid>
-                            <Grid>
-                                <Button variant="contained" color="primary" onClick={this.validateAndNext}>
-                                    Next
-                                </Button>
-                            </Grid>
-                        </CardContent>
-                    </Card>
-                </Grid>
-            </React.Fragment>
+            <Container>
+                <Row>
+                    <fieldset style={{'width': '100%'}}>
+                        <legend>Basic Details</legend>
+                        <Row>
+                            <Col sm={12}>
+                                <Form.Group as={Row}>
+                                    <Form.Label column sm={3}>Aadhar Number : </Form.Label>
+                                    <Col sm={3}>
+                                        <Form.Control type="number" placeholder="1st 4 digits" id="aadharFirst" />
+                                </Col>
+                                    <Col sm={3}>
+                                        <Form.Control type="number" placeholder="2nd 4 digits" id="aadharSecond" />
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control type="number" placeholder="Last 4 digits" id="aadharThird" />
+                                    </Col>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={4}>
+                                <Form.Group controlId="mandal">
+                                    <Form.Label>Mandal</Form.Label>
+                                    <Form.Control as="select" defaultValue="Choose...">
+                                        <option>Choose...</option>
+                                        <option>...</option>
+                                    </Form.Control>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={4}>
+                                <Form.Group controlId="phc">
+                                    <Form.Label>PHC</Form.Label>
+                                    <Form.Control as="select" defaultValue="Choose...">
+                                        <option>Choose...</option>
+                                        <option>...</option>
+                                    </Form.Control>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={4}>
+                                <Form.Group controlId="village_sec">
+                                    <Form.Label>Village Secretariat</Form.Label>
+                                    <Form.Control as="select" defaultValue="Choose...">
+                                        <option>Choose...</option>
+                                        <option>...</option>
+                                    </Form.Control>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={4}>
+                                <Form.Group controlId="village">
+                                    <Form.Label>Village</Form.Label>
+                                    <Form.Control as="select" defaultValue="Choose...">
+                                        <option>Choose...</option>
+                                        <option>...</option>
+                                    </Form.Control>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={6}>
+                                <Form.Group controlId="name">
+                                    <Form.Label>First Name</Form.Label>
+                                    <Form.Control type="text" placeholder="Enter First Name" onChange={this.handleChange('name')} />
+                                </Form.Group>
+                            </Col>
+                            <Col sm={6}>
+                                <Form.Group controlId="surname">
+                                    <Form.Label>Surname</Form.Label>
+                                    <Form.Control type="text" placeholder="Enter Surname" onChange={this.handleChange('surname')} />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12} style={{textAlign: "center"}}>
+                                <Button variant="primary" onClick={this.validateAndNext}>Save and Continue</Button>
+                            </Col>
+                        </Row>
+                    </fieldset>
+                </Row>
+            </Container>
         )
     }
 }
