@@ -12,7 +12,9 @@ class BasicDetailsForm extends React.Component {
             village_sec: props.getValue('village_sec'),
             village: props.getValue('village'),
             name: props.getValue('name'),
-            surname: props.getValue('surname')
+            surname: props.getValue('surname'),
+            relation: props.getValue('relation'),
+            gaurdian_name: props.getValue('gaurdian_name')
         }
     }
 
@@ -35,10 +37,10 @@ class BasicDetailsForm extends React.Component {
         return (
             <Container>
                 <Row>
-                    <fieldset style={{'width': '100%'}}>
+                    <fieldset style={{ 'width': '100%' }}>
                         <legend>Basic Details</legend>
                         <Row>
-                            <Col sm={12} style={{paddingLeft: 0, paddingRight: 0}}>
+                            <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row}>
                                     <Col sm={3}>
                                         <Form.Label>Aadhar Number : </Form.Label>
@@ -56,9 +58,9 @@ class BasicDetailsForm extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col sm={4}>
+                            <Col sm={3}>
                                 <Form.Group controlId="mandal">
-                                    <Form.Label>Mandal</Form.Label>
+                                    <Form.Label>Mandal:</Form.Label>
                                     <Form.Control as="select" defaultValue="Choose..." onChange={this.handleChange('mandal')} value={this.state.mandal}>
                                         <option value="">Choose...</option>
                                         <option>...</option>
@@ -67,9 +69,9 @@ class BasicDetailsForm extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col sm={4}>
+                            <Col sm={3}>
                                 <Form.Group controlId="phc">
-                                    <Form.Label>PHC</Form.Label>
+                                    <Form.Label>PHC:</Form.Label>
                                     <Form.Control as="select" defaultValue="Choose..." onChange={this.handleChange('phc')} value={this.state.phc} >
                                         <option value="">Choose...</option>
                                         <option>...</option>
@@ -78,9 +80,9 @@ class BasicDetailsForm extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col sm={4}>
+                            <Col sm={3}>
                                 <Form.Group controlId="village_sec">
-                                    <Form.Label>Village Secretariat</Form.Label>
+                                    <Form.Label>Village Secretariat:</Form.Label>
                                     <Form.Control as="select" defaultValue="Choose..." onChange={this.handleChange('village_sec')} value={this.state.village_sec}>
                                         <option value="">Choose...</option>
                                         <option>...</option>
@@ -89,9 +91,9 @@ class BasicDetailsForm extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col sm={4}>
+                            <Col sm={3}>
                                 <Form.Group controlId="village">
-                                    <Form.Label>Village</Form.Label>
+                                    <Form.Label>Village:</Form.Label>
                                     <Form.Control as="select" defaultValue="Choose..." onChange={this.handleChange('village')} value={this.state.village}>
                                         <option value="">Choose...</option>
                                         <option>...</option>
@@ -102,19 +104,71 @@ class BasicDetailsForm extends React.Component {
                         <Row>
                             <Col sm={6}>
                                 <Form.Group controlId="name">
-                                    <Form.Label>First Name</Form.Label>
+                                    <Form.Label>First Name:</Form.Label>
                                     <Form.Control type="text" placeholder="Enter First Name" onChange={this.handleChange('name')} value={this.state.name} />
                                 </Form.Group>
                             </Col>
                             <Col sm={6}>
                                 <Form.Group controlId="surname">
-                                    <Form.Label>Surname</Form.Label>
+                                    <Form.Label>Surname:</Form.Label>
                                     <Form.Control type="text" placeholder="Enter Surname" onChange={this.handleChange('surname')} value={this.state.surname} />
                                 </Form.Group>
                             </Col>
                         </Row>
                         <Row>
-                            <Col sm={12} style={{textAlign: "center"}}>
+                            <Col sm={2}>
+                                <Form.Label>S/o, D/o, W/o:</Form.Label>
+                            </Col>
+                            <Col sm={2}>
+                                <Row>
+                                    <Col>
+                                        <Form.Check
+                                            type='radio'
+                                            value="son"
+                                            id="sonOf"
+                                            label="Son of"
+                                            name="relation"
+                                            onChange={this.handleChange('relation')}
+                                            checked={this.state.relation === "son"}
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <Form.Check
+                                            type='radio'
+                                            value="daughter"
+                                            id="daughterOf"
+                                            label="Daughter of"
+                                            name="relation"
+                                            onChange={this.handleChange('relation')}
+                                            checked={this.state.relation === "daughter"}
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <Form.Check
+                                            type='radio'
+                                            value="wife"
+                                            id="wifeOf"
+                                            label="Wife of"
+                                            name="relation"
+                                            onChange={this.handleChange('relation')}
+                                            checked={this.state.relation === "wife"}
+                                        />
+                                    </Col>
+                                </Row>
+                            </Col>
+                            <Col sm={4} style={{ display: this.state.relation ? 'block' : 'none' }}>
+                                <Form.Group controlId="gaurdian_name">
+                                    <Form.Label>Name:</Form.Label>
+                                    <Form.Control type="text" placeholder="Enter Name" onChange={this.handleChange('gaurdian_name')} value={this.state.gaurdian_name} />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12} style={{ textAlign: "center" }}>
                                 <Button variant="primary" onClick={this.validateAndNext}>Save and Continue</Button>
                             </Col>
                         </Row>

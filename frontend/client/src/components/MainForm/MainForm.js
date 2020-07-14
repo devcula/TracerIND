@@ -17,7 +17,7 @@ class MainForm extends React.Component {
     }
 
     getValue = (key) => {
-        return this.state[key];
+        return this.state[key] === undefined ? "" : this.state[key];
     }
 
     render() {
