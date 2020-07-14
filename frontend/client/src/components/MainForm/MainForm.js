@@ -16,14 +16,18 @@ class MainForm extends React.Component {
         this.setState(childState);
     }
 
+    getValue = (key) => {
+        return this.state[key];
+    }
+
     render() {
         switch(this.state.formName){
             case "UserDetails":
                 console.log(this.state);
-                return <BasicDetailsForm changeData={this.appendState} />
+                return <BasicDetailsForm changeData={this.appendState} getValue={this.getValue} />
             case "TestDetails":
                 console.log(this.state);
-                return <TestDetailsForm changeData={this.appendState}/>
+                return <TestDetailsForm changeData={this.appendState} getValue={this.getValue} />
             default:
                 return "";
         }

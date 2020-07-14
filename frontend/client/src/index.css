@@ -22,12 +22,17 @@ fieldset {
 }
 
 legend {
-  background-color: gray;
+  background-color: #2892D7;
   color: white;
   padding: 5px 10px;
   width: auto;
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
   font-weight: bold;
+}
+
+.row{
+  margin-left: 0;
+  margin-right: 0;
 }
 
 code {
