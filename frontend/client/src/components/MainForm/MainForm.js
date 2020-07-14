@@ -9,7 +9,18 @@ class MainForm extends React.Component {
         super();
         this.state = {
             formName : "UserDetails",
+            pkid: this.generatePkid(16)
         }
+    }
+
+    generatePkid = (length) => {
+        var result = '';
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
     }
 
     appendState = childState => {
@@ -18,6 +29,10 @@ class MainForm extends React.Component {
 
     getValue = (key) => {
         return this.state[key] === undefined ? "" : this.state[key];
+    }
+
+    submitForm = () => {
+        
     }
 
     render() {
