@@ -7,6 +7,10 @@ from . import views
 
 urlpatterns = [
     path('',views.APIView,name = "APIList"), 
+    path('parseVillage/',views.parseVillage,name = "parseVillage"),
+    path('parseVillageSec/',views.parseVillageSec,name = "parseVillageSec"),
+    path('addmandal/',views.addmandal,name = "addmandal"),
+    path('addphc/',views.addphc,name = "addphc"),
     path('AddPatient/',views.AddPatient,name = "AddPatient"),
     path('DeletePatient/',views.DeletePatient,name = "DeletePatient"),
     path('UpdatePatient/',views.UpdatePatient,name = "UpdatePatient"),
