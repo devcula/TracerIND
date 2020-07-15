@@ -65,21 +65,27 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
                     }
                 }
             }
-            Boolean(this.state.name) ? validIds.push('name') : invalidIds.push('name');
-            Boolean(this.state.surname) ? validIds.push('surname') : invalidIds.push('surname');
             Boolean(this.state.mandal) ? validIds.push('mandal') : invalidIds.push('mandal');
             Boolean(this.state.phc) ? validIds.push('phc') : invalidIds.push('phc');
             Boolean(this.state.village_sec) ? validIds.push('village_sec') : invalidIds.push('village_sec');
             Boolean(this.state.village) ? validIds.push('village') : invalidIds.push('village');
-            Boolean(this.state.relation) ? validIds.push('relation') : invalidIds.push('relation');
+            Boolean(this.state.name) ? validIds.push('name') : invalidIds.push('name');
+            Boolean(this.state.surname) ? validIds.push('surname') : invalidIds.push('surname');
+            // Boolean(this.state.relation) ? validIds.push('relation') : invalidIds.push('relation');
             Boolean(this.state.gaurdian_name) ? validIds.push('gaurdian_name') : invalidIds.push('gaurdian_name');
             Boolean(this.state.age) ? validIds.push('age') : invalidIds.push('age');
             Boolean(this.state.gender) ? validIds.push('gender') : invalidIds.push('gender');
             Boolean(this.state.maritalstatus) ? validIds.push('maritalstatus') : invalidIds.push('maritalstatus');
             Boolean(this.state.bloodgroup) ? validIds.push('bloodgroup') : invalidIds.push('bloodgroup');
             Boolean(this.state.PVGT) ? validIds.push('PVGT') : invalidIds.push('PVGT');
+            // for (let i = 0; i < validIds.length; i++) {
+            //     document.getElementById(validIds[i]).style.border = "";
+            // }
             if(invalidIds.length > 0){
-                window.location.href = "#" + invalidIds[0];
+                // window.location.href = "#" + invalidIds[0];
+                // for(let i = 0; i < invalidIds.length; i++){
+                //     document.getElementById(invalidIds[i]).style.border = "1px solid red";
+                // }
                 throw new Error();
             }
             //Still in try block? Means all fields valid. Now saving the data to parent component.

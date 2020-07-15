@@ -9,7 +9,7 @@ class MainForm extends React.Component {
     constructor(){
         super();
         this.state = {
-            formName : "UserDetails",
+            formName: "UserDetails",
             pkid: this.generatePkid(16)
         }
     }
