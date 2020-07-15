@@ -1,6 +1,8 @@
-.nav.navbar,
-.navbar-default {
-    background-color: #2892D7 !important;
+
+#navbar{
+    color: white;
+    font-weight: bold;
+    background-color: #2892D7;
 }
 
 .navbar-default {
