@@ -79,7 +79,7 @@ class BasicDetailsForm extends React.Component {
                                     </Col>
                                     <Col sm={3}>
                                         <Form.Control
-                                            as="select" defaultValue="Choose..."
+                                            as="select"
                                             onChange={this.handleChange('mandal')}
                                             value={this.state.mandal}>
                                             <option value="">Choose...</option>
@@ -98,7 +98,6 @@ class BasicDetailsForm extends React.Component {
                                     <Col sm={3}>
                                         <Form.Control
                                             as="select"
-                                            defaultValue="Choose..."
                                             onChange={this.handleChange('phc')}
                                             value={this.state.phc} >
                                             <option value="">Choose...</option>
@@ -117,7 +116,6 @@ class BasicDetailsForm extends React.Component {
                                     <Col sm={3}>
                                         <Form.Control
                                             as="select"
-                                            defaultValue="Choose..."
                                             onChange={this.handleChange('village_sec')}
                                             value={this.state.village_sec}>
                                             <option value="">Choose...</option>
@@ -136,7 +134,6 @@ class BasicDetailsForm extends React.Component {
                                     <Col sm={3}>
                                         <Form.Control
                                             as="select"
-                                            defaultValue="Choose..."
                                             onChange={this.handleChange('village')}
                                             value={this.state.village}>
                                             <option value="">Choose...</option>

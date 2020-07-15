@@ -10,7 +10,8 @@ body {
 
 fieldset {
   padding: 10px;
-  margin-bottom: 20px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   border-top: 1px solid #888888;
   border-left: 1px solid #888888;
   -webkit-border-radius: 10px;
@@ -22,7 +23,7 @@ fieldset {
 }
 
 legend {
-  background-color: #2892D7;
+  background-color: #39a0ed;
   color: white;
   padding: 5px 10px;
   width: auto;
@@ -31,7 +32,6 @@ legend {
 }
 
 .form-label{
-  letter-spacing: 1px;
   font-size: 1.5rem;
 }
 
