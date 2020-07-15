@@ -2,6 +2,7 @@ import React from 'react';
 
 import BasicDetailsForm from '../BasicDetailsForm/BasicDetailsForm';
 import TestDetailsForm from '../TestDetailsForm/TestDetailsForm';
+import HospitalDetailsForm from '../HospitalDetailsForm/HospitalDetailsForm';
 
 class MainForm extends React.Component {
 
@@ -32,7 +33,7 @@ class MainForm extends React.Component {
     }
 
     submitForm = () => {
-        
+
     }
 
     render() {
@@ -43,6 +44,9 @@ class MainForm extends React.Component {
             case "TestDetails":
                 console.log(this.state);
                 return <TestDetailsForm changeData={this.appendState} getValue={this.getValue} />
+            case "HospitalDetails":
+                console.log(this.state);
+                return <HospitalDetailsForm changeData={this.appendState} getValue={this.getValue} />
             default:
                 return "";
         }

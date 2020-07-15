@@ -42,7 +42,7 @@ class TestDetailsForm extends React.Component {
         //Conditions to check.. If valid, Send form name to switch to next form
         console.log(this.state);
         this.props.changeData(this.state);
-        this.loadNextForm("TestDetails");
+        this.loadNextForm("HospitalDetails");
     }
 
     loadNextForm = (formName) => {
@@ -66,7 +66,7 @@ class TestDetailsForm extends React.Component {
                                         <Form.Label>Serum Creatinie: </Form.Label>
                                     </Col>
                                     <Col sm={2}>
-                                        <Form.Control type="number" placeholder="mg/dl" id="serumCreatinine"  onChange={this.handleChange('serumCreatinine')} 
+                                        <Form.Control type="number" placeholder="mg/dl" id="serumCreatinine"  onChange={this.handleChange('serumCreatinine')}
                                         value={this.state.serumCreatinine}/>
                                           {(() => {
                                             if (this.state.serumCreatinine > 2 && this.state.serumCreatinine < 5.9)
@@ -121,7 +121,7 @@ class TestDetailsForm extends React.Component {
                                         <Form.Label>Uric Acid: </Form.Label>
                                     </Col>
                                     <Col sm={2}>
-                                        <Form.Control type="number" placeholder="mg/dl" id="uricAcid"  onChange={this.handleChange('uricAcid')} 
+                                        <Form.Control type="number" placeholder="mg/dl" id="uricAcid"  onChange={this.handleChange('uricAcid')}
                                         value={this.state.uricAcid}/>
                                         {(() => {
                                             if (this.state.uricAcid > 2.6 && this.state.uricAcid < 6.0)
@@ -146,7 +146,7 @@ class TestDetailsForm extends React.Component {
                                     <Col sm={2}>
                                         <Form.Label>Electrolytes: </Form.Label>
                                     </Col>
-                                    </Form.Group>  
+                                    </Form.Group>
                         </Row>
                         <Row>
                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
@@ -155,7 +155,7 @@ class TestDetailsForm extends React.Component {
                                         <Form.Label>Sodium(NA): </Form.Label>
                                     </Col>
                                     <Col sm={2}>
-                                        <Form.Control type="number" placeholder="mg/dl" id="lectrolytes_sodium"  onChange={this.handleChange('lectrolytes_sodium')} 
+                                        <Form.Control type="number" placeholder="mg/dl" id="lectrolytes_sodium"  onChange={this.handleChange('lectrolytes_sodium')}
                                         value={this.state.lectrolytes_sodium}/>
                                              {(() => {
                                             if (this.state.lectrolytes_sodium > 135 && this.state.lectrolytes_sodium < 155)
@@ -182,7 +182,7 @@ class TestDetailsForm extends React.Component {
                                         <Form.Label>Potassium(A): </Form.Label>
                                     </Col>
                                     <Col sm={2}>
-                                        <Form.Control type="number" placeholder="mg/dl" id="electrolytes_potassium"  onChange={this.handleChange('electrolytes_potassium')} 
+                                        <Form.Control type="number" placeholder="mg/dl" id="electrolytes_potassium"  onChange={this.handleChange('electrolytes_potassium')}
                                         value={this.state.electrolytes_potassium}/>
                                             {(() => {
                                             if (this.state.electrolytes_potassium > 3.5 && this.state.electrolytes_potassium < 5.5)
@@ -209,7 +209,7 @@ class TestDetailsForm extends React.Component {
                                         <Form.Label>BUN: Blood Urea Nitrogen: </Form.Label>
                                     </Col>
                                     <Col sm={2}>
-                                        <Form.Control type="number" placeholder="mg/dl" id="bun"  onChange={this.handleChange('bun')} 
+                                        <Form.Control type="number" placeholder="mg/dl" id="bun"  onChange={this.handleChange('bun')}
                                         value={this.state.bun}/>
                                           {(() => {
                                             if (this.state.bun > 8 && this.state.bun < 23)
@@ -419,14 +419,9 @@ class TestDetailsForm extends React.Component {
                     </fieldset>
                 </Row>
             </Container>
-            
+
         )
     }
 }
 
 export default TestDetailsForm;
-
-
-
-
-
