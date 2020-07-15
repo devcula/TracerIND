@@ -1,8 +1,16 @@
 
-#navbar{
-    color: white;
+.navbar{
+    /* color: white; */
     font-weight: bold;
-    background-color: #2892D7;
+    background-color: #8B80F9;
+    box-shadow: 0 8px 6px -6px black;
+    /* background-color: #2892D7; */
+}
+
+@media only screen and (min-width: 992px){
+    .navbar {
+        height: 10vh;
+    }
 }
 
 .navbar-default {

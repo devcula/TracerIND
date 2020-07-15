@@ -138,7 +138,7 @@ import { DateTime } from 'react-datetime-bootstrap';
       </Col>
   </Row>
   {(() => {
-    if (this.state.refered == "yes")
+    if (this.state.refered === "yes")
     {
       return(
       <Container>
@@ -277,7 +277,7 @@ import { DateTime } from 'react-datetime-bootstrap';
 
     )
     }
-    else if (this.state.refered =="no")
+    else if (this.state.refered === "no")
     {
         return(
           <Container>
@@ -343,7 +343,7 @@ import { DateTime } from 'react-datetime-bootstrap';
       </Row>
   </Col>
   {(() => {
- if (this.state.deceased=="yes")
+ if (this.state.deceased==="yes")
  {
      return (
               <Container>
@@ -404,7 +404,7 @@ import { DateTime } from 'react-datetime-bootstrap';
               </Container>
              )
  }
- else if (this.state.deceased=="no")
+ else if (this.state.deceased==="no")
  {
      return (
               <Container></Container>

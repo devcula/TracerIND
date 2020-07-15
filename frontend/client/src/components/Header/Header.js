@@ -5,7 +5,7 @@ import './Header.css'
 export default class Header extends Component {
   render() {
     return (
-      <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
+      <Navbar collapseOnSelect expand="lg" variant="dark">
 				<Navbar.Brand href="/">TracerIND</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">

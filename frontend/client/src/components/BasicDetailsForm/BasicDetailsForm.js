@@ -42,22 +42,45 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
     validate = () => {
         //Conditions to check.. If valid, Send form name to switch to next form
         console.log(this.state);
+        let validIds = [];
+        let invalidIds = [];
         try{
             //Adhaar fields validation
-            let fieldIds = ["adhaarFirst", "adhaarSecond", "adhaarThird"];
+            let adhaarIds = ["adhaarFirst", "adhaarSecond", "adhaarThird"];
             let filled = false;
-            for(let i = 0; i < fieldIds.length; i++){
-                if(this.state[fieldIds[i]] !== ""){
+            for(let i = 0; i < adhaarIds.length; i++){
+                if(this.state[adhaarIds[i]] !== ""){
                     filled = true;
                     break;
                 }
             }
             if(filled){
-                for(let i = 0; i < fieldIds.length; i++){
-                    if(this.state[fieldIds[i]].length < 4){
-                        throw new Error();
+                for(let i = 0; i < adhaarIds.length; i++){
+                    if(this.state[adhaarIds[i]].length < 4){
+                        // throw new Error();
+                        invalidIds.push(adhaarIds[i]);
+                    }
+                    else{
+                        validIds.push(adhaarIds[i]);
                     }
                 }
+            }
+            Boolean(this.state.name) ? validIds.push('name') : invalidIds.push('name');
+            Boolean(this.state.surname) ? validIds.push('surname') : invalidIds.push('surname');
+            Boolean(this.state.mandal) ? validIds.push('mandal') : invalidIds.push('mandal');
+            Boolean(this.state.phc) ? validIds.push('phc') : invalidIds.push('phc');
+            Boolean(this.state.village_sec) ? validIds.push('village_sec') : invalidIds.push('village_sec');
+            Boolean(this.state.village) ? validIds.push('village') : invalidIds.push('village');
+            Boolean(this.state.relation) ? validIds.push('relation') : invalidIds.push('relation');
+            Boolean(this.state.gaurdian_name) ? validIds.push('gaurdian_name') : invalidIds.push('gaurdian_name');
+            Boolean(this.state.age) ? validIds.push('age') : invalidIds.push('age');
+            Boolean(this.state.gender) ? validIds.push('gender') : invalidIds.push('gender');
+            Boolean(this.state.maritalstatus) ? validIds.push('maritalstatus') : invalidIds.push('maritalstatus');
+            Boolean(this.state.bloodgroup) ? validIds.push('bloodgroup') : invalidIds.push('bloodgroup');
+            Boolean(this.state.PVGT) ? validIds.push('PVGT') : invalidIds.push('PVGT');
+            if(invalidIds.length > 0){
+                window.location.href = "#" + invalidIds[0];
+                throw new Error();
             }
             //Still in try block? Means all fields valid. Now saving the data to parent component.
             this.saveData();
@@ -124,7 +147,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
                                         max="9999" 
                                         type="number" 
                                         onChange={this.validateAdhaarSection} 
-                                        placeholder="1st 4 digits" 
+                                        placeholder="XXXX" 
                                         id="adhaarFirst" 
                                         value={this.state.adhaarFirst} 
                                         />
@@ -135,7 +158,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
                                         max="9999" 
                                         type="number" 
                                         onChange={this.validateAdhaarSection} 
-                                        placeholder="2nd 4 digits" 
+                                        placeholder="XXXX" 
                                         id="adhaarSecond" 
                                         value={this.state.adhaarSecond}
                                         />
@@ -146,7 +169,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
                                         max="9999" 
                                         type="number" 
                                         onChange={this.validateAdhaarSection} 
-                                        placeholder="Last 4 digits" 
+                                        placeholder="XXXX" 
                                         id="adhaarThird" 
                                         value={this.state.adhaarThird}
                                         />
@@ -162,7 +185,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
                                     </Col>
                                     <Col sm={3}>
                                         <Form.Control
-                                            as="select" defaultValue="Choose..."
+                                            as="select"
                                             onChange={this.handleChange('mandal')}
                                             value={this.state.mandal}>
                                             <option value="">Choose...</option>
@@ -181,7 +204,6 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
                                     <Col sm={3}>
                                         <Form.Control
                                             as="select"
-                                            defaultValue="Choose..."
                                             onChange={this.handleChange('phc')}
                                             value={this.state.phc} >
                                             <option value="">Choose...</option>
@@ -200,7 +222,6 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
                                     <Col sm={3}>
                                         <Form.Control
                                             as="select"
-                                            defaultValue="Choose..."
                                             onChange={this.handleChange('village_sec')}
                                             value={this.state.village_sec}>
                                             <option value="">Choose...</option>
@@ -219,7 +240,6 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
                                     <Col sm={3}>
                                         <Form.Control
                                             as="select"
-                                            defaultValue="Choose..."
                                             onChange={this.handleChange('village')}
                                             value={this.state.village}>
                                             <option value="">Choose...</option>
@@ -238,7 +258,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
                                     <Col sm={3}>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Enter First Name"
+                                            placeholder="First Name"
                                             onChange={this.handleChange('name')}
                                             value={this.state.name} />
                                     </Col>
@@ -250,7 +270,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
                                     <Col sm={3}>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Enter Surname"
+                                            placeholder="Surname"
                                             onChange={this.handleChange('surname')}
                                             value={this.state.surname} />
                                     </Col>
