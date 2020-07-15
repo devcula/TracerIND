@@ -158,7 +158,14 @@ def GetVillageSecData(request):
         Village_sec.objects.filter(PHC = (PHC.objects.get(name__iexact = request.data.get("PHC")).PHC_id))
     )
     serializer = VillageSecSerializer(villagesec, many = True)
-    print(serializer.data)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def GetVillageData(request):
+    village = (
+        Village.objects.filter(village_sec = (Village_sec.objects.get(name__iexact = request.data.get("village_sec")).villagesec_id))
+    )
+    serializer = VillageSerializer(village, many=True)
     return Response(serializer.data)
 
 @api_view(['POST'])
