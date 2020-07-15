@@ -26,7 +26,7 @@ class Patient (models.Model):
 
     bloodgroup = models.CharField(default=None, max_length=4)
     PVGT = models.CharField(default=None, max_length=3)
-
+    deworming = models.BooleanField(default=False)
     dateoftesting = models.DateField()
     serumCreatinine = models.DecimalField(max_digits=5, decimal_places=1,blank = True)
     bloodUrea = models.DecimalField(max_digits=5, decimal_places=1,blank = True)
