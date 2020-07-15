@@ -52,7 +52,7 @@ def parseVillageSec(request):
     for item in request.data :
         vs = {
             "villagesec_id" : i,
-            "name" : item.get("Village"),
+            "name" : item.get("Village_Sec"),
             "PHC" : (PHC.objects.get(name__iexact = (item.get("PHC"))).PHC_id)
         }
         print(vs)
