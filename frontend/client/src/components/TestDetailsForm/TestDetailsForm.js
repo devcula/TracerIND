@@ -14,6 +14,10 @@ class TestDetailsForm extends React.Component {
             bun: props.getValue('bun'),
             pedalEdema: props.getValue('pedalEdema'),
             pedalType: props.getValue('pedalType'),
+            kidneystatus:'',
+            ailments: props.getValue('ailments'),
+            dialysis: props.getValue('dialysis') ,
+            doctorreq:'',
         }
     }
 
@@ -25,6 +29,15 @@ class TestDetailsForm extends React.Component {
         this.setState({ [input]: event.target.value })
     }
 
+    validateOneDigitAfterDecimal = event => {
+            let strValue = event.target.value.toString();
+            if(strValue.includes(".")){
+            var index = strValue.indexOf(".")
+            event.target.value = Number(strValue.substring(0,index+2));
+            }
+            this.setState({[event.target.id] : event.target.value});
+       
+    }
     validateAndNext = () => {
         //Conditions to check.. If valid, Send form name to switch to next form
         console.log(this.state);
@@ -80,8 +93,9 @@ class TestDetailsForm extends React.Component {
                                         <Form.Label>Blood Urea: </Form.Label>
                                     </Col>
                                     <Col sm={2}>
-                                        <Form.Control type="number" placeholder="mg/dl" id="bloodUrea"  onChange={this.handleChange('bloodUrea')} 
-                                        value={this.state.bloodUrea}/>
+                                        <Form.Control type="number" placeholder="mg/dl" id="bloodUrea"  onChange={this.validateOneDigitAfterDecimal} 
+                                        value={this.state.bloodUrea}
+                                        />
                                         {(() => {
                                             if (this.state.bloodUrea > 15 && this.state.bloodUrea < 40)
                                             {
@@ -271,10 +285,137 @@ class TestDetailsForm extends React.Component {
                                             }
                                         })()}
                             </Col>
+                        </Row> 
+                        <Row>
+                            <Col sm={4}>
+                                <Form.Label>Kidney Funtioning Status:</Form.Label>
+                            </Col>
+                            <Col sm={1}>
+                                <Row>
+                                    <Col>
+                                        <Form.Check
+                                            type='radio'
+                                            value="good"
+                                            id="good"
+                                            label="Good"
+                                            name="kidneystatus"
+                                            onChange={this.handleChange('kidneystatus')}
+                                            checked={this.state.kidneystatus === "good"}
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <Form.Check
+                                            type='radio'
+                                            value="abnormal"
+                                            id="abnormal"
+                                            label="Abnormal"
+                                            name="kidneystatus"
+                                            onChange={this.handleChange('kidneystatus')}
+                                            checked={this.state.kidneystatus === "abnormal"}
+                                        />
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row> 
+                        <Row>
+                            <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
+                                <Form.Group as={Row}>
+                                    <Col sm={3}>
+                                        <Form.Label>Specify the ailments: </Form.Label>
+                                    </Col>
+                                    <Col sm={3}> 
+                                       <Form.Control as="textarea" placeholder="Description" id="ailments"  onChange={this.handleChange('ailments')} 
+                                        value={this.state.ailments} /> 
+                                    </Col>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={4}>
+                                <Form.Label>Need for Dialysis:</Form.Label>
+                            </Col>
+                            <Col sm={1}>
+                                <Row>
+                                    <Col>
+                                        <Form.Check
+                                            type='radio'
+                                            value="yes"
+                                            id="yes"
+                                            label="Yes"
+                                            name="dialysis"
+                                            onChange={this.handleChange('dialysis')}
+                                            checked={this.state.dialysis === "yes"}
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <Form.Check
+                                            type='radio'
+                                            value="no"
+                                            id="no"
+                                            label="No"
+                                            name="dialysis"
+                                            onChange={this.handleChange('dialysis')}
+                                            checked={this.state.dialysis === "no"}
+                                        />
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row> 
+                        <Row>
+                            <Col sm={4}>
+                                <Form.Label>Need for immediate Doctor Supervision:</Form.Label>
+                            </Col>
+                            <Col sm={1}>
+                                <Row>
+                                    <Col>
+                                        <Form.Check
+                                            type='radio'
+                                            value="yes"
+                                            id="yes"
+                                            label="Yes"
+                                            name="doctorreq"
+                                            onChange={this.handleChange('doctorreq')}
+                                            checked={this.state.doctorreq === "yes"}
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <Form.Check
+                                            type='radio'
+                                            value="no"
+                                            id="no"
+                                            label="no"
+                                            name="doctorreq"
+                                            onChange={this.handleChange('doctorreq')}
+                                            checked={this.state.doctorreq === "no"}
+                                        />
+                                    </Col>
+                                </Row>
+                            </Col>
                         </Row>
                         <Button variant="primary" onClick={this.previous}>
+        
                 Previous
             </Button>
+            {(() => {
+                                            if (this.state.doctorreq === 'yes')
+                                            {
+                                                return (
+                                                    <Button style={{ margin: 20 }}>Next</Button>
+                                                        )
+                                            }
+                                            else 
+                                            {
+                                                return (
+                                                    <Button style={{ margin: 20 }}>Submit</Button>
+                                                        )
+                                            }
+                                        })()}
                     </fieldset>
                 </Row>
             </Container>
