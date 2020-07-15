@@ -143,6 +143,29 @@ def GetPatient(request):
         return Response("Something Went Wrong")
 
 
+#DATA MATRIX APIs
+@api_view(['POST'])
+def GetPHCData(request):
+    phc = (
+        PHC.objects.filter(mandal = (Mandal.objects.get(name__iexact = request.data.get("mandal")).mandal_id))
+    )
+    serializer = PHCSerializer(phc, many = True)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def GetVillageSecData(request):
+    villagesec=(
+        Village_sec.objects.filter(PHC = (PHC.objects.get(name__iexact = request.data.get("PHC")).PHC_id))
+    )
+    serializer = VillageSecSerializer(villagesec, many = True)
+    print(serializer.data)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def GetPatientData_Village(request):
+    village = request.data.get("village")
+    patientlist = Patient.objects.filter(village = (Village.objects.get(name__iexact = request.data.get("village")).village_id))
+    serializer = PatientSerializer(patientlist,many = True)
 
 # #ANDROID APIS
 
