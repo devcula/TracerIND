@@ -6,7 +6,9 @@ class BasicDetailsForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            adhaar: props.getValue('adhaar'),
+            adhaarFirst: "",
+            adhaarSecond: "",
+            adhaarThird: "",
             mandal: props.getValue('mandal'),
             phc: props.getValue('phc'),
             village_sec: props.getValue('village_sec'),
@@ -20,7 +22,16 @@ class BasicDetailsForm extends React.Component {
             maritalstatus: props.getValue('maritalstatus'),
             phone: props.getValue('phone'),
             bloodgroup: props.getValue('bloodgroup'),
-            PVGT: props.getValue('PVGT')
+            PVGT: props.getValue('PVGT'),
+        }
+    }
+
+    componentDidMount = () => {
+        let adhaarNumber = this.props.getValue('adhaar');
+        if(adhaarNumber){
+            this.setState({adhaarFirst: adhaarNumber.substring(0,4)});
+            this.setState({adhaarSecond: adhaarNumber.substring(4,8)});
+            this.setState({adhaarThird: adhaarNumber.substring(8,12)});
         }
     }
 
@@ -28,15 +39,63 @@ class BasicDetailsForm extends React.Component {
         this.setState({ [input]: event.target.value })
     }
 
-    validateAndNext = () => {
+    validate = () => {
         //Conditions to check.. If valid, Send form name to switch to next form
         console.log(this.state);
-        this.props.changeData(this.state);
-        this.loadNextForm("TestDetails");
+        try{
+            //Adhaar fields validation
+            let fieldIds = ["adhaarFirst", "adhaarSecond", "adhaarThird"];
+            let filled = false;
+            for(let i = 0; i < fieldIds.length; i++){
+                if(this.state[fieldIds[i]] !== ""){
+                    filled = true;
+                    break;
+                }
+            }
+            if(filled){
+                for(let i = 0; i < fieldIds.length; i++){
+                    if(this.state[fieldIds[i]].length < 4){
+                        throw new Error();
+                    }
+                }
+            }
+            //Still in try block? Means all fields valid. Now saving the data to parent component.
+            this.saveData();
+            this.props.changeData({formName: "TestDetails"});
+        }
+        catch(err){
+            console.log(false);
+        }
+    }
+
+    saveData = () => {
+        let dataToSave = {
+            adhaar: this.state.adhaarFirst + this.state.adhaarSecond + this.state.adhaarThird,
+            village: this.state.village,
+            name: this.state.name,
+            surname: this.state.surname,
+            relation: this.state.relation,
+            gaurdian_name: this.state.gaurdian_name,
+            age: this.state.age,
+            gender: this.state.gender,
+            maritalstatus: this.state.maritalstatus,
+            phone: this.state.phone,
+            bloodgroup: this.state.bloodgroup,
+            PVGT: this.state.PVGT,
+        }
+        this.props.changeData(dataToSave);
     }
 
     loadNextForm = (formName) => {
         this.props.changeData({ formName: formName });
+    }
+
+    validateAdhaarSection = event => {
+        let strValue = event.target.value.toString();
+        if(strValue.length > 4){
+            event.target.value = Number(strValue.substring(0,4));
+        }
+        this.setState({[event.target.id] : event.target.value.toString()});
     }
 
     render() {
@@ -60,13 +119,37 @@ class BasicDetailsForm extends React.Component {
                                         <Form.Label>Aadhar Number : </Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control min="0" max="9999" type="number" placeholder="1st 4 digits" id="aadharFirst" />
+                                        <Form.Control 
+                                        min="0" 
+                                        max="9999" 
+                                        type="number" 
+                                        onChange={this.validateAdhaarSection} 
+                                        placeholder="1st 4 digits" 
+                                        id="adhaarFirst" 
+                                        value={this.state.adhaarFirst} 
+                                        />
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control min="0" max="9999" type="number" placeholder="2nd 4 digits" id="aadharSecond" />
+                                        <Form.Control 
+                                        min="0" 
+                                        max="9999" 
+                                        type="number" 
+                                        onChange={this.validateAdhaarSection} 
+                                        placeholder="2nd 4 digits" 
+                                        id="adhaarSecond" 
+                                        value={this.state.adhaarSecond}
+                                        />
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control min="0" max="9999" type="number" placeholder="Last 4 digits" id="aadharThird" />
+                                        <Form.Control 
+                                        min="0" 
+                                        max="9999" 
+                                        type="number" 
+                                        onChange={this.validateAdhaarSection} 
+                                        placeholder="Last 4 digits" 
+                                        id="adhaarThird" 
+                                        value={this.state.adhaarThird}
+                                        />
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -218,14 +301,18 @@ class BasicDetailsForm extends React.Component {
                                             </Col>
                                         </Row>
                                     </Col>
-                                    <Col sm={4} style={{ display: this.state.relation ? 'block' : 'none' }}>
-                                        <Form.Group controlId="gaurdian_name">
-                                            <Form.Label>Name :</Form.Label>
-                                            <Form.Control
-                                                type="text"
-                                                placeholder="Enter Name"
-                                                onChange={this.handleChange('gaurdian_name')}
-                                                value={this.state.gaurdian_name} />
+                                    <Col sm={6} style={{ display: this.state.relation ? 'block' : 'none' }}>
+                                        <Form.Group as={Row} controlId="gaurdian_name">
+                                            <Col sm={3}>
+                                                <Form.Label>Name :</Form.Label>
+                                            </Col>
+                                            <Col sm={9}>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="Enter Name"
+                                                    onChange={this.handleChange('gaurdian_name')}
+                                                    value={this.state.gaurdian_name} />
+                                            </Col>
                                         </Form.Group>
                                     </Col>
                                 </Row>
@@ -463,7 +550,7 @@ class BasicDetailsForm extends React.Component {
                         <br/>
                         <Row>
                             <Col sm={12} style={styles.center}>
-                                <Button variant="primary" onClick={this.validateAndNext}>Save and Continue</Button>
+                                <Button variant="primary" onClick={this.validate}>Save and Continue</Button>
                             </Col>
                         </Row>
                     </fieldset>
