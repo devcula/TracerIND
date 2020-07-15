@@ -7,5 +7,5 @@ from PHC.models import PHC
 
 class Village_sec(models.Model):
     villagesec_id = models.CharField(max_length=50, primary_key=True)
-    name = models.CharField(max_length=50)
-    PHC = models.CharField(max_length=100)
+    name = models.CharField(max_length=50,unique=True)
+    PHC = models.ForeignKey(PHC,on_delete=models.CASCADE)

@@ -7,5 +7,5 @@ from mandal.models import Mandal
 
 class PHC(models.Model):
     PHC_id = models.CharField(max_length=50, primary_key=True)
-    name = models.CharField(max_length=50)
-    mandal = models.CharField(max_length=100)
+    name = models.CharField(max_length=50,unique=True)
+    mandal = models.ForeignKey(Mandal,on_delete=models.CASCADE)

@@ -1,6 +1,6 @@
 import json
 import requests
-from TracerIND.serializers import PatientSerializer
+from TracerIND.serializers import PatientSerializer,MandalSerializer,PHCSerializer, VillageSecSerializer, VillageSerializer
 from doctor.models import Doctor
 from hospital.models import Hospital
 from mandal.models import Mandal
@@ -14,6 +14,7 @@ from rest_framework.decorators import api_view
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseServerError
 
+#LIST APIs
 @api_view(['GET'])
 def APIView(request):
     urlpatterns = {
@@ -26,6 +27,76 @@ def APIView(request):
 }
     return Response(urlpatterns)
 
+#FOR INIT PURPOSE
+@api_view(['POST'])
+def parseVillage(request):
+    i=1
+    for item in request.data :
+        vs = {
+            "village_id" : i,
+            "name" : item.get("Village"),
+            "village_sec" : (Village_sec.objects.get(name__iexact = (item.get("Village_Sec"))).villagesec_id)
+        }
+        print(vs)
+        serializer = VillageSerializer(data = vs)
+        if serializer.is_valid():
+            serializer.save()
+        else:
+            print(serializer.errors)
+        i=i+1
+    return Response("TEST OK")
+
+@api_view(['POST'])
+def parseVillageSec(request):
+    i=1
+    for item in request.data :
+        vs = {
+            "villagesec_id" : i,
+            "name" : item.get("Village"),
+            "PHC" : (PHC.objects.get(name__iexact = (item.get("PHC"))).PHC_id)
+        }
+        print(vs)
+        serializer = VillageSerializer(data = vs)
+        if serializer.is_valid():
+            serializer.save()
+        else:
+            print(serializer.errors)
+        i=i+1
+    return Response("TEST OK")
+
+@api_view(['POST'])
+def addmandal(request):
+    serializer = MandalSerializer(data = request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=200)
+    return Response("Error")
+
+@api_view(['POST'])
+def addphc(request):
+    print(Mandal.objects.get(name = request.data.get("mandal")))
+    phc = {
+        "PHC_id" : request.data.get("PHC_id"),
+        "name" : request.data.get("name"),
+        "mandal" : (Mandal.objects.get(name = request.data.get("mandal")).mandal_id)
+    }
+    serializer = PHCSerializer(data = phc)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status = 200)
+    print(serializer.errors)
+    return Response("Error")
+
+@api_view(['POST'])
+def updatephc(request):
+    phc = PHC.objects.get(PHC_id = request.data.get("PHC_id"))
+    serializer = PHCSerializer(phc,data = request.data,partial = True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status = 200)
+    return Response(serializer.errors)
+
+#CRUD FOR PATIENT
 
 @api_view(['POST'])
 def AddPatient(request):

@@ -1,7 +1,8 @@
+import time
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 from django.contrib.auth.models import User
-import time
+from village.models import Village
 
 
 class Patient (models.Model):
@@ -19,6 +20,7 @@ class Patient (models.Model):
     gender = models.CharField(default='NaN', max_length=3)
     phone = models.CharField(max_length = 10)
     adhaar = models.CharField(max_length=16)  # 16 digit num
+    village = models.ForeignKey(Village, on_delete=models.CASCADE)
     # single/married/separated/divorced/widowed
     maritalstatus = models.CharField(default=None, max_length=15)
 
