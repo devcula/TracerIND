@@ -56,7 +56,7 @@ def parseVillageSec(request):
             "PHC" : (PHC.objects.get(name__iexact = (item.get("PHC"))).PHC_id)
         }
         print(vs)
-        serializer = VillageSerializer(data = vs)
+        serializer = VillageSecSerializer(data = vs)
         if serializer.is_valid():
             serializer.save()
         else:
