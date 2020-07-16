@@ -1,6 +1,10 @@
 import React from 'react';
 
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import Mandal from '../Mandal/Mandal';
+import PHC from '../PHC/PHC';
+import VillageSec from '../VillageSecretariat/VillageSec';
+import Village from '../Village/Village';
   class BasicDetailsForm extends React.Component {
 
     constructor(props) {
@@ -127,6 +131,11 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
         this.setState({[event.target.id] : event.target.value.toString()});
     }
 
+    updateState = (valueObj) => {
+        console.log(valueObj);
+        this.setState(valueObj);
+    }
+
     render() {
         const styles = {
             center: {
@@ -185,72 +194,48 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
                         </Row>
                         <Row>
                             <Col sm={12}>
-                                <Form.Group as={Row} controlId="mandal">
+                                <Form.Group as={Row}>
                                     <Col sm={3}>
                                         <Form.Label>Mandal :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control
-                                            as="select"
-                                            onChange={this.handleChange('mandal')}
-                                            value={this.state.mandal}>
-                                            <option value="">Choose...</option>
-                                            <option>...</option>
-                                        </Form.Control>
+                                        <Mandal updateValue={this.updateState} id="mandal" />
                                     </Col>
                                 </Form.Group>
                             </Col>
                         </Row>
                         <Row>
                             <Col sm={12}>
-                                <Form.Group as={Row} controlId="phc">
+                                <Form.Group as={Row}>
                                     <Col sm={3}>
                                         <Form.Label>PHC :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control
-                                            as="select"
-                                            onChange={this.handleChange('phc')}
-                                            value={this.state.phc} >
-                                            <option value="">Choose...</option>
-                                            <option>...</option>
-                                        </Form.Control>
+                                        <PHC updateValue={this.updateState} mandal={this.state.mandal} id="phc" />
                                     </Col>
                                 </Form.Group>
                             </Col>
                         </Row>
                         <Row>
                             <Col sm={12}>
-                                <Form.Group as={Row} controlId="village_sec">
+                                <Form.Group as={Row}>
                                     <Col sm={3}>
                                         <Form.Label>Village Secretariat :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control
-                                            as="select"
-                                            onChange={this.handleChange('village_sec')}
-                                            value={this.state.village_sec}>
-                                            <option value="">Choose...</option>
-                                            <option>...</option>
-                                        </Form.Control>
+                                        <VillageSec updateValue={this.updateState} id="village_sec" phc={this.state.phc} />
                                     </Col>
                                 </Form.Group>
                             </Col>
                         </Row>
                         <Row>
                             <Col sm={12}>
-                                <Form.Group as={Row} controlId="village">
+                                <Form.Group as={Row}>
                                     <Col sm={3}>
                                         <Form.Label>Village :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control
-                                            as="select"
-                                            onChange={this.handleChange('village')}
-                                            value={this.state.village}>
-                                            <option value="">Choose...</option>
-                                            <option>...</option>
-                                        </Form.Control>
+                                        <Village updateValue={this.updateState} id="village" village_sec={this.state.village_sec} />
                                     </Col>
                                 </Form.Group>
                             </Col>
