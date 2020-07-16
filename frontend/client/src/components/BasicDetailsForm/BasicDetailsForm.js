@@ -61,7 +61,6 @@ import Village from '../Village/Village';
             if(filled){
                 for(let i = 0; i < adhaarIds.length; i++){
                     if(this.state[adhaarIds[i]].length < 4){
-                        // throw new Error();
                         invalidIds.push(adhaarIds[i]);
                     }
                     else{
@@ -69,28 +68,33 @@ import Village from '../Village/Village';
                     }
                 }
             }
+            //Other field validations
             Boolean(this.state.mandal) ? validIds.push('mandal') : invalidIds.push('mandal');
             Boolean(this.state.phc) ? validIds.push('phc') : invalidIds.push('phc');
             Boolean(this.state.village_sec) ? validIds.push('village_sec') : invalidIds.push('village_sec');
             Boolean(this.state.village) ? validIds.push('village') : invalidIds.push('village');
             Boolean(this.state.name) ? validIds.push('name') : invalidIds.push('name');
             Boolean(this.state.surname) ? validIds.push('surname') : invalidIds.push('surname');
-            // Boolean(this.state.relation) ? validIds.push('relation') : invalidIds.push('relation');
+            Boolean(this.state.relation) ? validIds.push('relation') : invalidIds.push('relation');
             Boolean(this.state.gaurdian_name) ? validIds.push('gaurdian_name') : invalidIds.push('gaurdian_name');
             Boolean(this.state.age) ? validIds.push('age') : invalidIds.push('age');
             Boolean(this.state.gender) ? validIds.push('gender') : invalidIds.push('gender');
             Boolean(this.state.maritalstatus) ? validIds.push('maritalstatus') : invalidIds.push('maritalstatus');
             Boolean(this.state.bloodgroup) ? validIds.push('bloodgroup') : invalidIds.push('bloodgroup');
             Boolean(this.state.PVGT) ? validIds.push('PVGT') : invalidIds.push('PVGT');
-            // for (let i = 0; i < validIds.length; i++) {
-            //     document.getElementById(validIds[i]).style.border = "";
-            // }
+            for (let i = 0; i < validIds.length; i++) {
+                document.getElementById(validIds[i]).style.border = "";
+            }
             if(invalidIds.length > 0){
-                // window.location.href = "#" + invalidIds[0];
-                // for(let i = 0; i < invalidIds.length; i++){
-                //     document.getElementById(invalidIds[i]).style.border = "1px solid red";
-                // }
+                window.location.href = "#" + invalidIds[0];
+                for(let i = 0; i < invalidIds.length; i++){
+                    document.getElementById(invalidIds[i]).style.border = "2px solid red";
+                }
+                document.getElementById(invalidIds[0]).focus();
                 throw new Error();
+            }
+            else{
+                window.location.href = "#";
             }
             //Still in try block? Means all fields valid. Now saving the data to parent component.
             this.saveData();
@@ -123,10 +127,10 @@ import Village from '../Village/Village';
         this.props.changeData({ formName: formName });
     }
 
-    validateAdhaarSection = event => {
+    restrictDigits = length => event => {
         let strValue = event.target.value.toString();
-        if(strValue.length > 4){
-            event.target.value = Number(strValue.substring(0,4));
+        if(strValue.length > length){
+            event.target.value = Number(strValue.substring(0,length));
         }
         this.setState({[event.target.id] : event.target.value.toString()});
     }
@@ -161,7 +165,7 @@ import Village from '../Village/Village';
                                         min="0" 
                                         max="9999" 
                                         type="number" 
-                                        onChange={this.validateAdhaarSection} 
+                                        onChange={this.restrictDigits(4)} 
                                         placeholder="XXXX" 
                                         id="adhaarFirst" 
                                         value={this.state.adhaarFirst} 
@@ -172,7 +176,7 @@ import Village from '../Village/Village';
                                         min="0" 
                                         max="9999" 
                                         type="number" 
-                                        onChange={this.validateAdhaarSection} 
+                                        onChange={this.restrictDigits(4)} 
                                         placeholder="XXXX" 
                                         id="adhaarSecond" 
                                         value={this.state.adhaarSecond}
@@ -183,7 +187,7 @@ import Village from '../Village/Village';
                                         min="0" 
                                         max="9999" 
                                         type="number" 
-                                        onChange={this.validateAdhaarSection} 
+                                        onChange={this.restrictDigits(4)} 
                                         placeholder="XXXX" 
                                         id="adhaarThird" 
                                         value={this.state.adhaarThird}
@@ -274,7 +278,7 @@ import Village from '../Village/Village';
                                     <Col sm={3}>
                                         <Form.Label>S/o, D/o, W/o:</Form.Label>
                                     </Col>
-                                    <Col sm={3}>
+                                    <Col sm={3} id="relation">
                                         <Row>
                                             <Col>
                                                 <Form.Check
@@ -325,7 +329,8 @@ import Village from '../Village/Village';
                                                     type="text"
                                                     placeholder="Enter Name"
                                                     onChange={this.handleChange('gaurdian_name')}
-                                                    value={this.state.gaurdian_name} />
+                                                    value={this.state.gaurdian_name} 
+                                                />
                                             </Col>
                                         </Form.Group>
                                     </Col>
@@ -345,7 +350,7 @@ import Village from '../Village/Village';
                                             max="99"
                                             type="number"
                                             placeholder="Enter age"
-                                            onChange={this.handleChange('age')}
+                                            onChange={this.restrictDigits(2)}
                                             value={this.state.age} />
                                     </Col>
                                 </Form.Group>
@@ -357,7 +362,7 @@ import Village from '../Village/Village';
                                     <Col sm={3}>
                                         <Form.Label>Sex :</Form.Label>
                                     </Col>
-                                    <Col sm={3}>
+                                    <Col sm={3} id="gender">
                                         <Row>
                                             <Col>
                                                 <Form.Check
@@ -408,7 +413,7 @@ import Village from '../Village/Village';
                                     <Col sm={3}>
                                         <Form.Label>Marital Status :</Form.Label>
                                     </Col>
-                                    <Col sm={3}>
+                                    <Col sm={3} id="maritalstatus">
                                         <Row>
                                             <Col>
                                                 <Form.Check
@@ -491,7 +496,7 @@ import Village from '../Village/Village';
                                             max="9999999999"
                                             type="number"
                                             placeholder="Enter Contact number"
-                                            onChange={this.handleChange('phone')}
+                                            onChange={this.restrictDigits(10)}
                                             value={this.state.phone} />
                                     </Col>
                                 </Form.Group>
@@ -530,7 +535,7 @@ import Village from '../Village/Village';
                                     <Col sm={3}>
                                         <Form.Label>PVTG :</Form.Label>
                                     </Col>
-                                    <Col sm={3}>
+                                    <Col sm={3} id="PVGT">
                                         <Row>
                                             <Col>
                                                 <Form.Check
