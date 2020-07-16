@@ -7,7 +7,6 @@ class HospitalDetailsForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            phc: props.getValue('phc'),
             hospitalAdmit: props.getValue('hospitalAdmit'),
             dateOfAdmit: props.getValue('dateOfAdmit'),
             refered: props.getValue('refered'),
@@ -62,25 +61,30 @@ class HospitalDetailsForm extends React.Component {
                             <Col sm={12}>
                                 <Form.Group as={Row} controlId="phc">
                                     <Col sm={3}>
-                                        <Form.Label>PHC :</Form.Label>
+                                        <Form.Label>Hospital admitted in :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
                                         <Form.Control
                                             as="select"
-                                            defaultValue="Choose..."
-                                            onChange={this.handleChange('phc')}
-                                            value={this.state.phc} >
+                                            onChange={this.handleChange('hospitalAdmit')}
+                                            value={this.state.hospitalAdmit} >
                                             <option value="">Choose...</option>
-                                            <option value="">...</option>
-                                            <option value="">...</option>
-                                            <option value="">...</option>
-                                            <option value="">...</option>
-                                            <option value="">...</option>
-                                            <option value="">...</option>
-                                            <option value="">...</option>
-                                            <option value="">...</option>
-                                            <option value="">...</option>
-                                            <option value="">...</option>
+                                            <option value="PHC/Tulasipaka">PHC/Tulasipaka</option>
+                                            <option value="PHC/E.D Pally">PHC/E.D Pally</option>
+                                            <option value="PHC/Laxmipuram">PHC/Laxmipuram</option>
+                                            <option value="PHC/Nellipaka">PHC/Nellipaka</option>
+                                            <option value="PHC/Gowridevipeta">PHC/Gowridevipeta</option>
+                                            <option value="PHC/Kuturu">PHC/Kuturu</option>
+                                            <option value="PHC/Rekhapally">PHC/Rekhapally</option>
+                                            <option value="PHC/Jeediguppa">PHC/Jeediguppa</option>
+                                            <option value="AH/Chintoor">AH/Chintoor</option>
+                                            <option value="AH/Rampachodavaram">AH/Rampachodavaram</option>
+                                            <option value="AH/Bhadrachalam">AH/Bhadrachalam</option>
+                                            <option value="DH/Rajamundry">DH/Rajamundry</option>
+                                            <option value="GGH/Kakinada">GGH/Kakinada</option>
+                                            <option value="other">other</option>
+
+
 
                                         </Form.Control>
                                     </Col>
@@ -95,7 +99,7 @@ class HospitalDetailsForm extends React.Component {
 
                                     </Col>
                                     <Col sm={3}>
-                                        <DateTime pickerOptions={{ format: "LL" }} />
+                                         <input type="date" />
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -104,7 +108,7 @@ class HospitalDetailsForm extends React.Component {
                             <Col sm={12}>
                                 <Row>
                                     <Col sm={3}>
-                                        <Form.Label>Refered To any Hospitals :</Form.Label>
+                                        <Form.Label>  Refered To any Hospitals :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
                                         <Row>
@@ -138,33 +142,32 @@ class HospitalDetailsForm extends React.Component {
                                 </Row>
                             </Col>
                         </Row>
+                        <br/>
                         {(() => {
                             if (this.state.refered === "yes") {
                                 return (
-                                    <Container>
+
+                                    <div>
                                         <Row>
                                             <Col sm={12}>
-                                                <Form.Group as={Row} controlId="refered">
+                                                <Form.Group as={Row} controlId="referredto">
                                                     <Col sm={3}>
                                                         <Form.Label>Hospital Refered to</Form.Label>
                                                     </Col>
                                                     <Col sm={3}>
                                                         <Form.Control
                                                             as="select"
-                                                            defaultValue="Choose..."
-                                                            onChange={this.handleChange('refered')}
-                                                            value={this.state.phc} >
+
+                                                            onChange={this.handleChange('referredto')}
+                                                            value={this.state.referredto} >
                                                             <option value="">Choose...</option>
-                                                            <option value="">...</option>
-                                                            <option value="">...</option>
-                                                            <option value="">...</option>
-                                                            <option value="">...</option>
-                                                            <option value="">...</option>
-                                                            <option value="">...</option>
-                                                            <option value="">...</option>
-                                                            <option value="">...</option>
-                                                            <option value="">...</option>
-                                                            <option value="">...</option>
+                                                            <option value="AH/Chintoor">AH/Chintoor</option>
+                                                            <option value="AH/Rampachodavaram">AH/Rampachodavaram</option>
+                                                            <option value="AH/Bhadrachalam">AH/Bhadrachalam</option>
+                                                            <option value="DH/Rajamundry">DH/Rajamundry</option>
+                                                            <option value="GGH/Kakinada">GGH/Kakinada</option>
+                                                            <option value="other">other</option>
+
 
                                                         </Form.Control>
                                                     </Col>
@@ -272,7 +275,7 @@ class HospitalDetailsForm extends React.Component {
                                             </Col>
                                         </Row>
 
-                                    </Container>
+                                    </div>
 
 
                                 )
@@ -300,7 +303,7 @@ class HospitalDetailsForm extends React.Component {
 
                                                     </Col>
                                                     <Col sm={3}>
-                                                        <DateTime pickerOptions={{ format: "LL" }} />
+                                                        <input type="date" />
                                                     </Col>
                                                 </Form.Group>
                                             </Col>
@@ -347,24 +350,12 @@ class HospitalDetailsForm extends React.Component {
                                                     <Container>
                                                         <Row>
                                                             <Col sm={12}>
-                                                                <Form.Group as={Row} controlId="causeOfDeath">
-                                                                    <Col sm={3}>
-                                                                        <Form.Label>Date </Form.Label>
-                                                                    </Col>
-                                                                    <Col sm={3}>
-                                                                        <DateTime pickerOptions={{ format: "LL" }} />
-                                                                    </Col>
-                                                                </Form.Group>
-                                                            </Col>
-                                                        </Row>
-                                                        <Row>
-                                                            <Col sm={12}>
                                                                 <Form.Group as={Row} controlId="deathDate">
                                                                     <Col sm={3}>
                                                                         <Form.Label>Date </Form.Label>
                                                                     </Col>
                                                                     <Col sm={3}>
-                                                                        <DateTime pickerOptions={{ format: "LL" }} />
+                                                                        <input type="date" />
                                                                     </Col>
                                                                 </Form.Group>
                                                             </Col>
@@ -404,7 +395,9 @@ class HospitalDetailsForm extends React.Component {
                                             }
                                             else if (this.state.deceased === "no") {
                                                 return (
-                                                    <Container></Container>
+                                                    <Container>
+
+                                                    </Container>
                                                 )
                                             }
                                         })()}
@@ -419,7 +412,7 @@ class HospitalDetailsForm extends React.Component {
                         <br />
                         <Row>
                             <Col sm={12} style={styles.center}>
-                                <Button variant="primary" onClick={this.validateAndNext}>Save and Continue</Button>
+                                <Button variant="primary" onClick={this.validateAndNext}>Submit</Button>
                             </Col>
                         </Row>
                     </fieldset>
