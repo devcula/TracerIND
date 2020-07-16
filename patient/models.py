@@ -19,7 +19,7 @@ class Patient (models.Model):
     # M=> Male/F=>Female/NB=>NonBinary
     gender = models.CharField(default='NaN', max_length=3)
     phone = models.CharField(max_length = 10)
-    adhaar = models.CharField(max_length=16)  # 16 digit num
+    adhaar = models.CharField(max_length=16,blank=True)  # 16 digit num
     village = models.ForeignKey(Village, on_delete=models.CASCADE)
     # single/married/separated/divorced/widowed
     maritalstatus = models.CharField(default=None, max_length=15)
