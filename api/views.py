@@ -100,18 +100,14 @@ def updatephc(request):
 
 @api_view(['POST'])
 def AddPatient(request):
-    print(request.data)
     serializer = PatientSerializer(data=request.data)
     if serializer.is_valid():
-        print(serializer.data)
         serializer.save()
-        return Response(status = 200)
-    print(serializer.errors)
+        return Response(serializer.data)
     return Response("Something Went Wrong")
 
 @api_view(['POST'])
 def DeletePatient(request):
-    print(request.data)
     pk = request.data.get("pkid")
     try:
         patient = Patient.objects.get(pkid = pk)
@@ -122,7 +118,6 @@ def DeletePatient(request):
 
 @api_view(['POST'])
 def UpdatePatient(request):
-    print(request.data)
     pk = request.data.get("pkid")
     patient = Patient.objects.get(pkid = pk)
     serializer = PatientSerializer(instance = patient , data = request.data , partial = True)
@@ -134,7 +129,6 @@ def UpdatePatient(request):
 
 @api_view (['POST'])
 def GetPatient(request):
-    print(request.data)
     pk = request.data.get("pkid")
     patient = Patient.objects.get(pkid = pk)
     serializer = PatientSerializer(patient)
