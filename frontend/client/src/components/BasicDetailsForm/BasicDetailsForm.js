@@ -1,7 +1,11 @@
 import React from 'react';
 
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-class BasicDetailsForm extends React.Component {
+import Mandal from '../Mandal/Mandal';
+import PHC from '../PHC/PHC';
+import VillageSec from '../VillageSecretariat/VillageSec';
+import Village from '../Village/Village';
+  class BasicDetailsForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -42,22 +46,55 @@ class BasicDetailsForm extends React.Component {
     validate = () => {
         //Conditions to check.. If valid, Send form name to switch to next form
         console.log(this.state);
+        let validIds = [];
+        let invalidIds = [];
         try{
             //Adhaar fields validation
-            let fieldIds = ["adhaarFirst", "adhaarSecond", "adhaarThird"];
+            let adhaarIds = ["adhaarFirst", "adhaarSecond", "adhaarThird"];
             let filled = false;
-            for(let i = 0; i < fieldIds.length; i++){
-                if(this.state[fieldIds[i]] !== ""){
+            for(let i = 0; i < adhaarIds.length; i++){
+                if(this.state[adhaarIds[i]] !== ""){
                     filled = true;
                     break;
                 }
             }
             if(filled){
-                for(let i = 0; i < fieldIds.length; i++){
-                    if(this.state[fieldIds[i]].length < 4){
-                        throw new Error();
+                for(let i = 0; i < adhaarIds.length; i++){
+                    if(this.state[adhaarIds[i]].length < 4){
+                        invalidIds.push(adhaarIds[i]);
+                    }
+                    else{
+                        validIds.push(adhaarIds[i]);
                     }
                 }
+            }
+            //Other field validations
+            Boolean(this.state.mandal) ? validIds.push('mandal') : invalidIds.push('mandal');
+            Boolean(this.state.phc) ? validIds.push('phc') : invalidIds.push('phc');
+            Boolean(this.state.village_sec) ? validIds.push('village_sec') : invalidIds.push('village_sec');
+            Boolean(this.state.village) ? validIds.push('village') : invalidIds.push('village');
+            Boolean(this.state.name) ? validIds.push('name') : invalidIds.push('name');
+            Boolean(this.state.surname) ? validIds.push('surname') : invalidIds.push('surname');
+            Boolean(this.state.relation) ? validIds.push('relation') : invalidIds.push('relation');
+            Boolean(this.state.gaurdian_name) ? validIds.push('gaurdian_name') : invalidIds.push('gaurdian_name');
+            Boolean(this.state.age) ? validIds.push('age') : invalidIds.push('age');
+            Boolean(this.state.gender) ? validIds.push('gender') : invalidIds.push('gender');
+            Boolean(this.state.maritalstatus) ? validIds.push('maritalstatus') : invalidIds.push('maritalstatus');
+            Boolean(this.state.bloodgroup) ? validIds.push('bloodgroup') : invalidIds.push('bloodgroup');
+            Boolean(this.state.PVGT) ? validIds.push('PVGT') : invalidIds.push('PVGT');
+            for (let i = 0; i < validIds.length; i++) {
+                document.getElementById(validIds[i]).style.border = "";
+            }
+            if(invalidIds.length > 0){
+                window.location.href = "#" + invalidIds[0];
+                for(let i = 0; i < invalidIds.length; i++){
+                    document.getElementById(invalidIds[i]).style.border = "2px solid red";
+                }
+                document.getElementById(invalidIds[0]).focus();
+                throw new Error();
+            }
+            else{
+                window.location.href = "#";
             }
             //Still in try block? Means all fields valid. Now saving the data to parent component.
             this.saveData();
@@ -90,12 +127,17 @@ class BasicDetailsForm extends React.Component {
         this.props.changeData({ formName: formName });
     }
 
-    validateAdhaarSection = event => {
+    restrictDigits = length => event => {
         let strValue = event.target.value.toString();
-        if(strValue.length > 4){
-            event.target.value = Number(strValue.substring(0,4));
+        if(strValue.length > length){
+            event.target.value = Number(strValue.substring(0,length));
         }
         this.setState({[event.target.id] : event.target.value.toString()});
+    }
+
+    updateState = (valueObj) => {
+        console.log(valueObj);
+        this.setState(valueObj);
     }
 
     render() {
@@ -123,8 +165,8 @@ class BasicDetailsForm extends React.Component {
                                         min="0" 
                                         max="9999" 
                                         type="number" 
-                                        onChange={this.validateAdhaarSection} 
-                                        placeholder="1st 4 digits" 
+                                        onChange={this.restrictDigits(4)} 
+                                        placeholder="XXXX" 
                                         id="adhaarFirst" 
                                         value={this.state.adhaarFirst} 
                                         />
@@ -134,8 +176,8 @@ class BasicDetailsForm extends React.Component {
                                         min="0" 
                                         max="9999" 
                                         type="number" 
-                                        onChange={this.validateAdhaarSection} 
-                                        placeholder="2nd 4 digits" 
+                                        onChange={this.restrictDigits(4)} 
+                                        placeholder="XXXX" 
                                         id="adhaarSecond" 
                                         value={this.state.adhaarSecond}
                                         />
@@ -145,8 +187,8 @@ class BasicDetailsForm extends React.Component {
                                         min="0" 
                                         max="9999" 
                                         type="number" 
-                                        onChange={this.validateAdhaarSection} 
-                                        placeholder="Last 4 digits" 
+                                        onChange={this.restrictDigits(4)} 
+                                        placeholder="XXXX" 
                                         id="adhaarThird" 
                                         value={this.state.adhaarThird}
                                         />
@@ -156,72 +198,48 @@ class BasicDetailsForm extends React.Component {
                         </Row>
                         <Row>
                             <Col sm={12}>
-                                <Form.Group as={Row} controlId="mandal">
+                                <Form.Group as={Row}>
                                     <Col sm={3}>
                                         <Form.Label>Mandal :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control
-                                            as="select"
-                                            onChange={this.handleChange('mandal')}
-                                            value={this.state.mandal}>
-                                            <option value="">Choose...</option>
-                                            <option>...</option>
-                                        </Form.Control>
+                                        <Mandal updateValue={this.updateState} id="mandal" />
                                     </Col>
                                 </Form.Group>
                             </Col>
                         </Row>
                         <Row>
                             <Col sm={12}>
-                                <Form.Group as={Row} controlId="phc">
+                                <Form.Group as={Row}>
                                     <Col sm={3}>
                                         <Form.Label>PHC :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control
-                                            as="select"
-                                            onChange={this.handleChange('phc')}
-                                            value={this.state.phc} >
-                                            <option value="">Choose...</option>
-                                            <option>...</option>
-                                        </Form.Control>
+                                        <PHC updateValue={this.updateState} mandal={this.state.mandal} id="phc" />
                                     </Col>
                                 </Form.Group>
                             </Col>
                         </Row>
                         <Row>
                             <Col sm={12}>
-                                <Form.Group as={Row} controlId="village_sec">
+                                <Form.Group as={Row}>
                                     <Col sm={3}>
                                         <Form.Label>Village Secretariat :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control
-                                            as="select"
-                                            onChange={this.handleChange('village_sec')}
-                                            value={this.state.village_sec}>
-                                            <option value="">Choose...</option>
-                                            <option>...</option>
-                                        </Form.Control>
+                                        <VillageSec updateValue={this.updateState} id="village_sec" phc={this.state.phc} />
                                     </Col>
                                 </Form.Group>
                             </Col>
                         </Row>
                         <Row>
                             <Col sm={12}>
-                                <Form.Group as={Row} controlId="village">
+                                <Form.Group as={Row}>
                                     <Col sm={3}>
                                         <Form.Label>Village :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control
-                                            as="select"
-                                            onChange={this.handleChange('village')}
-                                            value={this.state.village}>
-                                            <option value="">Choose...</option>
-                                            <option>...</option>
-                                        </Form.Control>
+                                        <Village updateValue={this.updateState} id="village" village_sec={this.state.village_sec} />
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -235,7 +253,7 @@ class BasicDetailsForm extends React.Component {
                                     <Col sm={3}>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Enter First Name"
+                                            placeholder="First Name"
                                             onChange={this.handleChange('name')}
                                             value={this.state.name} />
                                     </Col>
@@ -247,7 +265,7 @@ class BasicDetailsForm extends React.Component {
                                     <Col sm={3}>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Enter Surname"
+                                            placeholder="Surname"
                                             onChange={this.handleChange('surname')}
                                             value={this.state.surname} />
                                     </Col>
@@ -260,7 +278,7 @@ class BasicDetailsForm extends React.Component {
                                     <Col sm={3}>
                                         <Form.Label>S/o, D/o, W/o:</Form.Label>
                                     </Col>
-                                    <Col sm={3}>
+                                    <Col sm={3} id="relation">
                                         <Row>
                                             <Col>
                                                 <Form.Check
@@ -311,7 +329,8 @@ class BasicDetailsForm extends React.Component {
                                                     type="text"
                                                     placeholder="Enter Name"
                                                     onChange={this.handleChange('gaurdian_name')}
-                                                    value={this.state.gaurdian_name} />
+                                                    value={this.state.gaurdian_name} 
+                                                />
                                             </Col>
                                         </Form.Group>
                                     </Col>
@@ -331,7 +350,7 @@ class BasicDetailsForm extends React.Component {
                                             max="99"
                                             type="number"
                                             placeholder="Enter age"
-                                            onChange={this.handleChange('age')}
+                                            onChange={this.restrictDigits(2)}
                                             value={this.state.age} />
                                     </Col>
                                 </Form.Group>
@@ -343,7 +362,7 @@ class BasicDetailsForm extends React.Component {
                                     <Col sm={3}>
                                         <Form.Label>Sex :</Form.Label>
                                     </Col>
-                                    <Col sm={3}>
+                                    <Col sm={3} id="gender">
                                         <Row>
                                             <Col>
                                                 <Form.Check
@@ -394,7 +413,7 @@ class BasicDetailsForm extends React.Component {
                                     <Col sm={3}>
                                         <Form.Label>Marital Status :</Form.Label>
                                     </Col>
-                                    <Col sm={3}>
+                                    <Col sm={3} id="maritalstatus">
                                         <Row>
                                             <Col>
                                                 <Form.Check
@@ -477,7 +496,7 @@ class BasicDetailsForm extends React.Component {
                                             max="9999999999"
                                             type="number"
                                             placeholder="Enter Contact number"
-                                            onChange={this.handleChange('phone')}
+                                            onChange={this.restrictDigits(10)}
                                             value={this.state.phone} />
                                     </Col>
                                 </Form.Group>
@@ -516,7 +535,7 @@ class BasicDetailsForm extends React.Component {
                                     <Col sm={3}>
                                         <Form.Label>PVTG :</Form.Label>
                                     </Col>
-                                    <Col sm={3}>
+                                    <Col sm={3} id="PVGT">
                                         <Row>
                                             <Col>
                                                 <Form.Check
