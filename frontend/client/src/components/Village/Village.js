@@ -42,7 +42,7 @@ export default function Village(props) {
                     {
                         villageList.map((village, i) => {
                             return (
-                                <option value={village.name} key={i}>{village.name}</option>
+                                <option value={village.village_id} key={i}>{village.name}</option>
                             )
                         })
                     }

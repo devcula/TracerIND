@@ -6,6 +6,8 @@ body {
     font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-image: url('./assets/background.jpg'); */
+  /* background: linear-gradient(90deg, #141e30, #243b55) */
 }
 
 fieldset {

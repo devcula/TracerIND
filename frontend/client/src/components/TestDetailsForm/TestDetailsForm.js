@@ -50,6 +50,7 @@ class TestDetailsForm extends React.Component {
     loadNextForm = (formName) => {
         this.props.changeData({ formName: formName });
     }
+
     previous = () => {
         this.props.changeData({ formName: "UserDetails" });
     }
