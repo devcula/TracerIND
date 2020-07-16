@@ -173,6 +173,7 @@ def GetPatientData_Village(request):
     village = request.data.get("village")
     patientlist = Patient.objects.filter(village = (Village.objects.get(name__iexact = request.data.get("village")).village_id))
     serializer = PatientSerializer(patientlist,many = True)
+    return Response(serializer.data)
 
 # #ANDROID APIS
 
