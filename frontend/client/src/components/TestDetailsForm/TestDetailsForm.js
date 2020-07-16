@@ -60,7 +60,7 @@ class TestDetailsForm extends React.Component {
     }
 
     handleChangeBoolenValues = input => event => {
-        const isTrue = event.target.value
+        let isTrue = event.target.value
         if(isTrue === 'yes'){
             isTrue = true
         }
@@ -514,6 +514,7 @@ class TestDetailsForm extends React.Component {
                                     <Row>
                                         <Col sm={12} style={styles.center}>
                                             <Button variant="primary"
+                                            onClick={this.props.submit}
                                             >Submit</Button>
                                         </Col>
                                     </Row>

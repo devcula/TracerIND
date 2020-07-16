@@ -38,7 +38,8 @@ class HospitalDetailsForm extends React.Component {
         //Conditions to check.. If valid, Send form name to switch to next form
         console.log(this.state);
         this.props.changeData(this.state);
-        this.loadNextForm("HospitalDetails");
+        // this.loadNextForm("HospitalDetails");
+        this.props.submit();
     }
 
     loadNextForm = (formName) => {
@@ -85,9 +86,6 @@ class HospitalDetailsForm extends React.Component {
                                             <option value="DH/Rajamundry">DH/Rajamundry</option>
                                             <option value="GGH/Kakinada">GGH/Kakinada</option>
                                             <option value="other">other</option>
-
-
-
                                         </Form.Control>
                                     </Col>
                                 </Form.Group>
