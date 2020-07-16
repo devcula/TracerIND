@@ -103,6 +103,7 @@ def AddPatient(request):
     print(request.data)
     serializer = PatientSerializer(data=request.data)
     if serializer.is_valid():
+        print(serializer.data)
         serializer.save()
         return Response(status = 200)
     print(serializer.errors)
