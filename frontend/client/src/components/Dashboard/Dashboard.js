@@ -8,7 +8,7 @@ export default class Dashboard extends Component {
         return (
             <Container>
                 {/* <Image src={stetho} className="header-image" /> */}
-                <fieldset>
+                <fieldset style={{ backgroundImage: "linear-gradient(to right top, #7a9e7e, #3d7b74, #0a5767, #0c314d, #160c28)", color: "white"}}>
                     <legend>Dashboard</legend>
                     <Container>
                         {/* <h2>Dashboard</h2> */}

@@ -8,7 +8,7 @@ export default class About extends Component {
     render() {
         return (
             <Container>
-                <fieldset>
+                <fieldset style={{ backgroundImage: "linear-gradient(to right top, #7a9e7e, #3d7b74, #0a5767, #0c314d, #160c28)", color: "white" }}>
                     <legend>About</legend>
                     <Row>
                         <Col xs={12} sm={8} smOffset={2}>

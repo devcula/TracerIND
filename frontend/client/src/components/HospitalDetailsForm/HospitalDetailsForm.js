@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { DateTime } from 'react-datetime-bootstrap';
+// import { DateTime } from 'react-datetime-bootstrap';
 
 class HospitalDetailsForm extends React.Component {
 
@@ -93,13 +93,13 @@ class HospitalDetailsForm extends React.Component {
                         </Row>
                         <Row>
                             <Col sm={12}>
-                                <Form.Group as={Row} controlId="dateOfAdmit">
+                                <Form.Group as={Row}>
                                     <Col sm={3}>
                                         <Form.Label>Date Of Admit :</Form.Label>
 
                                     </Col>
                                     <Col sm={3}>
-                                         <input type="date" />
+                                        <input type="date" className="form-control" id="dateOfAdmit" onChange={this.handleChange('dateOfAdmit')} />
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -142,7 +142,7 @@ class HospitalDetailsForm extends React.Component {
                                 </Row>
                             </Col>
                         </Row>
-                        <br/>
+                        <br />
                         {(() => {
                             if (this.state.refered === "yes") {
                                 return (
@@ -227,6 +227,7 @@ class HospitalDetailsForm extends React.Component {
                                                 </Col>
                                             </Row>
                                         </Col>
+                                        <br />
                                         <Row>
                                             <Col sm={12}>
                                                 <Form.Group as={Row} controlId="treatmentDone">
@@ -253,7 +254,8 @@ class HospitalDetailsForm extends React.Component {
 
                                                     </Col>
                                                     <Col sm={3}>
-                                                        <DateTime pickerOptions={{ format: "LL" }} />
+                                                        {/* <DateTime pickerOptions={{ format: "LL" }} /> */}
+                                                        <input type="date" id="discharge" className="form-control" onChange={this.handleChange('discharge')} />
                                                     </Col>
                                                 </Form.Group>
                                             </Col>
@@ -297,13 +299,13 @@ class HospitalDetailsForm extends React.Component {
                                         </Row>
                                         <Row>
                                             <Col sm={12}>
-                                                <Form.Group as={Row} controlId="discharge">
+                                                <Form.Group as={Row}>
                                                     <Col sm={3}>
                                                         <Form.Label>Date Of discharge :</Form.Label>
 
                                                     </Col>
                                                     <Col sm={3}>
-                                                        <input type="date" />
+                                                        <input type="date" class="form-control" id="discharge2" onChange={this.handleChange('discharge')} />
                                                     </Col>
                                                 </Form.Group>
                                             </Col>
@@ -350,12 +352,12 @@ class HospitalDetailsForm extends React.Component {
                                                     <Container>
                                                         <Row>
                                                             <Col sm={12}>
-                                                                <Form.Group as={Row} controlId="deathDate">
+                                                                <Form.Group as={Row}>
                                                                     <Col sm={3}>
                                                                         <Form.Label>Date </Form.Label>
                                                                     </Col>
                                                                     <Col sm={3}>
-                                                                        <input type="date" />
+                                                                        <input type="date" id="deathDate" class="form-control" onChange={this.handleChange('deathDate')} />
                                                                     </Col>
                                                                 </Form.Group>
                                                             </Col>

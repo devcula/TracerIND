@@ -6,6 +6,7 @@ import HospitalDetailsForm from '../HospitalDetailsForm/HospitalDetailsForm';
 
 import axios from 'axios';
 import { uri } from '../../index';
+import FormSuccess from '../FormSuccess/FormSuccess';
 
 class MainForm extends React.Component {
 
@@ -76,14 +77,16 @@ class MainForm extends React.Component {
             causeOfDeath: this.state.causeOfDeath
         }
 
-        axios.post('http://localhost:6000/AddPatient', dataToSend).then(response => {
-            console.log(response);
-            alert("Data saved");
+        axios.post(uri + 'AddPatient/', dataToSend).then(response => {
+            if (response.data.pkid === this.state.pkid) {
+                console.log(response);
+                alert("Data saved");
+            }
             // this.setState({formName: "Success"});
         })
             .catch(err => {
                 console.log(err);
-            }) 
+            })
     }
 
     render() {
@@ -97,6 +100,9 @@ class MainForm extends React.Component {
             case "HospitalDetails":
                 console.log(this.state);
                 return <HospitalDetailsForm submit={this.submitForm} changeData={this.appendState} getValue={this.getValue} />
+            case "Success":
+                console.log(this.state);
+                return <FormSuccess />
             default:
                 return "";
         }

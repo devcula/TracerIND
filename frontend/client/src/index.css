@@ -3,7 +3,7 @@ body {
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
-    font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* background-image: url('./assets/background.jpg'); */
@@ -21,11 +21,11 @@ fieldset {
   -moz-border-radius: 10px;
   border-radius: 10px;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12);
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
 legend {
@@ -36,17 +36,17 @@ legend {
   padding: 5px 10px;
   width: 100%;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12);
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
   border-radius: 10px;
   /* font-size: 1.2rem; */
   font-weight: bold;
 }
 
-.form-label{
+.form-label {
   /* font-size: 1.5rem; */
   font-weight: bold;
 }
@@ -64,11 +64,11 @@ legend {
   text-align: center;
   height: 3rem;
   box-shadow: 0 1.4px 1.1px rgba(0, 0, 0, 0.034),
-  0 1.7px 1.4px rgba(0, 0, 0, 0.048),
-  0 3.1px 2.5px rgba(0, 0, 0, 0.06),
-  0 2.2px 2px rgba(0, 0, 0, 0.072),
-  0 2.5px 2px rgba(0, 0, 0, 0.086),
-  0 10px 5px rgba(0, 0, 0, 0);
+    0 1.7px 1.4px rgba(0, 0, 0, 0.048),
+    0 3.1px 2.5px rgba(0, 0, 0, 0.06),
+    0 2.2px 2px rgba(0, 0, 0, 0.072),
+    0 2.5px 2px rgba(0, 0, 0, 0.086),
+    0 10px 5px rgba(0, 0, 0, 0);
   -webkit-transition: all 0.30s ease-in-out;
   -moz-transition: all 0.30s ease-in-out;
   -ms-transition: all 0.30s ease-in-out;
@@ -76,7 +76,7 @@ legend {
   letter-spacing: 1px;
 }
 
-.form-check{
+.form-check {
   font-size: 0.8rem;
 }
 
@@ -84,11 +84,11 @@ legend {
   box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
 }
 
-.form-control:focus{
+.form-control:focus {
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
 }
 
-.row{
+.row {
   margin-left: 0;
   margin-right: 0;
 }
@@ -98,12 +98,12 @@ code {
     monospace;
 }
 
-button{
+button {
   box-shadow: 0 1.4px 1.1px rgba(0, 0, 0, 0.034),
-  0 3.4px 2.7px rgba(0, 0, 0, 0.048),
-  0 6.2px 5px rgba(0, 0, 0, 0.06),
-  0 5.5px 4.5px rgba(0, 0, 0, 0.072),
-  0 5px 4px rgba(0, 0, 0, 0.086),
-  0 5px 5px rgba(0, 0, 0, 0.12);
+    0 3.4px 2.7px rgba(0, 0, 0, 0.048),
+    0 6.2px 5px rgba(0, 0, 0, 0.06),
+    0 5.5px 4.5px rgba(0, 0, 0, 0.072),
+    0 5px 4px rgba(0, 0, 0, 0.086),
+    0 5px 5px rgba(0, 0, 0, 0.12);
   font-weight: bold;
 }

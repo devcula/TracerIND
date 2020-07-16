@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import './TestDetailsForm.css';
 
 class TestDetailsForm extends React.Component {
 
@@ -194,8 +195,8 @@ class TestDetailsForm extends React.Component {
                         </Row>
                         <Row>
                             <Form.Group as={Row}>
-                                <Col style={{ paddingLeft: 70, textDecoration: 'underline' }}>
-                                    <h5>Electrolytes </h5>
+                                <Col className="section-heading">
+                                    <h3>Electrolytes </h3>
                                 </Col>
                             </Form.Group>
                         </Row>
