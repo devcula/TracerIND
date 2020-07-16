@@ -4,9 +4,12 @@ import BasicDetailsForm from '../BasicDetailsForm/BasicDetailsForm';
 import TestDetailsForm from '../TestDetailsForm/TestDetailsForm';
 import HospitalDetailsForm from '../HospitalDetailsForm/HospitalDetailsForm';
 
+import axios from 'axios';
+import { uri } from '../../index';
+
 class MainForm extends React.Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
             formName: "UserDetails",
@@ -33,20 +36,67 @@ class MainForm extends React.Component {
     }
 
     submitForm = () => {
+        let dataToSend = {
+            adhaar: this.state.adhaar,
+            village: this.state.village,
+            name: this.state.name,
+            surname: this.state.surname,
+            relation: this.state.relation,
+            gaurdian_name: this.state.gaurdian_name,
+            age: this.state.age,
+            gender: this.state.gender,
+            maritalstatus: this.state.maritalstatus,
+            phone: this.state.phone,
+            bloodgroup: this.state.bloodgroup,
+            PVGT: this.state.PVGT,
+            serumCreatinine: this.state.serumCreatinine,
+            bloodUrea: this.state.bloodUrea,
+            uricAcid: this.state.uricAcid,
+            electrolytes_sodium: this.state.electrolytes_sodium,
+            electrolytes_potassium: this.state.electrolytes_potassium,
+            bun: this.state.bun,
+            pedalEdema: this.state.pedalEdema,
+            pedalType: this.state.pedalType,
+            kidneystatus: this.state.kidneystatus,
+            ailments: this.state.ailments,
+            dialysis: this.state.dialysis,
+            doctorreq: this.state.doctorreq,
+            hospitalAdmit: this.state.hospitalAdmit,
+            dateOfAdmit: this.state.dateOfAdmit,
+            refered: this.state.refered,
+            referredto: this.state.referredto,
+            status: this.state.status,
+            treatmentDone: this.state.treatmentDone,
+            // dialysis: this.state.dialysis,
+            discharge: this.state.discharge,
+            dischargeStatus: this.state.dischargeStatus,
+            deceased: this.state.deceased,
+            deathDate: this.state.deathDate,
+            placeOfDeath: this.state.placeOfDeath,
+            causeOfDeath: this.state.causeOfDeath
+        }
 
+        axios.post('http://localhost:6000/AddPatient', dataToSend).then(response => {
+            console.log(response);
+            alert("Data saved");
+            // this.setState({formName: "Success"});
+        })
+            .catch(err => {
+                console.log(err);
+            }) 
     }
 
     render() {
-        switch(this.state.formName){
+        switch (this.state.formName) {
             case "UserDetails":
                 console.log(this.state);
-                return <BasicDetailsForm changeData={this.appendState} getValue={this.getValue} />
+                return <BasicDetailsForm submit={this.submitForm} changeData={this.appendState} getValue={this.getValue} />
             case "TestDetails":
                 console.log(this.state);
-                return <TestDetailsForm changeData={this.appendState} getValue={this.getValue} />
+                return <TestDetailsForm submit={this.submitForm} changeData={this.appendState} getValue={this.getValue} />
             case "HospitalDetails":
                 console.log(this.state);
-                return <HospitalDetailsForm changeData={this.appendState} getValue={this.getValue} />
+                return <HospitalDetailsForm submit={this.submitForm} changeData={this.appendState} getValue={this.getValue} />
             default:
                 return "";
         }

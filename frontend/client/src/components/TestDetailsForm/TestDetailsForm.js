@@ -6,6 +6,7 @@ class TestDetailsForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            dateoftesting: props.getValue('dateoftesting'),
             serumCreatinine: props.getValue('serumCreatinine'),
             bloodUrea: props.getValue('bloodUrea'),
             uricAcid: props.getValue('uricAcid'),
@@ -13,12 +14,41 @@ class TestDetailsForm extends React.Component {
             electrolytes_potassium: props.getValue('electrolytes_potassium'),
             bun: props.getValue('bun'),
             pedalEdema: props.getValue('pedalEdema'),
-            pedalType: props.getValue('pedalType'),
-            kidneystatus: '',
+            pedaltype: props.getValue('pedaltype'),
+            kidneystatus: props.getValue('kidneystatus'),
             ailments: props.getValue('ailments'),
             dialysis: props.getValue('dialysis'),
-            doctorreq: '',
+            doctorreq: props.getValue('doctorreq'),
         }
+    }
+
+    validate = () => {
+        //Conditions to check.. If valid, Send form name to switch to next form
+        console.log(this.state);
+        //this.saveData();
+        this.props.changeData({ formName: "HospitalDetails" });
+    }
+
+    saveData = () => {
+        // let dataToSave = {
+        //     adhaar: this.state.adhaarFirst + this.state.adhaarSecond + this.state.adhaarThird,
+        //     village: this.state.village,
+        //     name: this.state.name,
+        //     surname: this.state.surname,
+        //     relation: this.state.relation,
+        //     gaurdian_name: this.state.gaurdian_name,
+        //     age: this.state.age,
+        //     gender: this.state.gender,
+        //     maritalstatus: this.state.maritalstatus,
+        //     phone: this.state.phone,
+        //     bloodgroup: this.state.bloodgroup,
+        //     PVGT: this.state.PVGT,
+        // }
+        // this.props.changeData(dataToSave);
+    }
+
+    loadNextForm = (formName) => {
+        this.props.changeData({ formName: formName });
     }
 
     previous = () => {
@@ -27,6 +57,20 @@ class TestDetailsForm extends React.Component {
 
     handleChange = input => event => {
         this.setState({ [input]: event.target.value })
+    }
+
+    handleChangeBoolenValues = input => event => {
+        const isTrue = event.target.value
+        if(isTrue === 'yes'){
+            isTrue = true
+        }
+        else if(isTrue === 'no'){
+            isTrue = false
+        }
+        else {
+            isTrue =  null
+         }
+        this.setState({ [input]: isTrue})
     }
 
     validateOneDigitAfterDecimal = event => {
@@ -45,28 +89,46 @@ class TestDetailsForm extends React.Component {
         this.loadNextForm("HospitalDetails");
     }
 
-    loadNextForm = (formName) => {
-        this.props.changeData({ formName: formName });
-    }
-
     creatineCheck = () => {
         console.log(this.state.serumCreatinine);
     }
 
     render() {
+        const styles = {
+            center: {
+                textAlign: "center"
+            },
+            paddingLeft: {
+                paddingLeft: "10px"
+            }
+        }
         return (
             <Container>
                 <Row>
                     <fieldset style={{ 'width': '100%' }}>
                         <legend>Testing Details</legend>
+                        
                         <Row>
                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row}>
-                                    <Col sm={2}>
-                                        <Form.Label>Serum Creatinie: </Form.Label>
+                                    <Col sm={3}>
+                                        <Form.Label>Date of Testing: </Form.Label>
                                     </Col>
-                                    <Col sm={2}>
-                                        <Form.Control type="number" placeholder="mg/dl" id="serumCreatinine" onChange={this.handleChange('serumCreatinine')}
+                                    <Col sm={3}>
+                                        <Form.Control type="date" placeholder="" id="dateoftesting" onChange={this.handleChange('dateoftesting')}
+                                            value={this.state.dateoftesting} />
+                                    </Col>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
+                                <Form.Group as={Row}>
+                                    <Col sm={3}>
+                                        <Form.Label>Serum Creatinine: </Form.Label>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control type="number" placeholder="mg/dl" id="serumCreatinine" onChange={this.validateOneDigitAfterDecimal}
                                             value={this.state.serumCreatinine} />
                                         {(() => {
                                             if (this.state.serumCreatinine > 2 && this.state.serumCreatinine < 5.9) {
@@ -87,10 +149,10 @@ class TestDetailsForm extends React.Component {
                         <Row>
                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row}>
-                                    <Col sm={2}>
+                                    <Col sm={3}>
                                         <Form.Label>Blood Urea: </Form.Label>
                                     </Col>
-                                    <Col sm={2}>
+                                    <Col sm={3}>
                                         <Form.Control type="number" placeholder="mg/dl" id="bloodUrea" onChange={this.validateOneDigitAfterDecimal}
                                             value={this.state.bloodUrea}
                                         />
@@ -113,11 +175,11 @@ class TestDetailsForm extends React.Component {
                         <Row>
                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row}>
-                                    <Col sm={2}>
+                                    <Col sm={3}>
                                         <Form.Label>Uric Acid: </Form.Label>
                                     </Col>
-                                    <Col sm={2}>
-                                        <Form.Control type="number" placeholder="mg/dl" id="uricAcid" onChange={this.handleChange('uricAcid')}
+                                    <Col sm={3}>
+                                        <Form.Control type="number" placeholder="mg/dl" id="uricAcid" onChange={this.validateOneDigitAfterDecimal}
                                             value={this.state.uricAcid} />
                                         {(() => {
                                             if (this.state.uricAcid > 2.6 && this.state.uricAcid < 6.0) {
@@ -137,19 +199,19 @@ class TestDetailsForm extends React.Component {
                         </Row>
                         <Row>
                             <Form.Group as={Row}>
-                                <Col sm={2}>
-                                    <Form.Label>Electrolytes: </Form.Label>
+                                <Col style={{ paddingLeft: 70, textDecoration: 'underline' }}>
+                                    <h5>Electrolytes </h5>
                                 </Col>
                             </Form.Group>
                         </Row>
                         <Row>
                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row}>
-                                    <Col sm={2}>
+                                    <Col sm={3}>
                                         <Form.Label>Sodium(NA): </Form.Label>
                                     </Col>
-                                    <Col sm={2}>
-                                        <Form.Control type="number" placeholder="mg/dl" id="lectrolytes_sodium" onChange={this.handleChange('lectrolytes_sodium')}
+                                    <Col sm={3}>
+                                        <Form.Control type="number" placeholder="mg/dl" id="lectrolytes_sodium" onChange={this.validateOneDigitAfterDecimal}
                                             value={this.state.lectrolytes_sodium} />
                                         {(() => {
                                             if (this.state.lectrolytes_sodium > 135 && this.state.lectrolytes_sodium < 155) {
@@ -170,11 +232,11 @@ class TestDetailsForm extends React.Component {
                         <Row>
                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row}>
-                                    <Col sm={2}>
-                                        <Form.Label>Potassium(A): </Form.Label>
+                                    <Col sm={3}>
+                                        <Form.Label>Potassium(K): </Form.Label>
                                     </Col>
-                                    <Col sm={2}>
-                                        <Form.Control type="number" placeholder="mg/dl" id="electrolytes_potassium" onChange={this.handleChange('electrolytes_potassium')}
+                                    <Col sm={3}>
+                                        <Form.Control type="number" placeholder="mg/dl" id="electrolytes_potassium" onChange={this.validateOneDigitAfterDecimal}
                                             value={this.state.electrolytes_potassium} />
                                         {(() => {
                                             if (this.state.electrolytes_potassium > 3.5 && this.state.electrolytes_potassium < 5.5) {
@@ -195,11 +257,11 @@ class TestDetailsForm extends React.Component {
                         <Row>
                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row}>
-                                    <Col sm={2}>
+                                    <Col sm={3}>
                                         <Form.Label>BUN: Blood Urea Nitrogen: </Form.Label>
                                     </Col>
-                                    <Col sm={2}>
-                                        <Form.Control type="number" placeholder="mg/dl" id="bun" onChange={this.handleChange('bun')}
+                                    <Col sm={3}>
+                                        <Form.Control type="number" placeholder="mg/dl" id="bun" onChange={this.validateOneDigitAfterDecimal}
                                             value={this.state.bun} />
                                         {(() => {
                                             if (this.state.bun > 8 && this.state.bun < 23) {
@@ -218,10 +280,11 @@ class TestDetailsForm extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col sm={2}>
+
+                            <Col sm={3}>
                                 <Form.Label>Pedal Edema:</Form.Label>
                             </Col>
-                            <Col sm={2}>
+                            <Col sm={3}>
                                 <Row>
                                     <Col>
                                         <Form.Check
@@ -249,14 +312,14 @@ class TestDetailsForm extends React.Component {
                                     </Col>
                                 </Row>
                             </Col>
-                            <Col sm={4} >
+                            <Col sm={3} >
                                 {(() => {
                                     if (this.state.pedalEdema === 'yes') {
                                         return (
                                             <Col sm={6}>
                                                 <Form.Group controlId="mandal">
                                                     <Form.Label>Pedal Type:</Form.Label>
-                                                    <Form.Control as="select" defaultValue="Choose..." onChange={this.handleChange('pedalType')} value={this.state.pedalType}>
+                                                    <Form.Control as="select" onChange={this.handleChange('pedaltype')} value={this.state.pedaltype}>
                                                         <option value="single leg">Single Leg</option>
                                                         <option value="bilateral">Bilateral</option>
                                                     </Form.Control>
@@ -305,53 +368,101 @@ class TestDetailsForm extends React.Component {
                                 </Row>
                             </Col>
                         </Row>
-                        <Row>
-                            <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
-                                <Form.Group as={Row}>
-                                    <Col sm={3}>
-                                        <Form.Label>Specify the ailments: </Form.Label>
-                                    </Col>
-                                    <Col sm={3}>
-                                        <Form.Control as="textarea" placeholder="Description" id="ailments" onChange={this.handleChange('ailments')}
-                                            value={this.state.ailments} />
-                                    </Col>
-                                </Form.Group>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col sm={4}>
-                                <Form.Label>Need for Dialysis:</Form.Label>
-                            </Col>
-                            <Col sm={1}>
-                                <Row>
-                                    <Col>
-                                        <Form.Check
-                                            type='radio'
-                                            value="yes"
-                                            id="yes"
-                                            label="Yes"
-                                            name="dialysis"
-                                            onChange={this.handleChange('dialysis')}
-                                            checked={this.state.dialysis === "yes"}
-                                        />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <Form.Check
-                                            type='radio'
-                                            value="no"
-                                            id="no"
-                                            label="No"
-                                            name="dialysis"
-                                            onChange={this.handleChange('dialysis')}
-                                            checked={this.state.dialysis === "no"}
-                                        />
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                        <Row>
+                        <br></br>
+                        {(() => {
+                            if (this.state.kidneystatus === 'good') {
+                                return (
+                                    <Container></Container>
+                                )
+                            }
+                            else if (this.state.kidneystatus === 'abnormal') {
+                                return (
+                                    <Container>
+                                        <Row>
+                                            <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
+                                                <Form.Group as={Row}>
+                                                    <Col sm={3}>
+                                                        <Form.Label>Specify the ailments: </Form.Label>
+                                                    </Col>
+                                                    <Col sm={3}>
+                                                        <Form.Control as="textarea" placeholder="Description" id="ailments" onChange={this.handleChange('ailments')}
+                                                            value={this.state.ailments} />
+                                                    </Col>
+                                                </Form.Group>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col sm={12}>
+                                                <Form.Label>Need for Dialysis:</Form.Label>
+                                            </Col>
+                                            <Col sm={1}>
+                                                <Row>
+                                                    <Col>
+                                                        <Form.Check
+                                                            type='radio'
+                                                            value="yes"
+                                                            id="yes"
+                                                            label="Yes"
+                                                            name="dialysis"
+                                                            onChange={this.handleChange('dialysis')}
+                                                            checked={this.state.dialysis === "yes"}
+                                                        />
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col>
+                                                        <Form.Check
+                                                            type='radio'
+                                                            value="no"
+                                                            id="no"
+                                                            label="No"
+                                                            name="dialysis"
+                                                            onChange={this.handleChange('dialysis')}
+                                                            checked={this.state.dialysis === "no"}
+                                                        />
+                                                    </Col>
+                                                </Row>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col sm={4}>
+                                                <Form.Label>Need for immediate Doctor Supervision:</Form.Label>
+                                            </Col>
+                                            <Col sm={1}>
+                                                <Row>
+                                                    <Col>
+                                                        <Form.Check
+                                                            type='radio'
+                                                            value="yes"
+                                                            id="yes"
+                                                            label="Yes"
+                                                            name="doctorreq"
+                                                            onChange={this.handleChange('doctorreq')}
+                                                            checked={this.state.doctorreq === "yes"}
+                                                        />
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col>
+                                                        <Form.Check
+                                                            type='radio'
+                                                            value="no"
+                                                            id="no"
+                                                            label="no"
+                                                            name="doctorreq"
+                                                            onChange={this.handleChange('doctorreq')}
+                                                            checked={this.state.doctorreq === "no"}
+                                                        />
+                                                    </Col>
+                                                </Row>
+                                            </Col>
+                                        </Row>
+                                    </Container>
+                                )
+                            }
+                        })()}
+
+                        {/* <Row>
                             <Col sm={4}>
                                 <Form.Label>Need for immediate Doctor Supervision:</Form.Label>
                             </Col>
@@ -383,20 +494,29 @@ class TestDetailsForm extends React.Component {
                                     </Col>
                                 </Row>
                             </Col>
-                        </Row>
-                        <Button variant="primary" onClick={this.previous}>
+                        </Row> */}
 
-                            Previous
-            </Button>
                         {(() => {
                             if (this.state.doctorreq === 'yes') {
                                 return (
-                                    <Button style={{ margin: 20 }}>Next</Button>
+                                    <Row>
+                                        <Col sm={12} style={styles.center}>
+                                            <Button variant="primary"
+                                                onClick={this.validateAndNext}
+                                            >Next</Button>
+                                        </Col>
+                                    </Row>
+
                                 )
                             }
                             else {
                                 return (
-                                    <Button style={{ margin: 20 }}>Submit</Button>
+                                    <Row>
+                                        <Col sm={12} style={styles.center}>
+                                            <Button variant="primary"
+                                            >Submit</Button>
+                                        </Col>
+                                    </Row>
                                 )
                             }
                         })()}

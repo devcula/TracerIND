@@ -367,12 +367,12 @@ import Village from '../Village/Village';
                                             <Col>
                                                 <Form.Check
                                                     type='radio'
-                                                    value="male"
+                                                    value="M"
                                                     id="male"
                                                     label="Male"
                                                     name="gender"
                                                     onChange={this.handleChange('gender')}
-                                                    checked={this.state.gender === "male"}
+                                                    checked={this.state.gender === "M"}
                                                 />
                                             </Col>
                                         </Row>
@@ -380,12 +380,12 @@ import Village from '../Village/Village';
                                             <Col>
                                                 <Form.Check
                                                     type='radio'
-                                                    value="female"
+                                                    value="F"
                                                     id="female"
                                                     label="Female"
                                                     name="gender"
                                                     onChange={this.handleChange('gender')}
-                                                    checked={this.state.gender === "female"}
+                                                    checked={this.state.gender === "F"}
                                                 />
                                             </Col>
                                         </Row>
@@ -393,12 +393,12 @@ import Village from '../Village/Village';
                                             <Col>
                                                 <Form.Check
                                                     type='radio'
-                                                    value="transgender"
+                                                    value="NB"
                                                     id="transgender"
                                                     label="Transgender"
                                                     name="gender"
                                                     onChange={this.handleChange('gender')}
-                                                    checked={this.state.gender === "transgender"}
+                                                    checked={this.state.gender === "MB"}
                                                 />
                                             </Col>
                                         </Row>
