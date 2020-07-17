@@ -177,7 +177,7 @@ def GetPatientData_Village(request):
     serializer = PatientSerializer(patientlist,many = True)
     return Response(serializer.data)
 
-@api_view(['POST'])
+@api_view(['GET'])
 def GetVIllageNames(request):
     village = (Village.objects.all())
     serializer = VillageSerializer(data = village, many = True)
