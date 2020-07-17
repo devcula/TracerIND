@@ -13,15 +13,15 @@ export default class Home extends Component {
                 </Jumbotron>
                 <Row className="show-grid text-center">
                     <Col xs={12} sm={4} className="home-col">
-                        <Circle />
+                        <Circle percentage="40" />
                         <h4>Active</h4>
                     </Col>
                     <Col xs={12} sm={4} className="home-col">
-                        <Circle />
+                        <Circle percentage="45" />
                         <h4>Recovered</h4>
                     </Col>
                     <Col xs={12} sm={4} className="home-col">
-                        <Circle />
+                        <Circle percentage="15" />
                         <h4>Deaths</h4>
                     </Col>
                 </Row>

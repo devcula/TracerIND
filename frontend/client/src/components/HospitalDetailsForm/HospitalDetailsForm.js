@@ -151,7 +151,7 @@ class HospitalDetailsForm extends React.Component {
                                             <Col sm={12}>
                                                 <Form.Group as={Row} controlId="referredto">
                                                     <Col sm={3}>
-                                                        <Form.Label>Hospital Refered to</Form.Label>
+                                                        <Form.Label>Hospital Refered to :</Form.Label>
                                                     </Col>
                                                     <Col sm={3}>
                                                         <Form.Control
@@ -175,7 +175,7 @@ class HospitalDetailsForm extends React.Component {
                                             <Col sm={12}>
                                                 <Form.Group as={Row} controlId="status">
                                                     <Col sm={3}>
-                                                        <Form.Label>Health Status at the time of referring:</Form.Label>
+                                                        <Form.Label>Health Status at the time of referring :</Form.Label>
                                                     </Col>
                                                     <Col sm={3}>
                                                         <Form.Control as="textarea"
@@ -230,7 +230,7 @@ class HospitalDetailsForm extends React.Component {
                                             <Col sm={12}>
                                                 <Form.Group as={Row} controlId="treatmentDone">
                                                     <Col sm={3}>
-                                                        <Form.Label>Treatment Provided: </Form.Label>
+                                                        <Form.Label>Treatment Provided :</Form.Label>
                                                     </Col>
                                                     <Col sm={3}>
                                                         <Form.Control as="textarea"
@@ -262,7 +262,7 @@ class HospitalDetailsForm extends React.Component {
                                             <Col sm={12}>
                                                 <Form.Group as={Row} controlId="recovery">
                                                     <Col sm={3}>
-                                                        <Form.Label>Recovery Status: </Form.Label>
+                                                        <Form.Label>Recovery Status :</Form.Label>
                                                     </Col>
                                                     <Col>
                                                         <Form.Control as="textarea" rows="3"
@@ -274,7 +274,6 @@ class HospitalDetailsForm extends React.Component {
                                                 </Form.Group>
                                             </Col>
                                         </Row>
-
                                     </div>
                                 )
                             }
@@ -285,10 +284,10 @@ class HospitalDetailsForm extends React.Component {
                                             <Col sm={12}>
                                                 <Form.Group as={Row} controlId="treatmentDone">
                                                     <Col sm={3}>
-                                                        <Form.Label>Treatment Provided: </Form.Label>
+                                                        <Form.Label>Treatment Provided : </Form.Label>
                                                     </Col>
                                                     <Col sm={3}>
-                                                        <Form.Control as="textarea" rows="3" />
+                                                        <Form.Control placeholder="Enter details" as="textarea" rows="3" />
                                                     </Col>
                                                 </Form.Group>
                                             </Col>
@@ -308,7 +307,7 @@ class HospitalDetailsForm extends React.Component {
                                         <Col sm={12}>
                                             <Row>
                                                 <Col sm={3}>
-                                                    <Form.Label>Deceased</Form.Label>
+                                                    <Form.Label>Deceased :</Form.Label>
                                                 </Col>
                                                 <Col sm={3}>
                                                     <Row>
@@ -341,15 +340,16 @@ class HospitalDetailsForm extends React.Component {
                                                 </Col>
                                             </Row>
                                         </Col>
+                                        <br/>
                                         {(() => {
                                             if (this.state.deceased === "yes") {
                                                 return (
-                                                    <Container>
+                                                    <div>
                                                         <Row>
                                                             <Col sm={12}>
                                                                 <Form.Group as={Row}>
                                                                     <Col sm={3}>
-                                                                        <Form.Label>Date </Form.Label>
+                                                                        <Form.Label>Date of death : </Form.Label>
                                                                     </Col>
                                                                     <Col sm={3}>
                                                                         <input type="date" id="deathDate" class="form-control" onChange={this.handleChange('deathDate')} />
@@ -364,7 +364,7 @@ class HospitalDetailsForm extends React.Component {
                                                                         <Form.Label>Cause of Death: </Form.Label>
                                                                     </Col>
                                                                     <Col sm={3}>
-                                                                        <Form.Control as="textarea" rows="3" />
+                                                                        <Form.Control placeholder="Enter cause of death" as="textarea" rows="3" />
                                                                     </Col>
                                                                 </Form.Group>
                                                             </Col>
@@ -373,7 +373,7 @@ class HospitalDetailsForm extends React.Component {
                                                             <Col>
                                                                 <Form.Group as={Row} controlId="name">
                                                                     <Col sm={3}>
-                                                                        <Form.Label>Place Of Death</Form.Label>
+                                                                        <Form.Label>Place Of Death :</Form.Label>
                                                                     </Col>
                                                                     <Col sm={3}>
                                                                         <Form.Control
@@ -385,15 +385,12 @@ class HospitalDetailsForm extends React.Component {
                                                                 </Form.Group>
                                                             </Col>
                                                         </Row>
-
-
-                                                    </Container>
+                                                    </div>
                                                 )
                                             }
                                             else if (this.state.deceased === "no") {
                                                 return (
                                                     <Container>
-
                                                     </Container>
                                                 )
                                             }

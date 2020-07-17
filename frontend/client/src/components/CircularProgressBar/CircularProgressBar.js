@@ -67,7 +67,7 @@ class Circle extends React.Component {
         super(props);
 
         this.state = {
-            percentage: 25
+            percentage: this.props.percentage ? this.props.percentage : 25
         };
 
         this.handleChangeEvent = this.handleChangeEvent.bind(this);

@@ -121,7 +121,7 @@ class TestDetailsForm extends React.Component {
                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row}>
                                     <Col sm={3}>
-                                        <Form.Label>Date of Testing: </Form.Label>
+                                        <Form.Label>Date of Testing : </Form.Label>
                                     </Col>
                                     <Col sm={3}>
                                         <Form.Control type="date" placeholder="" id="dateoftesting" onChange={this.handleChange('dateoftesting')}
@@ -134,7 +134,7 @@ class TestDetailsForm extends React.Component {
                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row}>
                                     <Col sm={3}>
-                                        <Form.Label>Serum Creatinine: </Form.Label>
+                                        <Form.Label>Serum Creatinine : </Form.Label>
                                     </Col>
                                     <Col sm={3}>
                                         <Form.Control type="number" placeholder="mg/dl" id="serumCreatinine" onChange={this.validateOneDigitAfterDecimal}
@@ -155,7 +155,7 @@ class TestDetailsForm extends React.Component {
                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row}>
                                     <Col sm={3}>
-                                        <Form.Label>Blood Urea: </Form.Label>
+                                        <Form.Label>Blood Urea : </Form.Label>
                                     </Col>
                                     <Col sm={3}>
                                         <Form.Control type="number" placeholder="mg/dl" id="bloodUrea" onChange={this.validateOneDigitAfterDecimal}
@@ -177,7 +177,7 @@ class TestDetailsForm extends React.Component {
                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row}>
                                     <Col sm={3}>
-                                        <Form.Label>Uric Acid: </Form.Label>
+                                        <Form.Label>Uric Acid : </Form.Label>
                                     </Col>
                                     <Col sm={3}>
                                         <Form.Control type="number" placeholder="mg/dl" id="uricAcid" onChange={this.validateOneDigitAfterDecimal}
@@ -205,7 +205,7 @@ class TestDetailsForm extends React.Component {
                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row}>
                                     <Col sm={3}>
-                                        <Form.Label>Sodium(NA): </Form.Label>
+                                        <Form.Label>Sodium(Na) : </Form.Label>
                                     </Col>
                                     <Col sm={3}>
                                         <Form.Control type="number" placeholder="mg/dl" id="electrolytes_sodium" onChange={this.validateOneDigitAfterDecimal}
@@ -226,7 +226,7 @@ class TestDetailsForm extends React.Component {
                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row}>
                                     <Col sm={3}>
-                                        <Form.Label>Potassium(K): </Form.Label>
+                                        <Form.Label>Potassium(K) : </Form.Label>
                                     </Col>
                                     <Col sm={3}>
                                         <Form.Control type="number" placeholder="mg/dl" id="electrolytes_potassium" onChange={this.validateOneDigitAfterDecimal}
@@ -247,7 +247,7 @@ class TestDetailsForm extends React.Component {
                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row}>
                                     <Col sm={3}>
-                                        <Form.Label>BUN: Blood Urea Nitrogen: </Form.Label>
+                                        <Form.Label>BUN (Blood Urea Nitrogen) : </Form.Label>
                                     </Col>
                                     <Col sm={3}>
                                         <Form.Control type="number" placeholder="mg/dl" id="bun" onChange={this.validateOneDigitAfterDecimal}
@@ -271,7 +271,7 @@ class TestDetailsForm extends React.Component {
                             <Col sm={6} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row} >
                                     <Col sm={6}>
-                                        <Form.Label>Pedal Edema:</Form.Label>
+                                        <Form.Label>Pedal Edema :</Form.Label>
                                     </Col>
                                     <Col sm={6}>
                                         <Row>
@@ -309,7 +309,7 @@ class TestDetailsForm extends React.Component {
                                         return (
                                             <Form.Group as={Row} controlId="pedaltype">
                                                 <Col sm={6}>
-                                                    <Form.Label>Pedal Type:</Form.Label>
+                                                    <Form.Label>Pedal Type :</Form.Label>
                                                 </Col>
                                                 <Col sm={6}>
                                                     <Form.Control as="select" onChange={this.handleChange('pedaltype')} value={this.state.pedaltype}>
@@ -330,7 +330,7 @@ class TestDetailsForm extends React.Component {
                         </Row>
                         <Row>
                             <Col sm={3}>
-                                <Form.Label>Kidney Functioning Status:</Form.Label>
+                                <Form.Label>Kidney Functioning Status :</Form.Label>
                             </Col>
                             <Col sm={3}>
                                 <Row>
@@ -375,7 +375,7 @@ class TestDetailsForm extends React.Component {
                                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                                 <Form.Group as={Row}>
                                                     <Col sm={3}>
-                                                        <Form.Label>Specify the ailments: </Form.Label>
+                                                        <Form.Label>Specify the ailments : </Form.Label>
                                                     </Col>
                                                     <Col sm={6}>
                                                         <Form.Control as="textarea" placeholder="Description" id="ailments" onChange={this.handleChange('ailments')}
@@ -386,7 +386,7 @@ class TestDetailsForm extends React.Component {
                                         </Row>
                                         <Row>
                                             <Col sm={3}>
-                                                <Form.Label>Need for Dialysis:</Form.Label>
+                                                <Form.Label>Need for Dialysis :</Form.Label>
                                             </Col>
                                             <Col sm={3}>
                                                 <Row>
@@ -420,7 +420,7 @@ class TestDetailsForm extends React.Component {
                                         <br/>
                                         <Row>
                                             <Col sm={4}>
-                                                <Form.Label>Need for immediate Doctor Supervision:</Form.Label>
+                                                <Form.Label>Need for immediate Doctor Supervision :</Form.Label>
                                             </Col>
                                             <Col sm={3}>
                                                 <Row>

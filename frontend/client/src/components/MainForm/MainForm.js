@@ -14,7 +14,7 @@ class MainForm extends React.Component {
         super();
         this.state = {
             formName: "UserDetails",
-            pkid: this.generatePkid(16)
+            pkid: this.generatePkid(32)
         }
     }
 
@@ -88,7 +88,7 @@ class MainForm extends React.Component {
             console.log("Sending data");
             console.log(response);
             if (response.data.pkid === this.state.pkid) {
-                this.setState({ formName: "Success" });
+                this.setState({}, this.setState({ formName: "Success" }));
             }
             else{
                 alert("Failed to save.. Please Try again");
