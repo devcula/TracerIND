@@ -70,7 +70,7 @@ def addmandal(request):
     if serializer.is_valid():
         serializer.save()
         return Response(status=200)
-    return Response("Error")
+    return Response(serializer.errors)
 
 @api_view(['POST'])
 def addphc(request):
@@ -84,8 +84,7 @@ def addphc(request):
     if serializer.is_valid():
         serializer.save()
         return Response(status = 200)
-    print(serializer.errors)
-    return Response("Error")
+    return Response(serializer.errors)
 
 @api_view(['POST'])
 def updatephc(request):
