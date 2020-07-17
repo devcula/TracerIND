@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'PHC',
     'village',
     'village_sec',
+    'frontend',
 
 ]
 
