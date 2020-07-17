@@ -6,6 +6,8 @@ import About from './components/About/About';
 import Dashboard from './components/Dashboard/Dashboard';
 import Header from './components/Header/Header';
 import MainForm from './components/MainForm/MainForm';
+import Directory from './components/Directory/Directory';
+
 
 class App extends Component {
   render() {
@@ -17,6 +19,7 @@ class App extends Component {
           <Route path="/about" component={About} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/add" component={MainForm} />
+          <Route path="/directory" component={Directory} />
         </div>
       </Router>
     );
