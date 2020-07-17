@@ -157,9 +157,8 @@ def GetAllPatient(request):
     patientlist = Patient.objects.all()
     print(patientlist)
     serializer = PatientSerializer(data = patientlist,many = True)
-    if serializer.is_vaild():
-        return Response(serializer.data)
-    return Response("Something Went Wrong")
+    serializer.is_valid()
+    return Response(serializer.data)
 
 
 @api_view (['POST'])
