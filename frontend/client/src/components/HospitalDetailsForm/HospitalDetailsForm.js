@@ -138,7 +138,6 @@ class HospitalDetailsForm extends React.Component {
                                                 />
                                             </Col>
                                         </Row>
-
                                     </Col>
                                 </Row>
                             </Col>
@@ -147,13 +146,12 @@ class HospitalDetailsForm extends React.Component {
                         {(() => {
                             if (this.state.refered === "true") {
                                 return (
-
                                     <div>
                                         <Row>
                                             <Col sm={12}>
                                                 <Form.Group as={Row} controlId="referredto">
                                                     <Col sm={3}>
-                                                        <Form.Label>Hospital Refered to</Form.Label>
+                                                        <Form.Label>Hospital Refered to :</Form.Label>
                                                     </Col>
                                                     <Col sm={3}>
                                                         <Form.Control
@@ -168,8 +166,6 @@ class HospitalDetailsForm extends React.Component {
                                                             <option value="DH/Rajamundry">DH/Rajamundry</option>
                                                             <option value="GGH/Kakinada">GGH/Kakinada</option>
                                                             <option value="other">other</option>
-
-
                                                         </Form.Control>
                                                     </Col>
                                                 </Form.Group>
@@ -179,7 +175,7 @@ class HospitalDetailsForm extends React.Component {
                                             <Col sm={12}>
                                                 <Form.Group as={Row} controlId="status">
                                                     <Col sm={3}>
-                                                        <Form.Label>Health Status at the time of referring:</Form.Label>
+                                                        <Form.Label>Health Status at the time of referring :</Form.Label>
                                                     </Col>
                                                     <Col sm={3}>
                                                         <Form.Control as="textarea"
@@ -192,48 +188,49 @@ class HospitalDetailsForm extends React.Component {
                                                 </Form.Group>
                                             </Col>
                                         </Row>
-                                        <Col sm={12}>
-                                            <Row>
-                                                <Col sm={3}>
-                                                    <Form.Label>Need for dialysis :</Form.Label>
-                                                </Col>
-                                                <Col sm={3}>
-                                                    <Row>
-                                                        <Col>
-                                                            <Form.Check
-                                                                type='radio'
-                                                                value="yes"
-                                                                id="dialysis_yes"
-                                                                label="Yes"
-                                                                name="dialysis"
-                                                                onChange={this.handleChange('dialysis')}
-                                                                checked={this.state.dialysis === "yes"}
-                                                            />
-                                                        </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col>
-                                                            <Form.Check
-                                                                type='radio'
-                                                                value="no"
-                                                                id="dialysis_no"
-                                                                label="No"
-                                                                name="dialysis"
-                                                                onChange={this.handleChange('dialysis')}
-                                                                checked={this.state.dialysis === "no"}
-                                                            />
-                                                        </Col>
-                                                    </Row>
-
-                                                </Col>
-                                            </Row>
-                                        </Col>
+                                        <Row>
+                                            <Col sm={12}>
+                                                <Form.Group as={Row}>
+                                                    <Col sm={3}>
+                                                        <Form.Label>Need for dialysis :</Form.Label>
+                                                    </Col>
+                                                    <Col sm={3}>
+                                                        <Row>
+                                                            <Col>
+                                                                <Form.Check
+                                                                    type='radio'
+                                                                    value="yes"
+                                                                    id="dialysis_yes"
+                                                                    label="Yes"
+                                                                    name="dialysis"
+                                                                    onChange={this.handleChange('dialysis')}
+                                                                    checked={this.state.dialysis === "yes"}
+                                                                />
+                                                            </Col>
+                                                        </Row>
+                                                        <Row>
+                                                            <Col>
+                                                                <Form.Check
+                                                                    type='radio'
+                                                                    value="no"
+                                                                    id="dialysis_no"
+                                                                    label="No"
+                                                                    name="dialysis"
+                                                                    onChange={this.handleChange('dialysis')}
+                                                                    checked={this.state.dialysis === "no"}
+                                                                />
+                                                            </Col>
+                                                        </Row>
+                                                    </Col>
+                                                </Form.Group>
+                                            </Col>
+                                        </Row>
                                         <br />
                                         <Row>
                                             <Col sm={12}>
                                                 <Form.Group as={Row} controlId="treatmentDone">
                                                     <Col sm={3}>
-                                                        <Form.Label>Treatment Provided: </Form.Label>
+                                                        <Form.Label>Treatment Provided :</Form.Label>
                                                     </Col>
                                                     <Col sm={3}>
                                                         <Form.Control as="textarea"
@@ -265,7 +262,7 @@ class HospitalDetailsForm extends React.Component {
                                             <Col sm={12}>
                                                 <Form.Group as={Row} controlId="recovery">
                                                     <Col sm={3}>
-                                                        <Form.Label>Recovery Status: </Form.Label>
+                                                        <Form.Label>Recovery Status :</Form.Label>
                                                     </Col>
                                                     <Col>
                                                         <Form.Control as="textarea" rows="3"
@@ -277,23 +274,20 @@ class HospitalDetailsForm extends React.Component {
                                                 </Form.Group>
                                             </Col>
                                         </Row>
-
                                     </div>
-
-
                                 )
                             }
                             else if (this.state.refered === "false") {
                                 return (
-                                    <Container>
+                                    <div>
                                         <Row>
                                             <Col sm={12}>
                                                 <Form.Group as={Row} controlId="treatmentDone">
                                                     <Col sm={3}>
-                                                        <Form.Label>Treatment Provided: </Form.Label>
+                                                        <Form.Label>Treatment Provided : </Form.Label>
                                                     </Col>
                                                     <Col sm={3}>
-                                                        <Form.Control as="textarea" rows="3" />
+                                                        <Form.Control placeholder="Enter details" as="textarea" rows="3" />
                                                     </Col>
                                                 </Form.Group>
                                             </Col>
@@ -303,7 +297,6 @@ class HospitalDetailsForm extends React.Component {
                                                 <Form.Group as={Row}>
                                                     <Col sm={3}>
                                                         <Form.Label>Date Of discharge :</Form.Label>
-
                                                     </Col>
                                                     <Col sm={3}>
                                                         <input type="date" className="form-control" id="discharge2" onChange={this.handleChange('discharge')} />
@@ -314,7 +307,7 @@ class HospitalDetailsForm extends React.Component {
                                         <Col sm={12}>
                                             <Row>
                                                 <Col sm={3}>
-                                                    <Form.Label>Deceased</Form.Label>
+                                                    <Form.Label>Deceased :</Form.Label>
                                                 </Col>
                                                 <Col sm={3}>
                                                     <Row>
@@ -347,15 +340,16 @@ class HospitalDetailsForm extends React.Component {
                                                 </Col>
                                             </Row>
                                         </Col>
+                                        <br/>
                                         {(() => {
                                             if (this.state.deceased === "yes") {
                                                 return (
-                                                    <Container>
+                                                    <div>
                                                         <Row>
                                                             <Col sm={12}>
                                                                 <Form.Group as={Row}>
                                                                     <Col sm={3}>
-                                                                        <Form.Label>Date </Form.Label>
+                                                                        <Form.Label>Date of death : </Form.Label>
                                                                     </Col>
                                                                     <Col sm={3}>
                                                                         <input type="date" id="deathDate" class="form-control" onChange={this.handleChange('deathDate')} />
@@ -370,7 +364,7 @@ class HospitalDetailsForm extends React.Component {
                                                                         <Form.Label>Cause of Death: </Form.Label>
                                                                     </Col>
                                                                     <Col sm={3}>
-                                                                        <Form.Control as="textarea" rows="3" />
+                                                                        <Form.Control placeholder="Enter cause of death" as="textarea" rows="3" />
                                                                     </Col>
                                                                 </Form.Group>
                                                             </Col>
@@ -379,7 +373,7 @@ class HospitalDetailsForm extends React.Component {
                                                             <Col>
                                                                 <Form.Group as={Row} controlId="name">
                                                                     <Col sm={3}>
-                                                                        <Form.Label>Place Of Death</Form.Label>
+                                                                        <Form.Label>Place Of Death :</Form.Label>
                                                                     </Col>
                                                                     <Col sm={3}>
                                                                         <Form.Control
@@ -391,25 +385,18 @@ class HospitalDetailsForm extends React.Component {
                                                                 </Form.Group>
                                                             </Col>
                                                         </Row>
-
-
-                                                    </Container>
+                                                    </div>
                                                 )
                                             }
                                             else if (this.state.deceased === "no") {
                                                 return (
                                                     <Container>
-
                                                     </Container>
                                                 )
                                             }
                                         })()}
-                                    </Container>
-
-
+                                    </div>
                                 )
-
-
                             }
                         })()}
                         <br />

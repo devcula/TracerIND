@@ -1,6 +1,7 @@
 .section-heading {
     background-color: #39a0ed;
     padding: 10px 10px 5px 10px;
+    margin-left: 1rem;
     color: white;
     border-radius: 0px 10px 0px 10px;
     box-shadow: 0 1.4px 1.1px rgba(0, 0, 0, 0.034),
