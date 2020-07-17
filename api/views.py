@@ -41,9 +41,9 @@ def parseVillage(request):
         serializer = VillageSerializer(data = vs)
         if serializer.is_valid():
             serializer.save()
+            i=i+1
         else:
             print(serializer.errors)
-        i=i+1
     return Response("TEST OK")
 
 @api_view(['POST'])
@@ -59,9 +59,9 @@ def parseVillageSec(request):
         serializer = VillageSecSerializer(data = vs)
         if serializer.is_valid():
             serializer.save()
+            i=i+1
         else:
             print(serializer.errors)
-        i=i+1
     return Response("TEST OK")
 
 @api_view(['POST'])
