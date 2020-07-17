@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { Container, Col, Row,Image } from 'react-bootstrap';
+import { Container, Col, Row } from 'react-bootstrap';
 import './About.css';
 
 export default class About extends Component {
@@ -13,7 +13,7 @@ export default class About extends Component {
                     <Row>
 
                         <Col xs={12} sm={8} smOffset={2}>
-                        <Image src="assets/jumbo.jpg" className="header-image" />
+                        {/* <Image src="assets/jumbo.jpg" className="header-image" /> */}
                             <h3>About TracerIND</h3>
                             <p>That's a crooked tree. We'll send him to Washington. These little son of a guns hide in your brush and you just have to push them out. These trees are so much fun. I get started on them and I have a hard time stopping. How to paint. That's easy. What to paint. That's much harder. Be brave. The man who does the best job is the one who is happy at his job.</p>
                             <p>Anyone can paint. You can do anything here. So don't worry about it. Life is too short to be alone, too precious. Share it with a friend. Every highlight needs it's own personal shadow.</p>

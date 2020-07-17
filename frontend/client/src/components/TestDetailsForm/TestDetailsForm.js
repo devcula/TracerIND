@@ -83,13 +83,18 @@ class TestDetailsForm extends React.Component {
         this.setState({ [event.target.id]: event.target.value });
 
     }
-    validateAndNext = () => {
+    validateAndNext = async() => {
         //Conditions to check.. If valid, Send form name to switch to next form
         console.log(this.state);
-        this.props.changeData(this.state);
+        await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
         this.loadNextForm("HospitalDetails");
     }
 
+    validateAndSubmit = async() => {
+        await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
+        this.props.submit();
+    }
+ 
     creatineCheck = () => {
         console.log(this.state.serumCreatinine);
     }
@@ -278,12 +283,12 @@ class TestDetailsForm extends React.Component {
                                             <Col>
                                                 <Form.Check
                                                     type='radio'
-                                                    value="yes"
+                                                    value="Y"
                                                     id="yes"
                                                     label="Yes"
                                                     name="pedalEdema"
                                                     onChange={this.handleChange('pedalEdema')}
-                                                    checked={this.state.pedalEdema === "yes"}
+                                                    checked={this.state.pedalEdema === "Y"}
                                                 />
                                             </Col>
                                         </Row>
@@ -291,12 +296,12 @@ class TestDetailsForm extends React.Component {
                                             <Col>
                                                 <Form.Check
                                                     type='radio'
-                                                    value="no"
+                                                    value="N"
                                                     id="no"
                                                     label="No"
                                                     name="pedalEdema"
                                                     onChange={this.handleChange('pedalEdema')}
-                                                    checked={this.state.pedalEdema === "no"}
+                                                    checked={this.state.pedalEdema === "N"}
                                                 />
                                             </Col>
                                         </Row>
@@ -305,10 +310,10 @@ class TestDetailsForm extends React.Component {
                             </Col>
                             <Col sm={3} >
                                 {(() => {
-                                    if (this.state.pedalEdema === 'yes') {
+                                    if (this.state.pedalEdema === 'Y') {
                                         return (
                                             <Col sm={6}>
-                                                <Form.Group controlId="mandal">
+                                                <Form.Group controlId="pedaltype">
                                                     <Form.Label>Pedal Type:</Form.Label>
                                                     <Form.Control as="select" onChange={this.handleChange('pedaltype')} value={this.state.pedaltype}>
                                                         <option value="single leg">Single Leg</option>
@@ -473,7 +478,7 @@ class TestDetailsForm extends React.Component {
                                     <Row>
                                         <Col sm={12} style={styles.center}>
                                             <Button variant="primary"
-                                                onClick={this.props.submit}
+                                                onClick={this.validateAndSubmit}
                                             >Submit</Button>
                                         </Col>
                                     </Row>

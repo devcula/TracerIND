@@ -34,10 +34,11 @@ class HospitalDetailsForm extends React.Component {
         this.setState({ [input]: event.target.value })
     }
 
-    validateAndNext = () => {
+    validateAndNext = async() => {
         //Conditions to check.. If valid, Send form name to switch to next form
         console.log(this.state);
-        this.props.changeData(this.state);
+        // this.props.changeData(this.state);
+        await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
         // this.loadNextForm("HospitalDetails");
         this.props.submit();
     }
@@ -115,12 +116,12 @@ class HospitalDetailsForm extends React.Component {
                                             <Col>
                                                 <Form.Check
                                                     type='radio'
-                                                    value="yes"
+                                                    value="true"
                                                     id="refered_yes"
                                                     label="Yes"
                                                     name="refered"
                                                     onChange={this.handleChange('refered')}
-                                                    checked={this.state.refered === "yes"}
+                                                    checked={this.state.refered === "true"}
                                                 />
                                             </Col>
                                         </Row>
@@ -128,12 +129,12 @@ class HospitalDetailsForm extends React.Component {
                                             <Col>
                                                 <Form.Check
                                                     type='radio'
-                                                    value="no"
+                                                    value="false"
                                                     id="refered_no"
                                                     label="No"
                                                     name="refered"
                                                     onChange={this.handleChange('refered')}
-                                                    checked={this.state.refered === "no"}
+                                                    checked={this.state.refered === "false"}
                                                 />
                                             </Col>
                                         </Row>
@@ -144,7 +145,7 @@ class HospitalDetailsForm extends React.Component {
                         </Row>
                         <br />
                         {(() => {
-                            if (this.state.refered === "yes") {
+                            if (this.state.refered === "true") {
                                 return (
 
                                     <div>
@@ -282,7 +283,7 @@ class HospitalDetailsForm extends React.Component {
 
                                 )
                             }
-                            else if (this.state.refered === "no") {
+                            else if (this.state.refered === "false") {
                                 return (
                                     <Container>
                                         <Row>
@@ -305,7 +306,7 @@ class HospitalDetailsForm extends React.Component {
 
                                                     </Col>
                                                     <Col sm={3}>
-                                                        <input type="date" class="form-control" id="discharge2" onChange={this.handleChange('discharge')} />
+                                                        <input type="date" className="form-control" id="discharge2" onChange={this.handleChange('discharge')} />
                                                     </Col>
                                                 </Form.Group>
                                             </Col>

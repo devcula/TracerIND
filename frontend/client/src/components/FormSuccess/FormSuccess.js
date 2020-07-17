@@ -27,7 +27,7 @@ export default function FormSuccess() {
                         <h2>Data Saved Sucessfully</h2>
                     </Col>
                 </Row>
-                <Row style={{ marginTop: "2rem" }}>
+                <Row style={{ marginTop: "2rem", marginBottom: "2rem" }}>
                     <Col>
                         <Button variant="primary"
                         onClick={redirect}

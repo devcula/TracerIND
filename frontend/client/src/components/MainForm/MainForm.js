@@ -28,8 +28,13 @@ class MainForm extends React.Component {
         return result;
     }
 
-    appendState = childState => {
-        this.setState(childState);
+    appendState = (childState, callback) => {
+        if(callback){
+            this.setState(childState, callback());
+        }
+        else{
+            this.setState(childState);
+        }
     }
 
     getValue = (key) => {
@@ -37,7 +42,9 @@ class MainForm extends React.Component {
     }
 
     submitForm = () => {
+        console.log("Inside submit form");
         let dataToSend = {
+            pkid: this.state.pkid,
             adhaar: this.state.adhaar,
             village: this.state.village,
             name: this.state.name,
@@ -50,39 +57,44 @@ class MainForm extends React.Component {
             phone: this.state.phone,
             bloodgroup: this.state.bloodgroup,
             PVGT: this.state.PVGT,
-            serumCreatinine: this.state.serumCreatinine,
-            bloodUrea: this.state.bloodUrea,
-            uricAcid: this.state.uricAcid,
-            electrolytes_sodium: this.state.electrolytes_sodium,
-            electrolytes_potassium: this.state.electrolytes_potassium,
-            bun: this.state.bun,
-            pedalEdema: this.state.pedalEdema,
-            pedalType: this.state.pedalType,
-            kidneystatus: this.state.kidneystatus,
-            ailments: this.state.ailments,
-            dialysis: this.state.dialysis,
-            doctorreq: this.state.doctorreq,
-            hospitalAdmit: this.state.hospitalAdmit,
-            dateOfAdmit: this.state.dateOfAdmit,
-            refered: this.state.refered,
-            referredto: this.state.referredto,
-            status: this.state.status,
-            treatmentDone: this.state.treatmentDone,
+            serumCreatinine: this.state.serumCreatinine !== undefined ? this.state.serumCreatinine : null,
+            bloodUrea: this.state.bloodUrea !== undefined ? this.state.bloodUrea : null,
+            uricAcid: this.state.uricAcid !== undefined ? this.state.uricAcid : null,
+            electrolytes_sodium: this.state.electrolytes_sodium !== undefined ? this.state.electrolytes_sodium : null,
+            electrolytes_potassium: this.state.electrolytes_potassium !== undefined ? this.state.electrolytes_potassium : null,
+            bun: this.state.bun !== undefined ? this.state.bun : null,
+            pedalEdema: this.state.pedalEdema !== undefined ? this.state.pedalEdema : null,
+            pedaltype: this.state.pedaltype !== undefined ? this.state.pedaltype : null,
+            kidneystatus: this.state.kidneystatus !== undefined ? this.state.kidneystatus : null,
+            ailments: this.state.ailments !== undefined ? this.state.ailments : "",
+            dialysis: this.state.dialysis ? this.state.dialysis : false,
+            doctorreq: this.state.doctorreq ? this.state.doctorreq : false,
+            hospitalAdmit: this.state.hospitalAdmit !== undefined ? this.state.hospitalAdmit : "",
+            dateOfAdmit: this.state.dateOfAdmit !== undefined ? this.state.dateOfAdmit : "",
+            refered: this.state.refered !== undefined ? this.state.refered : false,
+            referredto: this.state.referredto !== undefined ? this.state.referredto : "",
+            status: this.state.status !== undefined ? this.state.status : "",
+            treatmentDone: this.state.treatmentDone !== undefined ? this.state.treatmentDone : "",
             // dialysis: this.state.dialysis,
-            discharge: this.state.discharge,
-            dischargeStatus: this.state.dischargeStatus,
-            deceased: this.state.deceased,
-            deathDate: this.state.deathDate,
-            placeOfDeath: this.state.placeOfDeath,
-            causeOfDeath: this.state.causeOfDeath
+            discharge: this.state.discharge !== undefined ? this.state.discharge : "",
+            dischargeStatus: this.state.dischargeStatus !== undefined ? this.state.dischargeStatus : "",
+            deceased: this.state.deceased ? this.state.deceased : false,
+            deathDate: this.state.deathDate !== undefined ? this.state.deathDate : "",
+            placeOfDeath: this.state.placeOfDeath !== undefined ? this.state.placeOfDeath : "",
+            causeOfDeath: this.state.causeOfDeath !== undefined ? this.state.causeOfDeath : ""
         }
 
         axios.post(uri + 'AddPatient/', dataToSend).then(response => {
+            console.log(dataToSend);
+            console.log("Sending data");
+            console.log(response);
             if (response.data.pkid === this.state.pkid) {
-                console.log(response);
-                alert("Data saved");
+                this.setState({ formName: "Success" });
             }
-            // this.setState({formName: "Success"});
+            else{
+                alert("Failed to save.. Please Try again");
+                // this.setState({ formName: "Success" });
+            }
         })
             .catch(err => {
                 console.log(err);

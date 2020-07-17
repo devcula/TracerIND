@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col,Image } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 // import stetho from '../../assets/stetho.jpg'
 import './Dashboard.css';
 
@@ -13,7 +13,7 @@ export default class Dashboard extends Component {
                     <Container>
                         {/* <h2>Dashboard</h2> */}
                         <Row>
-                            <Image src="assets/stetho.jpg" className="header-image" />
+                            {/* <Image src={stetho} className="header-image" /> */}
                             <Col xs={12} sm={8} className="main-section">
                                 <p>I spend a lot of time walking around in the woods and talking to trees, and squirrels, and little rabbits and stuff. The secret to doing anything is believing that you can do it. Anything that you believe you can do strong enough, you can do. Anything. As long as you believe. Just go out and talk to a tree. Make friends with it. I guess that would be considered a UFO. A big cotton ball in the sky. Tree trunks grow however makes them happy. In nature, dead trees are just as normal as live trees.</p>
                                 <p>Sometimes you learn more from your mistakes than you do from your masterpieces. Here's something that's fun. If you overwork it you become a cloud killer. There's nothing worse than a cloud killer. These trees are so much fun. I get started on them and I have a hard time stopping.</p>

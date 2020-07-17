@@ -111,7 +111,7 @@ import Village from '../Village/Village';
         }
     }
 
-    saveData = () => {
+    saveData = async() => {
         let dataToSave = {
             adhaar: this.state.adhaarFirst + this.state.adhaarSecond + this.state.adhaarThird,
             village: this.state.village,
@@ -126,7 +126,8 @@ import Village from '../Village/Village';
             bloodgroup: this.state.bloodgroup,
             PVGT: this.state.PVGT,
         }
-        this.props.changeData(dataToSave);
+
+        await new Promise(resolve => this.props.changeData(dataToSave, () => resolve()));
     }
 
     loadNextForm = (formName) => {
