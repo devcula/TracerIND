@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import './TestDetailsForm.css';
 
 class TestDetailsForm extends React.Component {
 
@@ -60,17 +61,17 @@ class TestDetailsForm extends React.Component {
     }
 
     handleChangeBoolenValues = input => event => {
-        const isTrue = event.target.value
-        if(isTrue === 'yes'){
+        let isTrue = event.target.value
+        if (isTrue === 'yes') {
             isTrue = true
         }
-        else if(isTrue === 'no'){
+        else if (isTrue === 'no') {
             isTrue = false
         }
         else {
-            isTrue =  null
-         }
-        this.setState({ [input]: isTrue})
+            isTrue = null
+        }
+        this.setState({ [input]: isTrue })
     }
 
     validateOneDigitAfterDecimal = event => {
@@ -93,6 +94,10 @@ class TestDetailsForm extends React.Component {
         console.log(this.state.serumCreatinine);
     }
 
+    checkTesting = () => {
+        console.log(this.state.serumCreatinine);
+    }
+
     render() {
         const styles = {
             center: {
@@ -107,7 +112,7 @@ class TestDetailsForm extends React.Component {
                 <Row>
                     <fieldset style={{ 'width': '100%' }}>
                         <legend>Testing Details</legend>
-                        
+
                         <Row>
                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row}>
@@ -132,14 +137,13 @@ class TestDetailsForm extends React.Component {
                                             value={this.state.serumCreatinine} />
                                         {(() => {
                                             if (this.state.serumCreatinine > 2 && this.state.serumCreatinine < 5.9) {
-                                                return (
-                                                    <p style={{ 'color': 'blue' }}>Normal Range</p>
-                                                )
+                        
+                                                document.getElementById("serumCreatinine").style.border = "2px solid green"
                                             }
                                             else if (this.state.serumCreatinine > 6) {
-                                                return (
-                                                    <p style={{ 'color': 'red' }}>Severely Increased</p>
-                                                )
+                                            
+                                                    document.getElementById("serumCreatinine").style.border = "2px solid red"
+                                                
                                             }
                                         })()}
                                     </Col>
@@ -158,14 +162,10 @@ class TestDetailsForm extends React.Component {
                                         />
                                         {(() => {
                                             if (this.state.bloodUrea > 15 && this.state.bloodUrea < 40) {
-                                                return (
-                                                    <p style={{ 'color': 'blue' }}>Normal Range</p>
-                                                )
+                                                document.getElementById("bloodUrea").style.border = "2px solid green"
                                             }
                                             else if (this.state.bloodUrea > 40) {
-                                                return (
-                                                    <p style={{ 'color': 'red' }}>Severely Increased</p>
-                                                )
+                                                document.getElementById("bloodUrea").style.border = "2px solid red"
                                             }
                                         })()}
                                     </Col>
@@ -183,14 +183,10 @@ class TestDetailsForm extends React.Component {
                                             value={this.state.uricAcid} />
                                         {(() => {
                                             if (this.state.uricAcid > 2.6 && this.state.uricAcid < 6.0) {
-                                                return (
-                                                    <p style={{ 'color': 'blue' }}>Normal Range</p>
-                                                )
+                                                document.getElementById("uricAcid").style.border = "2px solid green"
                                             }
                                             else if (this.state.uricAcid > 6) {
-                                                return (
-                                                    <p style={{ 'color': 'red' }}>Severely Increased</p>
-                                                )
+                                                document.getElementById("uricAcid").style.border = "2px solid red"
                                             }
                                         })()}
                                     </Col>
@@ -199,8 +195,8 @@ class TestDetailsForm extends React.Component {
                         </Row>
                         <Row>
                             <Form.Group as={Row}>
-                                <Col style={{ paddingLeft: 70, textDecoration: 'underline' }}>
-                                    <h5>Electrolytes </h5>
+                                <Col className="section-heading">
+                                    <h3>Electrolytes </h3>
                                 </Col>
                             </Form.Group>
                         </Row>
@@ -211,18 +207,14 @@ class TestDetailsForm extends React.Component {
                                         <Form.Label>Sodium(NA): </Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control type="number" placeholder="mg/dl" id="lectrolytes_sodium" onChange={this.validateOneDigitAfterDecimal}
-                                            value={this.state.lectrolytes_sodium} />
+                                        <Form.Control type="number" placeholder="mg/dl" id="electrolytes_sodium" onChange={this.validateOneDigitAfterDecimal}
+                                            value={this.state.electrolytes_sodium} />
                                         {(() => {
-                                            if (this.state.lectrolytes_sodium > 135 && this.state.lectrolytes_sodium < 155) {
-                                                return (
-                                                    <p style={{ 'color': 'blue' }}>Normal Range</p>
-                                                )
+                                            if (this.state.electrolytes_sodium > 135 && this.state.electrolytes_sodium < 155) {
+                                                document.getElementById("electrolytes_sodium").style.border = "2px solid green"
                                             }
                                             else if (this.state.lectrolytes_sodium > 155) {
-                                                return (
-                                                    <p style={{ 'color': 'red' }}>Severely Increased</p>
-                                                )
+                                                document.getElementById("electrolytes_sodium").style.border = "2px solid red"
                                             }
                                         })()}
                                     </Col>
@@ -240,14 +232,10 @@ class TestDetailsForm extends React.Component {
                                             value={this.state.electrolytes_potassium} />
                                         {(() => {
                                             if (this.state.electrolytes_potassium > 3.5 && this.state.electrolytes_potassium < 5.5) {
-                                                return (
-                                                    <p style={{ 'color': 'blue' }}>Normal Range</p>
-                                                )
+                                                document.getElementById("electrolytes_potassium").style.border = "2px solid green"
                                             }
                                             else if (this.state.electrolytes_potassium > 5.5) {
-                                                return (
-                                                    <p style={{ 'color': 'red' }}>Severely Increased</p>
-                                                )
+                                                document.getElementById("electrolytes_potassium").style.border = "2px solid red"
                                             }
                                         })()}
                                     </Col>
@@ -265,50 +253,53 @@ class TestDetailsForm extends React.Component {
                                             value={this.state.bun} />
                                         {(() => {
                                             if (this.state.bun > 8 && this.state.bun < 23) {
-                                                return (
-                                                    <p style={{ 'color': 'blue' }}>Normal Range</p>
-                                                )
+                                                
+                                                    document.getElementById("bun").style.border = "2px solid green"
+                                                
                                             }
                                             else if (this.state.bun > 23) {
-                                                return (
-                                                    <p style={{ 'color': 'red' }}>Severely Increased</p>
-                                                )
+                                                document.getElementById("bun").style.border = "2px solid red"
                                             }
                                         })()}
                                     </Col>
                                 </Form.Group>
                             </Col>
                         </Row>
-                        <Row>
 
-                            <Col sm={3}>
-                                <Form.Label>Pedal Edema:</Form.Label>
-                            </Col>
-                            <Col sm={3}>
+                        <Row>
+                            <Col sm={12}>
                                 <Row>
-                                    <Col>
-                                        <Form.Check
-                                            type='radio'
-                                            value="yes"
-                                            id="yes"
-                                            label="Yes"
-                                            name="pedalEdema"
-                                            onChange={this.handleChange('pedalEdema')}
-                                            checked={this.state.pedalEdema === "yes"}
-                                        />
+
+                                    <Col sm={3}>
+                                        <Form.Label>Pedal Edema:</Form.Label>
                                     </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <Form.Check
-                                            type='radio'
-                                            value="no"
-                                            id="no"
-                                            label="No"
-                                            name="pedalEdema"
-                                            onChange={this.handleChange('pedalEdema')}
-                                            checked={this.state.pedalEdema === "no"}
-                                        />
+                                    <Col sm={3}>
+                                        <Row>
+                                            <Col>
+                                                <Form.Check
+                                                    type='radio'
+                                                    value="yes"
+                                                    id="yes"
+                                                    label="Yes"
+                                                    name="pedalEdema"
+                                                    onChange={this.handleChange('pedalEdema')}
+                                                    checked={this.state.pedalEdema === "yes"}
+                                                />
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col>
+                                                <Form.Check
+                                                    type='radio'
+                                                    value="no"
+                                                    id="no"
+                                                    label="No"
+                                                    name="pedalEdema"
+                                                    onChange={this.handleChange('pedalEdema')}
+                                                    checked={this.state.pedalEdema === "no"}
+                                                />
+                                            </Col>
+                                        </Row>
                                     </Col>
                                 </Row>
                             </Col>
@@ -400,12 +391,12 @@ class TestDetailsForm extends React.Component {
                                                     <Col>
                                                         <Form.Check
                                                             type='radio'
-                                                            value="yes"
+                                                            value="true"
                                                             id="yes"
                                                             label="Yes"
                                                             name="dialysis"
                                                             onChange={this.handleChange('dialysis')}
-                                                            checked={this.state.dialysis === "yes"}
+                                                            checked={this.state.dialysis === "true"}
                                                         />
                                                     </Col>
                                                 </Row>
@@ -413,12 +404,12 @@ class TestDetailsForm extends React.Component {
                                                     <Col>
                                                         <Form.Check
                                                             type='radio'
-                                                            value="no"
+                                                            value="false"
                                                             id="no"
                                                             label="No"
                                                             name="dialysis"
                                                             onChange={this.handleChange('dialysis')}
-                                                            checked={this.state.dialysis === "no"}
+                                                            checked={this.state.dialysis === "false"}
                                                         />
                                                     </Col>
                                                 </Row>
@@ -433,12 +424,12 @@ class TestDetailsForm extends React.Component {
                                                     <Col>
                                                         <Form.Check
                                                             type='radio'
-                                                            value="yes"
+                                                            value="true"
                                                             id="yes"
                                                             label="Yes"
                                                             name="doctorreq"
                                                             onChange={this.handleChange('doctorreq')}
-                                                            checked={this.state.doctorreq === "yes"}
+                                                            checked={this.state.doctorreq === "true"}
                                                         />
                                                     </Col>
                                                 </Row>
@@ -446,12 +437,12 @@ class TestDetailsForm extends React.Component {
                                                     <Col>
                                                         <Form.Check
                                                             type='radio'
-                                                            value="no"
+                                                            value="false"
                                                             id="no"
                                                             label="no"
                                                             name="doctorreq"
                                                             onChange={this.handleChange('doctorreq')}
-                                                            checked={this.state.doctorreq === "no"}
+                                                            checked={this.state.doctorreq === "false"}
                                                         />
                                                     </Col>
                                                 </Row>
@@ -462,42 +453,10 @@ class TestDetailsForm extends React.Component {
                             }
                         })()}
 
-                        {/* <Row>
-                            <Col sm={4}>
-                                <Form.Label>Need for immediate Doctor Supervision:</Form.Label>
-                            </Col>
-                            <Col sm={1}>
-                                <Row>
-                                    <Col>
-                                        <Form.Check
-                                            type='radio'
-                                            value="yes"
-                                            id="yes"
-                                            label="Yes"
-                                            name="doctorreq"
-                                            onChange={this.handleChange('doctorreq')}
-                                            checked={this.state.doctorreq === "yes"}
-                                        />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <Form.Check
-                                            type='radio'
-                                            value="no"
-                                            id="no"
-                                            label="no"
-                                            name="doctorreq"
-                                            onChange={this.handleChange('doctorreq')}
-                                            checked={this.state.doctorreq === "no"}
-                                        />
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row> */}
+                       
 
                         {(() => {
-                            if (this.state.doctorreq === 'yes') {
+                            if (this.state.doctorreq === 'true') {
                                 return (
                                     <Row>
                                         <Col sm={12} style={styles.center}>
@@ -514,6 +473,7 @@ class TestDetailsForm extends React.Component {
                                     <Row>
                                         <Col sm={12} style={styles.center}>
                                             <Button variant="primary"
+                                                onClick={this.props.submit}
                                             >Submit</Button>
                                         </Col>
                                     </Row>
