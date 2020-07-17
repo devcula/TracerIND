@@ -179,11 +179,12 @@ def GetPatientData_Village(request):
 
 @api_view(['GET'])
 def GetVIllageNames(request):
-    village = (Village.objects.all())
-    serializer = VillageSerializer(data = village, many = True)
-    if serializer.is_valid():
-        return Response(serializer.data)
-    return Response(serializer.errors)
+    villagelist = Village.objects.all()
+    print(villagelist)
+    serializer = VillageSerializer(data = villagelist,many = True)
+    serializer.is_valid()
+    return Response(serializer.data)
+    
 
 # #ANDROID APIS
 
