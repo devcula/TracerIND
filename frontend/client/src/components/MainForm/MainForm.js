@@ -75,7 +75,6 @@ class MainForm extends React.Component {
             referredto: this.state.referredto !== undefined ? this.state.referredto : "",
             status: this.state.status !== undefined ? this.state.status : "",
             treatmentDone: this.state.treatmentDone !== undefined ? this.state.treatmentDone : "",
-            // dialysis: this.state.dialysis,
             discharge: this.state.discharge !== undefined ? this.state.discharge : "",
             dischargeStatus: this.state.dischargeStatus !== undefined ? this.state.dischargeStatus : "",
             deceased: this.state.deceased ? this.state.deceased : false,

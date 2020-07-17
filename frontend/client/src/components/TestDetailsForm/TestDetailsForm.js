@@ -117,7 +117,6 @@ class TestDetailsForm extends React.Component {
                 <Row>
                     <fieldset style={{ 'width': '100%' }}>
                         <legend>Testing Details</legend>
-
                         <Row>
                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                 <Form.Group as={Row}>
@@ -142,13 +141,10 @@ class TestDetailsForm extends React.Component {
                                             value={this.state.serumCreatinine} />
                                         {(() => {
                                             if (this.state.serumCreatinine > 2 && this.state.serumCreatinine < 5.9) {
-                        
                                                 document.getElementById("serumCreatinine").style.border = "2px solid green"
                                             }
                                             else if (this.state.serumCreatinine > 6) {
-                                            
                                                     document.getElementById("serumCreatinine").style.border = "2px solid red"
-                                                
                                             }
                                         })()}
                                     </Col>
@@ -272,13 +268,12 @@ class TestDetailsForm extends React.Component {
                         </Row>
 
                         <Row>
-                            <Col sm={12}>
-                                <Row>
-
-                                    <Col sm={3}>
+                            <Col sm={6} style={{ paddingLeft: 0, paddingRight: 0 }}>
+                                <Form.Group as={Row} >
+                                    <Col sm={6}>
                                         <Form.Label>Pedal Edema:</Form.Label>
                                     </Col>
-                                    <Col sm={3}>
+                                    <Col sm={6}>
                                         <Row>
                                             <Col>
                                                 <Form.Check
@@ -306,21 +301,23 @@ class TestDetailsForm extends React.Component {
                                             </Col>
                                         </Row>
                                     </Col>
-                                </Row>
+                                </Form.Group>
                             </Col>
-                            <Col sm={3} >
+                            <Col sm={6} >
                                 {(() => {
                                     if (this.state.pedalEdema === 'Y') {
                                         return (
-                                            <Col sm={6}>
-                                                <Form.Group controlId="pedaltype">
+                                            <Form.Group as={Row} controlId="pedaltype">
+                                                <Col sm={6}>
                                                     <Form.Label>Pedal Type:</Form.Label>
+                                                </Col>
+                                                <Col sm={6}>
                                                     <Form.Control as="select" onChange={this.handleChange('pedaltype')} value={this.state.pedaltype}>
                                                         <option value="single leg">Single Leg</option>
                                                         <option value="bilateral">Bilateral</option>
                                                     </Form.Control>
-                                                </Form.Group>
-                                            </Col>
+                                                </Col>
+                                            </Form.Group>
                                         )
                                     }
                                     else {
@@ -332,10 +329,10 @@ class TestDetailsForm extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col sm={4}>
-                                <Form.Label>Kidney Funtioning Status:</Form.Label>
+                            <Col sm={3}>
+                                <Form.Label>Kidney Functioning Status:</Form.Label>
                             </Col>
-                            <Col sm={1}>
+                            <Col sm={3}>
                                 <Row>
                                     <Col>
                                         <Form.Check
@@ -373,14 +370,14 @@ class TestDetailsForm extends React.Component {
                             }
                             else if (this.state.kidneystatus === 'abnormal') {
                                 return (
-                                    <Container>
+                                    <React.Fragment>
                                         <Row>
                                             <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
                                                 <Form.Group as={Row}>
                                                     <Col sm={3}>
                                                         <Form.Label>Specify the ailments: </Form.Label>
                                                     </Col>
-                                                    <Col sm={3}>
+                                                    <Col sm={6}>
                                                         <Form.Control as="textarea" placeholder="Description" id="ailments" onChange={this.handleChange('ailments')}
                                                             value={this.state.ailments} />
                                                     </Col>
@@ -388,10 +385,10 @@ class TestDetailsForm extends React.Component {
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col sm={12}>
+                                            <Col sm={3}>
                                                 <Form.Label>Need for Dialysis:</Form.Label>
                                             </Col>
-                                            <Col sm={1}>
+                                            <Col sm={3}>
                                                 <Row>
                                                     <Col>
                                                         <Form.Check
@@ -420,11 +417,12 @@ class TestDetailsForm extends React.Component {
                                                 </Row>
                                             </Col>
                                         </Row>
+                                        <br/>
                                         <Row>
                                             <Col sm={4}>
                                                 <Form.Label>Need for immediate Doctor Supervision:</Form.Label>
                                             </Col>
-                                            <Col sm={1}>
+                                            <Col sm={3}>
                                                 <Row>
                                                     <Col>
                                                         <Form.Check
@@ -444,7 +442,7 @@ class TestDetailsForm extends React.Component {
                                                             type='radio'
                                                             value="false"
                                                             id="no"
-                                                            label="no"
+                                                            label="No"
                                                             name="doctorreq"
                                                             onChange={this.handleChange('doctorreq')}
                                                             checked={this.state.doctorreq === "false"}
@@ -453,12 +451,10 @@ class TestDetailsForm extends React.Component {
                                                 </Row>
                                             </Col>
                                         </Row>
-                                    </Container>
+                                    </React.Fragment>
                                 )
                             }
                         })()}
-
-                       
 
                         {(() => {
                             if (this.state.doctorreq === 'true') {
