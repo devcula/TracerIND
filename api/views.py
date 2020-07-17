@@ -178,9 +178,9 @@ def GetPatientData_Village(request):
     return Response(serializer.data)
 
 @api_view(['POST'])
-def GetVIllageName(request):
-    village = (Village.objects.get(village_id = request.data.get("id")))
-    serializer = VillageSerializer(village)
+def GetVIllageNames(request):
+    village = (Village.objects.all())
+    serializer = VillageSerializer(data = village, many = True)
     if serializer.is_valid():
         return Response(serializer.data)
     return Response(serializer.errors)

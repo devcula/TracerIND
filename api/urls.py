@@ -20,7 +20,7 @@ urlpatterns = [
     path('GetVillageSecData/',views.GetVillageSecData,name = "GetVillageSecData"),
     path('GetVillageData/',views.GetVillageData,name = "GetVillageData"),
     path('GetPatientData_Village/',views.GetPatientData_Village,name = "GetPatientData_Village"),
-     path('GetVIllageName/',views.GetVIllageName,name = "GetVIllageName"),
+     path('GetVIllageNames/',views.GetVIllageNames,name = "GetVIllageNames"),
     #ANDROID API
     path('DroidDump/',views.DroidDump,name = "DroidDump"),
 
