@@ -104,7 +104,7 @@ def AddPatient(request):
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
-    return Response("Something Went Wrong")
+    return Response(serializer.errors)
 
 @api_view(['POST'])
 def DeletePatient(request):
@@ -125,7 +125,7 @@ def UpdatePatient(request):
         serializers.save()
         return HttpResponse(status = 200)
     else:
-        return Response("Something Went Wrong")
+        return Response(serializer.errors)
 #DATA MATRIX APIs
 @api_view(['POST'])
 def GetPHCData(request):
@@ -169,7 +169,7 @@ def GetPatient(request):
     if serializer.is_valid():
         return Response(serializer.data)
     else:
-        return Response("Something Went Wrong")
+        return Response(serializer.errors)
 
 @api_view(['POST'])
 def GetPatientData_Village(request):
@@ -184,7 +184,7 @@ def GetVIllageName(request):
     serializer = VillageSerializer(village)
     if serializer.is_valid():
         return Response(serializer.data)
-    return Response("Something Went Wrong")
+    return Response(serializer.errors)
 
 # #ANDROID APIS
 
@@ -196,5 +196,5 @@ def DroidDump(request):
         if serializer.is_valid():
             serializer.save()
         else:
-            return Response("Something Went Wrong")
+            return Response(serializer.errors)
     return Response(status=200)    
