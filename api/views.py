@@ -126,18 +126,6 @@ def UpdatePatient(request):
         return HttpResponse(status = 200)
     else:
         return Response("Something Went Wrong")
-
-@api_view (['POST'])
-def GetPatient(request):
-    pk = request.data.get("pkid")
-    patient = Patient.objects.get(pkid = pk)
-    serializer = PatientSerializer(patient)
-    if serializer.is_valid():
-        return Response(serializer.data)
-    else:
-        return Response("Something Went Wrong")
-
-
 #DATA MATRIX APIs
 @api_view(['POST'])
 def GetPHCData(request):
@@ -163,12 +151,41 @@ def GetVillageData(request):
     serializer = VillageSerializer(village, many=True)
     return Response(serializer.data)
 
+
+@api_view(['GET'])
+def GetAllPatient(request):
+    patientlist = Patient.objects.all()
+    print(patientlist)
+    serializer = PatientSerializer(data = patientlist,many = True)
+    if serializer.is_vaild():
+        return Response(serializer.data)
+    return Response("Something Went Wrong")
+
+
+@api_view (['POST'])
+def GetPatient(request):
+    pk = request.data.get("pkid")
+    patient = Patient.objects.get(pkid = pk)
+    serializer = PatientSerializer(patient)
+    if serializer.is_valid():
+        return Response(serializer.data)
+    else:
+        return Response("Something Went Wrong")
+
 @api_view(['POST'])
 def GetPatientData_Village(request):
     village = request.data.get("village")
     patientlist = Patient.objects.filter(village = (Village.objects.get(name__iexact = request.data.get("village")).village_id))
     serializer = PatientSerializer(patientlist,many = True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def GetVIllageName(request):
+    village = (Village.objects.get(village_id = request.data.get("id")))
+    serializer = VillageSerializer(village)
+    if serializer.is_valid():
+        return Response(serializer.data)
+    return Response("Something Went Wrong")
 
 # #ANDROID APIS
 

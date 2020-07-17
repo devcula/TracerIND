@@ -15,6 +15,7 @@ urlpatterns = [
     path('DeletePatient/',views.DeletePatient,name = "DeletePatient"),
     path('UpdatePatient/',views.UpdatePatient,name = "UpdatePatient"),
     path('GetPatient/',views.GetPatient,name = "GetPatient"),
+    path('GetAllPatient/',views.GetAllPatient,name = "GetAllPatient"),
     path('GetPHCData/',views.GetPHCData,name = "GetPHCData"),
     path('GetVillageSecData/',views.GetVillageSecData,name = "GetVillageSecData"),
     path('GetVillageData/',views.GetVillageData,name = "GetVillageData"),

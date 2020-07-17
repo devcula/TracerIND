@@ -27,7 +27,7 @@ class Patient (models.Model):
     bloodgroup = models.CharField(default=None, max_length=4)
     PVGT = models.CharField(default=None, max_length=3)
     deworming = models.BooleanField(default=False)
-    dateoftesting = models.DateField(null = True,)
+    dateoftesting = models.CharField(blank = True, max_length=10)
     serumCreatinine = models.DecimalField(max_digits=5, decimal_places=1,blank = True)
     bloodUrea = models.DecimalField(max_digits=5, decimal_places=1,blank = True)
     uricAcid = models.DecimalField(max_digits=5, decimal_places=1,blank=True)
@@ -49,13 +49,13 @@ class Patient (models.Model):
     # if above is yes then ask refer to the following hospital
     hospitalAdmit = models.CharField(max_length=50,blank = True)
 
-    dateOfAdmit = models.DateField(null = True,auto_now=False, auto_now_add=False,blank = True) #YYYY-MM-DD
+    dateOfAdmit = models.CharField(blank = True, max_length=10) #YYYY-MM-DD
     refered = models.BooleanField(default = False)
     # case:yes
     referredto = models.CharField(max_length=50,blank = True)
     status = models.TextField(max_length=300,blank=True)
     treatmentDone = models.TextField(max_length=300,blank=True)
-    discharge = models.DateField(null = True,auto_now=False, auto_now_add=False)
+    discharge = models.CharField(blank = True, max_length=10)
     dischargeStatus = models.TextField(max_length=500,blank=True)
     # case:no
     # treatmentDone
@@ -63,6 +63,6 @@ class Patient (models.Model):
     # dischargeStatus
     deceased = models.BooleanField(default = False)
     # if above is answered yes
-    deathDate = models.DateField(null = True,auto_now=False, auto_now_add=False)
+    deathDate = models.CharField(blank = True, max_length=10)
     placeOfDeath = models.CharField(max_length=50,blank=True)
     causeOfDeath = models.TextField(max_length=300,blank=True)
