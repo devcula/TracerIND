@@ -83,18 +83,53 @@ class TestDetailsForm extends React.Component {
         this.setState({ [event.target.id]: event.target.value });
 
     }
-    validateAndNext = async() => {
+    validateAndNext = async () => {
         //Conditions to check.. If valid, Send form name to switch to next form
         console.log(this.state);
         await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
         this.loadNextForm("HospitalDetails");
     }
 
-    validateAndSubmit = async() => {
+    mandatoryFieldCheck = () => {
+        let invalidIds = [];
+        try {
+            if (this.state.kidneystatus === 'abnormal') {
+                console.log("doc req")
+                console.log(this.state.doctorreq)
+                if (this.state.doctorreq === "") {
+                    invalidIds.push('doctorreq')
+                }
+                if (this.state.dialysis === "") {
+                    invalidIds.push('dialysis')
+                }
+                if (invalidIds.length > 0) {
+                    window.location.href = "#" + invalidIds[0];
+                    console.log("insid function")
+                    for (let i = 0; i < invalidIds.length; i++) {
+                        document.getElementById(invalidIds[i]).style.border = "2px solid red";
+                    }
+                    document.getElementById(invalidIds[0]).focus();
+                    throw new Error();
+                }
+                else {
+                    window.location.href = "#";
+                }
+            }
+            console.log(invalidIds[0])
+        }
+        catch (err) {
+            console.log(false);
+        }
+    }
+
+    validateAndSubmit = async () => {
+        this.mandatoryFieldCheck()
+        console.log("printitg states")
+        console.log(this.state)
         await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
         this.props.submit();
     }
- 
+
     creatineCheck = () => {
         console.log(this.state.serumCreatinine);
     }
@@ -144,7 +179,7 @@ class TestDetailsForm extends React.Component {
                                                 document.getElementById("serumCreatinine").style.border = "2px solid green"
                                             }
                                             else if (this.state.serumCreatinine > 6) {
-                                                    document.getElementById("serumCreatinine").style.border = "2px solid red"
+                                                document.getElementById("serumCreatinine").style.border = "2px solid red"
                                             }
                                         })()}
                                     </Col>
@@ -254,9 +289,9 @@ class TestDetailsForm extends React.Component {
                                             value={this.state.bun} />
                                         {(() => {
                                             if (this.state.bun > 8 && this.state.bun < 23) {
-                                                
-                                                    document.getElementById("bun").style.border = "2px solid green"
-                                                
+
+                                                document.getElementById("bun").style.border = "2px solid green"
+
                                             }
                                             else if (this.state.bun > 23) {
                                                 document.getElementById("bun").style.border = "2px solid red"
@@ -388,7 +423,7 @@ class TestDetailsForm extends React.Component {
                                             <Col sm={3}>
                                                 <Form.Label>Need for Dialysis :</Form.Label>
                                             </Col>
-                                            <Col sm={3}>
+                                            <Col sm={3} id="dialysis">
                                                 <Row>
                                                     <Col>
                                                         <Form.Check
@@ -417,18 +452,18 @@ class TestDetailsForm extends React.Component {
                                                 </Row>
                                             </Col>
                                         </Row>
-                                        <br/>
+                                        <br />
                                         <Row>
                                             <Col sm={4}>
                                                 <Form.Label>Need for immediate Doctor Supervision :</Form.Label>
                                             </Col>
-                                            <Col sm={3}>
+                                            <Col sm={3} id="doctorreq">
                                                 <Row>
                                                     <Col>
                                                         <Form.Check
                                                             type='radio'
                                                             value="true"
-                                                            id="yes"
+                                                            id="true"
                                                             label="Yes"
                                                             name="doctorreq"
                                                             onChange={this.handleChange('doctorreq')}
@@ -441,7 +476,7 @@ class TestDetailsForm extends React.Component {
                                                         <Form.Check
                                                             type='radio'
                                                             value="false"
-                                                            id="no"
+                                                            id="false"
                                                             label="No"
                                                             name="doctorreq"
                                                             onChange={this.handleChange('doctorreq')}
