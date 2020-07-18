@@ -1,5 +1,5 @@
 import React from 'react';
-import { uri } from '../../index';
+// import { uri } from '../../index';
 import { Container, Table } from 'react-bootstrap';
 
 import axios from 'axios';
@@ -11,28 +11,25 @@ class Directory extends React.Component {
             searchField: "",
             patientList: [],
             villageList: [],
-            loading: true,
-            uri: uri
+            loading: true
         }
     }
 
     componentDidMount() {
-        if(this.state.uri){
-            axios.get(uri + 'GetAllPatient/').then(response => {
-                axios.get(uri + 'GetVIllageNames/').then(response => {
-                    this.setState({ villageList: response.data });
-                    this.setState({ loading: false });
-                })
-                    .catch(err => {
-                        console.log(err);
-                    });
-
-                this.setState({ patientList: response.data });
+        axios.get('http://13.232.239.102/api/GetAllPatient/').then(response => {
+            axios.get('http://13.232.239.102/api/GetVIllageNames/').then(response => {
+                this.setState({ villageList: response.data });
+                this.setState({ loading: false });
             })
                 .catch(err => {
                     console.log(err);
                 });
-        }
+
+            this.setState({ patientList: response.data });
+        })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     getVillageNameFromId = (id) => {
