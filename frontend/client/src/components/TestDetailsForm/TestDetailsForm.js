@@ -124,7 +124,7 @@ class TestDetailsForm extends React.Component {
 
     validateAndSubmit = async () => {
         this.mandatoryFieldCheck()
-        console.log("printitg states")
+        console.log("printimg states")
         console.log(this.state)
         await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
         this.props.submit();

@@ -3,6 +3,7 @@ import React from 'react';
 import { Container, Table } from 'react-bootstrap';
 
 import axios from 'axios';
+import './Directory.css';
 
 class Directory extends React.Component {
     constructor(props) {
@@ -62,7 +63,7 @@ class Directory extends React.Component {
         }
         return (
             <Container style={{ marginTop: "2rem" }}>
-                <input style={{ marginBottom: "2rem", width: "20rem", backgroundColor: "#888888", color: "#FFFFFF", fontWeight: "bold" }} type="text" placeholder="Search by name" onChange={this.handleSearch} className="form-control" />
+                <input type="text" placeholder="Search by name" onChange={this.handleSearch} className="form-control search-field" />
                 <Table striped bordered hover variant="dark">
                     <thead>
                         <tr>

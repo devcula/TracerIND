@@ -82,7 +82,7 @@ import Village from '../Village/Village';
             Boolean(this.state.maritalstatus) ? validIds.push('maritalstatus') : invalidIds.push('maritalstatus');
             Boolean(this.state.bloodgroup) ? validIds.push('bloodgroup') : invalidIds.push('bloodgroup');
             Boolean(this.state.PVGT) ? validIds.push('PVGT') : invalidIds.push('PVGT');
-            if(this.state.phone !== "" && this.state.phone.length !== 10){
+            if(this.state.phone === "" || this.state.phone.length !== 10){
                 invalidIds.push('phone');
             }
             else{
