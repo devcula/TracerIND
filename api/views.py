@@ -188,7 +188,7 @@ def GetVIllageNames(request):
 
 # #ANDROID APIS
 
-@api_view
+@api_view(['POST'])
 def DroidDump(request):
     data = request.data
     for item in data :
