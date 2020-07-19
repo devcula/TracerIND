@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
+import './GenericTable.css';
 
 //Received props
 //Json data -- data
@@ -15,6 +16,7 @@ class GenericTable extends React.Component {
         super(props);
         this.state = {
             noOfRows: 20,
+            currentPage: 1
         }
     }
 
@@ -66,6 +68,30 @@ class GenericTable extends React.Component {
         return (value !== null && value !== undefined && value !== "");
     }
 
+    clearFilters = () => {
+        let {dataTypes, keys} = this.props;
+        let obj = {};
+        for(let i = 0; i < keys.length; i++){
+            if (dataTypes[i] === "String") {
+                obj['KEY_' + keys[i]] = "";
+                document.getElementById('KEY_' + keys[i]).value = "";
+            }
+            else if (dataTypes[i] === "Number") {
+                obj['KEY_' + keys[i]] = {
+                    min: Number.MIN_VALUE,
+                    max: Number.MAX_VALUE
+                }
+                document.getElementById('KEY_' + keys[i] + '_min').value = "";
+                document.getElementById('KEY_' + keys[i] + '_max').value = "";
+            }
+            else if (dataTypes[i] === "Boolean") {
+                obj['KEY_' + keys[i]] = "";
+                document.getElementById('KEY_' + keys[i]).value = "";
+            }
+        }
+        this.setState(obj);
+    }
+
     render() {
         let { headers, data, loading, keys, dataTypes } = this.props;
         data = data.filter(rowData => {
@@ -92,6 +118,9 @@ class GenericTable extends React.Component {
         });
         return (
             <React.Fragment>
+                <Button variant="primary" onClick={this.clearFilters} className="filter-button" size="lg">
+                    Clear filters
+                </Button>
                 <Table style={{ textAlign: "center" }} striped bordered hover variant="dark">
                     <thead>
                         <tr>
@@ -132,7 +161,13 @@ class GenericTable extends React.Component {
                                                         if (inputType === "text") {
                                                             return (
                                                                 <td key={i}>
-                                                                    <input type={inputType} id={'KEY_' + key} onChange={this.handleSearchChange} />
+                                                                    <input 
+                                                                    type={inputType} 
+                                                                    id={'KEY_' + key} 
+                                                                    placeholder="Filter" 
+                                                                    onChange={this.handleSearchChange} 
+                                                                    className="form-control"
+                                                                    />
                                                                 </td>
                                                             )
                                                         }
@@ -140,16 +175,20 @@ class GenericTable extends React.Component {
                                                             return (
                                                                 <td key={i}>
                                                                     <input
-                                                                        style={{ width: "4rem" }}
+                                                                        style={{ width: "5rem", display: "inline"}}
                                                                         type={inputType}
                                                                         id={'KEY_' + key + '_min'}
                                                                         onChange={this.handleSearchChange}
+                                                                        placeholder="Min"
+                                                                        className="form-control input-min"
                                                                     />
                                                                     <input
-                                                                        style={{ width: "4rem" }}
+                                                                        style={{ width: "5rem", display: "inline" }}
                                                                         type={inputType}
                                                                         id={'KEY_' + key + '_max'}
                                                                         onChange={this.handleSearchChange}
+                                                                        placeholder="Max"
+                                                                        className="form-control"
                                                                     />
                                                                 </td>
                                                             )
@@ -157,7 +196,12 @@ class GenericTable extends React.Component {
                                                         else if (inputType === "booleanSelect") {
                                                             return (
                                                                 <td key={i}>
-                                                                    <select value={this.state['KEY_' + key]} id={'KEY_' + key} onChange={this.handleSearchChange}>
+                                                                    <select 
+                                                                    value={this.state['KEY_' + key]} 
+                                                                    id={'KEY_' + key} 
+                                                                    onChange={this.handleSearchChange} 
+                                                                    className="form-control"
+                                                                    >
                                                                         <option value="">Select</option>
                                                                         <option value="true">Yes</option>
                                                                         <option value="false">No</option>
