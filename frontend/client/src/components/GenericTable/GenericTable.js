@@ -31,15 +31,68 @@ class GenericTable extends React.Component {
             else if (dataTypes[i] === 'String') {
                 stateObj['KEY_' + keys[i]] = "";
             }
+            else if(dataTypes[i] === 'Boolean') {
+                stateObj['KEY_' + keys[i]] = "";
+            }
         }
         this.setState(stateObj, console.log(this.state));
     }
 
+    handleSearchChange = event => {
+        let idFragments = event.target.id.split('_');
+        let obj = {};
+        let key = idFragments[1];
+        let dataType = this.props.dataTypes[this.props.keys.indexOf(key)];
+
+        if(dataType === 'String'){
+            obj['KEY_' + key] = event.target.value;
+        }
+        else if(dataType === 'Number'){
+            obj['KEY_' + key] = this.state['KEY_' + key];
+            if (event.target.value === "") {
+                obj['KEY_' + key][idFragments[2]] = idFragments[2] === 'min' ? Number.MIN_VALUE : Number.MAX_VALUE;
+            }
+            else {
+                obj['KEY_' + key][idFragments[2]] = Number(event.target.value);
+            }
+        }
+        else if(dataType === 'Boolean'){
+            obj['KEY_' + key] = event.target.value;
+        }
+        this.setState(obj);
+    }
+
+    isNotNullOrUndefinedOrBlank = (value) => {
+        return (value !== null && value !== undefined && value !== "");
+    }
+
     render() {
         let { headers, data, loading, keys, dataTypes } = this.props;
+        data = data.filter(rowData => {
+            // console.log(rowData);
+            for (let i = 0; i < keys.length; i++) {
+                // console.log(rowData[keys[i]]);
+                if (dataTypes[i] === "String") {
+                    if (this.isNotNullOrUndefinedOrBlank(rowData[keys[i]]) && !rowData[keys[i]].toLowerCase().includes(this.state['KEY_' + keys[i]].toLowerCase())) {
+                        return false;
+                    }
+                }
+                else if (dataTypes[i] === "Number") {
+                    if (this.isNotNullOrUndefinedOrBlank(rowData[keys[i]]) && (rowData[keys[i]] < this.state['KEY_' + keys[i]].min || rowData[keys[i]] > this.state['KEY_' + keys[i]].max)) {
+                        return false;
+                    }
+                }
+                else if (dataTypes[i] === "Boolean") {
+                    if (this.isNotNullOrUndefinedOrBlank(rowData[keys[i]].toString()) && this.isNotNullOrUndefinedOrBlank(this.state['KEY_' + keys[i]]) && (rowData[keys[i]].toString() !== this.state['KEY_' + keys[i]])){
+                        return false;
+                    }
+                }
+            }
+            return true;
+        });
         return (
             <React.Fragment>
-                <Table striped bordered hover variant="dark">
+                <Table style={{ textAlign: "center" }} striped bordered hover variant="dark">
                     <thead>
                         <tr>
                             {
@@ -54,10 +107,16 @@ class GenericTable extends React.Component {
                     <tbody>
                         {
                             (() => {
-                                if(loading){
-                                    return 
+                                if (loading) {
+                                    return (
+                                        <tr>
+                                            <td colSpan={headers.length}>
+                                                Loading...
+                                            </td>
+                                        </tr>
+                                    )
                                 }
-                                else{
+                                else {
                                     return (
                                         <React.Fragment>
                                             <tr key="searchFields">
@@ -67,30 +126,84 @@ class GenericTable extends React.Component {
                                                         if (dataTypes[i] === 'Number') {
                                                             inputType = "number";
                                                         }
-                                                        return (
-                                                            <td key={i}>
-                                                                <input type={inputType} id={'KEY_' + key} />
-                                                            </td>
-                                                        )
+                                                        if (dataTypes[i] === 'Boolean') {
+                                                            inputType = "booleanSelect";
+                                                        }
+                                                        if (inputType === "text") {
+                                                            return (
+                                                                <td key={i}>
+                                                                    <input type={inputType} id={'KEY_' + key} onChange={this.handleSearchChange} />
+                                                                </td>
+                                                            )
+                                                        }
+                                                        else if (inputType === "number") {
+                                                            return (
+                                                                <td key={i}>
+                                                                    <input
+                                                                        style={{ width: "4rem" }}
+                                                                        type={inputType}
+                                                                        id={'KEY_' + key + '_min'}
+                                                                        onChange={this.handleSearchChange}
+                                                                    />
+                                                                    <input
+                                                                        style={{ width: "4rem" }}
+                                                                        type={inputType}
+                                                                        id={'KEY_' + key + '_max'}
+                                                                        onChange={this.handleSearchChange}
+                                                                    />
+                                                                </td>
+                                                            )
+                                                        }
+                                                        else if (inputType === "booleanSelect") {
+                                                            return (
+                                                                <td key={i}>
+                                                                    <select value={this.state['KEY_' + key]} id={'KEY_' + key} onChange={this.handleSearchChange}>
+                                                                        <option value="">Select</option>
+                                                                        <option value="true">Yes</option>
+                                                                        <option value="false">No</option>
+                                                                    </select>
+                                                                </td>
+                                                            )
+                                                        }
+                                                        else {
+                                                            return (
+                                                                <td></td>
+                                                            )
+                                                        }
                                                     })
                                                 }
                                             </tr>
                                             {
-                                                data.map((row, indexRow) => {
-                                                    return (
-                                                        <tr key={indexRow}>
-                                                            {
-                                                                keys.map((key, indexCol) => {
-                                                                    return (
-                                                                        <td key={indexCol}>
-                                                                            {row[key]}
-                                                                        </td>
-                                                                    )
-                                                                })
-                                                            }
-                                                        </tr>
-                                                    )
-                                                })
+                                                (() => {
+                                                    if(data.length === 0){
+                                                        return (
+                                                            <tr>
+                                                                <td colSpan={headers.length}>
+                                                                    Nothing found to display.
+                                                                </td>
+                                                            </tr>
+                                                        )
+                                                    }
+                                                    else{
+                                                        return (
+                                                            data.map((row, indexRow) => {
+                                                                return (
+                                                                    <tr key={indexRow}>
+                                                                        {
+                                                                            keys.map((key, indexCol) => {
+                                                                                return (
+                                                                                    <td key={indexCol}>
+                                                                                        {row[key].toString()}
+                                                                                    </td>
+                                                                                )
+                                                                            })
+                                                                        }
+                                                                    </tr>
+                                                                )
+                                                            })
+                                                        )
+                                                    }
+                                                })()
                                             }
                                         </React.Fragment>
                                     )
