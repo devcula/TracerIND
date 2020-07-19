@@ -4,11 +4,15 @@ import './Header.css'
 
 import { faHome, faChartLine, faUserPlus, faInfoCircle, faList } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import logo from '../../assets/logo_transparent.png';
 export default class Header extends Component {
 	render() {
 		return (
 			<Navbar collapseOnSelect expand="lg" variant="dark">
-				<Navbar.Brand href="/"><img src="assets/logo_transparent.png"/></Navbar.Brand>
+				<Navbar.Brand href="/">
+					<img alt="TracerIND" src={logo} />
+				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="mr-auto">

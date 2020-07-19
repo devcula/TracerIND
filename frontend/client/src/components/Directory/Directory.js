@@ -1,5 +1,5 @@
 import React from 'react';
-// import { uri } from '../../index';
+
 import { Container } from 'react-bootstrap';
 
 import axios from 'axios';

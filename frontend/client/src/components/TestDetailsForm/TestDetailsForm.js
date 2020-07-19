@@ -538,7 +538,12 @@ class TestDetailsForm extends React.Component {
                             if (this.state.doctorreq === 'true') {
                                 return (
                                     <Row>
-                                        <Col sm={12} style={styles.center}>
+                                        <Col sm={6} style={styles.center}>
+                                            <Button variant="primary"
+                                                onClick={this.previous}
+                                            >Previous</Button>
+                                        </Col>
+                                        <Col sm={6} style={styles.center}>
                                             <Button variant="primary"
                                                 onClick={this.validateAndNext}
                                             >Next</Button>
@@ -550,7 +555,12 @@ class TestDetailsForm extends React.Component {
                             else {
                                 return (
                                     <Row>
-                                        <Col sm={12} style={styles.center}>
+                                        <Col sm={6} style={styles.center}>
+                                            <Button variant="primary"
+                                                onClick={this.previous}
+                                            >Previous</Button>
+                                        </Col>
+                                        <Col sm={6} style={styles.center}>
                                             <Button variant="primary"
                                                 onClick={this.validateAndSubmit}
                                             >Submit</Button>

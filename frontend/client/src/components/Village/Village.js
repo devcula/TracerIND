@@ -38,7 +38,7 @@ export default function Village(props) {
                     onChange={handleChange}
                     id={props.id}
                 >
-                    <option value="">Choose...</option>
+                    <option value="">Select Village</option>
                     {
                         villageList.map((village, i) => {
                             return (

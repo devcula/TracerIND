@@ -5,6 +5,8 @@ import Mandal from '../Mandal/Mandal';
 import PHC from '../PHC/PHC';
 import VillageSec from '../VillageSecretariat/VillageSec';
 import Village from '../Village/Village';
+
+import './BasicDetailsForm.css';
   class BasicDetailsForm extends React.Component {
 
     constructor(props) {
@@ -114,6 +116,9 @@ import Village from '../Village/Village';
     saveData = async() => {
         let dataToSave = {
             adhaar: this.state.adhaarFirst + this.state.adhaarSecond + this.state.adhaarThird,
+            mandal: this.state.mandal,
+            phc: this.state.phc,
+            village_sec: this.state.village_sec,
             village: this.state.village,
             name: this.state.name,
             surname: this.state.surname,
@@ -140,11 +145,23 @@ import Village from '../Village/Village';
             event.target.value = Number(strValue.substring(0,length));
         }
         this.setState({[event.target.id] : event.target.value.toString()});
+        if(event.target.id.includes('adhaar')){
+            this.changeAdhaarFocus(event.target.id, event.target.value);
+        }
     }
 
     updateState = (valueObj) => {
         console.log(valueObj);
         this.setState(valueObj);
+    }
+
+    changeAdhaarFocus = (id, value) => {
+        if(id === 'adhaarFirst' && value.length === 4){
+            document.getElementById('adhaarSecond').focus();
+        }
+        else if (id === 'adhaarSecond' && value.length === 4) {
+            document.getElementById('adhaarThird').focus();
+        }
     }
 
     render() {
@@ -164,10 +181,10 @@ import Village from '../Village/Village';
                         <Row>
                             <Col sm={12}>
                                 <Form.Group as={Row}>
-                                    <Col sm={3}>
+                                    <Col sm={3} xs={12}>
                                         <Form.Label>Aadhar Number : </Form.Label>
                                     </Col>
-                                    <Col sm={3}>
+                                    <Col sm={3} xs={4}>
                                         <Form.Control 
                                         min="0" 
                                         max="9999" 
@@ -176,9 +193,10 @@ import Village from '../Village/Village';
                                         placeholder="XXXX" 
                                         id="adhaarFirst" 
                                         value={this.state.adhaarFirst} 
+                                        className="adhaar-field"
                                         />
                                     </Col>
-                                    <Col sm={3}>
+                                    <Col sm={3} xs={4}>
                                         <Form.Control 
                                         min="0" 
                                         max="9999" 
@@ -187,9 +205,10 @@ import Village from '../Village/Village';
                                         placeholder="XXXX" 
                                         id="adhaarSecond" 
                                         value={this.state.adhaarSecond}
+                                        className="adhaar-field"
                                         />
                                     </Col>
-                                    <Col sm={3}>
+                                    <Col sm={3} xs={4}>
                                         <Form.Control 
                                         min="0" 
                                         max="9999" 

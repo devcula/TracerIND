@@ -15,7 +15,7 @@ export default function Mandal(props) {
             id={props.id}
             value={props.value}
         >
-            <option value="">Choose...</option>
+            <option value="">Select Mandal</option>
             <option value="Chintoor">Chintoor</option>
             <option value="Yetapaka">Yetapaka</option>
             <option value="Kunnavaram">Kunnavaram</option>
