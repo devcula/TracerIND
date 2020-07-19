@@ -2,7 +2,7 @@
 .navbar{
     /* color: white; */
     font-weight: bold;
-    background-color: #160c28;
+    background-color: #0a5767;
     box-shadow: 0 8px 6px -6px black;
     /* background-color: #2892D7; */
 }
@@ -20,19 +20,19 @@
 }
 
 .navbar-default .navbar-nav>li>a {
-    color: white;
+    color: #080808;
 }
 
 .navbar-default .navbar-brand {
-    color: white;
+    color: #080808;
 }
 
 .navbar-default .navbar-toggle {
-    border-color: white;
+    border-color: #080808;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-    background-color: white;
+    background-color: #080808;
 }
 
 .navbar-default .navbar-toggle:focus,
@@ -42,12 +42,17 @@
 
 .navbar-default .navbar-brand:focus,
 .navbar-default .navbar-brand:hover {
-    color: white;
+    color: #080808;
     background-color: transparent;
 }
 
 .navbar-default .navbar-nav>li>a:focus,
 .navbar-default .navbar-nav>li>a:hover {
-    color: white;
+    color: #080808;
     background-color: transparent;
+}
+
+img{
+  width: 130px;
+  height: 60px;
 }

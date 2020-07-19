@@ -8,7 +8,7 @@ export default class Header extends Component {
 	render() {
 		return (
 			<Navbar collapseOnSelect expand="lg" variant="dark">
-				<Navbar.Brand href="/">TracerIND</Navbar.Brand>
+				<Navbar.Brand href="/"><img src="assets/logo_transparent.png"/></Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="mr-auto">
