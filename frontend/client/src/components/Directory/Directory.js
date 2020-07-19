@@ -1,9 +1,10 @@
 import React from 'react';
 // import { uri } from '../../index';
-import { Container, Table } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 import axios from 'axios';
 import './Directory.css';
+import GenericTable from '../GenericTable/GenericTable';
 
 class Directory extends React.Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class Directory extends React.Component {
 
     componentDidMount() {
         axios.get(this.uri + 'GetAllPatient/').then(response => {
+            console.log(response);
             axios.get(this.uri + 'GetVIllageNames/').then(response => {
                 this.setState({ villageList: response.data });
                 this.setState({ loading: false });
@@ -52,20 +54,23 @@ class Directory extends React.Component {
     }
 
     render() {
-        let patientList = this.state.patientList;
-        if (this.state.searchField) {
-            patientList = patientList.filter(patient => {
-                if (patient.name.toLowerCase().includes(this.state.searchField.toLowerCase())) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            })
-        }
+        // let patientList = this.state.patientList;
+        // if (this.state.searchField) {
+        //     patientList = patientList.filter(patient => {
+        //         if (patient.name.toLowerCase().includes(this.state.searchField.toLowerCase())) {
+        //             return true;
+        //         }
+        //         else {
+        //             return false;
+        //         }
+        //     })
+        // }
+        const headers = ['Name', 'Village', 'Kidney Status', 'Deceased'];
+        const keys = ['name', 'village','kidneystatus', 'deceased'];
+        const dataTypes = ['String', 'String', 'String', 'String'];
         return (
             <Container style={{ marginTop: "2rem" }}>
-                <input type="text" placeholder="Search by name" onChange={this.handleSearch} className="form-control search-field" />
+                {/* <input type="text" placeholder="Search by name" onChange={this.handleSearch} className="form-control search-field" />
                 <Table striped bordered hover variant="dark">
                     <thead>
                         <tr>
@@ -109,7 +114,8 @@ class Directory extends React.Component {
                             })()
                         }
                     </tbody>
-                </Table>
+                </Table> */}
+                <GenericTable data={this.state.patientList} loading={this.state.loading} headers={headers} keys={keys} dataTypes={dataTypes} />
             </Container>
         )
     }
