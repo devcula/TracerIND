@@ -16,9 +16,11 @@ class Directory extends React.Component {
         }
     }
 
+    uri = process.env.REACT_APP_SERVER_URI;
+
     componentDidMount() {
-        axios.get('http://13.232.239.102/api/GetAllPatient/').then(response => {
-            axios.get('http://13.232.239.102/api/GetVIllageNames/').then(response => {
+        axios.get(this.uri + 'GetAllPatient/').then(response => {
+            axios.get(this.uri + 'GetVIllageNames/').then(response => {
                 this.setState({ villageList: response.data });
                 this.setState({ loading: false });
             })
@@ -51,15 +53,15 @@ class Directory extends React.Component {
 
     render() {
         let patientList = this.state.patientList;
-        if(this.state.searchField){
+        if (this.state.searchField) {
             patientList = patientList.filter(patient => {
-                if (patient.name.toLowerCase().includes(this.state.searchField.toLowerCase())){
+                if (patient.name.toLowerCase().includes(this.state.searchField.toLowerCase())) {
                     return true;
                 }
-                else{
+                else {
                     return false;
                 }
-        })
+            })
         }
         return (
             <Container style={{ marginTop: "2rem" }}>
@@ -83,7 +85,7 @@ class Directory extends React.Component {
                                         </td>
                                     </tr>
                                 }
-                                else if(patientList.length === 0){
+                                else if (patientList.length === 0) {
                                     return <tr>
                                         <td colSpan="4">
                                             Nothing found to display.
