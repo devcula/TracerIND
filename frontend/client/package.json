@@ -13,7 +13,6 @@
     "bootstrap": "^4.5.0",
     "create-react-class": "^15.6.3",
     "react": "^16.13.1",
-    "react-16-bootstrap-date-picker": "^5.1.2",
     "react-bootstrap": "^1.2.2",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",

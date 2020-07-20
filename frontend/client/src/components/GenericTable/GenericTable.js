@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Row, Col } from 'react-bootstrap';
 import './GenericTable.css';
 
 //Received props
@@ -15,8 +15,8 @@ class GenericTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            noOfRows: 20,
-            currentPage: 1
+            noOfRows: "",
+            currentPageIndex: 0
         }
     }
 
@@ -33,7 +33,7 @@ class GenericTable extends React.Component {
             else if (dataTypes[i] === 'String') {
                 stateObj['KEY_' + keys[i]] = "";
             }
-            else if(dataTypes[i] === 'Boolean') {
+            else if (dataTypes[i] === 'Boolean') {
                 stateObj['KEY_' + keys[i]] = "";
             }
         }
@@ -46,10 +46,10 @@ class GenericTable extends React.Component {
         let key = idFragments[1];
         let dataType = this.props.dataTypes[this.props.keys.indexOf(key)];
 
-        if(dataType === 'String'){
+        if (dataType === 'String') {
             obj['KEY_' + key] = event.target.value;
         }
-        else if(dataType === 'Number'){
+        else if (dataType === 'Number') {
             obj['KEY_' + key] = this.state['KEY_' + key];
             if (event.target.value === "") {
                 obj['KEY_' + key][idFragments[2]] = idFragments[2] === 'min' ? Number.MIN_VALUE : Number.MAX_VALUE;
@@ -58,7 +58,7 @@ class GenericTable extends React.Component {
                 obj['KEY_' + key][idFragments[2]] = Number(event.target.value);
             }
         }
-        else if(dataType === 'Boolean'){
+        else if (dataType === 'Boolean') {
             obj['KEY_' + key] = event.target.value;
         }
         this.setState(obj);
@@ -69,9 +69,9 @@ class GenericTable extends React.Component {
     }
 
     clearFilters = () => {
-        let {dataTypes, keys} = this.props;
+        let { dataTypes, keys } = this.props;
         let obj = {};
-        for(let i = 0; i < keys.length; i++){
+        for (let i = 0; i < keys.length; i++) {
             if (dataTypes[i] === "String") {
                 obj['KEY_' + keys[i]] = "";
                 document.getElementById('KEY_' + keys[i]).value = "";
@@ -92,35 +92,96 @@ class GenericTable extends React.Component {
         this.setState(obj);
     }
 
+    changeNoOfRows = event => {
+        if(event.target.value !== ""){
+            event.target.value = Math.abs(event.target.value);
+        }
+        this.setState({ noOfRows: event.target.value });
+    }
+
+    nextPage = () => {
+        let { currentPageIndex } = this.state;
+        this.setState({ currentPageIndex: currentPageIndex + 1 });
+    }
+
+    previousPage = () => {
+        let { currentPageIndex } = this.state;
+        this.setState({ currentPageIndex: currentPageIndex - 1 });
+    }
+
     render() {
         let { headers, data, loading, keys, dataTypes } = this.props;
-        data = data.filter(rowData => {
-            // console.log(rowData);
-            for (let i = 0; i < keys.length; i++) {
-                // console.log(rowData[keys[i]]);
-                if (dataTypes[i] === "String") {
-                    if (this.isNotNullOrUndefinedOrBlank(rowData[keys[i]]) && !rowData[keys[i]].toLowerCase().includes(this.state['KEY_' + keys[i]].toLowerCase())) {
-                        return false;
-                    }
+        let pageData = [];
+        let { noOfRows, currentPageIndex } = this.state; // 20, 0
+        let dataLength = 0;
+        let lastPageIndex = 0;
+
+        if (!loading) {
+
+            dataLength = data.length;    // length = 17
+            if(noOfRows !== ""){
+                if(dataLength % noOfRows === 0){
+                    lastPageIndex = Math.floor(dataLength / noOfRows) - 1;
                 }
-                else if (dataTypes[i] === "Number") {
-                    if (this.isNotNullOrUndefinedOrBlank(rowData[keys[i]]) && (rowData[keys[i]] < this.state['KEY_' + keys[i]].min || rowData[keys[i]] > this.state['KEY_' + keys[i]].max)) {
-                        return false;
-                    }
-                }
-                else if (dataTypes[i] === "Boolean") {
-                    if (this.isNotNullOrUndefinedOrBlank(rowData[keys[i]].toString()) && this.isNotNullOrUndefinedOrBlank(this.state['KEY_' + keys[i]]) && (rowData[keys[i]].toString() !== this.state['KEY_' + keys[i]])){
-                        return false;
-                    }
+                else{
+                    lastPageIndex = Math.floor(dataLength / noOfRows);
                 }
             }
-            return true;
-        });
+
+            if(noOfRows === ""){
+                pageData = data;
+            }
+            else if (dataLength >= (currentPageIndex + 1) * noOfRows) {
+                pageData = data.slice(currentPageIndex * noOfRows, (currentPageIndex + 1) * noOfRows);
+            }
+            else {
+                pageData = data.slice(currentPageIndex * noOfRows, dataLength);
+            }
+
+            pageData = pageData.filter(rowData => {
+                for (let i = 0; i < keys.length; i++) {
+                    if (dataTypes[i] === "String") {
+                        if (this.isNotNullOrUndefinedOrBlank(rowData[keys[i]]) && !rowData[keys[i]].toLowerCase().includes(this.state['KEY_' + keys[i]].toLowerCase())) {
+                            return false;
+                        }
+                    }
+                    else if (dataTypes[i] === "Number") {
+                        if (this.isNotNullOrUndefinedOrBlank(rowData[keys[i]]) && (rowData[keys[i]] < this.state['KEY_' + keys[i]].min || rowData[keys[i]] > this.state['KEY_' + keys[i]].max)) {
+                            return false;
+                        }
+                    }
+                    else if (dataTypes[i] === "Boolean") {
+                        if (this.isNotNullOrUndefinedOrBlank(rowData[keys[i]].toString()) && this.isNotNullOrUndefinedOrBlank(this.state['KEY_' + keys[i]]) && (rowData[keys[i]].toString() !== this.state['KEY_' + keys[i]])) {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            });
+        }
+
         return (
             <React.Fragment>
-                <Button variant="primary" onClick={this.clearFilters} className="filter-button" size="lg">
-                    Clear filters
-                </Button>
+                <Row>
+                    <Col sm={3}>
+                        <Button variant="danger" onClick={this.clearFilters} className="filter-button">
+                            Clear filters
+                        </Button>
+                    </Col>
+                    <Col sm={3}>
+                        <Button id="previousButton" onClick={this.previousPage} disabled={currentPageIndex === 0} >
+                            Previous Page
+                        </Button>
+                    </Col>
+                    <Col sm={3}>
+                        <Button id="nextButton" onClick={this.nextPage} disabled={currentPageIndex >= lastPageIndex}>
+                            Next Page
+                        </Button>
+                    </Col>
+                    <Col sm={3}>
+                        <input type="number" min="1" value={this.state.noOfRows} placeholder="No. of Rows" onChange={this.changeNoOfRows} className="form-control" />
+                    </Col>
+                </Row>
                 <Table style={{ textAlign: "center" }} striped bordered hover variant="dark">
                     <thead>
                         <tr>
@@ -161,12 +222,12 @@ class GenericTable extends React.Component {
                                                         if (inputType === "text") {
                                                             return (
                                                                 <td key={i}>
-                                                                    <input 
-                                                                    type={inputType} 
-                                                                    id={'KEY_' + key} 
-                                                                    placeholder="Filter" 
-                                                                    onChange={this.handleSearchChange} 
-                                                                    className="form-control"
+                                                                    <input
+                                                                        type={inputType}
+                                                                        id={'KEY_' + key}
+                                                                        placeholder="Filter"
+                                                                        onChange={this.handleSearchChange}
+                                                                        className="form-control"
                                                                     />
                                                                 </td>
                                                             )
@@ -175,7 +236,7 @@ class GenericTable extends React.Component {
                                                             return (
                                                                 <td key={i}>
                                                                     <input
-                                                                        style={{ width: "5rem", display: "inline"}}
+                                                                        style={{ width: "5rem", display: "inline" }}
                                                                         type={inputType}
                                                                         id={'KEY_' + key + '_min'}
                                                                         onChange={this.handleSearchChange}
@@ -196,11 +257,11 @@ class GenericTable extends React.Component {
                                                         else if (inputType === "booleanSelect") {
                                                             return (
                                                                 <td key={i}>
-                                                                    <select 
-                                                                    value={this.state['KEY_' + key]} 
-                                                                    id={'KEY_' + key} 
-                                                                    onChange={this.handleSearchChange} 
-                                                                    className="form-control"
+                                                                    <select
+                                                                        value={this.state['KEY_' + key]}
+                                                                        id={'KEY_' + key}
+                                                                        onChange={this.handleSearchChange}
+                                                                        className="form-control"
                                                                     >
                                                                         <option value="">Select</option>
                                                                         <option value="true">Yes</option>
@@ -219,7 +280,7 @@ class GenericTable extends React.Component {
                                             </tr>
                                             {
                                                 (() => {
-                                                    if(data.length === 0){
+                                                    if (pageData.length === 0) {
                                                         return (
                                                             <tr>
                                                                 <td colSpan={headers.length}>
@@ -228,9 +289,9 @@ class GenericTable extends React.Component {
                                                             </tr>
                                                         )
                                                     }
-                                                    else{
+                                                    else {
                                                         return (
-                                                            data.map((row, indexRow) => {
+                                                            pageData.map((row, indexRow) => {
                                                                 return (
                                                                     <tr key={indexRow}>
                                                                         {

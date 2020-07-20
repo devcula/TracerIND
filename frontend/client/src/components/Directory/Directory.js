@@ -22,15 +22,21 @@ class Directory extends React.Component {
     componentDidMount() {
         axios.get(this.uri + 'GetAllPatient/').then(response => {
             console.log(response);
-            axios.get(this.uri + 'GetVIllageNames/').then(response => {
-                this.setState({ villageList: response.data });
-                this.setState({ loading: false });
+            axios.get(this.uri + 'GetVIllageNames/').then(responseVillage => {
+                // this.setState({ villageList: responseVillage.data });
+                // this.setState({ loading: false });
+                this.setState(
+                    {
+                        patientList: response.data,
+                        villageList: responseVillage.data,
+                        loading: false
+                    }
+                )
             })
                 .catch(err => {
                     console.log(err);
                 });
-
-            this.setState({ patientList: response.data });
+            // this.setState({ patientList: response.data });
         })
             .catch(err => {
                 console.log(err);
@@ -54,17 +60,6 @@ class Directory extends React.Component {
     }
 
     render() {
-        // let patientList = this.state.patientList;
-        // if (this.state.searchField) {
-        //     patientList = patientList.filter(patient => {
-        //         if (patient.name.toLowerCase().includes(this.state.searchField.toLowerCase())) {
-        //             return true;
-        //         }
-        //         else {
-        //             return false;
-        //         }
-        //     })
-        // }
         const headers = ['Name', 'Village', 'Kidney Status', 'Deceased'];
         const keys = ['name', 'village','kidneystatus', 'deceased'];
         const dataTypes = ['String', 'Number', 'String', 'Boolean'];
