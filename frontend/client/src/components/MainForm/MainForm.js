@@ -57,6 +57,7 @@ class MainForm extends React.Component {
             phone: this.state.phone,
             bloodgroup: this.state.bloodgroup,
             PVGT: this.state.PVGT,
+            dateoftesting: this.state.dateoftesting ? this.state.dateoftesting : "" ,
             serumCreatinine: this.state.serumCreatinine ? this.state.serumCreatinine : 0,
             bloodUrea: this.state.bloodUrea  ? this.state.bloodUrea : 0,
             uricAcid: this.state.uricAcid  ? this.state.uricAcid : 0,
