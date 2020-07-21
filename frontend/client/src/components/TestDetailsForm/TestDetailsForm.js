@@ -25,14 +25,14 @@ class TestDetailsForm extends React.Component {
 
     validate = () => {
         //Conditions to check.. If valid, Send form name to switch to next form
-        console.log(this.state);
+        // console.log(this.state);
         //this.saveData();
         this.props.changeData({ formName: "HospitalDetails" });
     }
 
     saveData = async () => {
-        console.log("printimg states")
-        console.log(this.state)
+        // console.log("printimg states")
+        // console.log(this.state)
         await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
 
     }
@@ -63,19 +63,19 @@ class TestDetailsForm extends React.Component {
     }
     validateAndNext = async () => {
         //Conditions to check.. If valid, Send form name to switch to next form
-        console.log(this.state);
+        // console.log(this.state);
         await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
         this.loadNextForm("HospitalDetails");
     }
 
     mandatoryFieldCheck = () => {
         let invalidIds = [];
-        console.log(this.state.serumCreatinine)
-        console.log(this.state)
+        // console.log(this.state.serumCreatinine)
+        // console.log(this.state)
         try {
             if (this.state.kidneystatus === 'abnormal') {
-                console.log("doc req")
-                console.log(this.state.doctorreq)
+                // console.log("doc req")
+                // console.log(this.state.doctorreq)
                 if (this.state.doctorreq === "") {
                     invalidIds.push('doctorreq')
                 }
@@ -94,22 +94,22 @@ class TestDetailsForm extends React.Component {
                     window.location.href = "#";
                 }
             }
-            console.log(invalidIds[0])
+            // console.log(invalidIds[0])
         }
         catch (err) {
-            console.log(false);
+            // console.log(false);
         }
     }
 
     validateAndSubmit = () => {
         // this.mandatoryFieldCheck()
         let invalidIds = [];
-        console.log(this.state.serumCreatinine)
-        console.log(this.state)
+        // console.log(this.state.serumCreatinine)
+        // console.log(this.state)
         try {
             if (this.state.kidneystatus === 'abnormal') {
-                console.log("doc req")
-                console.log(this.state.doctorreq)
+                // console.log("doc req")
+                // console.log(this.state.doctorreq)
                 if (this.state.doctorreq === "") {
                     invalidIds.push('doctorreq')
                 }
@@ -118,7 +118,7 @@ class TestDetailsForm extends React.Component {
                 }
                 if (invalidIds.length > 0) {
                     window.location.href = "#" + invalidIds[0];
-                    console.log("insid function")
+                    // console.log("insid function")
                     for (let i = 0; i < invalidIds.length; i++) {
                         document.getElementById(invalidIds[i]).style.border = "2px solid red";
                     }
@@ -133,21 +133,21 @@ class TestDetailsForm extends React.Component {
             }
             this.saveData();
             this.props.submit();
-            console.log(invalidIds[0])
+            // console.log(invalidIds[0])
         }
         catch (err) {
-            console.log(false);
+            // console.log(false);
         }
 
     }
 
-    creatineCheck = () => {
-        console.log(this.state.serumCreatinine);
-    }
+    // creatineCheck = () => {
+    //     console.log(this.state.serumCreatinine);
+    // }
 
-    checkTesting = () => {
-        console.log(this.state.serumCreatinine);
-    }
+    // checkTesting = () => {
+    //     console.log(this.state.serumCreatinine);
+    // }
 
     render() {
         const styles = {

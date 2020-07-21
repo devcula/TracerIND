@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import Mandal from '../Mandal/Mandal';
 import PHC from '../PHC/PHC';
 import VillageSec from '../VillageSecretariat/VillageSec';
 import Village from '../Village/Village';
+import axios from 'axios';
 
 import './BasicDetailsForm.css';
-  class BasicDetailsForm extends React.Component {
+class BasicDetailsForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -29,15 +29,20 @@ import './BasicDetailsForm.css';
             phone: props.getValue('phone'),
             bloodgroup: props.getValue('bloodgroup'),
             PVGT: props.getValue('PVGT'),
+            phcList: props.getValue('phcList'),
+            villageList: props.getValue('villageList'),
+            villageSecList: props.getValue('villageSecList')
         }
     }
 
+    uri = process.env.REACT_APP_SERVER_URI;
+
     componentDidMount = () => {
         let adhaarNumber = this.props.getValue('adhaar');
-        if(adhaarNumber){
-            this.setState({adhaarFirst: adhaarNumber.substring(0,4)});
-            this.setState({adhaarSecond: adhaarNumber.substring(4,8)});
-            this.setState({adhaarThird: adhaarNumber.substring(8,12)});
+        if (adhaarNumber) {
+            this.setState({ adhaarFirst: adhaarNumber.substring(0, 4) });
+            this.setState({ adhaarSecond: adhaarNumber.substring(4, 8) });
+            this.setState({ adhaarThird: adhaarNumber.substring(8, 12) });
         }
     }
 
@@ -45,27 +50,93 @@ import './BasicDetailsForm.css';
         this.setState({ [input]: event.target.value })
     }
 
+    fetchOrUpdatePHCList = event => {
+        this.setState(
+            { 
+                mandal: event.target.value,
+                phcList: [], 
+                phc: "",
+                villageSecList: [],
+                village_sec: "",
+                villageList: [],
+                village: ""
+            }
+        );
+        if (event.target.value) {
+            console.log("Getting phcs");
+            axios.post(this.uri + 'GetPHCData/', {
+                mandal: event.target.value
+            })
+                .then(response => {
+                    this.setState({ phcList: response.data });
+                })
+                .catch(err => {
+                    throw err;
+                });
+        }
+    }
+
+    fetchOrUpdateVillageSecList = (phc) => {
+        this.setState(
+            {
+                phc: phc,
+                villageSecList: [], 
+                village_sec: "", 
+                villageList: [],
+                village: ""
+            }
+        );
+        if (phc) {
+            console.log("Getting village secs");
+            axios.post(this.uri + 'GetVillageSecData/', {
+                PHC: phc
+            })
+                .then(response => {
+                    this.setState({ villageSecList: response.data });
+                })
+                .catch(err => {
+                    throw err;
+                });
+        }
+    }
+
+    fetchOrUpdateVillageList = (villageSec) => {
+        this.setState({ villageList: [], village: "", village_sec: villageSec });
+        if (villageSec) {
+            console.log("Getting villages");
+            axios.post(this.uri + 'GetVillageData/', {
+                village_sec: villageSec
+            })
+                .then(response => {
+                    this.setState({ villageList: response.data });
+                })
+                .catch(err => {
+                    throw err;
+                });
+        }
+    }
+
     validate = () => {
         //Conditions to check.. If valid, Send form name to switch to next form
-        console.log(this.state);
+        // console.log(this.state);
         let validIds = [];
         let invalidIds = [];
-        try{
+        try {
             //Adhaar fields validation
             let adhaarIds = ["adhaarFirst", "adhaarSecond", "adhaarThird"];
             let filled = false;
-            for(let i = 0; i < adhaarIds.length; i++){
-                if(this.state[adhaarIds[i]] !== ""){
+            for (let i = 0; i < adhaarIds.length; i++) {
+                if (this.state[adhaarIds[i]] !== "") {
                     filled = true;
                     break;
                 }
             }
-            if(filled){
-                for(let i = 0; i < adhaarIds.length; i++){
-                    if(this.state[adhaarIds[i]].length < 4){
+            if (filled) {
+                for (let i = 0; i < adhaarIds.length; i++) {
+                    if (this.state[adhaarIds[i]].length < 4) {
                         invalidIds.push(adhaarIds[i]);
                     }
-                    else{
+                    else {
                         validIds.push(adhaarIds[i]);
                     }
                 }
@@ -84,36 +155,36 @@ import './BasicDetailsForm.css';
             Boolean(this.state.maritalstatus) ? validIds.push('maritalstatus') : invalidIds.push('maritalstatus');
             Boolean(this.state.bloodgroup) ? validIds.push('bloodgroup') : invalidIds.push('bloodgroup');
             Boolean(this.state.PVGT) ? validIds.push('PVGT') : invalidIds.push('PVGT');
-            if(this.state.phone === "" || this.state.phone.length !== 10){
+            if (this.state.phone === "" || this.state.phone.length !== 10) {
                 invalidIds.push('phone');
             }
-            else{
+            else {
                 validIds.push('phone');
             }
             for (let i = 0; i < validIds.length; i++) {
                 document.getElementById(validIds[i]).style.border = "";
             }
-            if(invalidIds.length > 0){
+            if (invalidIds.length > 0) {
                 window.location.href = "#" + invalidIds[0];
-                for(let i = 0; i < invalidIds.length; i++){
+                for (let i = 0; i < invalidIds.length; i++) {
                     document.getElementById(invalidIds[i]).style.border = "2px solid red";
                 }
                 document.getElementById(invalidIds[0]).focus();
                 throw new Error();
             }
-            else{
+            else {
                 window.location.href = "#";
             }
             //Still in try block? Means all fields valid. Now saving the data to parent component.
             this.saveData();
-            this.props.changeData({formName: "TestDetails"});
+            this.props.changeData({ formName: "TestDetails" });
         }
-        catch(err){
-            console.log(false);
+        catch (err) {
+            // console.log(false);
         }
     }
 
-    saveData = async() => {
+    saveData = async () => {
         let dataToSave = {
             adhaar: this.state.adhaarFirst + this.state.adhaarSecond + this.state.adhaarThird,
             mandal: this.state.mandal,
@@ -130,6 +201,9 @@ import './BasicDetailsForm.css';
             phone: this.state.phone,
             bloodgroup: this.state.bloodgroup,
             PVGT: this.state.PVGT,
+            phcList: this.state.phcList,
+            villageList: this.state.villageList,
+            villageSecList: this.state.villageSecList
         }
 
         await new Promise(resolve => this.props.changeData(dataToSave, () => resolve()));
@@ -141,22 +215,21 @@ import './BasicDetailsForm.css';
 
     restrictDigits = length => event => {
         let strValue = event.target.value.toString();
-        if(strValue.length > length){
-            event.target.value = Number(strValue.substring(0,length));
+        if (strValue.length > length) {
+            event.target.value = Number(strValue.substring(0, length));
         }
-        this.setState({[event.target.id] : event.target.value.toString()});
-        if(event.target.id.includes('adhaar')){
+        this.setState({ [event.target.id]: event.target.value.toString() });
+        if (event.target.id.includes('adhaar')) {
             this.changeAdhaarFocus(event.target.id, event.target.value);
         }
     }
 
     updateState = (valueObj) => {
-        console.log(valueObj);
         this.setState(valueObj);
     }
 
     changeAdhaarFocus = (id, value) => {
-        if(id === 'adhaarFirst' && value.length === 4){
+        if (id === 'adhaarFirst' && value.length === 4) {
             document.getElementById('adhaarSecond').focus();
         }
         else if (id === 'adhaarSecond' && value.length === 4) {
@@ -185,38 +258,38 @@ import './BasicDetailsForm.css';
                                         <Form.Label>Aadhar Number : </Form.Label>
                                     </Col>
                                     <Col sm={3} xs={4}>
-                                        <Form.Control 
-                                        min="0" 
-                                        max="9999" 
-                                        type="number" 
-                                        onChange={this.restrictDigits(4)} 
-                                        placeholder="XXXX" 
-                                        id="adhaarFirst" 
-                                        value={this.state.adhaarFirst} 
-                                        className="adhaar-field"
+                                        <Form.Control
+                                            min="0"
+                                            max="9999"
+                                            type="number"
+                                            onChange={this.restrictDigits(4)}
+                                            placeholder="XXXX"
+                                            id="adhaarFirst"
+                                            value={this.state.adhaarFirst}
+                                            className="adhaar-field"
                                         />
                                     </Col>
                                     <Col sm={3} xs={4}>
-                                        <Form.Control 
-                                        min="0" 
-                                        max="9999" 
-                                        type="number" 
-                                        onChange={this.restrictDigits(4)} 
-                                        placeholder="XXXX" 
-                                        id="adhaarSecond" 
-                                        value={this.state.adhaarSecond}
-                                        className="adhaar-field"
+                                        <Form.Control
+                                            min="0"
+                                            max="9999"
+                                            type="number"
+                                            onChange={this.restrictDigits(4)}
+                                            placeholder="XXXX"
+                                            id="adhaarSecond"
+                                            value={this.state.adhaarSecond}
+                                            className="adhaar-field"
                                         />
                                     </Col>
                                     <Col sm={3} xs={4}>
-                                        <Form.Control 
-                                        min="0" 
-                                        max="9999" 
-                                        type="number" 
-                                        onChange={this.restrictDigits(4)} 
-                                        placeholder="XXXX" 
-                                        id="adhaarThird" 
-                                        value={this.state.adhaarThird}
+                                        <Form.Control
+                                            min="0"
+                                            max="9999"
+                                            type="number"
+                                            onChange={this.restrictDigits(4)}
+                                            placeholder="XXXX"
+                                            id="adhaarThird"
+                                            value={this.state.adhaarThird}
                                         />
                                     </Col>
                                 </Form.Group>
@@ -229,7 +302,18 @@ import './BasicDetailsForm.css';
                                         <Form.Label>Mandal :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Mandal updateValue={this.updateState} id="mandal" />
+                                        <Form.Control
+                                            as="select"
+                                            onChange={this.fetchOrUpdatePHCList}
+                                            id="mandal"
+                                            value={this.state.mandal}
+                                        >
+                                            <option value="">Select Mandal</option>
+                                            <option value="Chintoor">Chintoor</option>
+                                            <option value="Yetapaka">Yetapaka</option>
+                                            <option value="Kunnavaram">Kunnavaram</option>
+                                            <option value="VR Puram">V.R Puram</option>
+                                        </Form.Control>
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -241,7 +325,11 @@ import './BasicDetailsForm.css';
                                         <Form.Label>PHC :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <PHC updateValue={this.updateState} mandal={this.state.mandal} id="phc" value={this.state.phc} />
+                                        <PHC phcList={this.state.phcList}
+                                            phcValue={this.state.phc}
+                                            fetchVillageSec={this.fetchOrUpdateVillageSecList}
+                                            id="phc"
+                                        />
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -253,7 +341,12 @@ import './BasicDetailsForm.css';
                                         <Form.Label>Village Secretariat :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <VillageSec updateValue={this.updateState} id="village_sec" phc={this.state.phc} />
+                                        <VillageSec
+                                            id="village_sec"
+                                            villageSecValue={this.state.village_sec}
+                                            villageSecList={this.state.villageSecList}
+                                            fetchVillages={this.fetchOrUpdateVillageList}
+                                        />
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -265,7 +358,12 @@ import './BasicDetailsForm.css';
                                         <Form.Label>Village :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Village updateValue={this.updateState} id="village" village_sec={this.state.village_sec} />
+                                        <Village
+                                            updateValue={this.updateState}
+                                            id="village"
+                                            villageList={this.state.villageList}
+                                            villageValue={this.state.village}
+                                        />
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -355,7 +453,7 @@ import './BasicDetailsForm.css';
                                                     type="text"
                                                     placeholder="Enter Name"
                                                     onChange={this.handleChange('gaurdian_name')}
-                                                    value={this.state.gaurdian_name} 
+                                                    value={this.state.gaurdian_name}
                                                 />
                                             </Col>
                                         </Form.Group>
@@ -509,7 +607,7 @@ import './BasicDetailsForm.css';
                                 </Row>
                             </Col>
                         </Row>
-                        <br/>
+                        <br />
                         <Row>
                             <Col sm={12}>
                                 <Form.Group as={Row} controlId="phone">
@@ -592,7 +690,7 @@ import './BasicDetailsForm.css';
                                 </Row>
                             </Col>
                         </Row>
-                        <br/>
+                        <br />
                         <Row>
                             <Col sm={12} style={styles.center}>
                                 <Button variant="primary" onClick={this.validate}>Save and Continue</Button>

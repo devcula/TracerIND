@@ -42,7 +42,7 @@ class MainForm extends React.Component {
     }
 
     submitForm = () => {
-        console.log("Inside submit form");
+        // console.log("Inside submit form");
         let dataToSend = {
             pkid: this.state.pkid,
             adhaar: this.state.adhaar,
@@ -85,9 +85,9 @@ class MainForm extends React.Component {
         }
 
         axios.post(uri + 'AddPatient/', dataToSend).then(response => {
-            console.log(dataToSend);
-            console.log("Sending data");
-            console.log(response);
+            // console.log(dataToSend);
+            // console.log("Sending data");
+            // console.log(response);
             if (response.data.pkid === this.state.pkid) {
                 this.setState({}, this.setState({ formName: "Success" }));
             }
@@ -104,16 +104,16 @@ class MainForm extends React.Component {
     render() {
         switch (this.state.formName) {
             case "UserDetails":
-                console.log(this.state);
+                // console.log(this.state);
                 return <BasicDetailsForm submit={this.submitForm} changeData={this.appendState} getValue={this.getValue} />
             case "TestDetails":
-                console.log(this.state);
+                // console.log(this.state);
                 return <TestDetailsForm submit={this.submitForm} changeData={this.appendState} getValue={this.getValue} />
             case "HospitalDetails":
-                console.log(this.state);
+                // console.log(this.state);
                 return <HospitalDetailsForm submit={this.submitForm} changeData={this.appendState} getValue={this.getValue} />
             case "Success":
-                console.log(this.state);
+                // console.log(this.state);
                 return <FormSuccess />
             default:
                 return "";

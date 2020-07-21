@@ -21,7 +21,7 @@ class Directory extends React.Component {
 
     componentDidMount() {
         axios.get(this.uri + 'GetAllPatient/').then(response => {
-            console.log(response);
+            // console.log(response);
             axios.get(this.uri + 'GetVIllageNames/').then(responseVillage => {
                 // this.setState({ villageList: responseVillage.data });
                 // this.setState({ loading: false });
@@ -55,7 +55,7 @@ class Directory extends React.Component {
     }
 
     handleSearch = event => {
-        console.log(event.target.value)
+        // console.log(event.target.value)
         this.setState({ searchField: event.target.value });
     }
 

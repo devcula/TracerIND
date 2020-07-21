@@ -37,7 +37,7 @@ class GenericTable extends React.Component {
                 stateObj['KEY_' + keys[i]] = "";
             }
         }
-        this.setState(stateObj, console.log(this.state));
+        this.setState(stateObj);
     }
 
     handleSearchChange = event => {

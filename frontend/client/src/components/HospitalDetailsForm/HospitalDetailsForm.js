@@ -36,7 +36,7 @@ class HospitalDetailsForm extends React.Component {
 
     validateAndNext = async() => {
         //Conditions to check.. If valid, Send form name to switch to next form
-        console.log(this.state);
+        // console.log(this.state);
         // this.props.changeData(this.state);
         await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
         // this.loadNextForm("HospitalDetails");
