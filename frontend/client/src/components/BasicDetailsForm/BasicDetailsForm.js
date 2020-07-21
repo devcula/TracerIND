@@ -241,7 +241,7 @@ import './BasicDetailsForm.css';
                                         <Form.Label>PHC :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <PHC updateValue={this.updateState} mandal={this.state.mandal} id="phc" />
+                                        <PHC updateValue={this.updateState} mandal={this.state.mandal} id="phc" value={this.state.phc} />
                                     </Col>
                                 </Form.Group>
                             </Col>
