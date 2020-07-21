@@ -54,6 +54,12 @@ class HospitalDetailsForm extends React.Component {
             },
             paddingLeft: {
                 paddingLeft: "10px"
+            },
+            right: {
+                textAlign: "right"
+            },
+            left: {
+                textAlign: "left"
             }
         }
         return (
@@ -401,7 +407,10 @@ class HospitalDetailsForm extends React.Component {
                         })()}
                         <br />
                         <Row>
-                            <Col sm={12} style={styles.center}>
+                            <Col sm={6} xs={6} style={styles.right}>
+                                <Button variant="primary" onClick={this.previous} disabled>Previous</Button>
+                            </Col>
+                            <Col sm={6} xs={6} style={styles.left}>
                                 <Button variant="primary" onClick={this.validateAndNext}>Submit</Button>
                             </Col>
                         </Row>

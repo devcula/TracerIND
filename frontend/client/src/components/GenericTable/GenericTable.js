@@ -298,7 +298,7 @@ class GenericTable extends React.Component {
                                                                             keys.map((key, indexCol) => {
                                                                                 return (
                                                                                     <td key={indexCol}>
-                                                                                        {row[key].toString()}
+                                                                                        {row[key] ? row[key].toString() : ""}
                                                                                     </td>
                                                                                 )
                                                                             })

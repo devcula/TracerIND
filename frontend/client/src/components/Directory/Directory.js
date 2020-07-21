@@ -44,6 +44,7 @@ class Directory extends React.Component {
     }
 
     getVillageNameFromId = (id) => {
+        console.log("Id received " + id);
         let { villageList } = this.state;
         if (villageList.length > 0) {
             for (let i = 0; i < villageList.length; i++) {
@@ -54,18 +55,19 @@ class Directory extends React.Component {
         }
     }
 
-    handleSearch = event => {
-        // console.log(event.target.value)
-        this.setState({ searchField: event.target.value });
-    }
-
     render() {
         const headers = ['Name', 'Village', 'Kidney Status', 'Deceased'];
         const keys = ['name', 'village','kidneystatus', 'deceased'];
-        const dataTypes = ['String', 'Number', 'String', 'Boolean'];
+        const dataTypes = ['String', 'String', 'String', 'Boolean'];
+        let structuredData = this.state.patientList.map(patient => {
+            let newPatient = {...patient};
+            newPatient.village = this.getVillageNameFromId(patient.village);
+            return newPatient;
+        });
+        
         return (
             <Container style={{ marginTop: "2rem" }}>
-                <GenericTable data={this.state.patientList} loading={this.state.loading} headers={headers} keys={keys} dataTypes={dataTypes} />
+                <GenericTable data={structuredData} loading={this.state.loading} headers={headers} keys={keys} dataTypes={dataTypes} />
             </Container>
         )
     }

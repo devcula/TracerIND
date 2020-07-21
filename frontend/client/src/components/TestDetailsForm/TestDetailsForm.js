@@ -156,6 +156,12 @@ class TestDetailsForm extends React.Component {
             },
             paddingLeft: {
                 paddingLeft: "10px"
+            },
+            right: {
+                textAlign: "right"
+            },
+            left: {
+                textAlign: "left"
             }
         }
         return (
@@ -538,12 +544,12 @@ class TestDetailsForm extends React.Component {
                             if (this.state.doctorreq === 'true') {
                                 return (
                                     <Row>
-                                        <Col sm={6} style={styles.center}>
+                                        <Col sm={6} xs={6} style={styles.right}>
                                             <Button variant="primary"
                                                 onClick={this.previous}
                                             >Previous</Button>
                                         </Col>
-                                        <Col sm={6} style={styles.center}>
+                                        <Col sm={6} xs={6} style={styles.left}>
                                             <Button variant="primary"
                                                 onClick={this.validateAndNext}
                                             >Next</Button>
@@ -555,12 +561,12 @@ class TestDetailsForm extends React.Component {
                             else {
                                 return (
                                     <Row>
-                                        <Col sm={6} style={styles.center}>
+                                        <Col sm={6} xs={6} style={styles.right}>
                                             <Button variant="primary"
                                                 onClick={this.previous}
                                             >Previous</Button>
                                         </Col>
-                                        <Col sm={6} style={styles.center}>
+                                        <Col sm={6} xs={6} style={styles.left}>
                                             <Button variant="primary"
                                                 onClick={this.validateAndSubmit}
                                             >Submit</Button>
