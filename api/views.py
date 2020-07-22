@@ -11,6 +11,7 @@ from village_sec.models import Village_sec
 from rest_framework.response import Response
 from django.shortcuts import render , redirect , HttpResponse
 from rest_framework.decorators import api_view
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseServerError
 
@@ -152,6 +153,15 @@ def GetVillageData(request):
 
 
 @api_view(['GET'])
+def GetAllVillage(request):
+    villagelist = list(Village.objects.all())
+    serializer = VillageSerializer(data = villagelist,many = True)
+    serializer.is_valid()
+    return Response(serializer.data)
+    print(serializer.errors)    
+    return Response(status = 400)
+
+@api_view(['GET'])
 def GetAllPatient(request):
     patientlist = Patient.objects.all()
     print(patientlist)
@@ -187,14 +197,11 @@ def GetVIllageNames(request):
     
 
 # #ANDROID APIS
-
-@api_view(['POST'])
-def DroidDump(request):
-    data = request.data
-    for item in data :
-        serializer = PatientSerializer(item)
-        if serializer.is_valid():
-            serializer.save()
-        else:
-            return Response(serializer.errors)
-    return Response(status=200)    
+# @csrf_exempt
+# @api_view(['POST'])
+# def DroidDump(request):
+#     data = request.data
+#     for d in data:
+#         response = requests.post('http://13.232.239.102/api/AddPatient',data = d)
+#         return Response(response)
+#     return Response(status=201)
