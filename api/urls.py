@@ -7,6 +7,7 @@ from . import views
 
 urlpatterns = [
     path('',views.APIView,name = "APIList"), 
+    path('GetAllVillage/',views.GetAllVillage,name = "GetAllVillage"), 
     path('parseVillage/',views.parseVillage,name = "parseVillage"),
     path('parseVillageSec/',views.parseVillageSec,name = "parseVillageSec"),
     path('addmandal/',views.addmandal,name = "addmandal"),
@@ -22,6 +23,6 @@ urlpatterns = [
     path('GetPatientData_Village/',views.GetPatientData_Village,name = "GetPatientData_Village"),
     path('GetVIllageNames/',views.GetVIllageNames,name = "GetVIllageNames"),
     #ANDROID API
-    path('DroidDump/',views.DroidDump,name = "DroidDump"),
+    # path('DroidDump/',views.DroidDump,name = "DroidDump"),
 
 ]
