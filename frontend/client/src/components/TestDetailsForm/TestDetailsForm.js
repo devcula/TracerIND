@@ -24,15 +24,11 @@ class TestDetailsForm extends React.Component {
     }
 
     validate = () => {
-        //Conditions to check.. If valid, Send form name to switch to next form
-        // console.log(this.state);
-        //this.saveData();
+
         this.props.changeData({ formName: "HospitalDetails" });
     }
 
     saveData = async () => {
-        // console.log("printimg states")
-        // console.log(this.state)
         await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
 
     }
@@ -49,18 +45,126 @@ class TestDetailsForm extends React.Component {
         this.setState({ [input]: event.target.value })
     }
 
-    validateOneDigitAfterDecimal = event => {
+    validateOneDigitAfterDecimalSerumCreatine = event => {
+        if (event.target.value > 2 && event.target.value < 5.9) {
+            document.getElementById("serumCreatinine").style.border = "2px solid green"
+        }
+        else if (event.target.value > 6) {
+            document.getElementById("serumCreatinine").style.border = "2px solid red"
+        }
+        else {
+            if (document.getElementById("serumCreatinine")) {
+                document.getElementById("serumCreatinine").style.border = "1px solid blue"
+            }
+        }
         let strValue = event.target.value.toString();
         if (strValue.includes(".")) {
             var index = strValue.indexOf(".")
             event.target.value = Number(strValue.substring(0, index + 2));
         }
         this.setState({ [event.target.id]: event.target.value });
-        // if(this.state.electrolytes_sodium < 135){
-        //         document.getElementById("electrolytes_sodium").style.border = "1px solid blue" 
-        //          }
-
     }
+
+    validateOneDigitAfterDecimalBloodUrea = event => {
+        if (event.target.value > 15 && event.target.value < 40) {
+            document.getElementById("bloodUrea").style.border = "2px solid green"
+        }
+        else if (event.target.value > 40) {
+            document.getElementById("bloodUrea").style.border = "2px solid red"
+        }
+        else {
+            if (document.getElementById("bloodUrea")) {
+                document.getElementById("bloodUrea").style.border = "1px solid blue"
+            }
+        }
+        let strValue = event.target.value.toString();
+        if (strValue.includes(".")) {
+            var index = strValue.indexOf(".")
+            event.target.value = Number(strValue.substring(0, index + 2));
+        }
+        this.setState({ [event.target.id]: event.target.value });
+    }
+
+    validateOneDigitAfterDecimalUricAcid = event => {
+        if (event.target.value > 2.6 && event.target.value < 6.0) {
+            document.getElementById("uricAcid").style.border = "2px solid green"
+        }
+        else if (event.target.value > 6) {
+            document.getElementById("uricAcid").style.border = "2px solid red"
+        }
+        else {
+            if (document.getElementById("uricAcid")) {
+                document.getElementById("uricAcid").style.border = "1px solid blue"
+            }
+        }
+        let strValue = event.target.value.toString();
+        if (strValue.includes(".")) {
+            var index = strValue.indexOf(".")
+            event.target.value = Number(strValue.substring(0, index + 2));
+        }
+        this.setState({ [event.target.id]: event.target.value });
+    }
+
+    validateOneDigitAfterDecimalElectrolytesSodium = event => {
+        if (event.target.value > 135 && event.target.value < 155) {
+            document.getElementById("electrolytes_sodium").style.border = "2px solid green"
+        }
+        else if (event.target.value > 155) {
+            document.getElementById("electrolytes_sodium").style.border = "2px solid red"
+        }
+        else {
+            if (document.getElementById("electrolytes_sodium")) {
+                document.getElementById("electrolytes_sodium").style.border = "1px solid blue"
+            }
+        }
+        let strValue = event.target.value.toString();
+        if (strValue.includes(".")) {
+            var index = strValue.indexOf(".")
+            event.target.value = Number(strValue.substring(0, index + 2));
+        }
+        this.setState({ [event.target.id]: event.target.value });
+    }
+
+    validateOneDigitAfterDecimalElectrolytesPotassium = event => {
+        if (event.target.value > 3.5 && event.target.value < 5.5) {
+            document.getElementById("electrolytes_potassium").style.border = "2px solid green"
+        }
+        else if (event.target.value > 5.5) {
+            document.getElementById("electrolytes_potassium").style.border = "2px solid red"
+        }
+        else {
+            if (document.getElementById("electrolytes_potassium")) {
+                document.getElementById("electrolytes_potassium").style.border = "1px solid blue"
+            }
+        }
+        let strValue = event.target.value.toString();
+        if (strValue.includes(".")) {
+            var index = strValue.indexOf(".")
+            event.target.value = Number(strValue.substring(0, index + 2));
+        }
+        this.setState({ [event.target.id]: event.target.value });
+    }
+
+    validateOneDigitAfterDecimalBun = event => {
+        if (event.target.value > 8 && event.target.value < 23) {
+            document.getElementById("bun").style.border = "2px solid green"
+        }
+        else if (event.target.value > 23) {
+            document.getElementById("bun").style.border = "2px solid red"
+        }
+        else {
+            if (document.getElementById("bun")) {
+                document.getElementById("bun").style.border = "1px solid blue"
+            }
+        }
+        let strValue = event.target.value.toString();
+        if (strValue.includes(".")) {
+            var index = strValue.indexOf(".")
+            event.target.value = Number(strValue.substring(0, index + 2));
+        }
+        this.setState({ [event.target.id]: event.target.value });
+    }
+
     validateAndNext = async () => {
         //Conditions to check.. If valid, Send form name to switch to next form
         // console.log(this.state);
@@ -70,12 +174,8 @@ class TestDetailsForm extends React.Component {
 
     mandatoryFieldCheck = () => {
         let invalidIds = [];
-        // console.log(this.state.serumCreatinine)
-        // console.log(this.state)
         try {
             if (this.state.kidneystatus === 'abnormal') {
-                // console.log("doc req")
-                // console.log(this.state.doctorreq)
                 if (this.state.doctorreq === "") {
                     invalidIds.push('doctorreq')
                 }
@@ -94,7 +194,6 @@ class TestDetailsForm extends React.Component {
                     window.location.href = "#";
                 }
             }
-            // console.log(invalidIds[0])
         }
         catch (err) {
             // console.log(false);
@@ -128,8 +227,6 @@ class TestDetailsForm extends React.Component {
                 else {
                     window.location.href = "#";
                 }
-
-
             }
             this.saveData();
             this.props.submit();
@@ -141,13 +238,101 @@ class TestDetailsForm extends React.Component {
 
     }
 
-    // creatineCheck = () => {
-    //     console.log(this.state.serumCreatinine);
-    // }
+    serumCreatinineAfterReRendering = () => {
+        if (this.state.serumCreatinine > 2 && this.state.serumCreatinine < 5.9) {
+            document.getElementById("serumCreatinine").style.border = "2px solid green"
+        }
+        else if (this.state.serumCreatinine > 6) {
+            document.getElementById("serumCreatinine").style.border = "2px solid red"
+        }
+        else {
+            if (document.getElementById("serumCreatinine")) {
+                document.getElementById("serumCreatinine").style.border = "1px solid blue"
+            }
+        }
+    }
 
-    // checkTesting = () => {
-    //     console.log(this.state.serumCreatinine);
-    // }
+    bloodUreaAfterReRendering = () => {
+        if (this.state.bloodUrea > 15 && this.state.bloodUrea < 40) {
+            document.getElementById("bloodUrea").style.border = "2px solid green"
+        }
+        else if (this.state.bloodUrea > 40) {
+            document.getElementById("bloodUrea").style.border = "2px solid red"
+
+        }
+        else {
+            if (document.getElementById("bloodUrea")) {
+                document.getElementById("bloodUrea").style.border = "1px solid blue"
+            }
+        }
+    }
+
+    uricAcidfterReRendering = () => {
+        if (this.state.uricAcid > 2.6 && this.state.uricAcid < 6.0) {
+            document.getElementById("uricAcid").style.border = "2px solid green"
+        }
+        else if (this.state.uricAcid > 6) {
+            document.getElementById("uricAcid").style.border = "2px solid red"
+        }
+        else {
+            if (document.getElementById("uricAcid")) {
+                document.getElementById("uricAcid").style.border = "1px solid blue"
+            }
+        }
+    }
+
+    electrolytesSodiumReRendering = () => {
+        if (this.state.electrolytes_sodium > 135 && this.state.electrolytes_sodium < 155) {
+            document.getElementById("electrolytes_sodium").style.border = "2px solid green"
+        }
+        else if (this.state.electrolytes_sodium > 155) {
+            document.getElementById("electrolytes_sodium").style.border = "2px solid red"
+        }
+        else {
+            if (document.getElementById("electrolytes_sodium")) {
+                document.getElementById("electrolytes_sodium").style.border = "1px solid blue"
+            }
+        }
+    }
+
+    electrolytesPotassiumReRendering = () => {
+        if (this.state.electrolytes_potassium > 3.5 && this.state.electrolytes_potassium < 5.5) {
+            document.getElementById("electrolytes_potassium").style.border = "2px solid green"
+        }
+        else if (this.state.electrolytes_potassium > 5.5) {
+            document.getElementById("electrolytes_potassium").style.border = "2px solid red"
+        }
+        else {
+            if (document.getElementById("electrolytes_potassium")) {
+                document.getElementById("electrolytes_potassium").style.border = "1px solid blue"
+            }
+        }
+    }
+
+    bunReRendering = () => {
+        if (this.state.bun > 8 && this.state.bun < 23) {
+            document.getElementById("bun").style.border = "2px solid green"
+        }
+        else if (this.state.bun > 23) {
+            document.getElementById("bun").style.border = "2px solid red"
+        }
+        else {
+            if (document.getElementById("bun")) {
+                document.getElementById("bun").style.border = "1px solid blue"
+            }
+        }
+    }
+
+    componentDidMount = () => {
+        console.log(this.state)
+        this.serumCreatinineAfterReRendering();
+        this.bloodUreaAfterReRendering();
+        this.uricAcidfterReRendering();
+        this.electrolytesPotassiumReRendering();
+        this.electrolytesSodiumReRendering();
+        this.bunReRendering();
+
+    }
 
     render() {
         const styles = {
@@ -189,21 +374,8 @@ class TestDetailsForm extends React.Component {
                                         <Form.Label>Serum Creatinine : </Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control min="0" type="number" placeholder="mg/dl" id="serumCreatinine" onChange={this.validateOneDigitAfterDecimal}
+                                        <Form.Control min="0" type="number" placeholder="mg/dl" id="serumCreatinine" onChange={this.validateOneDigitAfterDecimalSerumCreatine}
                                             value={this.state.serumCreatinine} />
-                                        {(() => {
-                                            if (this.state.serumCreatinine > 2 && this.state.serumCreatinine < 5.9) {
-                                                document.getElementById("serumCreatinine").style.border = "2px solid green"
-                                            }
-                                            else if (this.state.serumCreatinine > 6) {
-                                                document.getElementById("serumCreatinine").style.border = "2px solid red"
-                                            }
-                                            else {
-                                                if (document.getElementById("serumCreatinine")) {
-                                                    document.getElementById("serumCreatinine").style.border = "1px solid blue"
-                                                }
-                                            }
-                                        })()}
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -215,23 +387,9 @@ class TestDetailsForm extends React.Component {
                                         <Form.Label>Blood Urea : </Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control type="number" min="0" placeholder="mg/dl" id="bloodUrea" onChange={this.validateOneDigitAfterDecimal}
+                                        <Form.Control type="number" min="0" placeholder="mg/dl" id="bloodUrea" onChange={this.validateOneDigitAfterDecimalBloodUrea}
                                             value={this.state.bloodUrea}
                                         />
-                                        {(() => {
-                                            if (this.state.bloodUrea > 15 && this.state.bloodUrea < 40) {
-                                                document.getElementById("bloodUrea").style.border = "2px solid green"
-                                            }
-                                            else if (this.state.bloodUrea > 40) {
-                                                document.getElementById("bloodUrea").style.border = "2px solid red"
-
-                                            }
-                                            else {
-                                                if (document.getElementById("bloodUrea")) {
-                                                    document.getElementById("bloodUrea").style.border = "1px solid blue"
-                                                }
-                                            }
-                                        })()}
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -243,21 +401,8 @@ class TestDetailsForm extends React.Component {
                                         <Form.Label>Uric Acid : </Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control type="number" min="0" placeholder="mg/dl" id="uricAcid" onChange={this.validateOneDigitAfterDecimal}
+                                        <Form.Control type="number" min="0" placeholder="mg/dl" id="uricAcid" onChange={this.validateOneDigitAfterDecimalUricAcid}
                                             value={this.state.uricAcid} />
-                                        {(() => {
-                                            if (this.state.uricAcid > 2.6 && this.state.uricAcid < 6.0) {
-                                                document.getElementById("uricAcid").style.border = "2px solid green"
-                                            }
-                                            else if (this.state.uricAcid > 6) {
-                                                document.getElementById("uricAcid").style.border = "2px solid red"
-                                            }
-                                            else {
-                                                if (document.getElementById("uricAcid")) {
-                                                    document.getElementById("uricAcid").style.border = "1px solid blue"
-                                                }
-                                            }
-                                        })()}
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -276,21 +421,8 @@ class TestDetailsForm extends React.Component {
                                         <Form.Label>Sodium(Na) : </Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control type="number" min="0" placeholder="mg/dl" id="electrolytes_sodium" onChange={this.validateOneDigitAfterDecimal}
+                                        <Form.Control type="number" min="0" placeholder="mg/dl" id="electrolytes_sodium" onChange={this.validateOneDigitAfterDecimalElectrolytesSodium}
                                             value={this.state.electrolytes_sodium} />
-                                        {(() => {
-                                            if (this.state.electrolytes_sodium > 135 && this.state.electrolytes_sodium < 155) {
-                                                document.getElementById("electrolytes_sodium").style.border = "2px solid green"
-                                            }
-                                            else if (this.state.electrolytes_sodium > 155) {
-                                                document.getElementById("electrolytes_sodium").style.border = "2px solid red"
-                                            }
-                                            else {
-                                                if (document.getElementById("electrolytes_sodium")) {
-                                                    document.getElementById("electrolytes_sodium").style.border = "1px solid blue"
-                                                }
-                                            }
-                                        })()}
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -302,21 +434,8 @@ class TestDetailsForm extends React.Component {
                                         <Form.Label>Potassium(K) : </Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control type="number" min="0" placeholder="mg/dl" id="electrolytes_potassium" onChange={this.validateOneDigitAfterDecimal}
+                                        <Form.Control type="number" min="0" placeholder="mg/dl" id="electrolytes_potassium" onChange={this.validateOneDigitAfterDecimalElectrolytesPotassium}
                                             value={this.state.electrolytes_potassium} />
-                                        {(() => {
-                                            if (this.state.electrolytes_potassium > 3.5 && this.state.electrolytes_potassium < 5.5) {
-                                                document.getElementById("electrolytes_potassium").style.border = "2px solid green"
-                                            }
-                                            else if (this.state.electrolytes_potassium > 5.5) {
-                                                document.getElementById("electrolytes_potassium").style.border = "2px solid red"
-                                            }
-                                            else {
-                                                if (document.getElementById("electrolytes_potassium")) {
-                                                    document.getElementById("electrolytes_potassium").style.border = "1px solid blue"
-                                                }
-                                            }
-                                        })()}
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -328,23 +447,8 @@ class TestDetailsForm extends React.Component {
                                         <Form.Label>BUN (Blood Urea Nitrogen) : </Form.Label>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control type="number" min="0" placeholder="mg/dl" id="bun" onChange={this.validateOneDigitAfterDecimal}
+                                        <Form.Control type="number" min="0" placeholder="mg/dl" id="bun" onChange={this.validateOneDigitAfterDecimalBun}
                                             value={this.state.bun} />
-                                        {(() => {
-                                            if (this.state.bun > 8 && this.state.bun < 23) {
-
-                                                document.getElementById("bun").style.border = "2px solid green"
-
-                                            }
-                                            else if (this.state.bun > 23) {
-                                                document.getElementById("bun").style.border = "2px solid red"
-                                            }
-                                            else {
-                                                if (document.getElementById("bun")) {
-                                                    document.getElementById("bun").style.border = "1px solid blue"
-                                                }
-                                            }
-                                        })()}
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -563,7 +667,7 @@ class TestDetailsForm extends React.Component {
                                     <Row>
                                         <Col sm={6} xs={6} style={styles.right}>
                                             <Button variant="primary"
-                                                onClick={this.previous}
+                                                onClick={this.previous.bind(this)}
                                             >Previous</Button>
                                         </Col>
                                         <Col sm={6} xs={6} style={styles.left}>
