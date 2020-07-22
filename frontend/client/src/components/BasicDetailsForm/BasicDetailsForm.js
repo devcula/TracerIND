@@ -29,6 +29,9 @@ class BasicDetailsForm extends React.Component {
             phone: props.getValue('phone'),
             bloodgroup: props.getValue('bloodgroup'),
             PVGT: props.getValue('PVGT'),
+            address: props.getValue('address'),
+            children: props.getValue('children'),
+            deworming: props.getValue('deworming'),
             phcList: props.getValue('phcList'),
             villageList: props.getValue('villageList'),
             villageSecList: props.getValue('villageSecList')
@@ -201,6 +204,9 @@ class BasicDetailsForm extends React.Component {
             phone: this.state.phone,
             bloodgroup: this.state.bloodgroup,
             PVGT: this.state.PVGT,
+            address: this.state.address,
+            children: this.state.children,
+            deworming: this.state.deworming,
             phcList: this.state.phcList,
             villageList: this.state.villageList,
             villageSecList: this.state.villageSecList
@@ -628,6 +634,40 @@ class BasicDetailsForm extends React.Component {
                         </Row>
                         <Row>
                             <Col sm={12}>
+                                <Form.Group as={Row} controlId="address">
+                                    <Col sm={3}>
+                                        <Form.Label>Address : </Form.Label>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control
+                                            placeholder="Enter address"
+                                            value={this.state.address} 
+                                            onChange={this.handleChange('address')}
+                                            />
+                                    </Col>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12}>
+                                <Form.Group as={Row} controlId="children">
+                                    <Col sm={3}>
+                                        <Form.Label>Children : </Form.Label>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control
+                                            min="0"
+                                            max="10"
+                                            type="number"
+                                            placeholder="No. of children"
+                                            onChange={this.restrictDigits(2)}
+                                            value={this.state.children} />
+                                    </Col>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12}>
                                 <Form.Group as={Row} controlId="bloodgroup">
                                     <Col sm={3}>
                                         <Form.Label>Blood Group :</Form.Label>
@@ -653,6 +693,44 @@ class BasicDetailsForm extends React.Component {
                                 </Form.Group>
                             </Col>
                         </Row>
+                        <Row>
+                            <Col sm={12}>
+                                <Row>
+                                    <Col sm={3}>
+                                        <Form.Label>Deworming :</Form.Label>
+                                    </Col>
+                                    <Col sm={3} id="deworming">
+                                        <Row>
+                                            <Col>
+                                                <Form.Check
+                                                    type='radio'
+                                                    value="true"
+                                                    id="deworming_yes"
+                                                    label="Yes"
+                                                    name="deworming"
+                                                    onChange={this.handleChange('deworming')}
+                                                    checked={this.state.deworming === "true"}
+                                                />
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col>
+                                                <Form.Check
+                                                    type='radio'
+                                                    value="false"
+                                                    id="deworming_no"
+                                                    label="No"
+                                                    name="deworming"
+                                                    onChange={this.handleChange('deworming')}
+                                                    checked={this.state.PVGT === "false"}
+                                                />
+                                            </Col>
+                                        </Row>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                        <br />
                         <Row>
                             <Col sm={12}>
                                 <Row>

@@ -72,7 +72,7 @@ class MainForm extends React.Component {
             doctorreq: this.state.doctorreq ? this.state.doctorreq : false,
             hospitalAdmit: this.state.hospitalAdmit !== undefined ? this.state.hospitalAdmit : "",
             dateOfAdmit: this.state.dateOfAdmit !== undefined ? this.state.dateOfAdmit : "",
-            refered: this.state.refered !== undefined ? this.state.refered : false,
+            refered: this.state.refered ? this.state.refered : false,
             referredto: this.state.referredto !== undefined ? this.state.referredto : "",
             status: this.state.status !== undefined ? this.state.status : "",
             treatmentDone: this.state.treatmentDone !== undefined ? this.state.treatmentDone : "",
@@ -81,7 +81,8 @@ class MainForm extends React.Component {
             deceased: this.state.deceased ? this.state.deceased : false,
             deathDate: this.state.deathDate !== undefined ? this.state.deathDate : "",
             placeOfDeath: this.state.placeOfDeath !== undefined ? this.state.placeOfDeath : "",
-            causeOfDeath: this.state.causeOfDeath !== undefined ? this.state.causeOfDeath : ""
+            causeOfDeath: this.state.causeOfDeath !== undefined ? this.state.causeOfDeath : "",
+            deworming: this.state.deworming ? this.state.deworming : false
         }
 
         axios.post(uri + 'AddPatient/', dataToSend).then(response => {
