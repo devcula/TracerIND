@@ -19,7 +19,8 @@ class HospitalDetailsForm extends React.Component {
             deceased: props.getValue('deceased'),
             deathDate: props.getValue('deathDate'),
             placeOfDeath: props.getValue('placeOfDeath'),
-            causeOfDeath: props.getValue('causeOfDeath')
+            causeOfDeath: props.getValue('causeOfDeath'),
+            recovery: props.getValue('recovery')
         }
     }
 
@@ -113,7 +114,7 @@ class HospitalDetailsForm extends React.Component {
 
                                     </Col>
                                     <Col sm={3}>
-                                        <input type="date" className="form-control" id="dateOfAdmit" onChange={this.handleChange('dateOfAdmit')} />
+                                        <input type="date" value={this.state.dateOfAdmit} className="form-control" id="dateOfAdmit" onChange={this.handleChange('dateOfAdmit')} />
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -212,12 +213,12 @@ class HospitalDetailsForm extends React.Component {
                                                             <Col>
                                                                 <Form.Check
                                                                     type='radio'
-                                                                    value="yes"
+                                                                    value="true"
                                                                     id="dialysis_yes"
                                                                     label="Yes"
                                                                     name="dialysis"
                                                                     onChange={this.handleChange('dialysis')}
-                                                                    checked={this.state.dialysis === "yes"}
+                                                                    checked={this.state.dialysis === "true"}
                                                                 />
                                                             </Col>
                                                         </Row>
@@ -225,12 +226,12 @@ class HospitalDetailsForm extends React.Component {
                                                             <Col>
                                                                 <Form.Check
                                                                     type='radio'
-                                                                    value="no"
+                                                                    value="false"
                                                                     id="dialysis_no"
                                                                     label="No"
                                                                     name="dialysis"
                                                                     onChange={this.handleChange('dialysis')}
-                                                                    checked={this.state.dialysis === "no"}
+                                                                    checked={this.state.dialysis === "false"}
                                                                 />
                                                             </Col>
                                                         </Row>
@@ -266,7 +267,7 @@ class HospitalDetailsForm extends React.Component {
                                                     </Col>
                                                     <Col sm={3}>
                                                         {/* <DateTime pickerOptions={{ format: "LL" }} /> */}
-                                                        <input type="date" id="discharge" className="form-control" onChange={this.handleChange('discharge')} />
+                                                        <input type="date" value={this.state.discharge} id="discharge" className="form-control" onChange={this.handleChange('discharge')} />
                                                     </Col>
                                                 </Form.Group>
                                             </Col>
@@ -365,7 +366,7 @@ class HospitalDetailsForm extends React.Component {
                                                                         <Form.Label>Date of death : </Form.Label>
                                                                     </Col>
                                                                     <Col sm={3}>
-                                                                        <input type="date" id="deathDate" class="form-control" onChange={this.handleChange('deathDate')} />
+                                                                        <input type="date" value={this.state.deathDate} id="deathDate" class="form-control" onChange={this.handleChange('deathDate')} />
                                                                     </Col>
                                                                 </Form.Group>
                                                             </Col>

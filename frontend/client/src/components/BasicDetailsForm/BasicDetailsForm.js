@@ -722,7 +722,7 @@ class BasicDetailsForm extends React.Component {
                                                     label="No"
                                                     name="deworming"
                                                     onChange={this.handleChange('deworming')}
-                                                    checked={this.state.PVGT === "false"}
+                                                    checked={this.state.deworming === "false"}
                                                 />
                                             </Col>
                                         </Row>
