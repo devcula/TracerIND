@@ -43,7 +43,7 @@ export default function PHC(props) {
                 onChange={handleChange}
                 id={props.id}
             >
-                <option value="">Choose...</option>
+                <option value="">Select Mandal First</option>
             </Form.Control>
         )
     }

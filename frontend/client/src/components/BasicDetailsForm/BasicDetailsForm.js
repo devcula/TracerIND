@@ -250,12 +250,18 @@ class BasicDetailsForm extends React.Component {
             },
             paddingLeft: {
                 paddingLeft: "10px"
+            },
+            left: {
+                textAlign: "left"
+            },
+            right: {
+                textAlign: "right"
             }
         }
         return (
             <Container>
                 <Row>
-                    <fieldset style={{ 'width': '100%' }}>
+                    <fieldset style={{ 'width': '100%', ...styles.center }}>
                         <legend>Basic Details</legend>
                         <Row>
                             <Col sm={12}>
@@ -321,10 +327,20 @@ class BasicDetailsForm extends React.Component {
                                             <option value="VR Puram">V.R Puram</option>
                                         </Form.Control>
                                     </Col>
+                                    <Col sm={3}>
+                                        <Form.Label>PHC :</Form.Label>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <PHC phcList={this.state.phcList}
+                                            phcValue={this.state.phc}
+                                            fetchVillageSec={this.fetchOrUpdateVillageSecList}
+                                            id="phc"
+                                        />
+                                    </Col>
                                 </Form.Group>
                             </Col>
                         </Row>
-                        <Row>
+                        {/* <Row>
                             <Col sm={12}>
                                 <Form.Group as={Row}>
                                     <Col sm={3}>
@@ -339,7 +355,7 @@ class BasicDetailsForm extends React.Component {
                                     </Col>
                                 </Form.Group>
                             </Col>
-                        </Row>
+                        </Row> */}
                         <Row>
                             <Col sm={12}>
                                 <Form.Group as={Row}>
@@ -354,10 +370,21 @@ class BasicDetailsForm extends React.Component {
                                             fetchVillages={this.fetchOrUpdateVillageList}
                                         />
                                     </Col>
+                                    <Col sm={3}>
+                                        <Form.Label>Village :</Form.Label>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Village
+                                            updateValue={this.updateState}
+                                            id="village"
+                                            villageList={this.state.villageList}
+                                            villageValue={this.state.village}
+                                        />
+                                    </Col>
                                 </Form.Group>
                             </Col>
                         </Row>
-                        <Row>
+                        {/* <Row>
                             <Col sm={12}>
                                 <Form.Group as={Row}>
                                     <Col sm={3}>
@@ -373,10 +400,10 @@ class BasicDetailsForm extends React.Component {
                                     </Col>
                                 </Form.Group>
                             </Col>
-                        </Row>
+                        </Row> */}
                         <Row>
                             <Col sm={12}>
-                                <Form.Group as={Row} controlId="name">
+                                <Form.Group as={Row}>
                                     <Col sm={3}>
                                         <Form.Label>First Name :</Form.Label>
                                     </Col>
@@ -384,11 +411,23 @@ class BasicDetailsForm extends React.Component {
                                         <Form.Control
                                             type="text"
                                             placeholder="First Name"
+                                            id="name"
                                             onChange={this.handleChange('name')}
                                             value={this.state.name} />
                                     </Col>
+                                    <Col sm={3}>
+                                        <Form.Label>Surname :</Form.Label>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Surname"
+                                            onChange={this.handleChange('surname')}
+                                            id="surname"
+                                            value={this.state.surname} />
+                                    </Col>
                                 </Form.Group>
-                                <Form.Group as={Row} controlId="surname">
+                                {/* <Form.Group as={Row} controlId="surname">
                                     <Col sm={3}>
                                         <Form.Label>Surname :</Form.Label>
                                     </Col>
@@ -399,7 +438,7 @@ class BasicDetailsForm extends React.Component {
                                             onChange={this.handleChange('surname')}
                                             value={this.state.surname} />
                                     </Col>
-                                </Form.Group>
+                                </Form.Group> */}
                             </Col>
                         </Row>
                         <Row>
@@ -408,7 +447,7 @@ class BasicDetailsForm extends React.Component {
                                     <Col sm={3}>
                                         <Form.Label>S/o, D/o, W/o:</Form.Label>
                                     </Col>
-                                    <Col sm={3} id="relation">
+                                    <Col sm={3} id="relation" style={styles.left}>
                                         <Row>
                                             <Col>
                                                 <Form.Check
@@ -449,12 +488,24 @@ class BasicDetailsForm extends React.Component {
                                             </Col>
                                         </Row>
                                     </Col>
-                                    <Col sm={6} style={{ display: this.state.relation ? 'block' : 'none' }}>
+                                    <Col sm={3} style={{ display: this.state.relation ? 'block' : 'none' }}>
+                                        <Form.Label>Guardian Name :</Form.Label>
+                                    </Col>
+                                    <Col sm={3} style={{ display: this.state.relation ? 'block' : 'none' }}>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Enter Name"
+                                            onChange={this.handleChange('gaurdian_name')}
+                                            id="gaurdian_name"
+                                            value={this.state.gaurdian_name}
+                                        />
+                                    </Col>
+                                    {/* <Col sm={6} style={{ display: this.state.relation ? 'block' : 'none' }}>
                                         <Form.Group as={Row} controlId="gaurdian_name">
-                                            <Col sm={3}>
+                                            <Col sm={6}>
                                                 <Form.Label>Name :</Form.Label>
                                             </Col>
-                                            <Col sm={9}>
+                                            <Col sm={6}>
                                                 <Form.Control
                                                     type="text"
                                                     placeholder="Enter Name"
@@ -463,7 +514,7 @@ class BasicDetailsForm extends React.Component {
                                                 />
                                             </Col>
                                         </Form.Group>
-                                    </Col>
+                                    </Col> */}
                                 </Row>
                             </Col>
                         </Row>
@@ -492,7 +543,7 @@ class BasicDetailsForm extends React.Component {
                                     <Col sm={3}>
                                         <Form.Label>Sex :</Form.Label>
                                     </Col>
-                                    <Col sm={3} id="gender">
+                                    <Col sm={3} id="gender" style={styles.left}>
                                         <Row>
                                             <Col>
                                                 <Form.Check
@@ -539,11 +590,11 @@ class BasicDetailsForm extends React.Component {
                         <br />
                         <Row>
                             <Col sm={12}>
-                                <Row>
-                                    <Col sm={3}>
+                                {/* <Row> */}
+                                    {/* <Col sm={3}>
                                         <Form.Label>Marital Status :</Form.Label>
-                                    </Col>
-                                    <Col sm={3} id="maritalstatus">
+                                    </Col> */}
+                                    {/* <Col sm={3} id="maritalstatus" style={styles.left}>
                                         <Row>
                                             <Col>
                                                 <Form.Check
@@ -609,14 +660,34 @@ class BasicDetailsForm extends React.Component {
                                                 />
                                             </Col>
                                         </Row>
-                                    </Col>
-                                </Row>
+                                    </Col> */}
+                                    <Form.Group as={Row}>
+                                        <Col sm={3}>
+                                            <Form.Label>Marital Status :</Form.Label>
+                                        </Col>
+                                        <Col sm={3}>
+                                            <Form.Control
+                                                as="select"
+                                                onChange={this.handleChange('maritalstatus')}
+                                                id="maritalstatus"
+                                                value={this.state.maritalstatus}
+                                            >
+                                                <option value="">Select</option>
+                                                <option value="single">Single</option>
+                                                <option value="married">Married</option>
+                                                <option value="separated">Separated</option>
+                                                <option value="divorced">Divorced</option>
+                                                <option value="widowed">Widowed</option>
+                                            </Form.Control>
+                                        </Col>
+                                    </Form.Group>
+                                {/* </Row> */}
                             </Col>
                         </Row>
                         <br />
                         <Row>
                             <Col sm={12}>
-                                <Form.Group as={Row} controlId="phone">
+                                <Form.Group as={Row}>
                                     <Col sm={3}>
                                         <Form.Label>Phone Number : </Form.Label>
                                     </Col>
@@ -626,9 +697,22 @@ class BasicDetailsForm extends React.Component {
                                             max="9999999999"
                                             type="number"
                                             placeholder="Enter Contact number"
+                                            id="phone"
                                             onChange={this.restrictDigits(10)}
                                             value={this.state.phone} />
                                     </Col>
+                                    {/* <Col sm={3}>
+                                        <Form.Label>Address : </Form.Label>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <textarea
+                                            placeholder="Enter address"
+                                            value={this.state.address}
+                                            id="address"
+                                            className="form-control"
+                                            onChange={this.handleChange('address')}
+                                        />
+                                    </Col> */}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -638,11 +722,12 @@ class BasicDetailsForm extends React.Component {
                                     <Col sm={3}>
                                         <Form.Label>Address : </Form.Label>
                                     </Col>
-                                    <Col sm={3}>
-                                        <Form.Control
+                                    <Col sm={6}>
+                                        <textarea
                                             placeholder="Enter address"
                                             value={this.state.address} 
                                             onChange={this.handleChange('address')}
+                                            className="form-control"
                                             />
                                     </Col>
                                 </Form.Group>
