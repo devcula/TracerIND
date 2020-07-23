@@ -25,9 +25,7 @@ class HospitalDetailsForm extends React.Component {
 
     //Hello
 
-    previous = () => {
-        this.props.changeData({ formName: "TestDetails" });
-    }
+
 
 
     handleChange = input => event => {
@@ -41,6 +39,15 @@ class HospitalDetailsForm extends React.Component {
         await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
         // this.loadNextForm("HospitalDetails");
         this.props.submit();
+    }
+
+    saveData = async () => {
+        await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
+
+    }
+    previous = () => {
+        this.saveData();
+        this.props.changeData({ formName: "TestDetails" });
     }
 
     loadNextForm = (formName) => {
@@ -408,7 +415,7 @@ class HospitalDetailsForm extends React.Component {
                         <br />
                         <Row>
                             <Col sm={6} xs={6} style={styles.right}>
-                                <Button variant="primary" className="cool-button" onClick={this.previous} >Previous</Button>
+                                <Button variant="primary" className="cool-button" onClick={this.previous.bind(this)} >Previous</Button>
                             </Col>
                             <Col sm={6} xs={6} style={styles.left}>
                                 <Button variant="primary" className="cool-button" onClick={this.validateAndNext}>Submit</Button>
