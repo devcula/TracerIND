@@ -99,11 +99,11 @@ code {
 }
 
 .cool-button {
-  border-radius: 28px;
+  /* border-radius: 28px; */
   background-color: #0a5767;
   color: white;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 500;
   transition-property: background-color, color, box-shadow, -webkit-box-shadow, transform;
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
