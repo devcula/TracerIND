@@ -408,10 +408,10 @@ class HospitalDetailsForm extends React.Component {
                         <br />
                         <Row>
                             <Col sm={6} xs={6} style={styles.right}>
-                                <Button variant="primary" onClick={this.previous} >Previous</Button>
+                                <Button variant="primary" className="cool-button" onClick={this.previous} >Previous</Button>
                             </Col>
                             <Col sm={6} xs={6} style={styles.left}>
-                                <Button variant="primary" onClick={this.validateAndNext}>Submit</Button>
+                                <Button variant="primary" className="cool-button" onClick={this.validateAndNext}>Submit</Button>
                             </Col>
                         </Row>
                     </fieldset>

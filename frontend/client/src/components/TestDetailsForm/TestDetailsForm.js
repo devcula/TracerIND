@@ -651,11 +651,13 @@ class TestDetailsForm extends React.Component {
                                         <Col sm={6} xs={6} style={styles.right}>
                                             <Button variant="primary"
                                                 onClick={this.previous}
+                                                className="cool-button"
                                             >Previous</Button>
                                         </Col>
                                         <Col sm={6} xs={6} style={styles.left}>
                                             <Button variant="primary"
                                                 onClick={this.validateAndNext}
+                                                className="cool-button"
                                             >Next</Button>
                                         </Col>
                                     </Row>
@@ -668,11 +670,13 @@ class TestDetailsForm extends React.Component {
                                         <Col sm={6} xs={6} style={styles.right}>
                                             <Button variant="primary"
                                                 onClick={this.previous.bind(this)}
+                                                className="cool-button"
                                             >Previous</Button>
                                         </Col>
                                         <Col sm={6} xs={6} style={styles.left}>
                                             <Button variant="primary"
                                                 onClick={this.validateAndSubmit}
+                                                className="cool-button"
                                             >Submit</Button>
                                         </Col>
                                     </Row>

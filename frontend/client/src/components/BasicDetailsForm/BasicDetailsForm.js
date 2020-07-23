@@ -771,7 +771,7 @@ class BasicDetailsForm extends React.Component {
                         <br />
                         <Row>
                             <Col sm={12} style={styles.center}>
-                                <Button variant="primary" onClick={this.validate}>Save and Continue</Button>
+                                <Button variant="primary" className="cool-button" onClick={this.validate}>Next</Button>
                             </Col>
                         </Row>
                     </fieldset>

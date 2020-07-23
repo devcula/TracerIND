@@ -98,12 +98,20 @@ code {
     monospace;
 }
 
-button {
-  box-shadow: 0 1.4px 1.1px rgba(0, 0, 0, 0.034),
-    0 3.4px 2.7px rgba(0, 0, 0, 0.048),
-    0 6.2px 5px rgba(0, 0, 0, 0.06),
-    0 5.5px 4.5px rgba(0, 0, 0, 0.072),
-    0 5px 4px rgba(0, 0, 0, 0.086),
-    0 5px 5px rgba(0, 0, 0, 0.12);
+.cool-button {
+  border-radius: 28px;
+  background-color: #0a5767;
+  color: white;
+  cursor: pointer;
   font-weight: bold;
+  transition-property: background-color, color, box-shadow, -webkit-box-shadow, transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+.cool-button:hover {
+  background-color: #36393f;
+  -webkit-box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
 }
