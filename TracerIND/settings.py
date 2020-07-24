@@ -46,13 +46,10 @@ INSTALLED_APPS = [
     'village',
     'village_sec',
     'frontend',
-    "corsheaders",
 
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # added to solve CORS
-    'django.middleware.common.CommonMiddleware',  # added to solve CORS
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
