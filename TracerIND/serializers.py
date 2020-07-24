@@ -23,6 +23,7 @@ class HospitalSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class MandalSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Mandal
         fields = '__all__'
@@ -31,13 +32,16 @@ class VillageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Village
         fields = '__all__'
+        
 
 class PHCSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = PHC
         fields = '__all__'
 
 class VillageSecSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Village_sec
         fields = '__all__'

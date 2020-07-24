@@ -96,6 +96,11 @@ def updatephc(request):
         return Response(status = 200)
     return Response(serializer.errors)
 
+
+
+
+
+
 #CRUD FOR PATIENT
 
 @api_view(['POST'])
@@ -103,8 +108,8 @@ def AddPatient(request):
     serializer = PatientSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
-        return Response(serializer.data)
-    return Response(serializer.errors)
+        return Response(serializer.data,status = 200)
+    return Response(status = 400)
 
 @api_view(['POST'])
 def DeletePatient(request):
@@ -114,7 +119,7 @@ def DeletePatient(request):
         patient.delete()
         return Response(status = 200)
     except Exception as e :
-        return Response(e)
+        return Response(status = 400)
 
 @api_view(['POST'])
 def UpdatePatient(request):
@@ -125,41 +130,48 @@ def UpdatePatient(request):
         serializers.save()
         return HttpResponse(status = 200)
     else:
-        return Response(serializer.errors)
+        return Response(status = 400)
+
+
+
 #DATA MATRIX APIs
+
+#PHC for Mandal
 @api_view(['POST'])
 def GetPHCData(request):
     phc = (
         PHC.objects.filter(mandal = (Mandal.objects.get(name__iexact = request.data.get("mandal")).mandal_id))
     )
     serializer = PHCSerializer(phc, many = True)
-    return Response(serializer.data)
+    return Response(serializer.data,status = 200)
 
+#VillageSec for PHC
 @api_view(['POST'])
 def GetVillageSecData(request):
     villagesec=(
         Village_sec.objects.filter(PHC = (PHC.objects.get(name__iexact = request.data.get("PHC")).PHC_id))
     )
     serializer = VillageSecSerializer(villagesec, many = True)
-    return Response(serializer.data)
+    return Response(serializer.data,status = 200)
 
+#Village for VillageSec
 @api_view(['POST'])
 def GetVillageData(request):
     village = (
         Village.objects.filter(village_sec = (Village_sec.objects.get(name__iexact = request.data.get("village_sec")).villagesec_id))
     )
     serializer = VillageSerializer(village, many=True)
-    return Response(serializer.data)
+    serializer.is_valid()
+    return Response(serializer.data,status = 200)
 
 
+#List of all Villages, Android Exclusive API
 @api_view(['GET'])
 def GetAllVillage(request):
     villagelist = list(Village.objects.all())
     serializer = VillageSerializer(data = villagelist,many = True)
     serializer.is_valid()
-    return Response(serializer.data)
-    print(serializer.errors)    
-    return Response(status = 400)
+    return Response(serializer.data,status = 200)
 
 @api_view(['GET'])
 def GetAllPatient(request):
@@ -167,7 +179,7 @@ def GetAllPatient(request):
     print(patientlist)
     serializer = PatientSerializer(data = patientlist,many = True)
     serializer.is_valid()
-    return Response(serializer.data)
+    return Response(serializer.data,status = 200)
 
 
 @api_view (['POST'])
@@ -176,32 +188,18 @@ def GetPatient(request):
     patient = Patient.objects.get(pkid = pk)
     serializer = PatientSerializer(patient)
     if serializer.is_valid():
-        return Response(serializer.data)
+        return Response(serializer.data,status = 200)
     else:
-        return Response(serializer.errors)
+        return Response(status = 400)
 
+#All Patients in a Village
 @api_view(['POST'])
 def GetPatientData_Village(request):
     village = request.data.get("village")
-    patientlist = Patient.objects.filter(village = (Village.objects.get(name__iexact = request.data.get("village")).village_id))
-    serializer = PatientSerializer(patientlist,many = True)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def GetVIllageNames(request):
-    villagelist = Village.objects.all()
-    print(villagelist)
-    serializer = VillageSerializer(data = villagelist,many = True)
+    patientlist = list(Patient.objects.filter(village = (Village.objects.get(name__iexact = request.data.get("village")).village_id)))
+    print(patientlist)
+    serializer = PatientSerializer(data = patientlist,many = True)
     serializer.is_valid()
-    return Response(serializer.data)
-    
+    return Response(serializer.data,status = 200)
 
-# #ANDROID APIS
-# @csrf_exempt
-# @api_view(['POST'])
-# def DroidDump(request):
-#     data = request.data
-#     for d in data:
-#         response = requests.post('http://13.232.239.102/api/AddPatient',data = d)
-#         return Response(response)
-#     return Response(status=201)
+
