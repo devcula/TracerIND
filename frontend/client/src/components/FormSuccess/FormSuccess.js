@@ -31,6 +31,7 @@ export default function FormSuccess() {
                     <Col>
                         <Button variant="primary"
                         onClick={redirect}
+                        className="cool-button"
                         >
                             Add another patient
                         </Button>

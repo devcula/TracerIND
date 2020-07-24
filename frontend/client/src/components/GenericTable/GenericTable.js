@@ -112,13 +112,13 @@ class GenericTable extends React.Component {
     render() {
         let { headers, data, loading, keys, dataTypes } = this.props;
         let pageData = [];
-        let { noOfRows, currentPageIndex } = this.state; // 20, 0
+        let { noOfRows, currentPageIndex } = this.state;
         let dataLength = 0;
         let lastPageIndex = 0;
 
         if (!loading) {
 
-            dataLength = data.length;    // length = 17
+            dataLength = data.length;
             if(noOfRows !== ""){
                 if(dataLength % noOfRows === 0){
                     lastPageIndex = Math.floor(dataLength / noOfRows) - 1;
@@ -151,7 +151,7 @@ class GenericTable extends React.Component {
                         }
                     }
                     else if (dataTypes[i] === "Boolean") {
-                        if (this.isNotNullOrUndefinedOrBlank(rowData[keys[i]].toString()) && this.isNotNullOrUndefinedOrBlank(this.state['KEY_' + keys[i]]) && (rowData[keys[i]].toString() !== this.state['KEY_' + keys[i]])) {
+                        if (this.isNotNullOrUndefinedOrBlank(rowData[keys[i]].toString()) && this.isNotNullOrUndefinedOrBlank(this.state['KEY_' + keys[i]]) && (rowData[keys[i]].toString() !== this.state['KEY_' + keys[i]].toString())) {
                             return false;
                         }
                     }
@@ -179,7 +179,7 @@ class GenericTable extends React.Component {
                         </Button>
                     </Col>
                     <Col sm={3}>
-                        <input type="number" min="1" value={this.state.noOfRows} placeholder="No. of Rows" onChange={this.changeNoOfRows} className="form-control" />
+                        <input type="number" min="1" value={this.state.noOfRows} placeholder="No. of Rows" onChange={this.changeNoOfRows} className="row-input-field" />
                     </Col>
                 </Row>
                 <Table style={{ textAlign: "center" }} striped bordered hover variant="dark">
@@ -264,8 +264,8 @@ class GenericTable extends React.Component {
                                                                         className="form-control"
                                                                     >
                                                                         <option value="">Select</option>
-                                                                        <option value="true">Yes</option>
-                                                                        <option value="false">No</option>
+                                                                        <option value="Yes">Yes</option>
+                                                                        <option value="No">No</option>
                                                                     </select>
                                                                 </td>
                                                             )

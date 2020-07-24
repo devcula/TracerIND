@@ -19,15 +19,14 @@ class HospitalDetailsForm extends React.Component {
             deceased: props.getValue('deceased'),
             deathDate: props.getValue('deathDate'),
             placeOfDeath: props.getValue('placeOfDeath'),
-            causeOfDeath: props.getValue('causeOfDeath')
+            causeOfDeath: props.getValue('causeOfDeath'),
+            recovery: props.getValue('recovery')
         }
     }
 
     //Hello
 
-    previous = () => {
-        this.props.changeData({ formName: "TestDetails" });
-    }
+
 
 
     handleChange = input => event => {
@@ -41,6 +40,15 @@ class HospitalDetailsForm extends React.Component {
         await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
         // this.loadNextForm("HospitalDetails");
         this.props.submit();
+    }
+
+    saveData = async () => {
+        await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
+
+    }
+    previous = () => {
+        this.saveData();
+        this.props.changeData({ formName: "TestDetails" });
     }
 
     loadNextForm = (formName) => {
@@ -106,7 +114,7 @@ class HospitalDetailsForm extends React.Component {
 
                                     </Col>
                                     <Col sm={3}>
-                                        <input type="date" className="form-control" id="dateOfAdmit" onChange={this.handleChange('dateOfAdmit')} />
+                                        <input type="date" value={this.state.dateOfAdmit} className="form-control" id="dateOfAdmit" onChange={this.handleChange('dateOfAdmit')} />
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -205,12 +213,12 @@ class HospitalDetailsForm extends React.Component {
                                                             <Col>
                                                                 <Form.Check
                                                                     type='radio'
-                                                                    value="yes"
+                                                                    value="true"
                                                                     id="dialysis_yes"
                                                                     label="Yes"
                                                                     name="dialysis"
                                                                     onChange={this.handleChange('dialysis')}
-                                                                    checked={this.state.dialysis === "yes"}
+                                                                    checked={this.state.dialysis === "true"}
                                                                 />
                                                             </Col>
                                                         </Row>
@@ -218,12 +226,12 @@ class HospitalDetailsForm extends React.Component {
                                                             <Col>
                                                                 <Form.Check
                                                                     type='radio'
-                                                                    value="no"
+                                                                    value="false"
                                                                     id="dialysis_no"
                                                                     label="No"
                                                                     name="dialysis"
                                                                     onChange={this.handleChange('dialysis')}
-                                                                    checked={this.state.dialysis === "no"}
+                                                                    checked={this.state.dialysis === "false"}
                                                                 />
                                                             </Col>
                                                         </Row>
@@ -259,7 +267,7 @@ class HospitalDetailsForm extends React.Component {
                                                     </Col>
                                                     <Col sm={3}>
                                                         {/* <DateTime pickerOptions={{ format: "LL" }} /> */}
-                                                        <input type="date" id="discharge" className="form-control" onChange={this.handleChange('discharge')} />
+                                                        <input type="date" value={this.state.discharge} id="discharge" className="form-control" onChange={this.handleChange('discharge')} />
                                                     </Col>
                                                 </Form.Group>
                                             </Col>
@@ -358,7 +366,7 @@ class HospitalDetailsForm extends React.Component {
                                                                         <Form.Label>Date of death : </Form.Label>
                                                                     </Col>
                                                                     <Col sm={3}>
-                                                                        <input type="date" id="deathDate" class="form-control" onChange={this.handleChange('deathDate')} />
+                                                                        <input type="date" value={this.state.deathDate} id="deathDate" class="form-control" onChange={this.handleChange('deathDate')} />
                                                                     </Col>
                                                                 </Form.Group>
                                                             </Col>
@@ -408,10 +416,10 @@ class HospitalDetailsForm extends React.Component {
                         <br />
                         <Row>
                             <Col sm={6} xs={6} style={styles.right}>
-                                <Button variant="primary" onClick={this.previous} >Previous</Button>
+                                <Button variant="primary" className="cool-button" onClick={this.previous.bind(this)} >Previous</Button>
                             </Col>
                             <Col sm={6} xs={6} style={styles.left}>
-                                <Button variant="primary" onClick={this.validateAndNext}>Submit</Button>
+                                <Button variant="primary" className="cool-button" onClick={this.validateAndNext}>Submit</Button>
                             </Col>
                         </Row>
                     </fieldset>

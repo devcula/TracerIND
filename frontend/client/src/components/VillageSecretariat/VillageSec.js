@@ -45,7 +45,7 @@ export default function VillageSec(props) {
                 onChange={handleChange}
                 id={props.id}
             >
-                <option value="">Choose...</option>
+                <option value="">Select PHC first</option>
             </Form.Control>
         )
     }

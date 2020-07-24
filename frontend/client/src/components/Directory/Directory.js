@@ -57,11 +57,13 @@ class Directory extends React.Component {
 
     render() {
         const headers = ['Name', 'Village', 'Kidney Status', 'Deceased'];
-        const keys = ['name', 'village','kidneystatus', 'deceased'];
+        const keys = ['fullName', 'village','kidneystatus', 'deceased'];
         const dataTypes = ['String', 'String', 'String', 'Boolean'];
         let structuredData = this.state.patientList.map(patient => {
             let newPatient = {...patient};
             newPatient.village = this.getVillageNameFromId(patient.village);
+            newPatient["fullName"] = newPatient.name + ' ' + newPatient.surname;
+            newPatient.deceased = newPatient.deceased ? "Yes" : "No";
             return newPatient;
         });
         
