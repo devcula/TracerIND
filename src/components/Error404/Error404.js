@@ -1,26 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 
-export default class Error404 extends Component {
-    render() {
-        const styles = {
-            center: {
-                textAlign: "center"
-            },
-            paddingLeft: {
-                paddingLeft: "10px"
-            },
-            left: {
-                textAlign: "left"
-            },
-            right: {
-                textAlign: "right"
-            }
+export default function Error404() {
+
+    var seconds = 3;
+
+    setInterval(() => {
+        seconds--;
+        document.getElementById('seconds').innerHTML = seconds;
+        if(seconds === 0){
+            clearInterval();
+            window.location.href = "/";
         }
-        return (
-            <div style={{ 'width': '100%', ...styles.center, 'color': 'red', 'padding': '15%' }}>
-                <h1>ERROR 404</h1>
-                <h3>PAGE NOT FOUND</h3>
-            </div>
-        )
-    }
+    }, 1000);
+
+    return (
+        <Container>
+            <fieldset style={{ textAlign: "center" }}>
+                <legend className="success-legend">Error 404</legend>
+                <Row>
+                    <Col>
+                        <FontAwesomeIcon icon={faTimesCircle} size="8x" color="green" />
+                    </Col>
+                </Row>
+                <Row style={{ marginTop: "2rem" }}>
+                    <Col>
+                        <h2>Page Not Found</h2>
+                    </Col>
+                </Row>
+                <Row style={{ marginTop: "2rem", marginBottom: "2rem" }}>
+                    <Col>
+                        Redirecting to homepage in <span id="seconds">{seconds}</span> seconds...
+                    </Col>
+                </Row>
+            </fieldset>
+        </Container >
+    )
 }

@@ -1,0 +1,91 @@
+.nav-space{
+    margin-top: 100px; 
+}
+
+@media only screen and (max-width: 500px){
+    .nav-space{
+        margin-top: 70px;
+    }
+}
+
+.login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70vh;
+}
+
+.login-form{
+    display: flex;
+    font-family: 'Spectral', serif;
+    box-shadow: 2px 2px 2px 2px #888888;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.login-form label {
+    font-family: 'Cookies', cursive;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: #292c2f;
+    padding: 40px 10px 10px 20px;
+    color: white;
+    border-radius: 10px;
+}
+
+.login-form label span{
+    color: #5383d3;
+}
+
+.login-form .formInput{
+    margin-top: 30px;
+}
+
+.formInput input{
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #DDDDDD;
+}
+
+.formInput input:focus{
+    border-bottom-color: #5383d3;
+}
+
+.submitBtn{
+    margin-top: 30px;
+    font-size: 20px;
+    padding: 15px;
+    background-color: #292c2f;
+    color: white;
+    border-radius: 40%;
+    outline: none;
+    border: 3px solid black;
+    box-shadow: 3px 3px #888888;
+    transition: all 0.1s linear;
+}
+
+.submitBtn:active{
+    box-shadow: none;
+    transform: translateY(5px);
+}
+
+.placeholder{
+    transition: all 0.5s linear;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 500px){
+    .formInput input{
+        font-size: 20px;
+        size: 20;
+    }
+
+    .submitBtn{
+        font-size: 15px;
+    }
+}
