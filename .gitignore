@@ -138,3 +138,4 @@ frontend/client/.env.development
 frontend/client/.env.production
 /.env.development
 /.env.production
+/node_modules/
