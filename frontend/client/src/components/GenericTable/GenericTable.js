@@ -163,21 +163,22 @@ class GenericTable extends React.Component {
         return (
             <React.Fragment>
                 <Row>
-                    <Col sm={3}>
+                    <Col sm={3} xs={4} >
                         <Button variant="danger" onClick={this.clearFilters} className="filter-button">
-                            Clear filters
+                            Clear filter
                         </Button>
                     </Col>
-                    <Col sm={3}>
+                    <Col sm={3} xs={4}>
                         <Button id="previousButton" onClick={this.previousPage} disabled={currentPageIndex === 0} >
                             Previous Page
                         </Button>
                     </Col>
-                    <Col sm={3}>
+                    <Col sm={3} xs={4}>
                         <Button id="nextButton" onClick={this.nextPage} disabled={currentPageIndex >= lastPageIndex}>
                             Next Page
                         </Button>
                     </Col>
+                    
                     <Col sm={3}>
                         <input type="number" min="1" value={this.state.noOfRows} placeholder="No. of Rows" onChange={this.changeNoOfRows} className="row-input-field" />
                     </Col>
