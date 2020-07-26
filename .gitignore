@@ -136,3 +136,5 @@ dmypy.json
 .vscode/settings.json
 frontend/client/.env.development
 frontend/client/.env.production
+/.env.development
+/.env.production
