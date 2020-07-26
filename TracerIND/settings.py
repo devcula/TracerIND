@@ -25,7 +25,7 @@ SECRET_KEY = 'f-7=$cp7#_8@8s5-pjpxe!)vh=%qowo=ctqay9@za*gk1gc!i='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['149.129.138.15']
 
 
 # Application definition
@@ -136,5 +136,5 @@ STATIC_URL = '/static/'
 CORS_ORIGIN_ALLOW_ALL = True # added to solve CORS
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'frontend', "build", "static"),  # update the STATICFILES_DIRS
+    os.path.join(BASE_DIR, 'frontend', "client", "src" , "static"),  # update the STATICFILES_DIRS
 )
