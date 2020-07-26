@@ -22,7 +22,7 @@ class Directory extends React.Component {
     componentDidMount() {
         axios.get(this.uri + 'GetAllPatient/').then(response => {
             // console.log(response);
-            axios.get(this.uri + 'GetVIllageNames/').then(responseVillage => {
+            axios.get(this.uri + 'GetAllVillage/').then(responseVillage => {
                 // this.setState({ villageList: responseVillage.data });
                 // this.setState({ loading: false });
                 this.setState(
