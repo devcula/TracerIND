@@ -9,12 +9,16 @@ import MainForm from './components/MainForm/MainForm';
 import Directory from './components/Directory/Directory';
 import Error404 from './components/Error404/Error404';
 
+
+
 class App extends Component {
   render() {
     return (
       <Router>
         <div>
         <Header />
+        
+
           <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
