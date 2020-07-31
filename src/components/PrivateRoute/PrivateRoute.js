@@ -3,6 +3,8 @@ import { Route, Redirect } from 'react-router-dom';
 
 import { authenticationService } from '../../services';
 
+import Header from '../Header/Header';
+
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={props => {
         const currentUser = authenticationService.currentUserValue;
@@ -12,7 +14,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
         }
 
         // authorised so return component
-        return <Component {...props} />
+        return <React.Fragment>
+            <Header />
+            <Component {...props} />
+        </React.Fragment>
     }} />
 )
 
