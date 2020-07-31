@@ -8,6 +8,8 @@ import axios from 'axios';
 import { uri } from '../../index';
 import FormSuccess from '../FormSuccess/FormSuccess';
 
+import {authenticationService} from '../../services';
+
 class MainForm extends React.Component {
 
     constructor() {
@@ -82,11 +84,12 @@ class MainForm extends React.Component {
             deathDate: this.state.deathDate !== undefined ? this.state.deathDate : "",
             placeOfDeath: this.state.placeOfDeath !== undefined ? this.state.placeOfDeath : "",
             causeOfDeath: this.state.causeOfDeath !== undefined ? this.state.causeOfDeath : "",
-            deworming: this.state.deworming ? this.state.deworming : false
+            deworming: this.state.deworming ? this.state.deworming : false,
+            type_data: authenticationService.currentUserValue.firstName === 'test' ? "Development" : "Production"
         }
 
         axios.post(uri + 'AddPatient/', dataToSend).then(response => {
-            // console.log(dataToSend);
+            console.log(dataToSend);
             // console.log("Sending data");
             // console.log(response);
             if (response.data.pkid === this.state.pkid) {

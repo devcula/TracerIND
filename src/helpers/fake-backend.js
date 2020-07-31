@@ -1,5 +1,6 @@
 export function configureFakeBackend() {
-    let users = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }];
+    let users = [{ id: 1, username: 'test', password: 'test', firstName: 'test', lastName: 'test' },
+        { id: 2, username: 'admin', password: 'admin', firstName: 'Admin', lastName: 'Admin' }];
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {
         const isLoggedIn = opts.headers['Authorization'] === 'Bearer fake-jwt-token';

@@ -325,7 +325,7 @@ class TestDetailsForm extends React.Component {
     }
 
     componentDidMount = () => {
-        console.log(this.state)
+        // console.log(this.state)
         this.serumCreatinineAfterReRendering();
         this.bloodUreaAfterReRendering();
         this.uricAcidfterReRendering();

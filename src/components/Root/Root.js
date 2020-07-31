@@ -33,7 +33,7 @@ export default class Root extends React.Component {
     }
 
     render() {
-        const { currentUser } = this.state;
+        // const { currentUser } = this.state;
         return (
             <Router history={history}>
                 <div>
