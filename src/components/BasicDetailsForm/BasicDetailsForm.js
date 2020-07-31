@@ -6,6 +6,8 @@ import VillageSec from '../VillageSecretariat/VillageSec';
 import Village from '../Village/Village';
 import axios from 'axios';
 
+import { authHeader } from '../../helpers';
+
 import './BasicDetailsForm.css';
 class BasicDetailsForm extends React.Component {
 
@@ -67,8 +69,12 @@ class BasicDetailsForm extends React.Component {
         );
         if (event.target.value) {
             console.log("Getting phcs");
-            axios.post(this.uri + 'GetPHCData/', {
+            axios.post(this.uri + 'GetPHCData/'
+            , {
                 mandal: event.target.value
+            },
+            {
+                headers: authHeader()
             })
                 .then(response => {
                     this.setState({ phcList: response.data });
@@ -91,8 +97,12 @@ class BasicDetailsForm extends React.Component {
         );
         if (phc) {
             console.log("Getting village secs");
-            axios.post(this.uri + 'GetVillageSecData/', {
+            axios.post(this.uri + 'GetVillageSecData/', 
+            {
                 PHC: phc
+            },
+            {
+                headers: authHeader()
             })
                 .then(response => {
                     this.setState({ villageSecList: response.data });
@@ -107,8 +117,12 @@ class BasicDetailsForm extends React.Component {
         this.setState({ villageList: [], village: "", village_sec: villageSec });
         if (villageSec) {
             console.log("Getting villages");
-            axios.post(this.uri + 'GetVillageData/', {
+            axios.post(this.uri + 'GetVillageData/', 
+            {
                 village_sec: villageSec
+            },
+            {
+                headers: authHeader()
             })
                 .then(response => {
                     this.setState({ villageList: response.data });
