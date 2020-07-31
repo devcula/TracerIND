@@ -14,11 +14,9 @@ import Error404 from './components/Error404/Error404';
 class App extends Component {
   render() {
     return (
-      <Router>
+      // <Router>
         <div>
-        <Header />
-        
-
+          <Header />
           <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
@@ -28,7 +26,7 @@ class App extends Component {
           <Route component={Error404} />
           </Switch>
         </div>
-      </Router>
+      // </Router>
     );
   }
 }

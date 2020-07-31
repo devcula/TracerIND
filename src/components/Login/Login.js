@@ -1,6 +1,7 @@
 import React from 'react';
 import './Login.css';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { authenticationService } from '../../services';
 
 class Login extends React.Component {
 
@@ -10,22 +11,32 @@ class Login extends React.Component {
             username: "",
             password: ""
         }
-    }
-
-    login = async() => {
-        if(this.state.username === "test" && this.state.password === "test"){
-            await new Promise(resolve => this.props.changeStatus(true, () => resolve()));
-            window.location.href = "/home";
+        if (authenticationService.currentUserValue) {
+            this.props.history.push('/');
         }
     }
 
+    login = () => {
+        let { username, password } = this.state;
+        authenticationService.login(username, password)
+            .then(
+                user => {
+                    const { from } = this.props.location.state || { from: { pathname: "/" } };
+                    this.props.history.push(from);
+                },
+                error => {
+                    console.log(error);
+                }
+            );
+    }
+
     handleChange = input => event => {
-        this.setState({[input] : event.target.value})
+        this.setState({ [input]: event.target.value })
     }
 
     render() {
         return (
-            <Container style={{width: "50%", marginTop: "20vh"}}>
+            <Container style={{ width: "50%", marginTop: "20vh" }}>
                 <fieldset>
                     <legend>Enter your Login Details</legend>
                     <Row>
@@ -52,7 +63,7 @@ class Login extends React.Component {
                             </Form.Group>
                         </Col>
                     </Row>
-                    <Row style={{textAlign: "center", margin: "1rem"}}>
+                    <Row style={{ textAlign: "center", margin: "1rem" }}>
                         <Col>
                             <Button className="cool-button" size="lg" onClick={this.login}>Login</Button>
                         </Col>

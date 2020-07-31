@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 import './Header.css'
 
 import { faHome, faChartLine, faUserPlus, faInfoCircle, faList } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { authenticationService } from '../../services';
 
 import logo from '../../assets/logo_transparent.png';
 export default class Header extends Component {
@@ -31,6 +32,9 @@ export default class Header extends Component {
 						<Nav.Link href="/about">
 							<FontAwesomeIcon icon={faInfoCircle} color="white" /> &nbsp;About
 						</Nav.Link>
+					</Nav>
+					<Nav>
+						<Button onClick={authenticationService.logout}>Logout</Button>
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>
