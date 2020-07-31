@@ -2,12 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-import App from './App';
+// import App from './App';
+import Root from './components/Root/Root';
 import * as serviceWorker from './serviceWorker';
+import { configureFakeBackend } from './helpers';
+
+configureFakeBackend();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Root />
   </React.StrictMode>,
   document.getElementById('root')
 );
