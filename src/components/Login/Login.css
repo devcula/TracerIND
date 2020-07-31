@@ -89,3 +89,15 @@
         font-size: 15px;
     }
 }
+
+.heading {
+    letter-spacing: 1px;
+    box-shadow: 0 0 16px 0px #5A5A5A;
+    width: auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #27474E;
+    color: #FAC80A;
+    width: fit-content;
+    margin: auto;
+}
