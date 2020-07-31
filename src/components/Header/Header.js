@@ -34,7 +34,7 @@ export default class Header extends Component {
 						</Nav.Link>
 					</Nav>
 					<Nav>
-						<Button className="cool-button" onClick={authenticationService.logout}>Logout</Button>
+						<Button className="cool-button" style={{border: "none"}} onClick={authenticationService.logout}>Logout</Button>
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>

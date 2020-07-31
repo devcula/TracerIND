@@ -36,17 +36,22 @@ class Login extends React.Component {
 
     render() {
         return (
-            <Container style={{ width: "50%", marginTop: "20vh" }}>
-                <fieldset>
+            <Container style={{ marginTop: "10vh", textAlign: "center" }}>
+                <Row className="heading">
+                    <Col>
+                        <h2>Welcome to TracerIND</h2>
+                    </Col>
+                </Row>
+                <fieldset style={{ marginTop: "10vh"}}>
                     <legend>Enter your Login Details</legend>
                     <Row>
                         <Col>
                             <Form.Group as={Row} controlId="username">
-                                <Col md={6} sm={12} xs={12}>
+                                <Col md={6} sm={12}>
                                     <Form.Label>Username :</Form.Label>
                                 </Col>
-                                <Col md={6} sm={12} xs={12}>
-                                    <Form.Control onChange={this.handleChange('username')} />
+                                <Col md={6} sm={12}>
+                                    <Form.Control placeholder="Enter username" onChange={this.handleChange('username')} />
                                 </Col>
                             </Form.Group>
                         </Col>
@@ -54,11 +59,11 @@ class Login extends React.Component {
                     <Row>
                         <Col>
                             <Form.Group as={Row} controlId="password">
-                                <Col md={6} sm={12} xs={12}>
+                                <Col md={6} sm={12}>
                                     <Form.Label>Password :</Form.Label>
                                 </Col>
-                                <Col md={6} sm={12} xs={12}>
-                                    <Form.Control type="password" onChange={this.handleChange('password')} />
+                                <Col md={6} sm={12}>
+                                    <Form.Control placeholder="Enter password" type="password" onChange={this.handleChange('password')} />
                                 </Col>
                             </Form.Group>
                         </Col>

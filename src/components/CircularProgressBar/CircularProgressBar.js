@@ -86,7 +86,7 @@ class Circle extends React.Component {
                     strokeWidth="10"
                     sqSize="200"
                     percentage={this.state.percentage} />
-                <div>
+                {/* <div>
                     <input
                         id="progressInput"
                         type="range"
@@ -95,7 +95,7 @@ class Circle extends React.Component {
                         step="1"
                         value={this.state.percentage}
                         onChange={this.handleChangeEvent} />
-                </div>
+                </div> */}
             </div>
         );
     }
