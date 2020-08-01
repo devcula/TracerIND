@@ -5,6 +5,11 @@
 legend{
   background-color: #0a5767;
 }
+
+.container{
+  margin-top: 30px;
+  border-radius: 25px;
+}
 /* fieldset {
     background-image: linear-gradient(to right top, #7a9e7e, #3d7b74, #0a5767, #0c314d, #160c28);
     color: white;

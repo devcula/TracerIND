@@ -9,11 +9,11 @@ export default class Dashboard extends Component {
     render() {
         return (
             <React.Fragment>
-            <SideBar />
-            <Container>
-                <fieldset style={{ backgroundImage: "linear-gradient(to right top, #7a9e7e, #3d7b74, #0a5767, #0c314d, #160c28)", color: "white"}}>
-                    <legend>Dashboard</legend>
-                    <Container>
+            <div id = "App">
+                       <SideBar pageWrapId={"page-wrap"} outerContainerId={"App"} />
+                       <div id="page-wrap">
+
+                    <Container style={{ backgroundImage: "linear-gradient(to right top, #7a9e7e, #3d7b74, #0a5767, #0c314d, #160c28)", color: "white"}}>
                         <Row>
                             <Col xs={12} sm={8} className="main-section">
                                 <p>I spend a lot of time walking around in the woods and talking to trees, and squirrels, and little rabbits and stuff. The secret to doing anything is believing that you can do it. Anything that you believe you can do strong enough, you can do. Anything. As long as you believe. Just go out and talk to a tree. Make friends with it. I guess that would be considered a UFO. A big cotton ball in the sky. Tree trunks grow however makes them happy. In nature, dead trees are just as normal as live trees.</p>
@@ -27,8 +27,8 @@ export default class Dashboard extends Component {
                             </Col>
                         </Row>
                     </Container>
-                </fieldset>
-            </Container>
+                    </div>
+                    </div>
             </React.Fragment>
         )
     }
