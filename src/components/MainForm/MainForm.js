@@ -8,7 +8,8 @@ import axios from 'axios';
 import { uri } from '../../index';
 import FormSuccess from '../FormSuccess/FormSuccess';
 
-import {authenticationService} from '../../services';
+import { authenticationService } from '../../services';
+import { authHeader } from '../../helpers';
 
 class MainForm extends React.Component {
 
@@ -31,10 +32,10 @@ class MainForm extends React.Component {
     }
 
     appendState = (childState, callback) => {
-        if(callback){
+        if (callback) {
             this.setState(childState, callback());
         }
-        else{
+        else {
             this.setState(childState);
         }
     }
@@ -59,10 +60,10 @@ class MainForm extends React.Component {
             phone: this.state.phone,
             bloodgroup: this.state.bloodgroup,
             PVGT: this.state.PVGT,
-            dateoftesting: this.state.dateoftesting ? this.state.dateoftesting : "" ,
+            dateoftesting: this.state.dateoftesting ? this.state.dateoftesting : "",
             serumCreatinine: this.state.serumCreatinine ? this.state.serumCreatinine : 0,
-            bloodUrea: this.state.bloodUrea  ? this.state.bloodUrea : 0,
-            uricAcid: this.state.uricAcid  ? this.state.uricAcid : 0,
+            bloodUrea: this.state.bloodUrea ? this.state.bloodUrea : 0,
+            uricAcid: this.state.uricAcid ? this.state.uricAcid : 0,
             electrolytes_sodium: this.state.electrolytes_sodium ? this.state.electrolytes_sodium : 0,
             electrolytes_potassium: this.state.electrolytes_potassium ? this.state.electrolytes_potassium : 0,
             bun: this.state.bun ? this.state.bun : 0,
@@ -88,18 +89,22 @@ class MainForm extends React.Component {
             type_data: authenticationService.currentUserValue.firstName === 'test' ? "Development" : "Production"
         }
 
-        axios.post(uri + 'AddPatient/', dataToSend).then(response => {
-            console.log(dataToSend);
-            // console.log("Sending data");
-            // console.log(response);
-            if (response.data.pkid === this.state.pkid) {
-                this.setState({}, this.setState({ formName: "Success" }));
-            }
-            else{
-                alert("Failed to save.. Please Try again");
-                // this.setState({ formName: "Success" });
-            }
-        })
+        axios.post(uri + 'AddPatient/',
+            dataToSend,
+            {
+                headers: authHeader()
+            }).then(response => {
+                    console.log(dataToSend);
+                    // console.log("Sending data");
+                    // console.log(response);
+                    if (response.data.pkid === this.state.pkid) {
+                        this.setState({}, this.setState({ formName: "Success" }));
+                    }
+                    else {
+                        alert("Failed to save.. Please Try again");
+                        // this.setState({ formName: "Success" });
+                    }
+                })
             .catch(err => {
                 console.log(err);
             })

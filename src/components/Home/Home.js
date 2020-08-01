@@ -9,19 +9,21 @@ export default class Home extends Component {
             <Container>
                 <Jumbotron>
                     <h2>Welcome to TracerIND</h2>
-                    <p>**Info in one line**</p>
                 </Jumbotron>
                 <Row className="show-grid text-center">
                     <Col xs={12} sm={4} className="home-col">
                         <Circle percentage="40" />
+                        <br/>
                         <h4>Active</h4>
                     </Col>
                     <Col xs={12} sm={4} className="home-col">
                         <Circle percentage="45" />
+                        <br/>
                         <h4>Recovered</h4>
                     </Col>
                     <Col xs={12} sm={4} className="home-col">
                         <Circle percentage="15" />
+                        <br/>
                         <h4>Deaths</h4>
                     </Col>
                 </Row>
