@@ -32,7 +32,6 @@ class BasicDetailsForm extends React.Component {
             bloodgroup: props.getValue('bloodgroup'),
             PVGT: props.getValue('PVGT'),
             address: props.getValue('address'),
-            children: props.getValue('children'),
             deworming: props.getValue('deworming'),
             phcList: props.getValue('phcList'),
             villageList: props.getValue('villageList'),
@@ -57,9 +56,9 @@ class BasicDetailsForm extends React.Component {
 
     fetchOrUpdatePHCList = event => {
         this.setState(
-            { 
+            {
                 mandal: event.target.value,
-                phcList: [], 
+                phcList: [],
                 phc: "",
                 villageSecList: [],
                 village_sec: "",
@@ -70,12 +69,12 @@ class BasicDetailsForm extends React.Component {
         if (event.target.value) {
             console.log("Getting phcs");
             axios.post(this.uri + 'GetPHCData/'
-            , {
-                mandal: event.target.value
-            },
-            {
-                headers: authHeader()
-            })
+                , {
+                    mandal: event.target.value
+                },
+                {
+                    headers: authHeader()
+                })
                 .then(response => {
                     this.setState({ phcList: response.data });
                 })
@@ -89,21 +88,21 @@ class BasicDetailsForm extends React.Component {
         this.setState(
             {
                 phc: phc,
-                villageSecList: [], 
-                village_sec: "", 
+                villageSecList: [],
+                village_sec: "",
                 villageList: [],
                 village: ""
             }
         );
         if (phc) {
             console.log("Getting village secs");
-            axios.post(this.uri + 'GetVillageSecData/', 
-            {
-                PHC: phc
-            },
-            {
-                headers: authHeader()
-            })
+            axios.post(this.uri + 'GetVillageSecData/',
+                {
+                    PHC: phc
+                },
+                {
+                    headers: authHeader()
+                })
                 .then(response => {
                     this.setState({ villageSecList: response.data });
                 })
@@ -117,13 +116,13 @@ class BasicDetailsForm extends React.Component {
         this.setState({ villageList: [], village: "", village_sec: villageSec });
         if (villageSec) {
             console.log("Getting villages");
-            axios.post(this.uri + 'GetVillageData/', 
-            {
-                village_sec: villageSec
-            },
-            {
-                headers: authHeader()
-            })
+            axios.post(this.uri + 'GetVillageData/',
+                {
+                    village_sec: villageSec
+                },
+                {
+                    headers: authHeader()
+                })
                 .then(response => {
                     this.setState({ villageList: response.data });
                 })
@@ -354,22 +353,6 @@ class BasicDetailsForm extends React.Component {
                                 </Form.Group>
                             </Col>
                         </Row>
-                        {/* <Row>
-                            <Col sm={12}>
-                                <Form.Group as={Row}>
-                                    <Col sm={3}>
-                                        <Form.Label>PHC :</Form.Label>
-                                    </Col>
-                                    <Col sm={3}>
-                                        <PHC phcList={this.state.phcList}
-                                            phcValue={this.state.phc}
-                                            fetchVillageSec={this.fetchOrUpdateVillageSecList}
-                                            id="phc"
-                                        />
-                                    </Col>
-                                </Form.Group>
-                            </Col>
-                        </Row> */}
                         <Row>
                             <Col sm={12}>
                                 <Form.Group as={Row}>
@@ -398,23 +381,6 @@ class BasicDetailsForm extends React.Component {
                                 </Form.Group>
                             </Col>
                         </Row>
-                        {/* <Row>
-                            <Col sm={12}>
-                                <Form.Group as={Row}>
-                                    <Col sm={3}>
-                                        <Form.Label>Village :</Form.Label>
-                                    </Col>
-                                    <Col sm={3}>
-                                        <Village
-                                            updateValue={this.updateState}
-                                            id="village"
-                                            villageList={this.state.villageList}
-                                            villageValue={this.state.village}
-                                        />
-                                    </Col>
-                                </Form.Group>
-                            </Col>
-                        </Row> */}
                         <Row>
                             <Col sm={12}>
                                 <Form.Group as={Row}>
@@ -441,18 +407,6 @@ class BasicDetailsForm extends React.Component {
                                             value={this.state.surname} />
                                     </Col>
                                 </Form.Group>
-                                {/* <Form.Group as={Row} controlId="surname">
-                                    <Col sm={3}>
-                                        <Form.Label>Surname :</Form.Label>
-                                    </Col>
-                                    <Col sm={3}>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Surname"
-                                            onChange={this.handleChange('surname')}
-                                            value={this.state.surname} />
-                                    </Col>
-                                </Form.Group> */}
                             </Col>
                         </Row>
                         <Row>
@@ -514,21 +468,6 @@ class BasicDetailsForm extends React.Component {
                                             value={this.state.gaurdian_name}
                                         />
                                     </Col>
-                                    {/* <Col sm={6} style={{ display: this.state.relation ? 'block' : 'none' }}>
-                                        <Form.Group as={Row} controlId="gaurdian_name">
-                                            <Col sm={6}>
-                                                <Form.Label>Name :</Form.Label>
-                                            </Col>
-                                            <Col sm={6}>
-                                                <Form.Control
-                                                    type="text"
-                                                    placeholder="Enter Name"
-                                                    onChange={this.handleChange('gaurdian_name')}
-                                                    value={this.state.gaurdian_name}
-                                                />
-                                            </Col>
-                                        </Form.Group>
-                                    </Col> */}
                                 </Row>
                             </Col>
                         </Row>
@@ -604,98 +543,26 @@ class BasicDetailsForm extends React.Component {
                         <br />
                         <Row>
                             <Col sm={12}>
-                                {/* <Row> */}
-                                    {/* <Col sm={3}>
+                                <Form.Group as={Row}>
+                                    <Col sm={3}>
                                         <Form.Label>Marital Status :</Form.Label>
-                                    </Col> */}
-                                    {/* <Col sm={3} id="maritalstatus" style={styles.left}>
-                                        <Row>
-                                            <Col>
-                                                <Form.Check
-                                                    type='radio'
-                                                    value="single"
-                                                    id="single"
-                                                    label="Single"
-                                                    name="maritalstatus"
-                                                    onChange={this.handleChange('maritalstatus')}
-                                                    checked={this.state.maritalstatus === "single"}
-                                                />
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <Form.Check
-                                                    type='radio'
-                                                    value="married"
-                                                    id="married"
-                                                    label="Married"
-                                                    name="maritalstatus"
-                                                    onChange={this.handleChange('maritalstatus')}
-                                                    checked={this.state.maritalstatus === "married"}
-                                                />
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <Form.Check
-                                                    type='radio'
-                                                    value="separated"
-                                                    id="separated"
-                                                    label="Separated"
-                                                    name="maritalstatus"
-                                                    onChange={this.handleChange('maritalstatus')}
-                                                    checked={this.state.maritalstatus === "separated"}
-                                                />
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <Form.Check
-                                                    type='radio'
-                                                    value="divorced"
-                                                    id="divorced"
-                                                    label="Divorced"
-                                                    name="maritalstatus"
-                                                    onChange={this.handleChange('maritalstatus')}
-                                                    checked={this.state.maritalstatus === "divorced"}
-                                                />
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <Form.Check
-                                                    type='radio'
-                                                    value="widowed"
-                                                    id="widowed"
-                                                    label="Widowed"
-                                                    name="maritalstatus"
-                                                    onChange={this.handleChange('maritalstatus')}
-                                                    checked={this.state.maritalstatus === "widowed"}
-                                                />
-                                            </Col>
-                                        </Row>
-                                    </Col> */}
-                                    <Form.Group as={Row}>
-                                        <Col sm={3}>
-                                            <Form.Label>Marital Status :</Form.Label>
-                                        </Col>
-                                        <Col sm={3}>
-                                            <Form.Control
-                                                as="select"
-                                                onChange={this.handleChange('maritalstatus')}
-                                                id="maritalstatus"
-                                                value={this.state.maritalstatus}
-                                            >
-                                                <option value="">Select</option>
-                                                <option value="single">Single</option>
-                                                <option value="married">Married</option>
-                                                <option value="separated">Separated</option>
-                                                <option value="divorced">Divorced</option>
-                                                <option value="widowed">Widowed</option>
-                                            </Form.Control>
-                                        </Col>
-                                    </Form.Group>
-                                {/* </Row> */}
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control
+                                            as="select"
+                                            onChange={this.handleChange('maritalstatus')}
+                                            id="maritalstatus"
+                                            value={this.state.maritalstatus}
+                                        >
+                                            <option value="">Select</option>
+                                            <option value="single">Single</option>
+                                            <option value="married">Married</option>
+                                            <option value="separated">Separated</option>
+                                            <option value="divorced">Divorced</option>
+                                            <option value="widowed">Widowed</option>
+                                        </Form.Control>
+                                    </Col>
+                                </Form.Group>
                             </Col>
                         </Row>
                         <br />
@@ -715,18 +582,6 @@ class BasicDetailsForm extends React.Component {
                                             onChange={this.restrictDigits(10)}
                                             value={this.state.phone} />
                                     </Col>
-                                    {/* <Col sm={3}>
-                                        <Form.Label>Address : </Form.Label>
-                                    </Col>
-                                    <Col sm={3}>
-                                        <textarea
-                                            placeholder="Enter address"
-                                            value={this.state.address}
-                                            id="address"
-                                            className="form-control"
-                                            onChange={this.handleChange('address')}
-                                        />
-                                    </Col> */}
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -739,28 +594,10 @@ class BasicDetailsForm extends React.Component {
                                     <Col sm={6}>
                                         <textarea
                                             placeholder="Enter address"
-                                            value={this.state.address} 
+                                            value={this.state.address}
                                             onChange={this.handleChange('address')}
                                             className="form-control"
-                                            />
-                                    </Col>
-                                </Form.Group>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col sm={12}>
-                                <Form.Group as={Row} controlId="children">
-                                    <Col sm={3}>
-                                        <Form.Label>Children : </Form.Label>
-                                    </Col>
-                                    <Col sm={3}>
-                                        <Form.Control
-                                            min="0"
-                                            max="10"
-                                            type="number"
-                                            placeholder="No. of children"
-                                            onChange={this.restrictDigits(2)}
-                                            value={this.state.children} />
+                                        />
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -798,7 +635,7 @@ class BasicDetailsForm extends React.Component {
                                     <Col sm={3}>
                                         <Form.Label>Deworming :</Form.Label>
                                     </Col>
-                                    <Col sm={3} id="deworming">
+                                    <Col sm={3} id="deworming" style={styles.left}>
                                         <Row>
                                             <Col>
                                                 <Form.Check
@@ -836,17 +673,17 @@ class BasicDetailsForm extends React.Component {
                                     <Col sm={3}>
                                         <Form.Label>PVTG :</Form.Label>
                                     </Col>
-                                    <Col sm={3} id="PVGT">
+                                    <Col sm={3} id="PVGT" style={styles.left}>
                                         <Row>
                                             <Col>
                                                 <Form.Check
                                                     type='radio'
-                                                    value="yes"
-                                                    id="pvgt_yes"
-                                                    label="Yes"
+                                                    value="ST"
+                                                    id="pvgt_st"
+                                                    label="ST"
                                                     name="PVGT"
                                                     onChange={this.handleChange('PVGT')}
-                                                    checked={this.state.PVGT === "yes"}
+                                                    checked={this.state.PVGT === "ST"}
                                                 />
                                             </Col>
                                         </Row>
@@ -854,12 +691,12 @@ class BasicDetailsForm extends React.Component {
                                             <Col>
                                                 <Form.Check
                                                     type='radio'
-                                                    value="no"
-                                                    id="pvgt_no"
-                                                    label="No"
+                                                    value="NST"
+                                                    id="pvgt_nst"
+                                                    label="Non ST"
                                                     name="PVGT"
                                                     onChange={this.handleChange('PVGT')}
-                                                    checked={this.state.PVGT === "no"}
+                                                    checked={this.state.PVGT === "NST"}
                                                 />
                                             </Col>
                                         </Row>

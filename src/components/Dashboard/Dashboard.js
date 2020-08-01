@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-// import stetho from '../../assets/stetho.jpg'
+
 import './Dashboard.css';
+
+import SideBar from '../Sidebar/Sidebar';
 
 export default class Dashboard extends Component {
     render() {
         return (
-            <Container>
-                {/* <Image src={stetho} className="header-image" /> */}
-                <fieldset style={{ backgroundImage: "linear-gradient(to right top, #7a9e7e, #3d7b74, #0a5767, #0c314d, #160c28)", color: "white"}}>
-                    <legend>Dashboard</legend>
+            <React.Fragment>
+            <div id = "App">
+                       <SideBar pageWrapId={"page-wrap"} outerContainerId={"App"} />
+                       <div id="page-wrap">
+
                     <Container>
-                        {/* <h2>Dashboard</h2> */}
-                        <Row>
-                            {/* <Image src={stetho} className="header-image" /> */}
-                            <Col xs={12} sm={8} className="main-section">
+                        <Row style={{marginTop: "40vh"}}>
+                            {/* <Col xs={12} sm={8} className="main-section">
                                 <p>I spend a lot of time walking around in the woods and talking to trees, and squirrels, and little rabbits and stuff. The secret to doing anything is believing that you can do it. Anything that you believe you can do strong enough, you can do. Anything. As long as you believe. Just go out and talk to a tree. Make friends with it. I guess that would be considered a UFO. A big cotton ball in the sky. Tree trunks grow however makes them happy. In nature, dead trees are just as normal as live trees.</p>
                                 <p>Sometimes you learn more from your mistakes than you do from your masterpieces. Here's something that's fun. If you overwork it you become a cloud killer. There's nothing worse than a cloud killer. These trees are so much fun. I get started on them and I have a hard time stopping.</p>
                                 <p>Trees grow in all kinds of ways. They're not all perfectly straight. Not every limb is perfect. You can't make a mistake. Anything that happens you can learn to use - and make something beautiful out of it. The light is your friend. Preserve it. If these lines aren't straight, your water's going to run right out of your painting and get your floor wet.</p>
@@ -23,11 +24,17 @@ export default class Dashboard extends Component {
                             </Col>
                             <Col xs={12} sm={4} className="sidebar-section">
                                 <p>I spend a lot of time walking around in the woods and talking to trees, and squirrels, and little rabbits and stuff. The secret to doing anything is believing that you can do it. Anything that you believe you can do strong enough, you can do. Anything. As long as you believe. Just go out and talk to a tree. Make friends with it. I guess that would be considered a UFO. A big cotton ball in the sky. Tree trunks grow however makes them happy. In nature, dead trees are just as normal as live trees.</p>
+                            </Col> */}
+                            <Col>
+                                <h1>
+                                        Coming Soon..
+                                </h1>
                             </Col>
                         </Row>
                     </Container>
-                </fieldset>
-            </Container>
+                    </div>
+                    </div>
+            </React.Fragment>
         )
     }
 }
