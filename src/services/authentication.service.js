@@ -4,7 +4,7 @@ import { handleResponse } from '../helpers';
 
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 
-const URI = process.env.REACT_APP_SERVER_URI;
+// const URI = process.env.REACT_APP_SERVER_URI;
 
 export const authenticationService = {
     login,
@@ -20,7 +20,7 @@ function login(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch(URI + `token_jwt_get/`, requestOptions)
+    return fetch(`/users/authenticate`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes

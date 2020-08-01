@@ -52,7 +52,7 @@ class Directory extends React.Component {
     }
 
     getVillageNameFromId = (id) => {
-        console.log("Id received " + id);
+        // console.log("Id received " + id);
         let { villageList } = this.state;
         if (villageList.length > 0) {
             for (let i = 0; i < villageList.length; i++) {
