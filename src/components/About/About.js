@@ -8,11 +8,9 @@ export default class About extends Component {
         return (
             <Container>
 
-                <fieldset style={{ backgroundImage: "linear-gradient(to right top, #7a9e7e, #3d7b74, #0a5767, #0c314d, #160c28)", color: "white" }}>
-                    <Row>
-
+                <fieldset style={{ backgroundImage: "linear-gradient(to right top, #7a9e7e, #3d7b74, #0a5767, #0c314d, #160c28)", color: "white", marginTop: "10%" }}>
+                    <Row style={{padding: "1rem"}}>
                         <Col xs={12} sm={8} smOffset={2}>
-                        {/* <Image src="assets/jumbo.jpg" className="header-image" /> */}
                             <h3>About TracerIND Team </h3>
                             <ul>
                               <li>Leads</li>
