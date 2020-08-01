@@ -645,7 +645,7 @@ class TestDetailsForm extends React.Component {
                                 )
                             }
                         })()}
-
+                        <br/>
                         {(() => {
                             if (this.state.doctorreq === 'true') {
                                 return (
@@ -660,7 +660,7 @@ class TestDetailsForm extends React.Component {
                                                         type='radio'
                                                         value="true"
                                                         id="opd"
-                                                        label="OIP"
+                                                        label="IP"
                                                         name="opd"
                                                         onChange={this.handleChange('opd')}
                                                         checked={this.state.opd === "true"}
@@ -673,7 +673,7 @@ class TestDetailsForm extends React.Component {
                                                         type='radio'
                                                         value="false"
                                                         id="opd"
-                                                        label="OOP"
+                                                        label="OP"
                                                         name="opd"
                                                         onChange={this.handleChange('opd')}
                                                         checked={this.state.opd === "false"}
