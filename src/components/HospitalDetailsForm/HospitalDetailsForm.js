@@ -20,20 +20,17 @@ class HospitalDetailsForm extends React.Component {
             deathDate: props.getValue('deathDate'),
             placeOfDeath: props.getValue('placeOfDeath'),
             causeOfDeath: props.getValue('causeOfDeath'),
-            recovery: props.getValue('recovery')
+            recovery: props.getValue('recovery'),
+            otherReferedHospitalName: "",
+            referredToSelected: props.getValue('referredToSelected') ? props.getValue('referredToSelected') : 'false'
         }
     }
-
-    //Hello
-
-
-
 
     handleChange = input => event => {
         this.setState({ [input]: event.target.value })
     }
 
-    validateAndNext = async() => {
+    validateAndNext = async () => {
         //Conditions to check.. If valid, Send form name to switch to next form
         // console.log(this.state);
         // this.props.changeData(this.state);
@@ -53,6 +50,16 @@ class HospitalDetailsForm extends React.Component {
 
     loadNextForm = (formName) => {
         this.props.changeData({ formName: formName });
+    }
+
+    handleReferredTo = event => {
+        let value = event.target.value;
+        if(value === 'other'){
+            this.setState({referredToSelected: 'true'});
+        }
+        else {
+            this.setState({referredto: value});
+        }
     }
 
     render() {
@@ -171,8 +178,8 @@ class HospitalDetailsForm extends React.Component {
                                                         <Form.Control
                                                             as="select"
 
-                                                            onChange={this.handleChange('referredto')}
-                                                            value={this.state.referredto} >
+                                                            onChange={this.handleReferredTo}
+                                                            value={this.state.referredToSelected === 'false' ? this.state.referredto : 'other'} >
                                                             <option value="">Choose...</option>
                                                             <option value="AH/Chintoor">AH/Chintoor</option>
                                                             <option value="AH/Rampachodavaram">AH/Rampachodavaram</option>
@@ -182,6 +189,26 @@ class HospitalDetailsForm extends React.Component {
                                                             <option value="other">other</option>
                                                         </Form.Control>
                                                     </Col>
+                                                    <Col sm={3}>
+                                                        {(() => {
+                                                            if (this.state.referredToSelected === 'true') {
+                                                                return (
+                                                                    <Form.Control as="textarea"
+                                                                        type="text"
+                                    
+                                                                        placeholder="Enter Hospital Name"
+                                                                        onChange={this.handleChange('referredto')}
+                                                                        value={this.state.referredto} />
+                                                                )
+                                                            }
+                                                            else {
+                                                                return (
+                                                                    <p></p>
+                                                                )
+                                                            }
+                                                        })()}
+                                                    </Col>
+
                                                 </Form.Group>
                                             </Col>
                                         </Row>
@@ -354,7 +381,7 @@ class HospitalDetailsForm extends React.Component {
                                                 </Col>
                                             </Row>
                                         </Col>
-                                        <br/>
+                                        <br />
                                         {(() => {
                                             if (this.state.deceased === "yes") {
                                                 return (

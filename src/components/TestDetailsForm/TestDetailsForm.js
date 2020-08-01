@@ -20,6 +20,7 @@ class TestDetailsForm extends React.Component {
             ailments: props.getValue('ailments'),
             dialysis: props.getValue('dialysis'),
             doctorreq: props.getValue('doctorreq'),
+            opd: props.getValue('opd'),
         }
     }
 
@@ -649,6 +650,47 @@ class TestDetailsForm extends React.Component {
                             if (this.state.doctorreq === 'true') {
                                 return (
                                     <Row>
+                                        <Col sm={4}>
+                                            <Form.Label>Patient Type :</Form.Label>
+                                        </Col>
+                                        <Col sm={3} id="opd ">
+                                            <Row>
+                                                <Col>
+                                                    <Form.Check
+                                                        type='radio'
+                                                        value="true"
+                                                        id="opd"
+                                                        label="OIP"
+                                                        name="opd"
+                                                        onChange={this.handleChange('opd')}
+                                                        checked={this.state.opd === "true"}
+                                                    />
+                                                </Col>
+                                            </Row>
+                                            <Row>
+                                                <Col>
+                                                    <Form.Check
+                                                        type='radio'
+                                                        value="false"
+                                                        id="opd"
+                                                        label="OOP"
+                                                        name="opd"
+                                                        onChange={this.handleChange('opd')}
+                                                        checked={this.state.opd === "false"}
+                                                    />
+                                                </Col>
+                                            </Row>
+                                        </Col>
+                                    </Row>
+                                )
+                            }
+
+                        })()}
+
+                        {(() => {
+                            if (this.state.opd === 'true') {
+                                return (
+                                    <Row>
                                         <Col sm={6} xs={6} style={styles.right}>
                                             <Button variant="primary"
                                                 onClick={this.previous}
@@ -662,7 +704,6 @@ class TestDetailsForm extends React.Component {
                                             >Next</Button>
                                         </Col>
                                     </Row>
-
                                 )
                             }
                             else {
@@ -683,6 +724,7 @@ class TestDetailsForm extends React.Component {
                                     </Row>
                                 )
                             }
+
                         })()}
                     </fieldset>
                 </Row>

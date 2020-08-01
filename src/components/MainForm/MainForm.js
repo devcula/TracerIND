@@ -86,7 +86,8 @@ class MainForm extends React.Component {
             placeOfDeath: this.state.placeOfDeath !== undefined ? this.state.placeOfDeath : "",
             causeOfDeath: this.state.causeOfDeath !== undefined ? this.state.causeOfDeath : "",
             deworming: this.state.deworming ? this.state.deworming : false,
-            type_data: authenticationService.currentUserValue.firstName === 'test' ? "Development" : "Production"
+            type_data: authenticationService.currentUserValue.firstName === 'test' ? "Development" : "Production",
+            opd: this.state.opd ? this.state.opd : false
         }
 
         axios.post(uri + 'AddPatient/',
