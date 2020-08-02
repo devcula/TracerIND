@@ -30,7 +30,8 @@ function login(username, password) {
             if(user){
                 let userData = {
                     username,
-                    token: user.token
+                    token: user.token,
+                    timestamp: new Date()
                 }
                 localStorage.setItem('currentUser', JSON.stringify(userData));
                 currentUserSubject.next(userData);
@@ -40,26 +41,27 @@ function login(username, password) {
         });
 }
 
-async function refresh() {
+function refresh() {
     // console.log("in refresh method");
     // console.log(currentUserSubject.value);
     if(currentUserSubject.value){
-        await axios.post(URI + 'token_jwt_refresh/', { token: currentUserSubject.value.token })
+        axios.post(URI + 'token_jwt_refresh/', { token: currentUserSubject.value.token })
             .then(handleResponse)
             .then(data => {
                 if(data) {
                     let newData = { ...currentUserSubject.value };
                     newData.token = data.token;
+                    newData.timestamp = new Date();
 
                     localStorage.setItem('currentUser', JSON.stringify(newData));
                     currentUserSubject.next(newData);
                 }
             });
-        return true;
+        // return true;
     }
-    else{
-        return true;
-    }
+    // else{
+    //     return true;
+    // }
 }
 
 function logout() {

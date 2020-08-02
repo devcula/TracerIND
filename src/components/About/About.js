@@ -10,7 +10,7 @@ export default class About extends Component {
 
                 <fieldset style={{ backgroundImage: "linear-gradient(to right top, #7a9e7e, #3d7b74, #0a5767, #0c314d, #160c28)", color: "white", marginTop: "10%" }}>
                     <Row style={{padding: "1rem"}}>
-                        <Col xs={12} sm={8} smOffset={2}>
+                        <Col xs={12} sm={8} smoffset={2}>
                             <h3>About TracerIND Team </h3>
                             <ul>
                               <li>Leads</li>
