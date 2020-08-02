@@ -19,12 +19,20 @@ export default class Root extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            currentUser: null
+            currentUser: null,
+            isReady: false
         }
     }
 
     componentDidMount() {
         authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }));
+        this.refreshAuth();
+    }
+
+    refreshAuth = async() => {
+        let result = await authenticationService.refresh();
+        // console.log(result);
+        this.setState({isReady: result});
     }
 
     logout() {
@@ -58,13 +66,27 @@ export default class Root extends React.Component {
                         </div>
                     </div> */}
                     <Switch>
+                        <Route exact path="/login" component={Login} />
                         <PrivateRoute exact path="/" component={Home} />
                         <PrivateRoute exact path="/about" component={About} />
                         <PrivateRoute exact path="/dashboard" component={Dashboard} />
                         <PrivateRoute exact path="/add" component={MainForm} />
                         <PrivateRoute exact path="/directory" component={Directory} />
-                        <Route exact path="/login" component={Login} />
                         <Route component={Error404} />
+                        {/* {
+                            (() => {
+                                if(this.state.isReady){
+                                    return <React.Fragment>
+                                        
+                                    </React.Fragment>
+                                }
+                                else{
+                                    return <React.Fragment>
+                                        Authenticating...
+                                    </React.Fragment>
+                                }
+                            })()
+                        } */}
                     </Switch>
                 </div>
             </Router>
