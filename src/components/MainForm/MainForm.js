@@ -46,7 +46,12 @@ class MainForm extends React.Component {
 
     submitForm = () => {
         // console.log("Inside submit form");
-        let dataToSend = {
+        console.log(this.state.pedalEdema)
+        console.log(this.state.pedaltype)
+        console.log(this.state.dateoftesting)
+        console.log(this.state.pedaltype)
+        console.log(this.state.name)
+        let  dataToSend = {
             pkid: this.state.pkid,
             adhaar: this.state.adhaar,
             village: this.state.village,
@@ -67,8 +72,9 @@ class MainForm extends React.Component {
             electrolytes_sodium: this.state.electrolytes_sodium ? this.state.electrolytes_sodium : 0,
             electrolytes_potassium: this.state.electrolytes_potassium ? this.state.electrolytes_potassium : 0,
             bun: this.state.bun ? this.state.bun : 0,
-            pedalEdema: this.state.pedalEdema !== undefined ? this.state.pedalEdema : "",
-            pedaltype: this.state.pedaltype !== undefined ? this.state.pedaltype : "",
+            pedalEdema: this.state.pedalEdema ? this.state.pedalEdema : "",
+           // pedaltype: this.state.pedaltype ? this.state.pedaltype : "",
+            pedaltype: this.state.pedalEdema === 'N' ? "" : this.state.pedaltype,
             kidneystatus: this.state.kidneystatus !== undefined ? this.state.kidneystatus : "",
             ailments: this.state.ailments !== undefined ? this.state.ailments : "",
             dialysis: this.state.dialysis ? this.state.dialysis : false,
@@ -89,7 +95,7 @@ class MainForm extends React.Component {
             type_data: authenticationService.currentUserValue.firstName === 'test' ? "Development" : "Production",
             opd: this.state.opd ? this.state.opd : false
         }
-
+        console.log(this.state.pedaltype)
         axios.post(uri + 'AddPatient/',
             dataToSend,
             {
