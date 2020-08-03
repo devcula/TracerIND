@@ -40,8 +40,9 @@ class TestDetailsForm extends React.Component {
 
     previous = () => {
         console.log(this.state)
-        this.saveData();
-        this.props.changeData({ formName: "UserDetails" });
+        this.saveData().then(() => {
+            this.props.changeData({ formName: "UserDetails" });
+        })
     }
 
     handleChange = input => event => {
@@ -232,9 +233,11 @@ class TestDetailsForm extends React.Component {
                 }
             }
             console.log(this.state)
-            this.saveData();
-            console.log(this.state)
-            this.props.submit();
+            this.saveData()
+            .then(() => {
+                console.log(this.state)
+                this.props.submit();
+            })
             // console.log(invalidIds[0])
         }
         catch (err) {
