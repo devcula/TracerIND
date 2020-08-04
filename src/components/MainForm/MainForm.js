@@ -51,6 +51,7 @@ class MainForm extends React.Component {
         console.log(this.state.dateoftesting)
         console.log(this.state.pedaltype)
         console.log(this.state.name)
+        console.log(this.state.kid)
         let  dataToSend = {
             pkid: this.state.pkid,
             adhaar: this.state.adhaar,
@@ -73,12 +74,11 @@ class MainForm extends React.Component {
             electrolytes_potassium: this.state.electrolytes_potassium ? this.state.electrolytes_potassium : 0,
             bun: this.state.bun ? this.state.bun : 0,
             pedalEdema: this.state.pedalEdema ? this.state.pedalEdema : "",
-           // pedaltype: this.state.pedaltype ? this.state.pedaltype : "",
             pedaltype: this.state.pedalEdema === 'N' ? "" : this.state.pedaltype,
             kidneystatus: this.state.kidneystatus !== undefined ? this.state.kidneystatus : "",
-            ailments: this.state.ailments !== undefined ? this.state.ailments : "",
-            dialysis: this.state.dialysis ? this.state.dialysis : false,
-            doctorreq: this.state.doctorreq ? this.state.doctorreq : false,
+            ailments: this.state.kidneystatus === "good" ? "" : this.state.ailments,
+            dialysis: this.state.kidneystatus === "good"? false : this.state.dialysis,
+            doctorreq: this.state.kidneystatus === "good"? false : this.state.doctorreq, 
             hospitalAdmit: this.state.hospitalAdmit !== undefined ? this.state.hospitalAdmit : "",
             dateOfAdmit: this.state.dateOfAdmit !== undefined ? this.state.dateOfAdmit : "",
             refered: this.state.refered ? this.state.refered : false,
@@ -94,6 +94,7 @@ class MainForm extends React.Component {
             deworming: this.state.deworming ? this.state.deworming : false,
             type_data: authenticationService.currentUserValue.firstName === 'test' ? "Development" : "Production",
             opd: this.state.opd ? this.state.opd : false
+            //  opd: this.state.doctorreq === 'false'? false : this.state.opd
         }
         console.log(this.state.pedaltype)
         axios.post(uri + 'AddPatient/',
