@@ -39,8 +39,10 @@ class TestDetailsForm extends React.Component {
     }
 
     previous = () => {
-        this.saveData();
-        this.props.changeData({ formName: "UserDetails" });
+        console.log(this.state)
+        this.saveData().then(() => {
+            this.props.changeData({ formName: "UserDetails" });
+        })
     }
 
     handleChange = input => event => {
@@ -206,7 +208,7 @@ class TestDetailsForm extends React.Component {
         // this.mandatoryFieldCheck()
         let invalidIds = [];
         // console.log(this.state.serumCreatinine)
-        // console.log(this.state)
+        console.log(this.state)
         try {
             if (this.state.kidneystatus === 'abnormal') {
                 // console.log("doc req")
@@ -230,8 +232,12 @@ class TestDetailsForm extends React.Component {
                     window.location.href = "#";
                 }
             }
-            this.saveData();
-            this.props.submit();
+            console.log(this.state)
+            this.saveData()
+            .then(() => {
+                console.log(this.state)
+                this.props.submit();
+            })
             // console.log(invalidIds[0])
         }
         catch (err) {
