@@ -51,6 +51,7 @@ class MainForm extends React.Component {
         console.log(this.state.dateoftesting)
         console.log(this.state.pedaltype)
         console.log(this.state.name)
+        console.log(this.state.kid)
         let  dataToSend = {
             pkid: this.state.pkid,
             adhaar: this.state.adhaar,
@@ -73,27 +74,27 @@ class MainForm extends React.Component {
             electrolytes_potassium: this.state.electrolytes_potassium ? this.state.electrolytes_potassium : 0,
             bun: this.state.bun ? this.state.bun : 0,
             pedalEdema: this.state.pedalEdema ? this.state.pedalEdema : "",
-           // pedaltype: this.state.pedaltype ? this.state.pedaltype : "",
             pedaltype: this.state.pedalEdema === 'N' ? "" : this.state.pedaltype,
             kidneystatus: this.state.kidneystatus !== undefined ? this.state.kidneystatus : "",
-            ailments: this.state.ailments !== undefined ? this.state.ailments : "",
-            dialysis: this.state.dialysis ? this.state.dialysis : false,
-            doctorreq: this.state.doctorreq ? this.state.doctorreq : false,
+            ailments: this.state.kidneystatus === "good" ? "" : this.state.ailments,
+            dialysis: this.state.kidneystatus === "good"? false : this.state.dialysis,
+            doctorreq: this.state.kidneystatus === "good"? false : this.state.doctorreq,
             hospitalAdmit: this.state.hospitalAdmit !== undefined ? this.state.hospitalAdmit : "",
             dateOfAdmit: this.state.dateOfAdmit !== undefined ? this.state.dateOfAdmit : "",
             refered: this.state.refered ? this.state.refered : false,
-            referredto: this.state.referredto !== undefined ? this.state.referredto : "",
-            status: this.state.status !== undefined ? this.state.status : "",
-            treatmentDone: this.state.treatmentDone !== undefined ? this.state.treatmentDone : "",
-            discharge: this.state.discharge !== undefined ? this.state.discharge : "",
-            dischargeStatus: this.state.dischargeStatus !== undefined ? this.state.dischargeStatus : "",
-            deceased: this.state.deceased ? this.state.deceased : false,
-            deathDate: this.state.deathDate !== undefined ? this.state.deathDate : "",
-            placeOfDeath: this.state.placeOfDeath !== undefined ? this.state.placeOfDeath : "",
-            causeOfDeath: this.state.causeOfDeath !== undefined ? this.state.causeOfDeath : "",
+            referredto: this.state.referred=== "yes" ? this.state.referredto : "",
+            status: this.state.referred=== "yes"  ? this.state.status : "",
+            treatmentDone: this.state.referred=== "yes" ? this.state.treatmentDone : "",
+            discharge: this.state.referred=== "no" ? this.state.discharge : "",
+            dischargeStatus: this.state.referred=== "no" ? this.state.dischargeStatus : "",
+            deceased: this.state.referred=== "no"  ? this.state.deceased : false,
+            deathDate: this.state.deceased === "yes" ? this.state.deathDate : "",
+            placeOfDeath: this.state.deceased=== "yes"? this.state.placeOfDeath : "",
+            causeOfDeath: this.state.deceased=== "yes"? this.state.causeOfDeath : "",
             deworming: this.state.deworming ? this.state.deworming : false,
-            type_data: authenticationService.currentUserValue.firstName === 'test' ? "Development" : "Production",
+            type_data: authenticationService.currentUserValue.username === 'dev' ? "Development" : "Production",
             opd: this.state.opd ? this.state.opd : false
+            //  opd: this.state.doctorreq === 'false'? false : this.state.opd
         }
         console.log(this.state.pedaltype)
         axios.post(uri + 'AddPatient/',
