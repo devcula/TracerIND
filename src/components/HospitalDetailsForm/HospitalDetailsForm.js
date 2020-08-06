@@ -22,7 +22,7 @@ class HospitalDetailsForm extends React.Component {
             causeOfDeath: props.getValue('causeOfDeath'),
             recovery: props.getValue('recovery'),
             otherReferedHospitalName: "",
-            referredToSelected: props.getValue('referredToSelected') ? props.getValue('referredToSelected') : 'false'
+            referredToSelected: props.getValue('referredToSelected') ? props.getValue('referredToSelected') : 'NO'
         }
     }
 
@@ -54,11 +54,16 @@ class HospitalDetailsForm extends React.Component {
 
     handleReferredTo = event => {
         let value = event.target.value;
-        if(value === 'other'){
-            this.setState({referredToSelected: 'true'});
+        if(value === ""){
+            this.setState({ referredToSelected: 'NO', referredto: "" })
+        }
+        else if(value === 'other'){
+            this.setState({referredToSelected: 'OTHER', referredto: ""});
         }
         else {
-            this.setState({referredto: value});
+            this.setState(
+                { referredto: value, referredToSelected: 'YES' }
+            );
         }
     }
 
@@ -179,7 +184,7 @@ class HospitalDetailsForm extends React.Component {
                                                             as="select"
 
                                                             onChange={this.handleReferredTo}
-                                                            value={this.state.referredToSelected === 'false' ? this.state.referredto : 'other'} >
+                                                            value={this.state.referredToSelected === 'OTHER' ? 'other' : this.state.referredto} >
                                                             <option value="">Choose...</option>
                                                             <option value="AH/Chintoor">AH/Chintoor</option>
                                                             <option value="AH/Rampachodavaram">AH/Rampachodavaram</option>
@@ -191,20 +196,17 @@ class HospitalDetailsForm extends React.Component {
                                                     </Col>
                                                     <Col sm={3}>
                                                         {(() => {
-                                                            if (this.state.referredToSelected === 'true') {
+                                                            if (this.state.referredToSelected === 'OTHER') {
                                                                 return (
                                                                     <Form.Control as="textarea"
                                                                         type="text"
-                                    
                                                                         placeholder="Enter Hospital Name"
                                                                         onChange={this.handleChange('referredto')}
                                                                         value={this.state.referredto} />
                                                                 )
                                                             }
                                                             else {
-                                                                return (
-                                                                    <p></p>
-                                                                )
+                                                                return;
                                                             }
                                                         })()}
                                                     </Col>
