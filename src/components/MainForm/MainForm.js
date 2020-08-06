@@ -84,7 +84,7 @@ class MainForm extends React.Component {
             refered: this.state.refered ? this.state.refered : false,
             referredto: this.state.referred=== "yes" ? this.state.referredto : "",
             status: this.state.referred=== "yes"  ? this.state.status : "",
-            treatmentDone: this.state.referred=== "yes" ? this.state.treatmentDone : this.state.treatmentDone,
+            treatmentDone: this.state.referred=== "yes" ? this.state.treatmentDone : "",
             discharge: this.state.referred=== "no" ? this.state.discharge : "",
             dischargeStatus: this.state.referred=== "no" ? this.state.dischargeStatus : "",
             deceased: this.state.referred=== "no"  ? this.state.deceased : false,
