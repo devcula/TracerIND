@@ -92,7 +92,7 @@ class MainForm extends React.Component {
             placeOfDeath: this.state.deceased=== "yes"? this.state.placeOfDeath : "",
             causeOfDeath: this.state.deceased=== "yes"? this.state.causeOfDeath : "",
             deworming: this.state.deworming ? this.state.deworming : false,
-            type_data: authenticationService.currentUserValue.firstName === 'test' ? "Development" : "Production",
+            type_data: authenticationService.currentUserValue.username === 'dev' ? "Development" : "Production",
             opd: this.state.opd ? this.state.opd : false
             //  opd: this.state.doctorreq === 'false'? false : this.state.opd
         }
