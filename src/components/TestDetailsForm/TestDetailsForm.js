@@ -21,6 +21,8 @@ class TestDetailsForm extends React.Component {
             dialysis: props.getValue('dialysis'),
             doctorreq: props.getValue('doctorreq'),
             opd: props.getValue('opd'),
+            btn: "Submit",
+            loading:false,
         }
     }
 
@@ -206,6 +208,8 @@ class TestDetailsForm extends React.Component {
 
     validateAndSubmit = () => {
         // this.mandatoryFieldCheck()
+        this.setState({btn:"Submitting"});
+        this.setState({loading:true})
         let invalidIds = [];
         // console.log(this.state.serumCreatinine)
         console.log(this.state)
@@ -343,6 +347,8 @@ class TestDetailsForm extends React.Component {
     }
 
     render() {
+      const {loading} = this.state;
+      const {btn } = this.state;
         const styles = {
             center: {
                 textAlign: "center"
@@ -725,7 +731,7 @@ class TestDetailsForm extends React.Component {
                                             <Button variant="primary"
                                                 onClick={this.validateAndSubmit}
                                                 className="cool-button"
-                                            >Submit</Button>
+                                            >{loading && <i className="spinner-border spinner-border-sm"  role="status"></i>} {btn}</Button>
                                         </Col>
                                     </Row>
                                 )

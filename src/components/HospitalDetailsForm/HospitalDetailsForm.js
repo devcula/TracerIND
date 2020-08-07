@@ -22,27 +22,35 @@ class HospitalDetailsForm extends React.Component {
             causeOfDeath: props.getValue('causeOfDeath'),
             recovery: props.getValue('recovery'),
             otherReferedHospitalName: "",
-            referredToSelected: props.getValue('referredToSelected') ? props.getValue('referredToSelected') : 'NO'
+            referredToSelected: props.getValue('referredToSelected') ? props.getValue('referredToSelected') : 'NO',
+            btn: "Submit",
+            loading:false,
         }
     }
 
     handleChange = input => event => {
         this.setState({ [input]: event.target.value })
     }
-
-    validateAndNext = async () => {
-        //Conditions to check.. If valid, Send form name to switch to next form
-        // console.log(this.state);
-        // this.props.changeData(this.state);
-        await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
-        // this.loadNextForm("HospitalDetails");
-        this.props.submit();
-    }
-
     saveData = async () => {
         await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
 
     }
+
+    validateAndSubmit = async () => {
+        //Conditions to check.. If valid, Send form name to switch to next form
+        // console.log(this.state);
+        // this.props.changeData(this.state);
+        this.setState({btn:"Submitting"});
+        this.setState({loading:true})
+       await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
+        // this.loadNextForm("HospitalDetails");
+       this.props.submit();
+
+
+
+    }
+
+
     previous = () => {
         this.saveData();
         this.props.changeData({ formName: "TestDetails" });
@@ -68,6 +76,8 @@ class HospitalDetailsForm extends React.Component {
     }
 
     render() {
+      const {loading} = this.state;
+      const {btn } = this.state;
         const styles = {
             center: {
                 textAlign: "center"
@@ -83,6 +93,7 @@ class HospitalDetailsForm extends React.Component {
             }
         }
         return (
+
             <Container>
                 <Row>
                     <fieldset style={{ 'width': '100%' }}>
@@ -448,7 +459,7 @@ class HospitalDetailsForm extends React.Component {
                                 <Button variant="primary" className="cool-button" onClick={this.previous.bind(this)} >Previous</Button>
                             </Col>
                             <Col sm={6} xs={6} style={styles.left}>
-                                <Button variant="primary" className="cool-button" onClick={this.validateAndNext}>Submit</Button>
+                                <Button variant="primary" className="cool-button" onClick={this.validateAndSubmit}>{loading && <i className="spinner-border spinner-border-sm"  role="status"></i>} {btn}</Button>
                             </Col>
                         </Row>
                     </fieldset>
