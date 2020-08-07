@@ -21,8 +21,7 @@ class Login extends React.Component {
 
     login = () => {
         let { username, password } = this.state;
-        this.setState({ btn:"Logging" });
-        this.setState({loading:true});
+        this.setState({ btn: "Logging in", loading: true });
         authenticationService.login(username, password)
             .then(
                 user => {
@@ -31,6 +30,7 @@ class Login extends React.Component {
                 },
                 error => {
                     console.log(error);
+                    this.setState({ btn: "Login", loading: false });
                 }
             );
     }
