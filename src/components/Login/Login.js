@@ -8,8 +8,11 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            btn:"Login",
             username: "",
-            password: ""
+            password: "",
+            loading:false,
+            text:false
         }
         if (authenticationService.currentUserValue) {
             this.props.history.push('/');
@@ -18,6 +21,7 @@ class Login extends React.Component {
 
     login = () => {
         let { username, password } = this.state;
+        this.setState({ btn: "Logging in", loading: true });
         authenticationService.login(username, password)
             .then(
                 user => {
@@ -26,6 +30,7 @@ class Login extends React.Component {
                 },
                 error => {
                     console.log(error);
+                    this.setState({ btn: "Login", loading: false });
                 }
             );
     }
@@ -35,6 +40,8 @@ class Login extends React.Component {
     }
 
     render() {
+        const {loading}=this.state;
+        const { btn } = this.state ;
         return (
             <Container style={{ marginTop: "10vh", textAlign: "center" }}>
                 <Row className="heading">
@@ -70,7 +77,8 @@ class Login extends React.Component {
                     </Row>
                     <Row style={{ textAlign: "center", margin: "1rem" }}>
                         <Col>
-                            <Button className="cool-button" size="lg" onClick={this.login}>Login</Button>
+                        <Button className="cool-button" size="lg" onClick={this.login} >
+                          {loading && <i className="spinner-border spinner-border-sm"  role="status"></i>} {btn}</Button>
                         </Col>
                     </Row>
                 </fieldset>
