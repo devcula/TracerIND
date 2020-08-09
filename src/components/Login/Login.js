@@ -23,11 +23,10 @@ class Login extends React.Component {
         let { username, password } = this.state;
         if(!username || !password)
         {
-          alert("Field cannot be empty")
+          alert("Both fields are mandatory");
         }
         else{
         this.setState({ btn: "Logging in", loading: true });
-        }
         authenticationService.login(username, password)
             .then(
                 user => {
@@ -39,6 +38,7 @@ class Login extends React.Component {
                     this.setState({ btn: "Login", loading: false });
                 }
             );
+        }
     }
 
     handleChange = input => event => {
