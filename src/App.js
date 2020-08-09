@@ -21,7 +21,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // console.log("Inside component did mount");
     authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }, this.refreshAuth));
   }
 

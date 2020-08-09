@@ -17,11 +17,6 @@ export const authenticationService = {
 };
 
 function login(username, password) {
-    // const requestOptions = {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ username, password })
-    // };
 
     return axios.post(URI + 'token_jwt_get/', { username, password })
         .then(handleResponse)
@@ -42,8 +37,6 @@ function login(username, password) {
 }
 
 function refresh() {
-    // console.log("in refresh method");
-    // console.log(currentUserSubject.value);
     if(currentUserSubject.value){
         axios.post(URI + 'token_jwt_refresh/', { token: currentUserSubject.value.token })
             .then(handleResponse)
@@ -57,11 +50,7 @@ function refresh() {
                     currentUserSubject.next(newData);
                 }
             });
-        // return true;
     }
-    // else{
-    //     return true;
-    // }
 }
 
 function logout() {
