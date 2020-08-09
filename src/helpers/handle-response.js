@@ -20,10 +20,14 @@ export function handleResponse(response) {
     if(response.status === 200){
         return response.data;
     }
-    if([400, 401, 403].indexOf(response.status) !== -1){
+    else {
         authenticationService.logout();
-        window.location.reload();
         return false;
     }
-    return response.data;
+    // if([400, 401, 403].indexOf(response.status) !== -1){
+    //     authenticationService.logout();
+    //     window.location.reload();
+    //     return false;
+    // }
+    // return response.data;
 }

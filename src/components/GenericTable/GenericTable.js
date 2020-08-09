@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Table, Button, Row, Col } from 'react-bootstrap';
+import { Table, Button, Row, Col, Modal } from 'react-bootstrap';
+import ModalBody from '../ModalBody/ModalBody';
 import './GenericTable.css';
 
 //Received props
@@ -14,10 +15,29 @@ import './GenericTable.css';
 class GenericTable extends React.Component {
     constructor(props) {
         super(props);
+        this.handleShow = this.handleShow.bind(this);
+        this.handleShowCustom = this.handleShowCustom.bind(this);
+        this.handleClose = this.handleClose.bind(this);
         this.state = {
             noOfRows: "",
-            currentPageIndex: 0
+            currentPageIndex: 0,
+            show: false,
+            patientDetailsModal: {}
         }
+    }
+
+
+    handleClose = () => {
+        this.setState({ show: false });
+    }
+
+    handleShow() {
+        console.log("handleShow called")
+
+    }
+
+    handleShowCustom = (value, indx) => {
+        this.setState({ show: true, patientDetailsModal: value });
     }
 
     componentDidMount() {
@@ -93,7 +113,7 @@ class GenericTable extends React.Component {
     }
 
     changeNoOfRows = event => {
-        if(event.target.value !== ""){
+        if (event.target.value !== "") {
             event.target.value = Math.abs(event.target.value);
         }
         this.setState({ noOfRows: event.target.value });
@@ -112,23 +132,23 @@ class GenericTable extends React.Component {
     render() {
         let { headers, data, loading, keys, dataTypes } = this.props;
         let pageData = [];
-        let { noOfRows, currentPageIndex } = this.state;
+        let { noOfRows, currentPageIndex, patientDetailsModal } = this.state;
         let dataLength = 0;
         let lastPageIndex = 0;
 
         if (!loading) {
 
             dataLength = data.length;
-            if(noOfRows !== ""){
-                if(dataLength % noOfRows === 0){
+            if (noOfRows !== "") {
+                if (dataLength % noOfRows === 0) {
                     lastPageIndex = Math.floor(dataLength / noOfRows) - 1;
                 }
-                else{
+                else {
                     lastPageIndex = Math.floor(dataLength / noOfRows);
                 }
             }
 
-            if(noOfRows === ""){
+            if (noOfRows === "") {
                 pageData = data;
             }
             else if (dataLength >= (currentPageIndex + 1) * noOfRows) {
@@ -159,6 +179,7 @@ class GenericTable extends React.Component {
                 return true;
             });
         }
+        //  console.log(pageData)
 
         return (
             <React.Fragment>
@@ -178,7 +199,7 @@ class GenericTable extends React.Component {
                             Next Page
                         </Button>
                     </Col>
-                    
+
                     <Col sm={3}>
                         <input type="number" min="1" value={this.state.noOfRows} placeholder="No. of Rows" onChange={this.changeNoOfRows} className="row-input-field" />
                     </Col>
@@ -294,7 +315,7 @@ class GenericTable extends React.Component {
                                                         return (
                                                             pageData.map((row, indexRow) => {
                                                                 return (
-                                                                    <tr key={indexRow}>
+                                                                    <tr onClick={() => this.handleShowCustom(row, indexRow)} key={indexRow}>
                                                                         {
                                                                             keys.map((key, indexCol) => {
                                                                                 return (
@@ -318,6 +339,22 @@ class GenericTable extends React.Component {
                         }
                     </tbody>
                 </Table>
+                <Modal show={this.state.show} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Patient Details</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <ModalBody patientDetails={patientDetailsModal} />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.handleClose}>
+                            Close
+            </Button>
+                        <Button variant="primary" onClick={this.handleClose}>
+                            Save Changes
+            </Button>
+                    </Modal.Footer>
+                </Modal>
             </React.Fragment>
         )
     }
