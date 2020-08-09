@@ -21,7 +21,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // console.log("Inside component did mount");
     authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }, this.refreshAuth));
   }
 
@@ -29,7 +28,10 @@ class App extends Component {
     let { currentUser } = this.state;
     if (currentUser) {
       let msecDifference = new Date().getTime() - new Date(this.state.currentUser.timestamp).getTime();
-      if (msecDifference / (1000 * 60 * 60) > 3) {
+      if(msecDifference / (1000 * 60 * 60) >= 4){
+        authenticationService.logout();
+      }
+      else if(msecDifference / (1000 * 60 * 60) >= 3) {
         authenticationService.refresh();
       }
     }
