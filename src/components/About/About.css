@@ -1,13 +1,14 @@
 
 
-.container {
+/* .container {
   margin: 20px 40px;
   color: rgb(0, 101, 168);
-}
+} */
 
 .heading {
   font-size: 60px;
   color: white;
+  margin-top: 1rem;
 }
 
 .heading span {
@@ -15,14 +16,23 @@
   font-size: 30px;
 }
 
-.profiles {
+/* .profiles {
   display: flex;
   justify-content: space-around;
   margin: 20px 80px;
-}
+} */
+
+/* .profile {
+  flex-basis: 260px;
+} */
+
+/* .profiles {
+  margin-top: 2rem;
+} */
 
 .profile {
-  flex-basis: 260px;
+  text-align: center;
+  margin-top: 2rem;
 }
 
 .profile .profile-img {

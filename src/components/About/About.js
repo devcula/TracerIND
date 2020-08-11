@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import {  Col, Row} from 'react-bootstrap';
+import { Col, Row, Container } from 'react-bootstrap';
 
 import imgCard1 from "./img/S1.png";
 import imgCard2 from "./img/S2.png";
@@ -13,69 +13,66 @@ import './About.css';
 
 
 
- export default class About extends Component {
-    render() {
-        return (      
-          <div>
-
-    <div class="container">
-    <h1 class="heading"><span>meet</span>Our Team</h1>
-      <div class="profiles">
-        <Row>
-         <Col sm="3" md="4">
-           <div class="profile">
-             <img src={imgCard1} class="profile-img"></img>
-               <h3 class="user-name">Prakruti Chandak</h3>
-                 <h5>Team lead</h5>
-             </div>
-           </Col>
-         <Col sm="3" md="4">
-           <div class="profile">  
-             <img src={imgCard7} class="profile-img"></img>
-               <h3 class="user-name">Shubhankar</h3>
-             <h5>Android Developer</h5>
-           </div>
-         </Col>
-        <Col sm="3"md="4">
-          <div class="profile">
-            <img src={imgCard2} class="profile-img"></img>
-              <h3 class="user-name">Abhisekh Prasad </h3>
+export default class About extends Component {
+  render() {
+    return (
+      <Container>
+        <h1 className="heading"><span>meet </span>Our Team</h1>
+        <div className="profiles">
+          <Row>
+            <Col sm={6} md={4}>
+              <div className="profile">
+                <img alt="User" src={imgCard3} className="profile-img"></img>
+                <h3 className="user-name">Shlok Parida</h3>
                 <h5>Team lead</h5>
-           </div>
-          </Col>
-       </Row>
-       <Row>
-         <Col sm="3" md="3">
-           <div class="profile">
-             <img src={imgCard4} class="profile-img"></img>
-               <h3 class="user-name">Hrituja Khatavkar</h3>
-                 <h5>Front-end developer</h5>
-           </div>
-          </Col>
-          <Col sm="3" md="3">
-            <div class="profile">
-              <img src={imgCard5} class="profile-img"></img>
-                <h3 class="user-name">Akshat </h3>
-                  <h5>Android Developer</h5>
-                 </div></Col>
-           <Col sm="3"md="3">
-              <div class="profile">
-                <img src={imgCard6} class="profile-img"></img>                   
-                 <h3 class="user-name">  Gaurav Roy </h3>
-                    <h5>Front-end Developer</h5>
-             </div>
+              </div>
             </Col>
-            <Col sm="3"md="3">
-              <div class="profile">
-               <img src={imgCard3} class="profile-img"></img>
-                  <h3 class="user-name">Shlok Parida</h3>
-                    <h5>Team lead</h5>
-               </div>
-           </Col>
-         </Row>
-    </div>
-  </div>
- </div>
-      )
+            <Col sm={6} md={4}>
+              <div className="profile">
+                <img alt="User" src={imgCard1} className="profile-img"></img>
+                <h3 className="user-name">Prakruti Chandak</h3>
+                <h5>Team lead</h5>
+              </div>
+            </Col>
+            <Col sm={6} md={4}>
+              <div className="profile">
+                <img alt="User" src={imgCard2} className="profile-img"></img>
+                <h3 className="user-name">Abhishek Prasad </h3>
+                <h5>Team lead</h5>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={6} md={4}>
+              <div className="profile">
+                <img alt="User" src={imgCard4} className="profile-img"></img>
+                <h3 className="user-name">Hrituja Khatavkar</h3>
+                <h5>Front-end developer</h5>
+              </div>
+            </Col>
+            <Col sm={6} md={4}>
+              <div className="profile">
+                <img alt="User" src={imgCard5} className="profile-img"></img>
+                <h3 className="user-name">Akshat </h3>
+                <h5>Android Developer</h5>
+              </div></Col>
+            <Col sm={6} md={4}>
+              <div className="profile">
+                <img alt="User" src={imgCard6} className="profile-img"></img>
+                <h3 className="user-name">  Gaurav Roy </h3>
+                <h5>Front-end Developer</h5>
+              </div>
+            </Col>
+            <Col sm={6} md={4}>
+              <div className="profile">
+                <img alt="User" src={imgCard7} className="profile-img"></img>
+                <h3 className="user-name">Shubhankar</h3>
+                <h5>Android Developer</h5>
+              </div>
+            </Col>
+          </Row>
+        </div>
+      </Container>
+    )
   }
 }
