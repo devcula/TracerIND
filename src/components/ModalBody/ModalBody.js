@@ -14,6 +14,25 @@ class ModalBody extends React.Component {
     render() {
         let patientDetails = this.props
         let patient = patientDetails.patientDetails
+        let firstName = patient.name;
+        let space = " ";
+        let lastName = patient.surname;
+        let fullName = firstName.concat(space, lastName);
+        let pedalEdema = 'Yes'
+        let isPedalTypeEmpty = true
+        if (patient.pedalEdema === 'N') {
+            pedalEdema = 'No'
+        }
+        if (pedalEdema === 'Yes') {
+            console.log("here")
+            if (!(patient.pedaltype === '')) {
+                console.log("here")
+                isPedalTypeEmpty = false
+            }
+        }
+        let adhaar = patient.adhaar.slice(0, 4) + "-" + patient.adhaar.slice(4, 8) + "-" + patient.adhaar.slice(8)
+        console.log(adhaar)
+        console.log(patient)
         return (
             <Container>
                 <Form>
@@ -24,7 +43,7 @@ class ModalBody extends React.Component {
                                     <Form.Label>Name: </Form.Label>
                                 </Col>
                                 <Col sm={6}>
-                                    <Form.Control placeholder="" id="name" value={patient.name} disabled
+                                    <Form.Control placeholder="" id="name" value={fullName.toUpperCase()} disabled
                                     />
                                 </Col>
                             </Form.Group>
@@ -37,7 +56,7 @@ class ModalBody extends React.Component {
                                     <Form.Label>Adhaar: </Form.Label>
                                 </Col>
                                 <Col sm={6}>
-                                    <Form.Control  placeholder="" id="adhar" value={patient.adhaar} disabled
+                                    <Form.Control placeholder="" id="adhar" value={adhaar} disabled
                                     />
                                 </Col>
                             </Form.Group>
@@ -50,7 +69,7 @@ class ModalBody extends React.Component {
                                     <Form.Label>Village: </Form.Label>
                                 </Col>
                                 <Col sm={6}>
-                                    <Form.Control  placeholder="" id="vilage" value={patient.village} disabled
+                                    <Form.Control placeholder="" id="vilage" value={patient.village} disabled
                                     />
                                 </Col>
                             </Form.Group>
@@ -63,7 +82,7 @@ class ModalBody extends React.Component {
                                     <Form.Label>Age: </Form.Label>
                                 </Col>
                                 <Col sm={6}>
-                                    <Form.Control  placeholder="" id="age" value={patient.age} disabled
+                                    <Form.Control placeholder="" id="age" value={patient.age} disabled
                                     />
                                 </Col>
                             </Form.Group>
@@ -76,7 +95,7 @@ class ModalBody extends React.Component {
                                     <Form.Label>Phone: </Form.Label>
                                 </Col>
                                 <Col sm={6}>
-                                    <Form.Control  placeholder="" id="phone" value={patient.phone} disabled
+                                    <Form.Control placeholder="" id="phone" value={patient.phone} disabled
                                     />
                                 </Col>
                             </Form.Group>
@@ -89,7 +108,7 @@ class ModalBody extends React.Component {
                                     <Form.Label>Blood Group: </Form.Label>
                                 </Col>
                                 <Col sm={6}>
-                                    <Form.Control  placeholder="" id="bloodGroup" value={patient.bloodgroup} disabled
+                                    <Form.Control placeholder="" id="bloodGroup" value={patient.bloodgroup.toUpperCase()} disabled
                                     />
                                 </Col>
                             </Form.Group>
@@ -102,12 +121,63 @@ class ModalBody extends React.Component {
                                     <Form.Label>Deceased: </Form.Label>
                                 </Col>
                                 <Col sm={6}>
-                                    <Form.Control  placeholder="" id="deceased" value={patient.deceased} disabled
+                                    <Form.Control placeholder="" id="deceased" value={patient.deceased.toUpperCase()} disabled
                                     />
                                 </Col>
                             </Form.Group>
                         </Col>
                     </Row>
+                    <Row>
+                        <Col >
+                            <Form.Group as={Row}>
+                                <Col sm={3}>
+                                    <Form.Label>PVTG: </Form.Label>
+                                </Col>
+                                <Col sm={6}>
+                                    <Form.Control placeholder="" id="pvtg" value={patient.PVGT.toUpperCase()} disabled
+                                    />
+                                </Col>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col >
+                            <Form.Group as={Row}>
+                                <Col sm={3}>
+                                    <Form.Label>Pedal Edema: </Form.Label>
+                                </Col>
+                                <Col sm={6}>
+                                    <Form.Control placeholder="" id="pedal" value={pedalEdema.toUpperCase()} disabled
+                                    />
+                                </Col>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    {(() => {
+                        if (isPedalTypeEmpty) {
+                            return (
+                                <Container></Container>
+                            )
+                        }
+                        else {
+                            return (
+                                <Row>
+                                    <Col >
+                                        <Form.Group as={Row}>
+                                            <Col sm={3}>
+                                                <Form.Label>Pedal Type: </Form.Label>
+                                            </Col>
+                                            <Col sm={6}>
+                                                <Form.Control placeholder="" id="pedalType" value={patient.pedaltype.toUpperCase()} disabled
+                                                />
+                                            </Col>
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                            )
+                        }
+
+                    })()}
                 </Form>
             </Container>
         )
