@@ -659,7 +659,7 @@ class TestDetailsForm extends React.Component {
                         })()}
                         <br/>
                         {(() => {
-                            if (this.state.doctorreq === 'true') {
+                            if (this.state.doctorreq === 'true' && this.state.kidneystatus === 'abnormal') {
                                 return (
                                     <Row>
                                         <Col sm={4}>
@@ -700,7 +700,7 @@ class TestDetailsForm extends React.Component {
                         })()}
 
                         {(() => {
-                            if (this.state.opd === 'true') {
+                            if (this.state.opd === 'true' && this.state.doctorreq === 'true' && this.state.kidneystatus === 'abnormal') {
                                 return (
                                     <Row>
                                         <Col sm={6} xs={6} style={styles.right}>

@@ -45,13 +45,15 @@ class MainForm extends React.Component {
     }
 
     submitForm = () => {
-        // console.log("Inside submit form");
-        console.log(this.state.pedalEdema)
-        console.log(this.state.pedaltype)
-        console.log(this.state.dateoftesting)
-        console.log(this.state.pedaltype)
-        console.log(this.state.name)
-        console.log(this.state.kid)
+        
+        let opdCheck = false
+        if(this.state.kidneystatus === 'good' || this.state.doctorreq === 'false') {
+            opdCheck = false
+        }
+        else if(this.opd.kidneystatus === 'abonormal' && this.state.doctorreq === 'true') {
+            opdCheck = true
+        }
+
         let  dataToSend = {
             pkid: this.state.pkid,
             adhaar: this.state.adhaar,
@@ -93,8 +95,8 @@ class MainForm extends React.Component {
             causeOfDeath: this.state.deceased=== "yes"? this.state.causeOfDeath : "",
             deworming: this.state.deworming ? this.state.deworming : false,
             type_data: authenticationService.currentUserValue.username === 'dev' ? "Development" : "Production",
-            opd: this.state.opd ? this.state.opd : false
-            //  opd: this.state.doctorreq === 'false'? false : this.state.opd
+            opd: opdCheck
+          
         }
         console.log(this.state.pedaltype)
         axios.post(uri + 'AddPatient/',
