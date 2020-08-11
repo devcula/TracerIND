@@ -109,6 +109,7 @@ class GenericTable extends React.Component {
                 document.getElementById('KEY_' + keys[i]).value = "";
             }
         }
+        obj.noOfRows = "";
         this.setState(obj);
     }
 
@@ -186,7 +187,7 @@ class GenericTable extends React.Component {
                 <Row>
                     <Col sm={3} xs={4} >
                         <Button variant="danger" onClick={this.clearFilters} className="filter-button">
-                            Clear filter
+                            Clear filters
                         </Button>
                     </Col>
                     <Col sm={3} xs={4}>

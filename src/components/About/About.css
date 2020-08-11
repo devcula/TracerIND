@@ -8,7 +8,6 @@
 .heading {
   font-size: 60px;
   color: white;
-  margin-top: 1rem;
 }
 
 .heading span {
@@ -33,6 +32,7 @@
 .profile {
   text-align: center;
   margin-top: 2rem;
+  color: #0a5767;
 }
 
 .profile .profile-img {
@@ -56,7 +56,7 @@
 .profile h5 {
   font-size: 18px;
   font-weight: 100;
-  letter-spacing: 3px;
+  letter-spacing: 1px;
   color: rgb(70, 70, 70);
 }
 

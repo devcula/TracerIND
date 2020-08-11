@@ -24,15 +24,15 @@ class ModalBody extends React.Component {
             pedalEdema = 'No'
         }
         if (pedalEdema === 'Yes') {
-            console.log("here")
+            // console.log("here")
             if (!(patient.pedaltype === '')) {
-                console.log("here")
+                // console.log("here")
                 isPedalTypeEmpty = false
             }
         }
         let adhaar = patient.adhaar.slice(0, 4) + "-" + patient.adhaar.slice(4, 8) + "-" + patient.adhaar.slice(8)
-        console.log(adhaar)
-        console.log(patient)
+        // console.log(adhaar)
+        // console.log(patient)
         return (
             <Container>
                 <Form>
