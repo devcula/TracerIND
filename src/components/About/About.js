@@ -17,7 +17,7 @@ export default class About extends Component {
   render() {
     return (
       <Container>
-        <h1 className="heading"><span>meet </span>Our Team</h1>
+        <h1 style={{marginTop: "1rem"}} className="heading"><span>meet </span>Our Team</h1>
         <div className="profiles">
           <Row>
             <Col sm={6} md={4}>

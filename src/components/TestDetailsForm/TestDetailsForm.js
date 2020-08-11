@@ -22,18 +22,16 @@ class TestDetailsForm extends React.Component {
             doctorreq: props.getValue('doctorreq'),
             opd: props.getValue('opd'),
             btn: "Submit",
-            loading:false,
+            loading: false,
         }
     }
 
     validate = () => {
-
         this.props.changeData({ formName: "HospitalDetails" });
     }
 
     saveData = async () => {
         await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
-
     }
 
     loadNextForm = (formName) => {
@@ -208,8 +206,6 @@ class TestDetailsForm extends React.Component {
 
     validateAndSubmit = () => {
         // this.mandatoryFieldCheck()
-        this.setState({btn:"Submitting"});
-        this.setState({loading:true})
         let invalidIds = [];
         // console.log(this.state.serumCreatinine)
         console.log(this.state)
@@ -224,7 +220,7 @@ class TestDetailsForm extends React.Component {
                     invalidIds.push('dialysis')
                 }
                 if (invalidIds.length > 0) {
-                    window.location.href = "#" + invalidIds[0];
+                    // window.location.href = "#" + invalidIds[0];
                     // console.log("insid function")
                     for (let i = 0; i < invalidIds.length; i++) {
                         document.getElementById(invalidIds[i]).style.border = "2px solid red";
@@ -233,15 +229,17 @@ class TestDetailsForm extends React.Component {
                     throw new Error();
                 }
                 else {
-                    window.location.href = "#";
+                    // window.location.href = "#";
                 }
             }
-            console.log(this.state)
+            // console.log(this.state)
+            this.setState({ btn: "Submitting" });
+            this.setState({ loading: true })
             this.saveData()
-            .then(() => {
-                console.log(this.state)
-                this.props.submit();
-            })
+                .then(() => {
+                    console.log(this.state)
+                    this.props.submit();
+                })
             // console.log(invalidIds[0])
         }
         catch (err) {
@@ -347,8 +345,7 @@ class TestDetailsForm extends React.Component {
     }
 
     render() {
-      const {loading} = this.state;
-      const {btn } = this.state;
+        const { loading, btn } = this.state;
         const styles = {
             center: {
                 textAlign: "center"
@@ -657,7 +654,7 @@ class TestDetailsForm extends React.Component {
                                 )
                             }
                         })()}
-                        <br/>
+                        <br />
                         {(() => {
                             if (this.state.doctorreq === 'true' && this.state.kidneystatus === 'abnormal') {
                                 return (
@@ -731,7 +728,7 @@ class TestDetailsForm extends React.Component {
                                             <Button variant="primary"
                                                 onClick={this.validateAndSubmit}
                                                 className="cool-button"
-                                            >{loading && <i className="spinner-border spinner-border-sm"  role="status"></i>} {btn}</Button>
+                                            >{loading && <i className="spinner-border spinner-border-sm" role="status"></i>} {btn}</Button>
                                         </Col>
                                     </Row>
                                 )
