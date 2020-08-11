@@ -346,13 +346,13 @@ class GenericTable extends React.Component {
                     <Modal.Body>
                         <ModalBody patientDetails={patientDetailsModal} />
                     </Modal.Body>
-                    <Modal.Footer>
+                    <Modal.Footer style={{justifyContent: "center"}}>
                         <Button variant="danger" onClick={this.handleClose}>
                             Close
-            </Button>
+                        </Button>
                         {/* <Button variant="primary" onClick={this.handleClose}>
                             Save Changes
-            </Button> */}
+                            </Button> */}
                     </Modal.Footer>
                 </Modal>
             </React.Fragment>

@@ -2,16 +2,19 @@ import React from 'react';
 import './Cards.css'
 import {Card,CardDeck} from 'react-bootstrap';
 import CountUp from 'react-countup';
-import cx from 'classnames';
+// import cx from 'classnames';
 
 
 const Cards= ({data:{confirmed,recovered,deaths,active}}) => {
     if(!confirmed){
-        return 'Loading...'
+        return <h1>Loading...</h1>
     }
 
     return(
         <div className="container">
+          <h1>
+            COVID-19 stats for Andhra Pradesh
+          </h1>
         <CardDeck>
         <Card
             style={{ width: '18rem'}}

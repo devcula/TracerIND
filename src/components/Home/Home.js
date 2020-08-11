@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Jumbotron, Container, Row, Col} from 'react-bootstrap';
+import { Jumbotron, Container, Row} from 'react-bootstrap';
 import './Home.css';
-import Circle from '../CircularProgressBar/CircularProgressBar';
+// import Circle from '../CircularProgressBar/CircularProgressBar';
 import Cards from '../Cards/Cards';
 import { fetchData } from '../../CovidApi';
 
