@@ -35,7 +35,8 @@ class BasicDetailsForm extends React.Component {
             deworming: props.getValue('deworming'),
             phcList: props.getValue('phcList'),
             villageList: props.getValue('villageList'),
-            villageSecList: props.getValue('villageSecList')
+            villageSecList: props.getValue('villageSecList'),
+
         }
     }
 
@@ -63,7 +64,8 @@ class BasicDetailsForm extends React.Component {
                 villageSecList: [],
                 village_sec: "",
                 villageList: [],
-                village: ""
+                village: "",
+                loading:true
             }
         );
         if (event.target.value) {
@@ -257,6 +259,7 @@ class BasicDetailsForm extends React.Component {
     }
 
     render() {
+
         const styles = {
             center: {
                 textAlign: "center"
@@ -349,6 +352,12 @@ class BasicDetailsForm extends React.Component {
                                             fetchVillageSec={this.fetchOrUpdateVillageSecList}
                                             id="phc"
                                         />
+
+
+
+
+
+
                                     </Col>
                                 </Form.Group>
                             </Col>

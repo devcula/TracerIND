@@ -1,0 +1,37 @@
+div.card-deck{
+  align-items: stretch;
+}
+
+.confirmed{
+  color: #D13C2B;
+  margin-bottom: 2px;
+}
+
+.active{
+  color: #176CF8;
+  margin-bottom: 2px;
+}
+
+.deaths{
+  color: #F57E1C;
+  margin-bottom: 2px;
+}
+
+.recovered{
+color:#4DC939;
+margin-bottom: 2px;
+}
+
+.card-title {
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 2rem;
+}
+
+.card {
+  box-shadow: 0 0 10px 0px #5A5A5A;
+}
+
+.card-deck {
+  margin-top: 3rem;
+}

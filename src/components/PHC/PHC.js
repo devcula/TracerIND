@@ -1,13 +1,17 @@
 import React from 'react';
 
-import { Form } from 'react-bootstrap';
+import { Form ,Spinner} from 'react-bootstrap';
+
 
 export default function PHC(props) {
+
 
     React.useEffect(() => {
         if (props.phcValue) {
             document.getElementById(props.id).value = props.phcValue;
         }
+
+    
     })
 
     const handleChange = event => {
@@ -43,6 +47,7 @@ export default function PHC(props) {
                 onChange={handleChange}
                 id={props.id}
             >
+             <Spinner animation="border" size="sm" />
                 <option value="">Select Mandal First</option>
             </Form.Control>
         )
