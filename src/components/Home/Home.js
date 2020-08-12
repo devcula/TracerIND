@@ -4,7 +4,6 @@ import './Home.css';
 import Cards from '../Cards/Cards';
 import { fetchData } from '../../CovidApi';
 
-//Comment
 export default class Home extends Component {
   state = {
     data: {},
