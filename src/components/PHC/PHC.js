@@ -1,10 +1,11 @@
-import React from 'react';
+import React , { useState }  from 'react';
 
 import { Form ,Spinner} from 'react-bootstrap';
 
 
 export default function PHC(props) {
-
+    const [loading, setloading] =  useState("loading...");
+    
 
     React.useEffect(() => {
         if (props.phcValue) {
@@ -15,9 +16,12 @@ export default function PHC(props) {
     })
 
     const handleChange = event => {
+        
         props.fetchVillageSec(event.target.value);
     }
-
+   
+      
+    
     let { phcList } = props;
     if (!phcList) {
         phcList = [];
@@ -27,9 +31,12 @@ export default function PHC(props) {
             <Form.Control
                 as="select"
                 onChange={handleChange}
+                 onClick={() => setloading('Select PHC')}
                 id={props.id}
             >
-                <option value="">Select PHC</option>
+             
+        <option value=""  >{loading }
+       </option>
                 {
                     phcList.map((phc, i) => {
                         return (
@@ -47,7 +54,8 @@ export default function PHC(props) {
                 onChange={handleChange}
                 id={props.id}
             >
-             <Spinner animation="border" size="sm" />
+   
+   <Spinner animation="border" size="sm" />
                 <option value="">Select Mandal First</option>
             </Form.Control>
         )

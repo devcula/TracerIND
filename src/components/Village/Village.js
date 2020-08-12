@@ -1,9 +1,8 @@
-import React from 'react';
-
+import React , { useState }  from 'react';
 import { Form } from 'react-bootstrap';
 
 export default function Village(props) {
-
+    const [loading, setloading] =  useState("loading...");
     React.useEffect(() => {
         if (props.villageValue) {
             document.getElementById(props.id).value = props.villageValue;
@@ -25,9 +24,10 @@ export default function Village(props) {
             <Form.Control
                 as="select"
                 onChange={handleChange}
+                onClick={() => setloading('Select Village ')}
                 id={props.id}
             >
-                <option value="">Select Village</option>
+                <option value="">{loading}</option>
                 {
                     villageList.map((village, i) => {
                         return (
