@@ -123,7 +123,7 @@ class MainForm extends React.Component {
             BasicVitals: {},
             BasicSymptoms: {},
             report: {},
-            patient_status: "",
+            patient_status: "Closed",
             hb: 0.0
         }
         axios.post(uri + 'AddPatient/',
