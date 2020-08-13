@@ -76,6 +76,9 @@ class MainForm extends React.Component {
         let dataToSend = {
             pkid: this.state.pkid,
             adhaar: this.state.adhaar,
+            mandal: this.state.mandal,
+            phc: this.state.phc,
+            villagesec: this.state.village_sec,
             village: this.state.village,
             name: this.state.name,
             surname: this.state.surname,

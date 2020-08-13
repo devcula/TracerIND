@@ -32,7 +32,7 @@ export default function PHC(props) {
                     {
                         phcList.map((phc, i) => {
                             return (
-                                <option value={phc.name} key={i}>{phc.name}</option>
+                                <option value={phc.PHC_id} key={i}>{phc.name}</option>
                             )
                         })
                     }

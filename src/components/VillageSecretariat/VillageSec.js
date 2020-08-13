@@ -30,7 +30,7 @@ export default function VillageSec(props) {
                     {
                         villageSecList.map((villageSec, i) => {
                             return (
-                                <option value={villageSec.name} key={i}>{villageSec.name}</option>
+                                <option value={villageSec.villagesec_id} key={i}>{villageSec.name}</option>
                             )
                         })
                     }

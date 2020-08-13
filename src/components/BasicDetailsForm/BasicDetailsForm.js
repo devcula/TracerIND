@@ -75,7 +75,7 @@ class BasicDetailsForm extends React.Component {
             console.log("Getting phcs");
             axios.post(this.uri + 'GetPHCData/'
                 , {
-                    mandal: event.target.value
+                    mandal_id: event.target.value
                 },
                 {
                     headers: authHeader()
@@ -104,7 +104,7 @@ class BasicDetailsForm extends React.Component {
             console.log("Getting village secs");
             axios.post(this.uri + 'GetVillageSecData/',
                 {
-                    PHC: phc
+                    PHC_id: phc
                 },
                 {
                     headers: authHeader()
@@ -124,7 +124,7 @@ class BasicDetailsForm extends React.Component {
             console.log("Getting villages");
             axios.post(this.uri + 'GetVillageData/',
                 {
-                    village_sec: villageSec
+                    villagesec_id: villageSec
                 },
                 {
                     headers: authHeader()
@@ -341,10 +341,10 @@ class BasicDetailsForm extends React.Component {
                                             value={this.state.mandal}
                                         >
                                             <option value="">Select Mandal</option>
-                                            <option value="Chintoor">Chintoor</option>
-                                            <option value="Yetapaka">Yetapaka</option>
-                                            <option value="Kunnavaram">Kunnavaram</option>
-                                            <option value="VR Puram">V.R Puram</option>
+                                            <option value="01">Chintoor</option>
+                                            <option value="02">Yetapaka</option>
+                                            <option value="03">Kunnavaram</option>
+                                            <option value="04">V.R Puram</option>
                                         </Form.Control>
                                     </Col>
                                     <Col sm={3}>
