@@ -41,7 +41,7 @@ class TestDetailsForm extends React.Component {
     previous = () => {
         console.log(this.state)
         this.saveData().then(() => {
-            this.props.changeData({ formName: "UserDetails" });
+            this.props.changeData({ formName: "Observations" });
         })
     }
 

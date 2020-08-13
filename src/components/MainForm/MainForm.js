@@ -3,6 +3,7 @@ import React from 'react';
 import BasicDetailsForm from '../BasicDetailsForm/BasicDetailsForm';
 import TestDetailsForm from '../TestDetailsForm/TestDetailsForm';
 import HospitalDetailsForm from '../HospitalDetailsForm/HospitalDetailsForm';
+import ObservationsForm from '../ObservationsForm/ObservationsForm';
 
 import axios from 'axios';
 import { uri } from '../../index';
@@ -118,10 +119,26 @@ class MainForm extends React.Component {
             deworming: this.state.deworming ? this.state.deworming : false,
             type_data: ['dev', 'dev2'].indexOf(authenticationService.currentUserValue.username) !== -1 ? "Development" : "Production",
             opd: opdCheck,
-            weight: 0.0,
-            height: 0.0,
-            BasicVitals: {},
-            BasicSymptoms: {},
+            weight: this.state.weight ? this.state.weight : 0.0,
+            height: this.state.height ? this.state.height : 0.0,
+            BasicVitals: {
+                Temperature: this.state.temperature,
+                BP: this.state.bloodpressure,
+                HR: this.state.heartrate,
+                Pulse: this.state.pulserate,
+                RespRate: this.state.respiratoryrate
+            },
+            BasicSymptoms: {
+                Fever: this.state.fever,
+                Cold: this.state.cold,
+                Cough: this.state.cough,
+                Fatigue: this.state.fatigue,
+                Aches: this.state.aches,
+                Diarrohea: this.state.diarrohea,
+                Bleeding: this.state.bleeding,
+                Infection: this.state.infection,
+                others: ""
+            },
             report: {},
             patient_status: "Closed",
             hb: 0.0
@@ -150,16 +167,14 @@ class MainForm extends React.Component {
     render() {
         switch (this.state.formName) {
             case "UserDetails":
-                // console.log(this.state);
                 return <BasicDetailsForm submit={this.submitForm} changeData={this.appendState} getValue={this.getValue} />
             case "TestDetails":
-                // console.log(this.state);
                 return <TestDetailsForm submit={this.submitForm} changeData={this.appendState} getValue={this.getValue} />
             case "HospitalDetails":
-                // console.log(this.state);
                 return <HospitalDetailsForm submit={this.submitForm} changeData={this.appendState} getValue={this.getValue} />
+            case "Observations": 
+                return <ObservationsForm submit={this.submitForm} changeData={this.appendState} getValue={this.getValue} />
             case "Success":
-                // console.log(this.state);
                 return <FormSuccess />
             default:
                 return "";
