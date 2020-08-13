@@ -45,18 +45,40 @@ class MainForm extends React.Component {
     }
 
     submitForm = () => {
-        
         let opdCheck = false
-        if(this.state.kidneystatus === 'good' || this.state.doctorreq === 'false') {
-            opdCheck = false
+        let dialysisCheck = false
+        let doctorreqCheck =  false
+        if (this.state.kidneystatus === "abnormal") {
+            if (this.state.dialysis === 'true') {
+                dialysisCheck = true
+            }
         }
-        else if(this.opd.kidneystatus === 'abonormal' && this.state.doctorreq === 'true') {
-            opdCheck = true
+        else if(this.state.kidneystatus === "good") {
+                dialysisCheck = false
         }
 
-        let  dataToSend = {
+        if (this.state.kidneystatus === "abnormal") {
+           
+            if (this.state.doctorreq === 'true') {
+                doctorreqCheck = true
+            }
+        }
+        else if(this.state.kidneystatus === "good") {
+            doctorreqCheck = false
+        }
+
+        if (this.state.kidneystatus === 'good' || this.state.doctorreq === 'false') {
+            opdCheck = false
+        }
+        else if (this.state.kidneystatus === 'abonormal' && this.state.doctorreq === 'true') {
+            opdCheck = true
+        }
+        let dataToSend = {
             pkid: this.state.pkid,
             adhaar: this.state.adhaar,
+            mandal: this.state.mandal,
+            phc: this.state.phc,
+            villagesec: this.state.village_sec,
             village: this.state.village,
             name: this.state.name,
             surname: this.state.surname,
@@ -79,42 +101,41 @@ class MainForm extends React.Component {
             pedaltype: this.state.pedalEdema === 'N' ? "" : this.state.pedaltype,
             kidneystatus: this.state.kidneystatus !== undefined ? this.state.kidneystatus : "",
             ailments: this.state.kidneystatus === "good" ? "" : this.state.ailments,
-            dialysis: this.state.kidneystatus === "good"? false : this.state.dialysis,
-            doctorreq: this.state.kidneystatus === "good"? false : this.state.doctorreq,
+            dialysis: dialysisCheck,
+            doctorreq: doctorreqCheck,
             hospitalAdmit: this.state.hospitalAdmit !== undefined ? this.state.hospitalAdmit : "",
             dateOfAdmit: this.state.dateOfAdmit !== undefined ? this.state.dateOfAdmit : "",
             refered: this.state.refered ? this.state.refered : false,
-            referredto: this.state.referred=== "yes" ? this.state.referredto : "",
-            status: this.state.referred=== "yes"  ? this.state.status : "",
-            treatmentDone: this.state.referred=== "yes" ? this.state.treatmentDone : "",
-            discharge: this.state.referred=== "no" ? this.state.discharge : "",
-            dischargeStatus: this.state.referred=== "no" ? this.state.dischargeStatus : "",
-            deceased: this.state.referred=== "no"  ? this.state.deceased : false,
+            referredto: this.state.referred === "yes" ? this.state.referredto : "",
+            status: this.state.referred === "yes" ? this.state.status : "",
+            treatmentDone: this.state.referred === "yes" ? this.state.treatmentDone : "",
+            discharge: this.state.referred === "no" ? this.state.discharge : "",
+            dischargeStatus: this.state.referred === "no" ? this.state.dischargeStatus : "",
+            deceased: this.state.referred === "no" ? this.state.deceased : false,
             deathDate: this.state.deceased === "yes" ? this.state.deathDate : "",
-            placeOfDeath: this.state.deceased=== "yes"? this.state.placeOfDeath : "",
-            causeOfDeath: this.state.deceased=== "yes"? this.state.causeOfDeath : "",
+            placeOfDeath: this.state.deceased === "yes" ? this.state.placeOfDeath : "",
+            causeOfDeath: this.state.deceased === "yes" ? this.state.causeOfDeath : "",
             deworming: this.state.deworming ? this.state.deworming : false,
             type_data: authenticationService.currentUserValue.username === 'dev' ? "Development" : "Production",
             opd: opdCheck
-          
+
         }
-        console.log(this.state.pedaltype)
         axios.post(uri + 'AddPatient/',
             dataToSend,
             {
                 headers: authHeader()
             }).then(response => {
-                    console.log(dataToSend);
-                    // console.log("Sending data");
-                    // console.log(response);
-                    if (response.data.pkid === this.state.pkid) {
-                        this.setState({}, this.setState({ formName: "Success" }));
-                    }
-                    else {
-                        alert("Failed to save.. Please Try again");
-                        // this.setState({ formName: "Success" });
-                    }
-                })
+                console.log(dataToSend);
+                // console.log("Sending data");
+                // console.log(response);
+                if (response.data.pkid === this.state.pkid) {
+                    this.setState({}, this.setState({ formName: "Success" }));
+                }
+                else {
+                    alert("Failed to save.. Please Try again");
+                    // this.setState({ formName: "Success" });
+                }
+            })
             .catch(err => {
                 console.log(err);
             })

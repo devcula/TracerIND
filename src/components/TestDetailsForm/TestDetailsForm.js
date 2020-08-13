@@ -176,63 +176,36 @@ class TestDetailsForm extends React.Component {
         this.loadNextForm("HospitalDetails");
     }
 
-    mandatoryFieldCheck = () => {
-        let invalidIds = [];
-        try {
-            if (this.state.kidneystatus === 'abnormal') {
-                if (this.state.doctorreq === "") {
-                    invalidIds.push('doctorreq')
-                }
-                if (this.state.dialysis === "") {
-                    invalidIds.push('dialysis')
-                }
-                if (invalidIds.length > 0) {
-                    window.location.href = "#" + invalidIds[0];
-                    for (let i = 0; i < invalidIds.length; i++) {
-                        document.getElementById(invalidIds[i]).style.border = "2px solid red";
-                    }
-                    document.getElementById(invalidIds[0]).focus();
-                    throw new Error();
-                }
-                else {
-                    window.location.href = "#";
-                }
-            }
-        }
-        catch (err) {
-            // console.log(false);
-        }
-    }
+    // mandatoryFieldCheck = () => {
+    //     let invalidIds = [];
+    //     try {
+    //         if (this.state.kidneystatus === 'abnormal') {
+    //             if (this.state.doctorreq === "") {
+    //                 invalidIds.push('doctorreq')
+    //             }
+    //             if (this.state.dialysis === "") {
+    //                 invalidIds.push('dialysis')
+    //             }
+    //             if (invalidIds.length > 0) {
+    //                 window.location.href = "#" + invalidIds[0];
+    //                 for (let i = 0; i < invalidIds.length; i++) {
+    //                     document.getElementById(invalidIds[i]).style.border = "2px solid red";
+    //                 }
+    //                 document.getElementById(invalidIds[0]).focus();
+    //                 throw new Error();
+    //             }
+    //             else {
+    //                 window.location.href = "#";
+    //             }
+    //         }
+    //     }
+    //     catch (err) {
+    //         // console.log(false);
+    //     }
+    // }
 
     validateAndSubmit = () => {
-        // this.mandatoryFieldCheck()
-        let invalidIds = [];
-        // console.log(this.state.serumCreatinine)
-        console.log(this.state)
-        try {
-            if (this.state.kidneystatus === 'abnormal') {
-                // console.log("doc req")
-                // console.log(this.state.doctorreq)
-                if (this.state.doctorreq === "") {
-                    invalidIds.push('doctorreq')
-                }
-                if (this.state.dialysis === "") {
-                    invalidIds.push('dialysis')
-                }
-                if (invalidIds.length > 0) {
-                    // window.location.href = "#" + invalidIds[0];
-                    // console.log("insid function")
-                    for (let i = 0; i < invalidIds.length; i++) {
-                        document.getElementById(invalidIds[i]).style.border = "2px solid red";
-                    }
-                    document.getElementById(invalidIds[0]).focus();
-                    throw new Error();
-                }
-                else {
-                    // window.location.href = "#";
-                }
-            }
-            // console.log(this.state)
+            console.log(this.state)
             this.setState({ btn: "Submitting" });
             this.setState({ loading: true })
             this.saveData()
@@ -240,11 +213,6 @@ class TestDetailsForm extends React.Component {
                     console.log(this.state)
                     this.props.submit();
                 })
-            // console.log(invalidIds[0])
-        }
-        catch (err) {
-            // console.log(false);
-        }
 
     }
 
