@@ -199,7 +199,7 @@ class BasicDetailsForm extends React.Component {
             }
             //Still in try block? Means all fields valid. Now saving the data to parent component.
             this.saveData();
-            this.props.changeData({ formName: "TestDetails" });
+            this.props.changeData({ formName: "Observations" });
         }
         catch (err) {
             // console.log(false);
