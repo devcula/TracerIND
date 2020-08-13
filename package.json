@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
+    "core-js": "^3.6.5",
     "create-react-class": "^15.6.3",
     "react": "^16.13.1",
     "react-bootstrap": "^1.2.2",
@@ -18,7 +19,8 @@
     "react-countup": "^4.3.3",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "regenerator-runtime": "^0.13.7"
   },
   "scripts": {
     "start": "react-scripts start",
