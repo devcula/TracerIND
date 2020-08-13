@@ -8,7 +8,7 @@ export default class Home extends Component {
   state = {
     data: {},
   }
-
+//Comment
   async componentDidMount() {
     const fetchedData = await fetchData();
     this.setState({ data: fetchedData })
