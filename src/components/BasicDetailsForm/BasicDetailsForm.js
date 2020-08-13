@@ -36,7 +36,9 @@ class BasicDetailsForm extends React.Component {
             phcList: props.getValue('phcList'),
             villageList: props.getValue('villageList'),
             villageSecList: props.getValue('villageSecList'),
-
+            phcLoading: false,
+            villageSecLoading: false,
+            villageLoading: false
         }
     }
 
@@ -65,6 +67,7 @@ class BasicDetailsForm extends React.Component {
                 village_sec: "",
                 villageList: [],
                 village: "",
+                phcLoading: true,
                 loading:true
             }
         );
@@ -78,7 +81,7 @@ class BasicDetailsForm extends React.Component {
                     headers: authHeader()
                 })
                 .then(response => {
-                    this.setState({ phcList: response.data });
+                    this.setState({ phcList: response.data, phcLoading: false });
                 })
                 .catch(err => {
                     throw err;
@@ -93,7 +96,8 @@ class BasicDetailsForm extends React.Component {
                 villageSecList: [],
                 village_sec: "",
                 villageList: [],
-                village: ""
+                village: "",
+                villageSecLoading: true
             }
         );
         if (phc) {
@@ -106,7 +110,7 @@ class BasicDetailsForm extends React.Component {
                     headers: authHeader()
                 })
                 .then(response => {
-                    this.setState({ villageSecList: response.data });
+                    this.setState({ villageSecList: response.data, villageSecLoading: false });
                 })
                 .catch(err => {
                     throw err;
@@ -115,7 +119,7 @@ class BasicDetailsForm extends React.Component {
     }
 
     fetchOrUpdateVillageList = (villageSec) => {
-        this.setState({ villageList: [], village: "", village_sec: villageSec });
+        this.setState({ villageList: [], village: "", village_sec: villageSec, villageLoading: true });
         if (villageSec) {
             console.log("Getting villages");
             axios.post(this.uri + 'GetVillageData/',
@@ -126,7 +130,7 @@ class BasicDetailsForm extends React.Component {
                     headers: authHeader()
                 })
                 .then(response => {
-                    this.setState({ villageList: response.data });
+                    this.setState({ villageList: response.data, villageLoading: false });
                 })
                 .catch(err => {
                     throw err;
@@ -350,14 +354,9 @@ class BasicDetailsForm extends React.Component {
                                         <PHC phcList={this.state.phcList}
                                             phcValue={this.state.phc}
                                             fetchVillageSec={this.fetchOrUpdateVillageSecList}
+                                            loading={this.state.phcLoading}
                                             id="phc"
                                         />
-
-
-
-
-
-
                                     </Col>
                                 </Form.Group>
                             </Col>
@@ -373,6 +372,7 @@ class BasicDetailsForm extends React.Component {
                                             id="village_sec"
                                             villageSecValue={this.state.village_sec}
                                             villageSecList={this.state.villageSecList}
+                                            loading={this.state.villageSecLoading}
                                             fetchVillages={this.fetchOrUpdateVillageList}
                                         />
                                     </Col>
@@ -384,6 +384,7 @@ class BasicDetailsForm extends React.Component {
                                             updateValue={this.updateState}
                                             id="village"
                                             villageList={this.state.villageList}
+                                            loading={this.state.villageLoading}
                                             villageValue={this.state.village}
                                         />
                                     </Col>

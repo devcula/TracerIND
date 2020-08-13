@@ -1,8 +1,8 @@
-import React , { useState }  from 'react';
+import React  from 'react';
 import { Form } from 'react-bootstrap';
 
 export default function VillageSec(props) {
-    const [loading, setloading] =  useState("loading...");
+    let { loading, villageSecList } = props;
     
     React.useEffect(() => {
         if (props.villageSecValue) {
@@ -14,41 +14,49 @@ export default function VillageSec(props) {
         props.fetchVillages(event.target.value);
     }
 
-    //Added comment
-
-    let { villageSecList } = props;
-
     if (!villageSecList) {
         villageSecList = [];
     }
 
-    if (villageSecList.length > 0) {
-        return (
-            <Form.Control
-                as="select"
-                onChange={handleChange}
-                onClick={() => setloading('Select Village Secratarist')}
-                id={props.id}
-            >
-                <option value="">{loading}</option>
-                {
-                    villageSecList.map((villageSec, i) => {
-                        return (
-                            <option value={villageSec.name} key={i}>{villageSec.name}</option>
-                        )
-                    })
-                }
-            </Form.Control>
-        )
+    if(!loading) {
+        if (villageSecList.length > 0) {
+            return (
+                <Form.Control
+                    as="select"
+                    onChange={handleChange}
+                    id={props.id}
+                >
+                    <option value="">Select Village</option>
+                    {
+                        villageSecList.map((villageSec, i) => {
+                            return (
+                                <option value={villageSec.name} key={i}>{villageSec.name}</option>
+                            )
+                        })
+                    }
+                </Form.Control>
+            )
+        }
+        else {
+            return (
+                <Form.Control
+                    as="select"
+                    onChange={handleChange}
+                    id={props.id}
+                >
+                    <option value="">Select PHC first</option>
+                </Form.Control>
+            )
+        }
     }
-    else {
+    else{
         return (
             <Form.Control
                 as="select"
                 onChange={handleChange}
                 id={props.id}
             >
-                <option value="">Select PHC first</option>
+                <option value="">Loading...</option>
             </Form.Control>
         )
     }
