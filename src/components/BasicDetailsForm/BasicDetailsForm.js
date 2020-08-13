@@ -30,7 +30,7 @@ class BasicDetailsForm extends React.Component {
             maritalstatus: props.getValue('maritalstatus'),
             phone: props.getValue('phone'),
             bloodgroup: props.getValue('bloodgroup'),
-            PVGT: props.getValue('PVGT'),
+            PVTG: props.getValue('PVTG'),
             address: props.getValue('address'),
             deworming: props.getValue('deworming'),
             phcList: props.getValue('phcList'),
@@ -176,7 +176,7 @@ class BasicDetailsForm extends React.Component {
             Boolean(this.state.gender) ? validIds.push('gender') : invalidIds.push('gender');
             Boolean(this.state.maritalstatus) ? validIds.push('maritalstatus') : invalidIds.push('maritalstatus');
             Boolean(this.state.bloodgroup) ? validIds.push('bloodgroup') : invalidIds.push('bloodgroup');
-            Boolean(this.state.PVGT) ? validIds.push('PVGT') : invalidIds.push('PVGT');
+            Boolean(this.state.PVTG) ? validIds.push('PVTG') : invalidIds.push('PVTG');
             if (this.state.phone === "" || this.state.phone.length !== 10) {
                 invalidIds.push('phone');
             }
@@ -222,7 +222,7 @@ class BasicDetailsForm extends React.Component {
             maritalstatus: this.state.maritalstatus,
             phone: this.state.phone,
             bloodgroup: this.state.bloodgroup,
-            PVGT: this.state.PVGT,
+            PVTG: this.state.PVTG,
             address: this.state.address,
             children: this.state.children,
             deworming: this.state.deworming,
@@ -683,17 +683,17 @@ class BasicDetailsForm extends React.Component {
                                     <Col sm={3}>
                                         <Form.Label>PVTG :</Form.Label>
                                     </Col>
-                                    <Col sm={3} id="PVGT" style={styles.left}>
+                                    <Col sm={3} id="PVTG" style={styles.left}>
                                         <Row>
                                             <Col>
                                                 <Form.Check
                                                     type='radio'
                                                     value="ST"
-                                                    id="pvgt_st"
+                                                    id="PVTG_st"
                                                     label="ST"
-                                                    name="PVGT"
-                                                    onChange={this.handleChange('PVGT')}
-                                                    checked={this.state.PVGT === "ST"}
+                                                    name="PVTG"
+                                                    onChange={this.handleChange('PVTG')}
+                                                    checked={this.state.PVTG === "ST"}
                                                 />
                                             </Col>
                                         </Row>
@@ -702,11 +702,11 @@ class BasicDetailsForm extends React.Component {
                                                 <Form.Check
                                                     type='radio'
                                                     value="NST"
-                                                    id="pvgt_nst"
+                                                    id="PVTG_nst"
                                                     label="Non ST"
-                                                    name="PVGT"
-                                                    onChange={this.handleChange('PVGT')}
-                                                    checked={this.state.PVGT === "NST"}
+                                                    name="PVTG"
+                                                    onChange={this.handleChange('PVTG')}
+                                                    checked={this.state.PVTG === "NST"}
                                                 />
                                             </Col>
                                         </Row>
