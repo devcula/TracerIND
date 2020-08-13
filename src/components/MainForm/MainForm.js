@@ -70,7 +70,7 @@ class MainForm extends React.Component {
         if (this.state.kidneystatus === 'good' || this.state.doctorreq === 'false') {
             opdCheck = false
         }
-        else if (this.state.kidneystatus === 'abonormal' && this.state.doctorreq === 'true') {
+        else if (this.state.kidneystatus === 'abnormal' && this.state.doctorreq === 'true') {
             opdCheck = true
         }
         let dataToSend = {
@@ -89,7 +89,7 @@ class MainForm extends React.Component {
             maritalstatus: this.state.maritalstatus,
             phone: this.state.phone,
             bloodgroup: this.state.bloodgroup,
-            PVGT: this.state.PVGT,
+            PVTG: this.state.PVTG,
             dateoftesting: this.state.dateoftesting ? this.state.dateoftesting : "",
             serumCreatinine: this.state.serumCreatinine ? this.state.serumCreatinine : 0,
             bloodUrea: this.state.bloodUrea ? this.state.bloodUrea : 0,
@@ -116,9 +116,15 @@ class MainForm extends React.Component {
             placeOfDeath: this.state.deceased === "yes" ? this.state.placeOfDeath : "",
             causeOfDeath: this.state.deceased === "yes" ? this.state.causeOfDeath : "",
             deworming: this.state.deworming ? this.state.deworming : false,
-            type_data: authenticationService.currentUserValue.username === 'dev' ? "Development" : "Production",
-            opd: opdCheck
-
+            type_data: ['dev', 'dev2'].indexOf(authenticationService.currentUserValue.username) !== -1 ? "Development" : "Production",
+            opd: opdCheck,
+            weight: 0.0,
+            height: 0.0,
+            BasicVitals: {},
+            BasicSymptoms: {},
+            report: {},
+            patient_status: "Closed",
+            hb: 0.0
         }
         axios.post(uri + 'AddPatient/',
             dataToSend,
