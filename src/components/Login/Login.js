@@ -83,7 +83,7 @@ class Login extends React.Component {
                     </Row>
                     <Row style={{ textAlign: "center", margin: "1rem" }}>
                         <Col>
-                        <Button className="cool-button" size="lg" onClick={alert('Site is down for maintenance. Try again later..')} >
+                        <Button className="cool-button" size="lg" onClick={this.login} >
                           {loading && <i className="spinner-border spinner-border-sm"  role="status"></i>} {btn}</Button>
                         </Col>
                     </Row>
