@@ -95,6 +95,6 @@ body {
   background-image: linear-gradient(to right top, #7a9e7e, #3d7b74, #0a5767, #0c314d, #160c28);
 }
 
-.active {
+.sidebar-active {
   background-image: linear-gradient(to right top, #7a9e7e, #3d7b74, #0a5767, #0c314d, #160c28);
 }

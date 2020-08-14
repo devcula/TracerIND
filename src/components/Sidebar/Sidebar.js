@@ -11,12 +11,12 @@ export default function SideBar(props) {
     for(let i = 0; i < views.length; i++){
       let element = document.getElementById(views[i]);
       if(views[i] !== props.currentView){
-        if (element.classList.contains('active')){
-          element.classList.remove('active');
+        if (element.classList.contains('sidebar-active')){
+          element.classList.remove('sidebar-active');
         }
       }
       else{
-        element.classList.add('active');
+        element.classList.add('sidebar-active');
       }
     }
   })
