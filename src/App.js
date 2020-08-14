@@ -5,7 +5,7 @@ import Home from './components/Home/Home';
 import About from './components/About/About';
 import Dashboard from './components/Dashboard/Dashboard';
 import MainForm from './components/MainForm/MainForm';
-import Directory from './components/Directory/Directory';
+// import Directory from './components/Directory/Directory';
 import Error404 from './components/Error404/Error404';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Login from './components/Login/Login';
@@ -52,7 +52,7 @@ class App extends Component {
             <PrivateRoute exact path="/about" component={About} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/add" component={MainForm} />
-            <PrivateRoute exact path="/directory" component={Directory} />
+            {/* <PrivateRoute exact path="/directory" component={Directory} /> */}
             <Route component={Error404} />
           </Switch>
         </div>

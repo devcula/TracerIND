@@ -4,26 +4,49 @@ import { Container, Row, Col } from 'react-bootstrap';
 import './Dashboard.css';
 
 import SideBar from '../Sidebar/Sidebar';
+import Directory from '../Directory/Directory';
 
 export default class Dashboard extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            dashView: "PatientStatus"
+        }
+    }
+
+    changeView = (nextView) => {
+        this.setState({dashView: nextView});
+    }
+
     render() {
         return (
             <React.Fragment>
-            <div id = "App">
-                       <SideBar pageWrapId={"page-wrap"} outerContainerId={"App"} />
-                       <div id="page-wrap">
-
-                    <Container>
-                        <Row style={{marginTop: "40vh"}}>
-                            <Col>
-                                <h1>
-                                        Coming Soon..
-                                </h1>
-                            </Col>
-                        </Row>
-                    </Container>
+                <div id="SideBarContainer">
+                    <SideBar currentView={this.state.dashView} changeView={this.changeView} pageWrapId={"page-wrap"} outerContainerId={"SideBarContainer"} />
+                    <div id="page-wrap">
+                        {
+                            (() => {
+                                switch (this.state.dashView) {
+                                    case "PatientStatus":
+                                        return <Directory />
+                                    default:
+                                        return (
+                                            <Container>
+                                                <Row style={{ marginTop: "40vh" }}>
+                                                    <Col>
+                                                        <h1>
+                                                            Coming Soon..
+                                                        </h1>
+                                                    </Col>
+                                                </Row>
+                                            </Container>
+                                        )
+                                }
+                            })()
+                        }
                     </div>
-                    </div>
+                </div>
             </React.Fragment>
         )
     }

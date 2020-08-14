@@ -3,25 +3,42 @@ import { push as Menu } from "react-burger-menu";
 import './Sidebar.css'
 
 
-export default props => {
+export default function SideBar(props) {
+
+  const views = ['PatientStatus', 'HealthStats', 'PVTGTracker', 'PedalEdemaTracker'];
+
+  React.useEffect(() => {
+    for(let i = 0; i < views.length; i++){
+      let element = document.getElementById(views[i]);
+      if(views[i] !== props.currentView){
+        if (element.classList.contains('active')){
+          element.classList.remove('active');
+        }
+      }
+      else{
+        element.classList.add('active');
+      }
+    }
+  })
+
   return (
     // Pass on our props
     <Menu {...props}>
-    <a className="menu-item" href="/patient-tracker">
-      Patient Tracker
-    </a>
+      <button className="menu-item" id="PatientStatus" onClick={() => props.changeView('PatientStatus')}>
+        Patient Tracker
+      </button>
 
-    <a className="menu-item" href="/health-stats">
-      Health Stats
-    </a>
+      <button className="menu-item" id="HealthStats" onClick={() => props.changeView('HealthStats')}>
+        Health Stats
+      </button>
 
-    <a className="menu-item" href="/pvtg-tracker">
-      PVTG Tracker
-    </a>
+      <button className="menu-item" id="PVTGTracker" onClick={() => props.changeView('PVTGTracker')}>
+        PVTG Tracker
+      </button>
 
-    <a className="menu-item" href="/pedal-edema-tracker">
-      Pedal Edema Tracker
-    </a>
+      <button className="menu-item" id="PedalEdemaTracker" onClick={() => props.changeView('PedalEdemaTracker')}>
+        Pedal Edema Tracker
+      </button>
     </Menu>
   );
 };

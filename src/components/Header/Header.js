@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import './Header.css'
 
-import { faHome, faChartLine, faUserPlus, faInfoCircle, faList } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faChartLine, faUserPlus, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { authenticationService } from '../../services';
 
@@ -25,9 +25,6 @@ export default class Header extends Component {
 						</Nav.Link>
 						<Nav.Link href="/add">
 							<FontAwesomeIcon icon={faUserPlus} color="white" /> &nbsp;New Patient
-						</Nav.Link>
-						<Nav.Link href="/directory">
-							<FontAwesomeIcon icon={faList} color="white" /> &nbsp;Directory
 						</Nav.Link>
 						<Nav.Link href="/about">
 							<FontAwesomeIcon icon={faInfoCircle} color="white" /> &nbsp;About
