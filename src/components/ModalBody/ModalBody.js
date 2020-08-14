@@ -134,7 +134,7 @@ class ModalBody extends React.Component {
                                     <Form.Label>PVTG: </Form.Label>
                                 </Col>
                                 <Col sm={6}>
-                                    <Form.Control placeholder="" id="pvtg" value={patient.PVGT.toUpperCase()} disabled
+                                    <Form.Control placeholder="" id="pvtg" value={patient.PVTG.toUpperCase()} disabled
                                     />
                                 </Col>
                             </Form.Group>
