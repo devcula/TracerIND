@@ -108,7 +108,7 @@ class MainForm extends React.Component {
             dateOfAdmit: this.state.dateOfAdmit !== undefined ? this.state.dateOfAdmit : "",
             refered: this.state.refered ? this.state.refered : false,
             referredto: this.state.referred === "yes" ? this.state.referredto : "",
-            status: this.state.referred === "yes" ? this.state.status : "",
+            ref_status: this.state.referred === "yes" ? this.state.status : "",
             treatmentDone: this.state.referred === "yes" ? this.state.treatmentDone : "",
             discharge: this.state.referred === "no" ? this.state.discharge : "",
             dischargeStatus: this.state.referred === "no" ? this.state.dischargeStatus : "",
@@ -141,7 +141,10 @@ class MainForm extends React.Component {
             },
             report: {},
             patient_status: "Closed",
-            hb: 0.0
+            hb: 0.0,
+            wbc_count: 0.0,
+            diffrential_count: {},
+            plat_count: 0.0
         }
         axios.post(uri + 'AddPatient/',
             dataToSend,
