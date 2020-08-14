@@ -69,8 +69,7 @@ class BasicDetailsForm extends React.Component {
                 village_sec: "",
                 villageList: [],
                 village: "",
-                phcLoading: true,
-                loading: true
+                phcLoading: event.target.value ? true : false,
             }
         );
         if (event.target.value) {
@@ -99,7 +98,7 @@ class BasicDetailsForm extends React.Component {
                 village_sec: "",
                 villageList: [],
                 village: "",
-                villageSecLoading: true
+                villageSecLoading: phc ? true : false
             }
         );
         if (phc) {
@@ -121,7 +120,12 @@ class BasicDetailsForm extends React.Component {
     }
 
     fetchOrUpdateVillageList = (villageSec) => {
-        this.setState({ villageList: [], village: "", village_sec: villageSec, villageLoading: true });
+        this.setState({ 
+            villageList: [], 
+            village: "", 
+            village_sec: villageSec, 
+            villageLoading: villageSec ? true : false 
+        });
         if (villageSec) {
             console.log("Getting villages");
             axios.post(this.uri + 'GetVillageData/',
