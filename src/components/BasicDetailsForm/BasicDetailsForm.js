@@ -38,7 +38,9 @@ class BasicDetailsForm extends React.Component {
             villageSecList: props.getValue('villageSecList'),
             phcLoading: false,
             villageSecLoading: false,
-            villageLoading: false
+            villageLoading: false,
+            smoking: props.getValue('smoking'),
+            drinking: props.getValue('drinking')
         }
     }
 
@@ -67,8 +69,7 @@ class BasicDetailsForm extends React.Component {
                 village_sec: "",
                 villageList: [],
                 village: "",
-                phcLoading: true,
-                loading:true
+                phcLoading: event.target.value ? true : false,
             }
         );
         if (event.target.value) {
@@ -97,7 +98,7 @@ class BasicDetailsForm extends React.Component {
                 village_sec: "",
                 villageList: [],
                 village: "",
-                villageSecLoading: true
+                villageSecLoading: phc ? true : false
             }
         );
         if (phc) {
@@ -119,7 +120,12 @@ class BasicDetailsForm extends React.Component {
     }
 
     fetchOrUpdateVillageList = (villageSec) => {
-        this.setState({ villageList: [], village: "", village_sec: villageSec, villageLoading: true });
+        this.setState({ 
+            villageList: [], 
+            village: "", 
+            village_sec: villageSec, 
+            villageLoading: villageSec ? true : false 
+        });
         if (villageSec) {
             console.log("Getting villages");
             axios.post(this.uri + 'GetVillageData/',
@@ -206,6 +212,10 @@ class BasicDetailsForm extends React.Component {
         }
     }
 
+    handleCheckboxChange = input => event => {
+        this.setState({ [input]: document.getElementById(input).checked });
+    }
+
     saveData = async () => {
         let dataToSave = {
             adhaar: this.state.adhaarFirst + this.state.adhaarSecond + this.state.adhaarThird,
@@ -230,7 +240,6 @@ class BasicDetailsForm extends React.Component {
             villageList: this.state.villageList,
             villageSecList: this.state.villageSecList
         }
-
         await new Promise(resolve => this.props.changeData(dataToSave, () => resolve()));
     }
 
@@ -710,11 +719,69 @@ class BasicDetailsForm extends React.Component {
                                                 />
                                             </Col>
                                         </Row>
+                                        <Row>
+                                            <Col>
+                                                <Form.Check
+                                                    type='radio'
+                                                    value="PVT"
+                                                    id="PVTG_pvt"
+                                                    label="PVTG"
+                                                    name="PVTG"
+                                                    onChange={this.handleChange('PVTG')}
+                                                    checked={this.state.PVTG === "PVT"}
+                                                />
+                                            </Col>
+                                        </Row>
                                     </Col>
                                 </Row>
                             </Col>
                         </Row>
                         <br />
+                        <Row>
+                            <Col sm={12}>
+                                <Form.Group as={Row}>
+                                    <Col sm={3}>
+                                        <Row>
+                                            <Col>
+                                                <Form.Label>
+                                                    Habits :
+                                                </Form.Label>
+                                            </Col>
+                                        </Row>
+                                    </Col>
+                                    <Col sm={9}>
+                                        <Row>
+                                            <Col sm={3}>
+                                               <Form.Label>
+                                                    Smoking
+                                               </Form.Label>
+                                            </Col>
+                                            <Col sm={3}>
+                                                <Form.Check
+                                                    type="checkbox"
+                                                    id="smoking"
+                                                    name="smoking"
+                                                    onClick={this.handleCheckboxChange('smoking')}
+                                                    checked={this.state.smoking}
+                                                />
+                                            </Col>
+                                            <Col sm={3}>
+                                                <Form.Label>Drinking</Form.Label>
+                                            </Col>
+                                            <Col sm={3}>
+                                                <Form.Check
+                                                    type="checkbox"
+                                                    id="drinking"
+                                                    name="drinking"
+                                                    onClick={this.handleCheckboxChange('drinking')}
+                                                    checked={this.state.drinking}
+                                                />
+                                            </Col>
+                                        </Row>
+                                    </Col>
+                                </Form.Group>
+                            </Col>
+                        </Row>
                         <Row>
                             <Col sm={12} style={styles.center}>
                                 <Button variant="primary" className="cool-button" onClick={this.validate}>Next</Button>

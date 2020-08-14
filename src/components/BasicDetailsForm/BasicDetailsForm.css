@@ -6,3 +6,8 @@
 legend{
   background-color: #0a5767;
 }
+
+input[type=checkbox]{
+  width: 30px;
+  height: 30px;
+}
