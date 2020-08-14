@@ -41,7 +41,7 @@ body {
   width: 36px;
   height: 30px;
   left: 24px;
-  top: 30px;
+  top: 20px;
 }
 
 /* Color/shape of burger icon bars */
@@ -89,6 +89,7 @@ body {
   font-weight: bold;
   border: none;
   outline: none;
+  color: white;
 }
 
 .menu-item:hover {

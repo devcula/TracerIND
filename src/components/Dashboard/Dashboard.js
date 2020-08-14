@@ -5,6 +5,9 @@ import './Dashboard.css';
 
 import SideBar from '../Sidebar/Sidebar';
 import Directory from '../Directory/Directory';
+import HealthStats from '../HealthStats/HealthStats';
+import PVTGTracker from '../PVTGTracker/PVTGTracker';
+import PETracker from '../PETracker/PETracker';
 
 export default class Dashboard extends Component {
 
@@ -30,6 +33,12 @@ export default class Dashboard extends Component {
                                 switch (this.state.dashView) {
                                     case "PatientStatus":
                                         return <Directory />
+                                    case "HealthStats":
+                                        return <HealthStats />
+                                    case "PVTGTracker":
+                                        return <PVTGTracker />
+                                    case "PedalEdemaTracker":
+                                        return <PETracker />
                                     default:
                                         return (
                                             <Container>

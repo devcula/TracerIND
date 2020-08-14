@@ -723,12 +723,12 @@ class BasicDetailsForm extends React.Component {
                                             <Col>
                                                 <Form.Check
                                                     type='radio'
-                                                    value="PVT"
+                                                    value="PVTG"
                                                     id="PVTG_pvt"
                                                     label="PVTG"
                                                     name="PVTG"
                                                     onChange={this.handleChange('PVTG')}
-                                                    checked={this.state.PVTG === "PVT"}
+                                                    checked={this.state.PVTG === "PVTG"}
                                                 />
                                             </Col>
                                         </Row>
