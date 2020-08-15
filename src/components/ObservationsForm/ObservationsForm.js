@@ -43,7 +43,7 @@ class ObservationsForm extends React.Component {
         //Conditions to check.. If valid, Send form name to switch to next form
         // console.log(this.state);
         await new Promise(resolve => this.props.changeData(this.state, () => resolve()))
-        this.loadNextForm("TestDetails");
+        this.loadNextForm("BloodProfile");
     }
 
 
