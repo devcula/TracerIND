@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Pie } from 'react-chartjs-2';
 
-// import { uri } from '../../index';
 import { authHeader } from '../../helpers';
 
 class PETracker extends React.Component {
@@ -45,7 +44,7 @@ class PETracker extends React.Component {
                 labels: ['Yes', 'No'],
                 datasets: [
                     {
-                        label: 'Rainfall',
+                        label: 'Pedal Edema Distribution',
                         backgroundColor: [
                             '#B21F00',
                             '#6800B4'
@@ -62,7 +61,7 @@ class PETracker extends React.Component {
                 labels: ['Single Leg', 'Bilateral'],
                 datasets: [
                     {
-                        label: 'Rainfall',
+                        label: 'Pedal Edema type distribution',
                         backgroundColor: [
                             '#00A6B4',
                             '#C9DE00'

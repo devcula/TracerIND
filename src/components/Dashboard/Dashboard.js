@@ -6,7 +6,7 @@ import './Dashboard.css';
 import SideBar from '../Sidebar/Sidebar';
 import Directory from '../Directory/Directory';
 import HealthStats from '../HealthStats/HealthStats';
-import PVTGTracker from '../PVTGTracker/PVTGTracker';
+import PVTGTracker from '../CasteTracker/CasteTracker';
 import PETracker from '../PETracker/PETracker';
 
 export default class Dashboard extends Component {
@@ -14,7 +14,7 @@ export default class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dashView: "PedalEdemaTracker"
+            dashView: "CasteTracker"
         }
     }
 
@@ -35,7 +35,7 @@ export default class Dashboard extends Component {
                                         return <Directory />
                                     case "HealthStats":
                                         return <HealthStats />
-                                    case "PVTGTracker":
+                                    case "CasteTracker":
                                         return <PVTGTracker />
                                     case "PedalEdemaTracker":
                                         return <PETracker />
