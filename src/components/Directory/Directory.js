@@ -33,9 +33,19 @@ class Directory extends React.Component {
                     }).then(responseVillage => {
                         // this.setState({ villageList: responseVillage.data });
                         // this.setState({ loading: false });
+                        //Hiding Development data
+                        var filteredData = response.data;
+                        if(process.env.REACT_APP_SHOW_DEV_DATA === 'OFF'){
+                            filteredData = response.data.filter(patient => {
+                                if (patient.type_data && patient.type_data.toLowerCase() === 'production') {
+                                    return true;
+                                }
+                                return false;
+                            })
+                        }                        
                         this.setState(
                             {
-                                patientList: response.data,
+                                patientList: filteredData,
                                 villageList: responseVillage.data,
                                 loading: false
                             }
