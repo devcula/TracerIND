@@ -376,7 +376,7 @@ class BasicDetailsForm extends React.Component {
                             <Col sm={12}>
                                 <Form.Group as={Row}>
                                     <Col sm={3}>
-                                        <Form.Label>Village Secretariat :</Form.Label>
+                                        <Form.Label>Sub Center :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
                                         <VillageSec
