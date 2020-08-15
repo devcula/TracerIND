@@ -36,3 +36,9 @@ margin-bottom: 2px;
 .card-deck {
   margin-top: 3rem;
 }
+
+@media only screen and (max-width: 767px) {
+  #stateWiseData {
+    display: none;
+  }
+}
