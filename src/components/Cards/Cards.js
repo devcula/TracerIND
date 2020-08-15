@@ -2,10 +2,11 @@ import React from 'react';
 import './Cards.css'
 import { Card, CardDeck } from 'react-bootstrap';
 import CountUp from 'react-countup';
+import OurLoader from '../Loader/Loader';
 
 const Cards = ({ data: { confirmed, recovered, deaths, active } }) => {
   if (!confirmed) {
-    return <h1>Loading...</h1>
+    return <OurLoader />
   }
 
   return (
