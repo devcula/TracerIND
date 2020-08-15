@@ -8,12 +8,12 @@ class BloodProfile extends React.Component {
         super(props);
         this.state = {
           
-            temperature: props.getValue('wbc'),
-            bloodpressure: props.getValue('monocytes'),
-            heartrate: props.getValue('lymphocytes'),
-            pulserate: props.getValue('eosinophils'),
-            heartrate: props.getValue('haemoglobin'),
-            pulserate: props.getValue('platelet'),
+            wbc: props.getValue('wbc'),
+            monocytes: props.getValue('monocytes'),
+            lymphocytes: props.getValue('lymphocytes'),
+            eosinophils: props.getValue('eosinophils'),
+            haemoglobin: props.getValue('haemoglobin'),
+            platelet: props.getValue('platelet'),
 
 
         }
