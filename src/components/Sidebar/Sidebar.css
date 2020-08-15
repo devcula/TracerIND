@@ -41,7 +41,7 @@ body {
   width: 36px;
   height: 30px;
   left: 24px;
-  top: 30px;
+  top: 20px;
 }
 
 /* Color/shape of burger icon bars */
@@ -80,4 +80,22 @@ body {
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+
+.menu-item {
+  background: transparent;
+  width: 100%;
+  height: 4rem;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  color: white;
+}
+
+.menu-item:hover {
+  background-image: linear-gradient(to right top, #7a9e7e, #3d7b74, #0a5767, #0c314d, #160c28);
+}
+
+.sidebar-active {
+  background-image: linear-gradient(to right top, #7a9e7e, #3d7b74, #0a5767, #0c314d, #160c28);
 }
