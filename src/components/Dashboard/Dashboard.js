@@ -14,7 +14,7 @@ export default class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dashView: "PVTGTracker"
+            dashView: "PatientStatus"
         }
     }
 
