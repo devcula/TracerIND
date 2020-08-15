@@ -9,6 +9,7 @@ import imgCard4 from "./img/S4.png";
 import imgCard5 from "./img/S5.png";
 import imgCard6 from "./img/S6.png";
 import imgCard7 from "./img/S7.png";
+import imgCard8 from "./img/S8.jpeg";
 import './About.css';
 
 
@@ -47,7 +48,7 @@ export default class About extends Component {
               <div className="profile">
                 <img alt="User" src={imgCard4} className="profile-img"></img>
                 <h3 className="user-name">Hrituja Khatavkar</h3>
-                <h5>Front-end developer</h5>
+                <h5>Frontend developer</h5>
               </div>
             </Col>
             <Col sm={6} md={4}>
@@ -60,7 +61,7 @@ export default class About extends Component {
               <div className="profile">
                 <img alt="User" src={imgCard6} className="profile-img"></img>
                 <h3 className="user-name">  Gaurav Roy </h3>
-                <h5>Front-end Developer</h5>
+                <h5>Frontend Developer</h5>
               </div>
             </Col>
             <Col sm={6} md={4}>
@@ -68,6 +69,13 @@ export default class About extends Component {
                 <img alt="User" src={imgCard7} className="profile-img"></img>
                 <h3 className="user-name">Shubhankar</h3>
                 <h5>Android Developer</h5>
+              </div>
+            </Col>
+            <Col sm={6} md={4}>
+              <div className="profile">
+                <img alt="User" src={imgCard8} className="profile-img"></img>
+                <h3 className="user-name">Palak Rai</h3>
+                <h5>Frontend Developer</h5>
               </div>
             </Col>
           </Row>
