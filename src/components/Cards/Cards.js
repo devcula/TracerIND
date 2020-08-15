@@ -50,7 +50,7 @@ const Cards = (props) => {
         >
           <Card.Body className="confirmed">
             <Card.Title> Confirmed </Card.Title>
-            <Card.Text><CountUp start={0} end={confirmed} duration={1.75} separator="," /> </Card.Text>
+            <Card.Text><CountUp start={0} end={confirmed} duration={1} separator="," /> </Card.Text>
           </Card.Body>
         </Card>
         <Card
@@ -63,7 +63,7 @@ const Cards = (props) => {
         >
           <Card.Body className="active">
             <Card.Title> Active </Card.Title>
-            <Card.Text> <CountUp start={0} end={active} duration={1.75} separator="," /></Card.Text>
+            <Card.Text> <CountUp start={0} end={active} duration={1} separator="," /></Card.Text>
 
           </Card.Body>
         </Card>
@@ -77,7 +77,7 @@ const Cards = (props) => {
         >
           <Card.Body className="recovered">
             <Card.Title> Recovered </Card.Title>
-            <Card.Text> <CountUp start={0} end={recovered} duration={1.75} separator="," /></Card.Text>
+            <Card.Text> <CountUp start={0} end={recovered} duration={1} separator="," /></Card.Text>
 
           </Card.Body>
         </Card>
@@ -91,7 +91,7 @@ const Cards = (props) => {
         >
           <Card.Body className="deaths">
             <Card.Title> Deaths </Card.Title>
-            <Card.Text> <CountUp start={0} end={deaths} duration={1.75} separator="," /></Card.Text>
+            <Card.Text> <CountUp start={0} end={deaths} duration={1} separator="," /></Card.Text>
           </Card.Body>
         </Card>
       </CardDeck>
