@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { Container, Row, Col } from 'react-bootstrap';
 import { Pie } from 'react-chartjs-2';
+import OurLoader from '../Loader/Loader';
 
 import { authHeader } from '../../helpers';
 
@@ -23,7 +24,7 @@ class PETracker extends React.Component {
                 headers: authHeader()
             }
         ).then(response => {
-            console.log(response);
+            // console.log(response);
             this.setState({ data: response.data }, this.setState({loading: false}));
         })
         .catch(err => {
@@ -33,11 +34,7 @@ class PETracker extends React.Component {
 
     render() {
         if (this.state.loading) {
-            return (
-                <React.Fragment>
-                    Loading...
-                </React.Fragment>
-            )
+            return <OurLoader />
         }
         else {
             const peData = {

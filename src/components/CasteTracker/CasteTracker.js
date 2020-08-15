@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Pie } from 'react-chartjs-2';
 import { authHeader } from '../../helpers';
+import OurLoader from '../Loader/Loader';
 
 class CasteTracker extends React.Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class CasteTracker extends React.Component {
                 headers: authHeader()
             }
         ).then(response => {
-            console.log(response);
+            // console.log(response);
             this.setState({ data: response.data }, this.setState({ loading: false }))
         }).catch(err => {
             console.log(err);
@@ -31,13 +32,11 @@ class CasteTracker extends React.Component {
 
     render() {
         if (this.state.loading) {
-            return <React.Fragment>
-                Loading...
-            </React.Fragment>
+            return <OurLoader />
         }
         else {
             let { PVTG, ST, NST } = this.state.data;
-            console.log(PVTG, ST, NST);
+            // console.log(PVTG, ST, NST);
             const pvtgData = {
                 labels: ['PVTG', 'ST', 'Non ST'],
                 datasets: [
