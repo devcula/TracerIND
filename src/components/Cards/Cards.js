@@ -96,7 +96,7 @@ const Cards = (props) => {
         </Card>
       </CardDeck>
       <br/>
-      <Container>
+      <Container id="stateWiseData">
         <Row>
           <Col>
             <Bar
