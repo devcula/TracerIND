@@ -12,7 +12,6 @@ export default class Home extends Component {
   async componentDidMount() {
     const fetchedData = await fetchData();
     this.setState({ data: fetchedData })
-
   }
   render() {
     const { data } = this.state;
