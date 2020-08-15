@@ -72,9 +72,9 @@ class PETracker extends React.Component {
                 ]
             }
             return (
-                <Container style={{marginTop: "10vh"}}>
+                <Container style={{textAlign: "center"}}>
                     <Row>
-                        <Col sm={6}>
+                        <Col sm={6} className="metric">
                             <Row>
                                 <Col style={{ right: "2rem" }}>
                                     <h3>Pedal Edema Cases</h3>
@@ -99,7 +99,7 @@ class PETracker extends React.Component {
                                 </Col>
                             </Row>
                         </Col>
-                        <Col sm={6}>
+                        <Col sm={6} className="metric">
                             <Row>
                                 <Col style={{right: "3rem"}}>
                                     <h3>Pedal Edema Type Distribution</h3>

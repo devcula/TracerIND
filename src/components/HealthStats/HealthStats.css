@@ -1,0 +1,9 @@
+.singleMetricInOneRow {
+    width: 50%;
+}
+
+@media only screen and (max-width: 600px){
+    .singleMetricInOneRow {
+        width: 100%;
+    }
+}

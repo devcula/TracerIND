@@ -238,7 +238,9 @@ class BasicDetailsForm extends React.Component {
             deworming: this.state.deworming,
             phcList: this.state.phcList,
             villageList: this.state.villageList,
-            villageSecList: this.state.villageSecList
+            villageSecList: this.state.villageSecList,
+            smoking: this.state.smoking,
+            drinking: this.state.drinking
         }
         await new Promise(resolve => this.props.changeData(dataToSave, () => resolve()));
     }
@@ -690,7 +692,7 @@ class BasicDetailsForm extends React.Component {
                             <Col sm={12}>
                                 <Row>
                                     <Col sm={3}>
-                                        <Form.Label>PVTG :</Form.Label>
+                                        <Form.Label>Caste :</Form.Label>
                                     </Col>
                                     <Col sm={3} id="PVTG" style={styles.left}>
                                         <Row>
