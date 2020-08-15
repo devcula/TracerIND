@@ -1,41 +1,94 @@
 import React from 'react';
 import axios from 'axios';
 
-import { Container } from 'react-bootstrap';
-
-import { uri } from '../../index';
+import { Container, Row, Col } from 'react-bootstrap';
+import { Pie } from 'react-chartjs-2';
 import { authHeader } from '../../helpers';
+import OurLoader from '../Loader/Loader';
 
-export default function PVTGTracker(props) {
-    let [loading, setLoading] = React.useState(true);
+class PVTGTracker extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true,
+            data: {}
+        }
+    }
 
-    React.useEffect(() => {
-        axios.get(uri + 'GetPVTG/',
+    componentDidMount() {
+        axios.get(this.uri + 'GetPVTG/',
             {
                 headers: authHeader()
             }
         ).then(response => {
-            console.log(response);
-            setLoading(false);
+            // console.log(response);
+            this.setState({ data: response.data }, () => this.setState({ loading: false }))
+        }).catch(err => {
+            console.log(err);
         })
-    })
+    }
 
-    return (
-        <Container>
-            {
-                (() => {
-                    if (loading) {
-                        return <React.Fragment>
-                            Loading...
-                        </React.Fragment>
+    uri = process.env.REACT_APP_SERVER_URI;
+
+    render() {
+        if (this.state.loading) {
+            return <OurLoader />
+        }
+        else {
+            let { PVTG, ST, NST } = this.state.data;
+            // console.log(PVTG, ST, NST);
+            const pvtgData = {
+                labels: ['PVTG', 'ST', 'Non ST'],
+                datasets: [
+                    {
+                        label: 'Caste distribution',
+                        backgroundColor: [
+                            '#00A6B4',
+                            '#6800B4',
+                            '#2FDE00'
+                        ],
+                        hoverBackgroundColor: [
+                            '#003350',
+                            '#35014F',
+                            '#175000'
+                        ],
+                        data: [PVTG, ST, NST]
                     }
-                    else {
-                        return <React.Fragment>
-                            Loading done...
-                        </React.Fragment>
-                    }
-                })()
+                ]
             }
-        </Container>
-    )
+            return (
+                <Container>
+                    <Row>
+                        <Col style={{right: "3rem"}}>
+                            <h3>PVTG Distribution</h3>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Row>
+                                <Col>
+                                    <Pie
+                                        data={pvtgData}
+                                        options={{
+                                            title: {
+                                                display: false,
+                                                text: 'Caste Distribution',
+                                                fontSize: 20
+                                            },
+                                            legend: {
+                                                display: true,
+                                                position: 'right'
+                                            }
+                                        }}
+                                    />
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                </Container>
+            )
+        }
+    }
 }
+
+export default PVTGTracker;
