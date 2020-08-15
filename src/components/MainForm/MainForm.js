@@ -4,6 +4,7 @@ import BasicDetailsForm from '../BasicDetailsForm/BasicDetailsForm';
 import TestDetailsForm from '../TestDetailsForm/TestDetailsForm';
 import HospitalDetailsForm from '../HospitalDetailsForm/HospitalDetailsForm';
 import ObservationsForm from '../ObservationsForm/ObservationsForm';
+import BloodProfile from '../BloodProfile/BloodProfile';
 
 import axios from 'axios';
 import { uri } from '../../index';
@@ -17,7 +18,7 @@ class MainForm extends React.Component {
     constructor() {
         super();
         this.state = {
-            formName: "UserDetails",
+            formName: "Observations",
             pkid: this.generatePkid(32)
         }
     }
@@ -137,14 +138,18 @@ class MainForm extends React.Component {
                 Diarrohea: this.state.diarrohea,
                 Bleeding: this.state.bleeding,
                 Infection: this.state.infection,
-                others: ""
+                others: this.state.otherSymptoms
             },
             report: {},
             patient_status: "Closed",
-            hb: 0.0,
-            wbc_count: 0.0,
-            diffrential_count: {},
-            plat_count: 0.0,
+            hb: this.state.haemoglobin ? this.state.haemoglobin : 0.0,
+            wbc_count: this.state.wbc ? this.state.wbc : 0.0,
+            diffrential_count: {
+                monocytes: this.state.monocytes ? this.state.monocytes : null,
+                lymphocytes: this.state.lymphocytes ? this.state.lymphocytes : null,
+                eosinophils: this.state.eosinophils ? this.state.eosinophils : null
+            },
+            plat_count: this.state.platelet ? this.state.platelet : 0.0,
             habits: {
                 smoking: this.state.smoking,
                 drinking: this.state.drinking
@@ -181,6 +186,8 @@ class MainForm extends React.Component {
                 return <HospitalDetailsForm submit={this.submitForm} changeData={this.appendState} getValue={this.getValue} />
             case "Observations": 
                 return <ObservationsForm submit={this.submitForm} changeData={this.appendState} getValue={this.getValue} />
+            case "BloodProfile":
+                return <BloodProfile submit={this.submitForm} changeData={this.appendState} getValue={this.getValue} />
             case "Success":
                 return <FormSuccess />
             default:
