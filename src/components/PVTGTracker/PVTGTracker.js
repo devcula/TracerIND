@@ -6,7 +6,7 @@ import { Pie } from 'react-chartjs-2';
 import { authHeader } from '../../helpers';
 import OurLoader from '../Loader/Loader';
 
-class CasteTracker extends React.Component {
+class PVTGTracker extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -60,7 +60,7 @@ class CasteTracker extends React.Component {
                 <Container>
                     <Row>
                         <Col style={{right: "3rem"}}>
-                            <h3>Caste Distribution</h3>
+                            <h3>PVTG Distribution</h3>
                         </Col>
                     </Row>
                     <Row>
@@ -91,4 +91,4 @@ class CasteTracker extends React.Component {
     }
 }
 
-export default CasteTracker;
+export default PVTGTracker;

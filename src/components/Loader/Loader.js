@@ -10,10 +10,10 @@ export default class OurLoader extends React.Component {
                     <Col>
                         <Loader
                             type="Puff"
-                            color="#00BFFF"
-                            height={100}
-                            width={100}
-                            timeout={3000} //3 secs
+                            color="#0a5767"
+                            height={200}
+                            width={200}
+                            // timeout={3000} //3 secs
                         />
                     </Col>
                 </Row>

@@ -5,7 +5,7 @@ import './Sidebar.css'
 
 export default function SideBar(props) {
 
-  const views = ['PatientStatus', 'HealthStats', 'CasteTracker', 'PedalEdemaTracker'];
+  const views = ['PatientStatus', 'HealthStats', 'PVTGTracker', 'PedalEdemaTracker'];
 
   React.useEffect(() => {
     for(let i = 0; i < views.length; i++){
@@ -32,7 +32,7 @@ export default function SideBar(props) {
         Health Stats
       </button>
 
-      <button className="menu-item" id="CasteTracker" onClick={() => props.changeView('CasteTracker')}>
+      <button className="menu-item" id="PVTGTracker" onClick={() => props.changeView('PVTGTracker')}>
         PVTG Tracker
       </button>
 
