@@ -22,7 +22,7 @@ class PVTGTracker extends React.Component {
             }
         ).then(response => {
             // console.log(response);
-            this.setState({ data: response.data }, this.setState({ loading: false }))
+            this.setState({ data: response.data }, () => this.setState({ loading: false }))
         }).catch(err => {
             console.log(err);
         })
