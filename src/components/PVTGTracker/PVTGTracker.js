@@ -57,7 +57,7 @@ class PVTGTracker extends React.Component {
                 ]
             }
             return (
-                <Container>
+                <Container className="metric" style={{ textAlign: "center" }}>
                     <Row>
                         <Col style={{right: "3rem"}}>
                             <h3>PVTG Distribution</h3>

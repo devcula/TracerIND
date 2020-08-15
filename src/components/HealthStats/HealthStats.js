@@ -7,6 +7,8 @@ import { Pie } from 'react-chartjs-2';
 
 import { authHeader } from '../../helpers';
 
+import './HealthStats.css';
+
 class HealthStats extends React.Component {
     constructor(props) {
         super(props);
@@ -25,7 +27,7 @@ class HealthStats extends React.Component {
                 headers: authHeader()
             }
         ).then(responseStats => {
-            console.log(responseStats);
+            // console.log(responseStats);
             axios.get(this.uri + 'GetAllPatient',
                 {
                     headers: authHeader()
@@ -46,7 +48,7 @@ class HealthStats extends React.Component {
         }
         else {
             let { BloodUrea, Electrolytes_Potassium, Electrolytes_Sodium, SerumCreatinine, UricAcid } = this.state.data;
-            console.log(this.state);
+            // console.log(this.state);
             const bloodUreaData = {
                 labels: ['Normal', 'Critical'],
                 datasets: [
@@ -135,9 +137,9 @@ class HealthStats extends React.Component {
                 ]
             }
             return (
-                <Container>
+                <Container style={{ textAlign: "center" }}>
                     <Row>
-                        <Col sm={6}>
+                        <Col sm={6} className="metric">
                             <Row>
                                 <Col style={{ right: "3rem" }}>
                                     <h3>Blood Urea</h3>
@@ -162,7 +164,7 @@ class HealthStats extends React.Component {
                                 </Col>
                             </Row>
                         </Col>
-                        <Col sm={6}>
+                        <Col sm={6} className="metric">
                             <Row>
                                 <Col style={{ right: "3rem" }}>
                                     <h3>Potassium(K)</h3>
@@ -189,7 +191,7 @@ class HealthStats extends React.Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col sm={6}>
+                        <Col sm={6} className="metric">
                             <Row>
                                 <Col style={{ right: "3rem" }}>
                                     <h3>Sodium(Na)  </h3>
@@ -214,7 +216,7 @@ class HealthStats extends React.Component {
                                 </Col>
                             </Row>
                         </Col>
-                        <Col sm={6}>
+                        <Col sm={6} className="metric">
                             <Row>
                                 <Col style={{ right: "3rem" }}>
                                     <h3>Uric Acid</h3>
@@ -240,14 +242,14 @@ class HealthStats extends React.Component {
                             </Row>
                         </Col>
                     </Row>
-                    <Row style={{ textAlign: "center" }}>
+                    <Row style={{ textAlign: "center" }} className="metric singleMetricInOneRow">
                         <Col>
-                            <Row style={{ width: "50%" }}>
+                            <Row>
                                 <Col style={{ right: "3rem" }}>
                                     <h3>Serum Creatinine</h3>
                                 </Col>
                             </Row>
-                            <Row style={{ width: "50%" }}>
+                            <Row>
                                 <Col>
                                     <Pie
                                         data={serumCreatinineData}

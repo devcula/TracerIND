@@ -144,7 +144,11 @@ class MainForm extends React.Component {
             hb: 0.0,
             wbc_count: 0.0,
             diffrential_count: {},
-            plat_count: 0.0
+            plat_count: 0.0,
+            habits: {
+                smoking: this.state.smoking,
+                drinking: this.state.drinking
+            }
         }
         axios.post(uri + 'AddPatient/',
             dataToSend,
