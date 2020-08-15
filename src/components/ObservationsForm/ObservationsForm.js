@@ -22,7 +22,7 @@ class ObservationsForm extends React.Component {
             diarrohea: props.getValue('diarrohea'),
             bleeding: props.getValue('bleeding'),
             infection: props.getValue('infection'),
-
+            otherSymptoms: props.getValue('otherSymptoms')
         }
     }
     validate = () => {
@@ -224,7 +224,7 @@ class ObservationsForm extends React.Component {
                                             id="fever"
                                             name="fever"
                                             onClick={this.handleCheckboxChange('fever')}
-                                            checked={this.state.fever}
+                                            defaultChecked={this.state.fever}
                                         />
                                     </Col>
                                     <Col sm={2}>
@@ -236,7 +236,7 @@ class ObservationsForm extends React.Component {
                                             id="cold"
                                             name="cold"
                                             onClick={this.handleCheckboxChange('cold')}
-                                            checked={this.state.cold}
+                                            defaultChecked={this.state.cold}
                                         />
                                     </Col>
                                     <Col sm={2}>
@@ -248,7 +248,7 @@ class ObservationsForm extends React.Component {
                                             id="cough"
                                             name="cough"
                                             onClick={this.handleCheckboxChange('cough')}
-                                            checked={this.state.cough}
+                                            defaultChecked={this.state.cough}
                                         />
                                     </Col>
                                     <Col sm={2}>
@@ -260,7 +260,7 @@ class ObservationsForm extends React.Component {
                                             id="fatigue"
                                             name="fatigue"
                                             onClick={this.handleCheckboxChange('fatigue')}
-                                            checked={this.state.fatigue}
+                                            defaultChecked={this.state.fatigue}
                                         />
                                     </Col>
                                 </Form.Group>
@@ -278,7 +278,7 @@ class ObservationsForm extends React.Component {
                                             id="aches"
                                             name="aches"
                                             onClick={this.handleCheckboxChange('aches')}
-                                            checked={this.state.aches}
+                                            defaultChecked={this.state.aches}
                                         />
                                     </Col>
                                     <Col sm={2}>
@@ -290,7 +290,7 @@ class ObservationsForm extends React.Component {
                                             id="diarrohea"
                                             name="diarrohea"
                                             onClick={this.handleCheckboxChange('diarrohea')}
-                                            checked={this.state.diarrohea}
+                                            defaultChecked={this.state.diarrohea}
                                         />
                                     </Col>
                                     <Col sm={2}>
@@ -302,7 +302,7 @@ class ObservationsForm extends React.Component {
                                             name="bleeding"
                                             type="checkbox"
                                             onClick={this.handleCheckboxChange('bleeding')}
-                                            checked={this.state.bleeding}
+                                            defaultChecked={this.state.bleeding}
                                         />
                                     </Col>
                                     <Col sm={2}>
@@ -314,13 +314,31 @@ class ObservationsForm extends React.Component {
                                             id="infection"
                                             name="bleeding"
                                             onClick={this.handleCheckboxChange('infection')}
-                                            checked={this.state.infection}
+                                            defaultChecked={this.state.infection}
                                         />
                                     </Col>
                                 </Form.Group>
                             </Col>
                         </Row>
                         <br />
+                        <Row>
+                            <Col sm={12}>
+                                <Form.Group as={Row}>
+                                    <Col sm={3}>
+                                        <Form.Label>Others :</Form.Label>
+                                    </Col>
+                                    <Col sm={9}>
+                                        <textarea
+                                            placeholder="Other Symptoms(If any)"
+                                            onChange={this.handleChange('otherSymptoms')}
+                                            value={this.state.otherSymptoms}
+                                            id="otherSymptoms"
+                                            className="form-control"
+                                        />
+                                    </Col>
+                                </Form.Group>
+                            </Col>
+                        </Row>
                         <Row>
                             <Col sm={6} xs={6} style={styles.right}>
                                 <Button variant="primary"
