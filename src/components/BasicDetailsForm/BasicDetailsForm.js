@@ -553,7 +553,7 @@ class BasicDetailsForm extends React.Component {
                                                     label="Transgender"
                                                     name="gender"
                                                     onChange={this.handleChange('gender')}
-                                                    checked={this.state.gender === "MB"}
+                                                    checked={this.state.gender === "NB"}
                                                 />
                                             </Col>
                                         </Row>
