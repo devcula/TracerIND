@@ -43,7 +43,7 @@ export default function Village(props) {
                     onChange={handleChange}
                     id={props.id}
                 >
-                    <option value="">Select Village Sec. First</option>
+                    <option value="">Select Sub center First</option>
                 </Form.Control>
             )
         }

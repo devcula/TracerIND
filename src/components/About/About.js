@@ -18,7 +18,7 @@ export default class About extends Component {
   render() {
     return (
       <Container>
-        <h1 style={{marginTop: "1rem"}} className="heading"><span>meet </span>Our Team</h1>
+        <h1 style={{ marginTop: "1rem" }} className="heading"><span>meet </span>Our Team</h1>
         <div className="profiles">
           <Row>
             <Col sm={6} md={4}>
@@ -46,17 +46,18 @@ export default class About extends Component {
           <Row>
             <Col sm={6} md={4}>
               <div className="profile">
+                <img alt="User" src={imgCard5} className="profile-img"></img>
+                <h3 className="user-name">Akshat </h3>
+                <h5>Team Lead</h5>
+              </div>
+            </Col>
+            <Col sm={6} md={4}>
+              <div className="profile">
                 <img alt="User" src={imgCard4} className="profile-img"></img>
                 <h3 className="user-name">Hrituja Khatavkar</h3>
                 <h5>Frontend developer</h5>
               </div>
             </Col>
-            <Col sm={6} md={4}>
-              <div className="profile">
-                <img alt="User" src={imgCard5} className="profile-img"></img>
-                <h3 className="user-name">Akshat </h3>
-                <h5>Android Developer</h5>
-              </div></Col>
             <Col sm={6} md={4}>
               <div className="profile">
                 <img alt="User" src={imgCard6} className="profile-img"></img>
