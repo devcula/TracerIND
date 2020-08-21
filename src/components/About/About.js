@@ -6,7 +6,7 @@ import imgCard1 from "./img/S1.png";
 import imgCard2 from "./img/S2.png";
 import imgCard3 from "./img/S3.png";
 import imgCard4 from "./img/S4.png";
-import imgCard5 from "./img/S5.png";
+// import imgCard5 from "./img/S5.png";
 import imgCard6 from "./img/S6.png";
 import imgCard7 from "./img/S7.png";
 import imgCard8 from "./img/S8.jpeg";
@@ -46,9 +46,9 @@ export default class About extends Component {
           <Row>
             <Col sm={6} md={4}>
               <div className="profile">
-                <img alt="User" src={imgCard5} className="profile-img"></img>
-                <h3 className="user-name">Akshat </h3>
-                <h5>Team Lead</h5>
+                <img alt="User" src={imgCard7} className="profile-img"></img>
+                <h3 className="user-name">Shubhankar</h3>
+                <h5>Android Developer</h5>
               </div>
             </Col>
             <Col sm={6} md={4}>
@@ -63,13 +63,6 @@ export default class About extends Component {
                 <img alt="User" src={imgCard6} className="profile-img"></img>
                 <h3 className="user-name">  Gaurav Roy </h3>
                 <h5>Frontend Developer</h5>
-              </div>
-            </Col>
-            <Col sm={6} md={4}>
-              <div className="profile">
-                <img alt="User" src={imgCard7} className="profile-img"></img>
-                <h3 className="user-name">Shubhankar</h3>
-                <h5>Android Developer</h5>
               </div>
             </Col>
             <Col sm={6} md={4}>
