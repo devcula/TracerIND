@@ -4,11 +4,13 @@
     font-weight: bold;
     background-color: #0a5767;
     box-shadow: 0 8px 6px -6px black;
+    
     /* background-color: #2892D7; */
 }
 
 @media only screen and (min-width: 992px){
     .navbar {
+        
         height: 10vh;
     }
 }
