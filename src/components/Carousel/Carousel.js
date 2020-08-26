@@ -19,15 +19,15 @@ export default class Slider extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ backgroundColor: "#0a5767"}}>
         <Carousel>
-        <Carousel.Item>
-          <img
-            className="d-block w-100 h-50"
-            src={S5}
-            alt="First slide"
-          />
-        </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100 h-50"
+              src={S5}
+              alt="First slide"
+            />
+          </Carousel.Item>
           <Carousel.Item>
             <img
               className="d-block w-100 h-50"

@@ -52,7 +52,7 @@ class Login extends React.Component {
             <Container style={{ marginTop: "10vh", textAlign: "center" }}>
                 <Row className="heading">
                     <Col>
-                        <h2>Welcome to TracerIND</h2>
+                        <h2>Kindly Login to access all features..</h2>
                     </Col>
                 </Row>
                 <fieldset style={{ marginTop: "10vh"}}>
