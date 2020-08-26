@@ -23,10 +23,8 @@ export default class Home extends Component {
       <React.Fragment>
         {/* <Header /> */}
         <Container >
-          <Jumbotron>
-            <h3>Welcome to TracerIND</h3>
-          </Jumbotron>
           {/* <Infotrack /> */}
+          <br/>
           <Slider />
           <Row className="show-grid text-center new4">
             <Col sm={12}>
