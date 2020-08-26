@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import './Header.css'
 
-import { faHome, faChartLine, faUserPlus, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faChartLine, faUserPlus, faInfoCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { authenticationService } from '../../services';
 
@@ -31,7 +31,10 @@ export default class Header extends Component {
 						</Nav.Link>
 					</Nav>
 					<Nav>
-						<Button variant="transparent" style={{border: "none", color: "white"}} onClick={authenticationService.logout}>Logout</Button>
+						<Button className="nav-button" variant="transparent" onClick={authenticationService.logout}>
+							Logout &nbsp;
+							<FontAwesomeIcon icon={faSignOutAlt} color="white" />
+						</Button>
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>

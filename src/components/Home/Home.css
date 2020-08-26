@@ -1,13 +1,35 @@
-.jumbotron{
-    background-image: linear-gradient(to right top, #7a9e7e, #3d7b74, #0a5767, #0c314d, #160c28);
-    color: white;
-    margin-top: 1rem;
-    margin-bottom: 5rem;
-    text-align: center;
-    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+.jumbotron {
+  background-image: linear-gradient(to right top, #7a9e7e, #3d7b74, #0a5767, #0c314d, #160c28);
+  /* height: 8em; */
+  color: white;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  /* box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048),
     0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072),
     0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12);
+    0 100px 80px rgba(0, 0, 0, 0.12); */
+  box-shadow: 0 0px 1.1px rgba(0, 0, 0, 0.039),
+    0 0px 2.6px rgba(0, 0, 0, 0.057),
+    0 0px 4.9px rgba(0, 0, 0, 0.07),
+    0 0px 8.7px rgba(0, 0, 0, 0.083),
+    0 0px 16.3px rgba(0, 0, 0, 0.101),
+    0 0px 39px rgba(0, 0, 0, 0.14);
+  border-radius: 5px;
+}
+
+
+.new4 {
+  padding-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: 0 0px 1.1px rgba(0, 0, 0, 0.039),
+    0 0px 2.6px rgba(0, 0, 0, 0.057),
+    0 0px 4.9px rgba(0, 0, 0, 0.07),
+    0 0px 8.7px rgba(0, 0, 0, 0.083),
+    0 0px 16.3px rgba(0, 0, 0, 0.101),
+    0 0px 39px rgba(0, 0, 0, 0.14);
+  border-radius: 10px;
 }

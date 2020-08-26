@@ -1,0 +1,20 @@
+
+
+.card1 {
+  position: absolute;
+  border-radius: 5px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: transform;
+  min-width: 60ch;
+  min-height: 60ch;
+  width: 50vw;
+  height: 45vw;
+  max-width: 100ch;
+  max-height: 100ch;
+ 
+}
+
+
+

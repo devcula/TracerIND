@@ -40,7 +40,6 @@ const Cards = (props) => {
       </h2>
       <CardDeck>
         <Card
-          style={{ width: '18rem' }}
           text="D13C2B"
           bg='light'
           xs={12}
@@ -54,7 +53,6 @@ const Cards = (props) => {
           </Card.Body>
         </Card>
         <Card
-          style={{ width: '18rem' }}
           bg='light'
           className="mb-2"
           xs={12}
@@ -68,7 +66,6 @@ const Cards = (props) => {
           </Card.Body>
         </Card>
         <Card
-          style={{ width: '18rem' }}
           bg='light'
           xs={12}
           s={6}
@@ -82,8 +79,6 @@ const Cards = (props) => {
           </Card.Body>
         </Card>
         <Card
-          style={{ width: '18rem' }}
-          bg='light'
           className="mb-2"
           xs={12}
           s={6}

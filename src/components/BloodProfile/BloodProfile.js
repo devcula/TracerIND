@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 import './BloodProfile.css';
 class BloodProfile extends React.Component {
@@ -7,10 +6,17 @@ class BloodProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            date: props.getValue('date'),
             wbc: props.getValue('wbc'),
+            pcv: props.getValue('pcv'),
+            rbc: props.getValue('rbc'),
+            mcv: props.getValue('mch'),
+            mchc: props.getValue('mchc'),
+            rdw: props.getValue('rdw'),
             monocytes: props.getValue('monocytes'),
             lymphocytes: props.getValue('lymphocytes'),
             eosinophils: props.getValue('eosinophils'),
+            neutroophils: props.getValue('neutrophils'),
             haemoglobin: props.getValue('haemoglobin'),
             platelet: props.getValue('platelet'),
         }
@@ -61,6 +67,25 @@ class BloodProfile extends React.Component {
                                 <Form.Group as={Row}>
 
                                     <Col sm={3}>
+                                        <Form.Label>Date of testing :</Form.Label>
+                                    </Col>
+                                <Col sm={3}>
+                                 <Form.Control 
+                                   rows="3"
+                                   type="date"
+                                   placeholder="DD/MM/YYYY"
+                                   onChange={this.handleChange('date')}
+                                   value={this.state.date}
+                                   id="date" />
+                                  </Col>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12}>
+                                <Form.Group as={Row}>
+
+                                    <Col sm={3}>
                                         <Form.Label>Total WBC :</Form.Label>
                                     </Col>
                                     <Col sm={3}>
@@ -92,7 +117,139 @@ class BloodProfile extends React.Component {
                                             placeholder="Haemoglobin in (g/dL)"
                                             onChange={this.handleChange('haemoglobin')}
                                             value={this.state.haemoglobin}
-                                            id="wbc"
+                                            id="haemoglobin"
+
+                                        />
+
+                                    </Col>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12}>
+                                <Form.Group as={Row}>
+
+                                    <Col sm={3}>
+                                        <Form.Label>Packed Cell Volume :</Form.Label>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control
+                                            rows="3"
+                                            type="number"
+                                            placeholder="Packed Cell Volume in (%)"
+                                            onChange={this.handleChange('pcv')}
+                                            value={this.state.pcv}
+                                            id="pcv"
+
+                                        />
+
+                                    </Col>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12}>
+                                <Form.Group as={Row}>
+
+                                    <Col sm={3}>
+                                        <Form.Label>RBC Count :</Form.Label>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control
+                                            rows="3"
+                                            type="number"
+                                            placeholder="RBC in (mill/mm3)"
+                                            onChange={this.handleChange('rbc')}
+                                            value={this.state.rbc}
+                                            id="rbc"
+
+                                        />
+
+                                    </Col>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12}>
+                                <Form.Group as={Row}>
+
+                                    <Col sm={3}>
+                                        <Form.Label>MCV :</Form.Label>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control
+                                            rows="3"
+                                            type="number"
+                                            placeholder="MCV in (fL)"
+                                            onChange={this.handleChange('mcv')}
+                                            value={this.state.mcv}
+                                            id="mcv"
+
+                                        />
+
+                                    </Col>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12}>
+                                <Form.Group as={Row}>
+
+                                    <Col sm={3}>
+                                        <Form.Label>MCH :</Form.Label>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control
+                                            rows="3"
+                                            type="number"
+                                            placeholder="MCH in (g)"
+                                            onChange={this.handleChange('mch')}
+                                            value={this.state.mch}
+                                            id="mch"
+
+                                        />
+
+                                    </Col>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12}>
+                                <Form.Group as={Row}>
+
+                                    <Col sm={3}>
+                                        <Form.Label>MCHC :</Form.Label>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control
+                                            rows="3"
+                                            type="number"
+                                            placeholder="MCHC in (g/dL)"
+                                            onChange={this.handleChange('mchc')}
+                                            value={this.state.mchc}
+                                            id="mchc"
+
+                                        />
+
+                                    </Col>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12}>
+                                <Form.Group as={Row}>
+
+                                    <Col sm={3}>
+                                        <Form.Label>Red Cell Distotion Width :</Form.Label>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control
+                                            rows="3"
+                                            type="number"
+                                            placeholder="Red Cell Distotion Width  (%)"
+                                            onChange={this.handleChange('rdw')}
+                                            value={this.state.rdw}
+                                            id="rdw"
 
                                         />
 
@@ -172,6 +329,21 @@ class BloodProfile extends React.Component {
                                             onChange={this.handleChange('eosinophils')}
                                             value={this.state.Eosinophils}
                                             id="eosinophils" />
+
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Label>Neutrophils :</Form.Label>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control
+
+                                            className="my-1 mr-sm-2"
+                                            rows="3"
+                                            type="number"
+                                            placeholder="%"
+                                            onChange={this.handleChange('neutrophils')}
+                                            value={this.state.Neutrophils}
+                                            id="neutroophils" />
 
                                     </Col>
                                 </Form.Group>
