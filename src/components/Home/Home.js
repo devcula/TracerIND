@@ -3,15 +3,15 @@ import { Jumbotron, Container, Row, Col } from 'react-bootstrap';
 import './Home.css';
 import Cards from '../Cards/Cards';
 import { fetchData } from '../../CovidApi';
-import Infotrack from '../Infotrack/Infotrack';
-import Bucket from '../Bucket/Bucket';
-import Slider from '../Carousel/Carousel';
-import Sidenav from '../Sidenav/Sidenav';
+// import Infotrack from '../Infotrack/Infotrack';
+// import Bucket from '../Bucket/Bucket';
+// import Slider from '../Carousel/Carousel';
+// import Sidenav from '../Sidenav/Sidenav';
 export default class Home extends Component {
   state = {
     data: {},
   }
-//Comment
+  //Comment
   async componentDidMount() {
     const fetchedData = await fetchData();
     this.setState({ data: fetchedData })
@@ -20,25 +20,24 @@ export default class Home extends Component {
     const { data } = this.state;
     return (
       <Container >
-       <Jumbotron>
-         <h2>Welcome to TracerIND</h2> 
-       </Jumbotron> 
-          <Infotrack/>
-          <Slider/> 
+        <Jumbotron>
+          <h2>Welcome to TracerIND</h2>
+        </Jumbotron>
+        {/* <Infotrack /> */}
+        {/* <Slider /> */}
         <Row className="show-grid text-center new4">
           <Col sm={12}>
-           <Cards data={data} />
+            <Cards data={data} />
           </Col>
         </Row>
-        <Sidenav/>
-        <Row>
-        <Col>
-              <Bucket/> 
+        {/* <Sidenav /> */}
+        {/* <Row>
+          <Col>
+            <Bucket />
           </Col>
-           <Col>
-              
+          <Col>
           </Col>
-        </Row>
+        </Row> */}
       </Container>
     )
   }
