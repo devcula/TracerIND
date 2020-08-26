@@ -1,11 +1,15 @@
-
-
-  
 import React, { Component } from 'react';
 import { Carousel } from 'react-bootstrap';
 
+// import S from './CarouselImg/event.jpg';
+import S1 from './CarouselImg/1.png';
+import S2 from './CarouselImg/2.png';
+import S3 from './CarouselImg/3.png';
+import S4 from './CarouselImg/4.png';
+import S5 from './CarouselImg/5.png';
 
-import S from './CarouselImg/event.jpg';
+
+import './Carousel.css';
 
 export default class Slider extends Component {
   constructor(props) {
@@ -14,49 +18,49 @@ export default class Slider extends Component {
   }
 
   render() {
-    return(
-      <div>
+    return (
+      <div style={{ backgroundColor: "#0a5767"}}>
         <Carousel>
-  <Carousel.Item>
-    <img
-      className="d-block w-100 h-50"
-      src={S}
-      alt="First slide"
-    />
-    <Carousel.Caption>
-      <h3>First slide label</h3>
-      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-    </Carousel.Caption>
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block w-100 h-50"
-      width={200}
-      src={S}
-      alt="Third slide"
-    />
-
-    <Carousel.Caption>
-      <h3>Second slide label</h3>
-      <p>LLLLL</p>
-    </Carousel.Caption>
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block w-100 h-50"
-      src={S}
-      alt="Third slide"
-    />
-
-    <Carousel.Caption>
-      <h3>Third slide label</h3>
-      <p>PPPP.</p>
-    </Carousel.Caption>
-  </Carousel.Item>
-</Carousel>
-        
-       
-     </div>
+          <Carousel.Item>
+            <img
+              className="d-block w-100 h-50"
+              src={S5}
+              alt="First slide"
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100 h-50"
+              src={S1}
+              alt="Second slide"
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100 h-50"
+              width={200}
+              src={S2}
+              alt="Third slide"
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100 h-50"
+              width={200}
+              src={S3}
+              alt="Fourth slide"
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100 h-50"
+              width={200}
+              src={S4}
+              alt="Fifth slide"
+            />
+          </Carousel.Item>
+        </Carousel>
+      </div>
     );
   }
 }

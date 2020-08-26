@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 import { authenticationService } from '../../services';
 
-import Header from '../Header/Header';
+// import Header from '../Header/Header';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={props => {
@@ -15,7 +15,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
         // authorised so return component
         return <React.Fragment>
-            <Header />
+            {/* <Header /> */}
             <Component {...props} />
         </React.Fragment>
     }} />
