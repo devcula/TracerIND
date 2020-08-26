@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch, Router } from 'react-router-dom';
+import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import About from './components/About/About';
 import Dashboard from './components/Dashboard/Dashboard';
 import MainForm from './components/MainForm/MainForm';
-// import Directory from './components/Directory/Directory';
 import Error404 from './components/Error404/Error404';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Login from './components/Login/Login';
@@ -44,19 +44,22 @@ class App extends Component {
 
   render() {
     return (
-      <Router history={history}>
-        <div>
-          <Switch>
-            <Route exact path="/login" component={Login} />
-            <PrivateRoute exact path="/" component={Home} />
-            <PrivateRoute exact path="/about" component={About} />
-            <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            <PrivateRoute exact path="/add" component={MainForm} />
-            {/* <PrivateRoute exact path="/directory" component={Directory} /> */}
-            <Route component={Error404} />
-          </Switch>
-        </div>
-      </Router>
+      <React.Fragment>
+        <Header />
+        <Router history={history}>
+          <div>
+            <Switch>
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/" component={Home} />
+              <PrivateRoute exact path="/about" component={About} />
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute exact path="/add" component={MainForm} />
+              {/* <PrivateRoute exact path="/directory" component={Directory} /> */}
+              <Route component={Error404} />
+            </Switch>
+          </div>
+        </Router>
+      </React.Fragment>
     );
   }
 }
