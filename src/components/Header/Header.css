@@ -50,3 +50,13 @@ img{
   width: 130px;
   height: 60px;
 }
+
+.nav-button {
+    border: none;
+    color: rgba(255, 255, 255, .5);
+    font-weight: bold;
+}
+
+.nav-button:hover {
+    color: white;
+}
