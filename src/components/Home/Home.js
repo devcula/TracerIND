@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Jumbotron, Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import './Home.css';
 import Cards from '../Cards/Cards';
 import { fetchData } from '../../CovidApi';
@@ -24,7 +24,7 @@ export default class Home extends Component {
         {/* <Header /> */}
         <Container >
           {/* <Infotrack /> */}
-          <br/>
+          <br />
           <Slider />
           <Row className="show-grid text-center new4">
             <Col sm={12}>
