@@ -77,7 +77,7 @@ class MainForm extends React.Component {
         }
         let dataToSend = {
             pkid: this.state.pkid,
-            adhaar: this.state.adhaar,
+            adhaar: ['dev', 'dev2'].indexOf(authenticationService.currentUserValue.username) !== -1 ? this.state.adhaar : "",
             mandal: this.state.mandal,
             phc: this.state.phc,
             villagesec: this.state.village_sec,
