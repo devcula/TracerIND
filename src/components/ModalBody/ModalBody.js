@@ -30,7 +30,7 @@ class ModalBody extends React.Component {
                 isPedalTypeEmpty = false
             }
         }
-        let adhaar = patient.adhaar.slice(0, 4) + "-" + patient.adhaar.slice(4, 8) + "-" + patient.adhaar.slice(8)
+        // let adhaar = patient.adhaar.slice(0, 4) + "-" + patient.adhaar.slice(4, 8) + "-" + patient.adhaar.slice(8)
         // console.log(adhaar)
         // console.log(patient)
         return (
@@ -49,7 +49,7 @@ class ModalBody extends React.Component {
                             </Form.Group>
                         </Col>
                     </Row>
-                    <Row>
+                    {/* <Row>
                         <Col >
                             <Form.Group as={Row}>
                                 <Col sm={3}>
@@ -61,7 +61,7 @@ class ModalBody extends React.Component {
                                 </Col>
                             </Form.Group>
                         </Col>
-                    </Row>
+                    </Row> */}
                     <Row>
                         <Col >
                             <Form.Group as={Row}>
