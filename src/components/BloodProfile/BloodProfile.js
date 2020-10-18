@@ -6,7 +6,7 @@ class BloodProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            date: props.getValue('date'),
+            dateOfBloodTest: props.getValue('dateOfBloodTest'),
             wbc: props.getValue('wbc'),
             pcv: props.getValue('pcv'),
             rbc: props.getValue('rbc'),
@@ -74,9 +74,9 @@ class BloodProfile extends React.Component {
                                    rows="3"
                                    type="date"
                                    placeholder="DD/MM/YYYY"
-                                   onChange={this.handleChange('date')}
-                                   value={this.state.date}
-                                   id="date" />
+                                   onChange={this.handleChange('dateOfBloodTest')}
+                                   value={this.state.dateOfBloodTest}
+                                   id="dateOfBloodTest" />
                                   </Col>
                                 </Form.Group>
                             </Col>
