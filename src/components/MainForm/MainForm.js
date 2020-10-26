@@ -109,6 +109,7 @@ class MainForm extends React.Component {
             maritalstatus: this.state.maritalstatus,
             phone: this.state.phone,
             bloodgroup: this.state.bloodgroup,
+            address: this.state.address,
             PVTG: this.state.PVTG,
             pedalEdema: this.state.pedalEdema ? this.state.pedalEdema : "",
             pedal_profile:
