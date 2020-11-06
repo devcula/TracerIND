@@ -153,12 +153,12 @@ class HospitalDetailsForm extends React.Component {
                                             <Col>
                                                 <Form.Check
                                                     type='radio'
-                                                    value="true"
+                                                    value="yes"
                                                     id="refered_yes"
                                                     label="Yes"
                                                     name="refered"
                                                     onChange={this.handleChange('refered')}
-                                                    checked={this.state.refered === "true"}
+                                                    checked={this.state.refered === "yes"}
                                                 />
                                             </Col>
                                         </Row>
@@ -166,12 +166,12 @@ class HospitalDetailsForm extends React.Component {
                                             <Col>
                                                 <Form.Check
                                                     type='radio'
-                                                    value="false"
+                                                    value="no"
                                                     id="refered_no"
                                                     label="No"
                                                     name="refered"
                                                     onChange={this.handleChange('refered')}
-                                                    checked={this.state.refered === "false"}
+                                                    checked={this.state.refered === "no"}
                                                 />
                                             </Col>
                                         </Row>
@@ -253,12 +253,12 @@ class HospitalDetailsForm extends React.Component {
                                                             <Col>
                                                                 <Form.Check
                                                                     type='radio'
-                                                                    value="true"
+                                                                    value="yes"
                                                                     id="dialysis_yes"
                                                                     label="Yes"
                                                                     name="dialysis"
                                                                     onChange={this.handleChange('dialysis')}
-                                                                    checked={this.state.dialysis === "true"}
+                                                                    checked={this.state.dialysis === "yes"}
                                                                 />
                                                             </Col>
                                                         </Row>
@@ -266,12 +266,12 @@ class HospitalDetailsForm extends React.Component {
                                                             <Col>
                                                                 <Form.Check
                                                                     type='radio'
-                                                                    value="false"
+                                                                    value="no"
                                                                     id="dialysis_no"
                                                                     label="No"
                                                                     name="dialysis"
                                                                     onChange={this.handleChange('dialysis')}
-                                                                    checked={this.state.dialysis === "false"}
+                                                                    checked={this.state.dialysis === "no"}
                                                                 />
                                                             </Col>
                                                         </Row>
