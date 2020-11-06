@@ -8,8 +8,8 @@ import imgCard3 from "./img/S3.png";
 import imgCard4 from "./img/S4.png";
 // import imgCard5 from "./img/S5.png";
 import imgCard6 from "./img/S6.png";
-import imgCard7 from "./img/S7.png";
-import imgCard8 from "./img/S8.jpeg";
+// import imgCard7 from "./img/S7.png";
+// import imgCard8 from "./img/S8.jpeg";
 import './About.css';
 
 
@@ -44,13 +44,13 @@ export default class About extends Component {
             </Col>
           </Row>
           <Row>
-            <Col sm={6} md={4}>
+            {/* <Col sm={6} md={4}>
               <div className="profile">
                 <img alt="User" src={imgCard7} className="profile-img"></img>
                 <h3 className="user-name">Shubhankar</h3>
                 <h5>Android Developer</h5>
               </div>
-            </Col>
+            </Col> */}
             <Col sm={6} md={4}>
               <div className="profile">
                 <img alt="User" src={imgCard4} className="profile-img"></img>
@@ -65,13 +65,13 @@ export default class About extends Component {
                 <h5>Frontend Developer</h5>
               </div>
             </Col>
-            <Col sm={6} md={4}>
+            {/* <Col sm={6} md={4}>
               <div className="profile">
                 <img alt="User" src={imgCard8} className="profile-img"></img>
                 <h3 className="user-name">Palak Rai</h3>
                 <h5>Frontend Developer</h5>
               </div>
-            </Col>
+            </Col> */}
           </Row>
         </div>
       </Container>

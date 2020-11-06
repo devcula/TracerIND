@@ -6,14 +6,14 @@ export const fetchData = async() =>{
     try{
         const {data} = await axios.get(url);
         console.log(data);
-        // const modifiedData = {
-        //   confirmed: data[2].confirmed,
-        //   recovered: data[2].recovered,
-        //   deaths: data[2].deaths,
-        //   active: data[2].active,
-        // }
-
-      return data[2];
+        if(data && data.length) {
+          for (let i = 0; i < data.length; i++){
+            if(data[i].id === 'IN-AP'){
+              return data[i];
+            }
+          }
+        }
+      // return data[1];
     }
     catch(error){
 

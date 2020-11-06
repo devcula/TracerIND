@@ -341,7 +341,12 @@ class HospitalDetailsForm extends React.Component {
                                                         <Form.Label>Treatment Provided : </Form.Label>
                                                     </Col>
                                                     <Col sm={3}>
-                                                        <Form.Control placeholder="Enter details" as="textarea" rows="3" />
+                                                        <Form.Control 
+                                                        placeholder="Enter details" 
+                                                        as="textarea" 
+                                                        rows="3" 
+                                                        onChange={this.handleChange('treatmentDone')}
+                                                        value={this.state.treatmentDone} />
                                                     </Col>
                                                 </Form.Group>
                                             </Col>

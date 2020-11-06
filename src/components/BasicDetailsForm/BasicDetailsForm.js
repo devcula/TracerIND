@@ -298,7 +298,7 @@ class BasicDetailsForm extends React.Component {
                             <Col sm={12}>
                                 <Form.Group as={Row}>
                                     <Col sm={3} xs={12}>
-                                        <Form.Label>Aadhar Number : </Form.Label>
+                                        <Form.Label>Aadhar(Optional) : </Form.Label>
                                     </Col>
                                     <Col sm={3} xs={4}>
                                         <Form.Control
