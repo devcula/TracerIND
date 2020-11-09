@@ -49,7 +49,7 @@ class ObservationsForm extends React.Component {
 
     previous = () => {
         this.saveData();
-        this.props.changeData({ formName: "UserDetails" });
+        this.props.changeData({ formName: "BasicDetails" });
     }
 
     loadNextForm = (formName) => {
