@@ -16,7 +16,7 @@ class BloodProfile extends React.Component {
             monocytes: props.getValue('monocytes'),
             lymphocytes: props.getValue('lymphocytes'),
             eosinophils: props.getValue('eosinophils'),
-            neutroophils: props.getValue('neutrophils'),
+            neutrophils: props.getValue('neutrophils'),
             haemoglobin: props.getValue('haemoglobin'),
             platelet: props.getValue('platelet'),
         }
@@ -342,8 +342,8 @@ class BloodProfile extends React.Component {
                                             type="number"
                                             placeholder="%"
                                             onChange={this.handleChange('neutrophils')}
-                                            value={this.state.Neutrophils}
-                                            id="neutroophils" />
+                                            value={this.state.neutrophils}
+                                            id="neutrophils" />
 
                                     </Col>
                                 </Form.Group>
