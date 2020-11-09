@@ -18,14 +18,17 @@ class ModalBody extends React.Component {
         let space = " ";
         let lastName = patient.surname;
         let fullName = firstName.concat(space, lastName);
-        let pedalEdema = 'Yes'
-        let isPedalTypeEmpty = true
+        let pedalEdema = '';
+        let isPedalTypeEmpty = true;
         if (patient.pedalEdema === 'N') {
             pedalEdema = 'No'
         }
+        else if (patient.pedalEdema === 'Y') {
+            pedalEdema = 'Yes'
+        }
         if (pedalEdema === 'Yes') {
             // console.log("here")
-            if (!(patient.pedaltype === '')) {
+            if (!(patient.pedal_profile.pedaltype === '')) {
                 // console.log("here")
                 isPedalTypeEmpty = false
             }
@@ -127,7 +130,7 @@ class ModalBody extends React.Component {
                             </Form.Group>
                         </Col>
                     </Row>
-                    <Row>
+                    {/* <Row>
                         <Col >
                             <Form.Group as={Row}>
                                 <Col sm={3}>
@@ -139,7 +142,7 @@ class ModalBody extends React.Component {
                                 </Col>
                             </Form.Group>
                         </Col>
-                    </Row>
+                    </Row> */}
                     <Row>
                         <Col >
                             <Form.Group as={Row}>
@@ -156,7 +159,7 @@ class ModalBody extends React.Component {
                     {(() => {
                         if (isPedalTypeEmpty) {
                             return (
-                                <Container></Container>
+                                <React.Fragment></React.Fragment>
                             )
                         }
                         else {
@@ -168,7 +171,7 @@ class ModalBody extends React.Component {
                                                 <Form.Label>Pedal Type: </Form.Label>
                                             </Col>
                                             <Col sm={6}>
-                                                <Form.Control placeholder="" id="pedalType" value={patient.pedaltype.toUpperCase()} disabled
+                                                <Form.Control placeholder="" id="pedalType" value={patient.pedal_profile.pedaltype.toUpperCase()} disabled
                                                 />
                                             </Col>
                                         </Form.Group>

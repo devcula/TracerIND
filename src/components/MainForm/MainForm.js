@@ -20,7 +20,7 @@ class MainForm extends React.Component {
     constructor() {
         super();
         this.state = {
-            formName: "UserDetails",
+            formName: "BasicDetails",
             pkid: this.generatePkid(32)
         }
     }
@@ -209,6 +209,7 @@ class MainForm extends React.Component {
                     monocytes: this.state.monocytes ? this.state.monocytes : null,
                     lymphocytes: this.state.lymphocytes ? this.state.lymphocytes : null,
                     eosinophils: this.state.eosinophils ? this.state.eosinophils : null,
+                    neutrophils: this.state.neutrophils ? this.state.neutrophils : null,
                 },
                 plat_count: this.state.platelet ? this.state.platelet : 0.0,
                 pcv: this.state.pcv,
@@ -250,7 +251,7 @@ class MainForm extends React.Component {
 
     render() {
         switch (this.state.formName) {
-            case "UserDetails":
+            case "BasicDetails":
                 return <BasicDetailsForm submit={this.submitForm} changeData={this.appendState} getValue={this.getValue} />
             case "TestDetails":
                 return <TestDetailsForm submit={this.submitForm} changeData={this.appendState} getValue={this.getValue} />

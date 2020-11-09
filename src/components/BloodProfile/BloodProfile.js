@@ -16,7 +16,8 @@ class BloodProfile extends React.Component {
             monocytes: props.getValue('monocytes'),
             lymphocytes: props.getValue('lymphocytes'),
             eosinophils: props.getValue('eosinophils'),
-            neutroophils: props.getValue('neutrophils'),
+            neutrophils: props.getValue('neutrophils'),
+            hbClassification: props.getValue('hbClassification'),
             haemoglobin: props.getValue('haemoglobin'),
             platelet: props.getValue('platelet'),
         }
@@ -57,6 +58,32 @@ class BloodProfile extends React.Component {
                 textAlign: "right"
             }
         }
+        const hbClassifications = [
+            {
+                label: 'Children: 6-59 months of age',
+                value: 'CHILD_6_TO_59_MONTHS',
+            },
+            {
+                label: 'Children: 5-11 years of age',
+                value: 'CHILD_5_TO_11_YEARS',
+            },
+            {
+                label: 'Children: 12-14 years of age',
+                value: 'CHILD_12_TO_14_YEARS',
+            },
+            {
+                label: 'Non-Pregnant Women: 15 years or above',
+                value: 'NP_WOMEN_15_PLUS_YEARS',
+            },
+            {
+                label: 'Pregnant Women',
+                value: 'P_WOMEN',
+            },
+            {
+                label: 'Men: 15 years of age or above',
+                value: 'MEN_15_PLUS_YEARS',
+            },
+        ];
         return (
             <Container>
                 <Row>
@@ -106,7 +133,32 @@ class BloodProfile extends React.Component {
                         <Row>
                             <Col sm={12}>
                                 <Form.Group as={Row}>
-
+                                    <Col sm={3}>
+                                        <Form.Label>Age Classification :</Form.Label>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control
+                                            as="select"
+                                            onChange={this.handleChange('hbClassification')}
+                                            id="hbClassification"
+                                            value={this.state.hbClassification}
+                                        >
+                                            <option value="">Select</option>
+                                            {hbClassifications.map((hbClassification, i) => {
+                                                return (
+                                                    <option value={hbClassification.value} key={i}>
+                                                        {hbClassification.label}
+                                                    </option>
+                                                );
+                                            })}
+                                        </Form.Control>
+                                    </Col>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12}>
+                                <Form.Group as={Row}>
                                     <Col sm={3}>
                                         <Form.Label>Haemoglobin :</Form.Label>
                                     </Col>
@@ -342,8 +394,8 @@ class BloodProfile extends React.Component {
                                             type="number"
                                             placeholder="%"
                                             onChange={this.handleChange('neutrophils')}
-                                            value={this.state.Neutrophils}
-                                            id="neutroophils" />
+                                            value={this.state.neutrophils}
+                                            id="neutrophils" />
 
                                     </Col>
                                 </Form.Group>
