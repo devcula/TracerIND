@@ -28,7 +28,7 @@ class HealthStats extends React.Component {
             }
         ).then(responseStats => {
             // console.log(responseStats);
-            axios.get(this.uri + 'GetAllPatient',
+            axios.get(this.uri + 'GetAllPatient/',
                 {
                     headers: authHeader()
                 }).then(responseAll => {
