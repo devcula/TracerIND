@@ -123,7 +123,7 @@ class HospitalDetailsForm extends React.Component {
                                             <option value="AH/Bhadrachalam">AH/Bhadrachalam</option>
                                             <option value="DH/Rajamundry">DH/Rajamundry</option>
                                             <option value="GGH/Kakinada">GGH/Kakinada</option>
-                                            <option value="other">other</option>
+                                            <option value="other">Other</option>
                                         </Form.Control>
                                     </Col>
                                 </Form.Group>
@@ -193,7 +193,6 @@ class HospitalDetailsForm extends React.Component {
                                                     <Col sm={3}>
                                                         <Form.Control
                                                             as="select"
-
                                                             onChange={this.handleReferredTo}
                                                             value={this.state.referredToSelected === 'OTHER' ? 'other' : this.state.referredto} >
                                                             <option value="">Choose...</option>
@@ -202,7 +201,7 @@ class HospitalDetailsForm extends React.Component {
                                                             <option value="AH/Bhadrachalam">AH/Bhadrachalam</option>
                                                             <option value="DH/Rajamundry">DH/Rajamundry</option>
                                                             <option value="GGH/Kakinada">GGH/Kakinada</option>
-                                                            <option value="other">other</option>
+                                                            <option value="other">Other</option>
                                                         </Form.Control>
                                                     </Col>
                                                     <Col sm={3}>
