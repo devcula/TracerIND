@@ -118,3 +118,4 @@ frontend/client/.env.production
 /.env.development
 /.env.production
 /node_modules/
+package-lock.json
