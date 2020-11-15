@@ -18,9 +18,7 @@ export const authenticationService = {
     get currentUserValue () { return currentUserSubject.value }
 };
 
-function getEncryptedPassword () {
-    let decrypted =
-        this.state.password;
+function getEncryptedPassword (decrypted) {
     let encryptedText = CryptoJS.AES.encrypt(
         decrypted,
         process.env.REACT_APP_PASSWORD_CIPHER_KEY,
@@ -32,7 +30,7 @@ function getEncryptedPassword () {
 
 function login(username, password) {
 
-    return axios.post(URI + 'Login/', { username, password: getEncryptedPassword() })
+    return axios.post(URI + 'Login/', { username, password: getEncryptedPassword(password) })
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
