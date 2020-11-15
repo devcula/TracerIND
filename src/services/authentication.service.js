@@ -4,6 +4,8 @@ import { handleResponse } from '../helpers';
 
 import axios from 'axios';
 
+const CryptoJS = require('crypto-js');
+
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 
 const URI = process.env.REACT_APP_SERVER_URI;
@@ -16,9 +18,21 @@ export const authenticationService = {
     get currentUserValue () { return currentUserSubject.value }
 };
 
+function getEncryptedPassword () {
+    let decrypted =
+        this.state.password;
+    let encryptedText = CryptoJS.AES.encrypt(
+        decrypted,
+        process.env.REACT_APP_PASSWORD_CIPHER_KEY,
+    ).toString();
+    // console.log(decrypted);
+    // console.log(encryptedText);
+    return encryptedText;
+};
+
 function login(username, password) {
 
-    return axios.post(URI + 'token_jwt_get/', { username, password })
+    return axios.post(URI + 'Login/', { username, password: getEncryptedPassword() })
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
