@@ -119,3 +119,4 @@ frontend/client/.env.production
 /.env.production
 /node_modules/
 package-lock.json
+.directory

@@ -252,12 +252,12 @@ class HospitalDetailsForm extends React.Component {
                                                             <Col>
                                                                 <Form.Check
                                                                     type='radio'
-                                                                    value="yes"
+                                                                    value="true"
                                                                     id="dialysis_yes"
                                                                     label="Yes"
                                                                     name="dialysis"
                                                                     onChange={this.handleChange('dialysis')}
-                                                                    checked={this.state.dialysis === "yes"}
+                                                                    checked={this.state.dialysis === "true"}
                                                                 />
                                                             </Col>
                                                         </Row>
@@ -265,12 +265,12 @@ class HospitalDetailsForm extends React.Component {
                                                             <Col>
                                                                 <Form.Check
                                                                     type='radio'
-                                                                    value="no"
+                                                                    value="false"
                                                                     id="dialysis_no"
                                                                     label="No"
                                                                     name="dialysis"
                                                                     onChange={this.handleChange('dialysis')}
-                                                                    checked={this.state.dialysis === "no"}
+                                                                    checked={this.state.dialysis === "false"}
                                                                 />
                                                             </Col>
                                                         </Row>
