@@ -18,19 +18,19 @@ export const authenticationService = {
     get currentUserValue () { return currentUserSubject.value }
 };
 
-function getEncryptedPassword (decrypted) {
-    let encryptedText = CryptoJS.AES.encrypt(
-        decrypted,
-        process.env.REACT_APP_PASSWORD_CIPHER_KEY,
-    ).toString();
-    // console.log(decrypted);
-    // console.log(encryptedText);
-    return encryptedText;
-};
+// function getEncryptedPassword (decrypted) {
+//     let encryptedText = CryptoJS.AES.encrypt(
+//         decrypted,
+//         process.env.REACT_APP_PASSWORD_CIPHER_KEY,
+//     ).toString();
+//     // console.log(decrypted);
+//     // console.log(encryptedText);
+//     return encryptedText;
+// };
 
 function login(username, password) {
 
-    return axios.post(URI + 'Login/', { username, password: getEncryptedPassword(password) })
+    return axios.post(URI + 'token_jwt_get/', { username, password })
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
