@@ -21,6 +21,7 @@ class TestDetailsForm extends React.Component {
             dialysis: props.getValue('dialysis'),
             doctorreq: props.getValue('doctorreq'),
             opd: props.getValue('opd'),
+            treatmentDone: props.getValue('treatmentDone'),
             btn: "Submit",
             loading: false,
         }
@@ -667,6 +668,8 @@ class TestDetailsForm extends React.Component {
                         {(() => {
                             if (this.state.opd === 'true' && this.state.doctorreq === 'true' && this.state.kidneystatus === 'abnormal') {
                                 return (
+                                        <React.Fragment>
+
                                     <Row>
                                         <Col sm={6} xs={6} style={styles.right}>
                                             <Button variant="primary"
@@ -681,10 +684,25 @@ class TestDetailsForm extends React.Component {
                                             >Next</Button>
                                         </Col>
                                     </Row>
+                                     </React.Fragment>
                                 )
                             }
-                            else {
+                            else if (this.state.opd === 'false'){
                                 return (
+                                     <React.Fragment>
+                                        <Row>
+                                            <Col sm={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
+                                                <Form.Group as={Row}>
+                                                    <Col sm={3}>
+                                                        <Form.Label>Treatment Provided : </Form.Label>
+                                                    </Col>
+                                                    <Col sm={6}>
+                                                        <Form.Control as="textarea" placeholder="Description" id="ailments" onChange={this.handleChange('ailments')}
+                                                            value={this.state.treatmentDone} />
+                                                    </Col>
+                                                </Form.Group>
+                                            </Col>
+                                        </Row>
                                     <Row>
                                         <Col sm={6} xs={6} style={styles.right}>
                                             <Button variant="primary"
@@ -699,6 +717,7 @@ class TestDetailsForm extends React.Component {
                                             >{loading && <i className="spinner-border spinner-border-sm" role="status"></i>} {btn}</Button>
                                         </Col>
                                     </Row>
+                                     </React.Fragment>
                                 )
                             }
 

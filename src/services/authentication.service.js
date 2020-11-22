@@ -4,6 +4,8 @@ import { handleResponse } from '../helpers';
 
 import axios from 'axios';
 
+const CryptoJS = require('crypto-js');
+
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 
 const URI = process.env.REACT_APP_SERVER_URI;
@@ -15,6 +17,16 @@ export const authenticationService = {
     currentUser: currentUserSubject.asObservable(),
     get currentUserValue () { return currentUserSubject.value }
 };
+
+// function getEncryptedPassword (decrypted) {
+//     let encryptedText = CryptoJS.AES.encrypt(
+//         decrypted,
+//         process.env.REACT_APP_PASSWORD_CIPHER_KEY,
+//     ).toString();
+//     // console.log(decrypted);
+//     // console.log(encryptedText);
+//     return encryptedText;
+// };
 
 function login(username, password) {
 
