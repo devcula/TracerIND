@@ -13,30 +13,30 @@ const Cards = (props) => {
     return <OurLoader />
   }
   
-  let dataLabels = [], dataValues = [];
+  // let dataLabels = [], dataValues = [];
 
-  for(let i = 0; i < districtData.length; i++) {
-    dataLabels.push(districtData[i].name);
-    dataValues.push(districtData[i].confirmed);
-  }
+  // for(let i = 0; i < districtData.length; i++) {
+  //   dataLabels.push(districtData[i].name);
+  //   dataValues.push(districtData[i].confirmed);
+  // }
 
-  const barData = {
-    labels: dataLabels,
-    datasets: [
-      {
-        label: 'Confirmed cases',
-        backgroundColor: '#0a5767',
-        borderColor: 'rgba(0,0,0,1)',
-        borderWidth: 2,
-        data: dataValues
-      }
-    ]
-  }
+  // const barData = {
+  //   labels: dataLabels,
+  //   datasets: [
+  //     {
+  //       label: 'Confirmed cases',
+  //       backgroundColor: '#0a5767',
+  //       borderColor: 'rgba(0,0,0,1)',
+  //       borderWidth: 2,
+  //       data: dataValues
+  //     }
+  //   ]
+  // }
 
   return (
     <div className="container">
       <h2>
-        COVID-19 stats for Andhra Pradesh
+        Coronavirus stats of India
       </h2>
       <CardDeck>
         <Card
@@ -91,7 +91,7 @@ const Cards = (props) => {
         </Card>
       </CardDeck>
       <br/>
-      <Container id="stateWiseData">
+      {/* <Container id="stateWiseData">
         <Row>
           <Col>
             <Bar
@@ -110,7 +110,7 @@ const Cards = (props) => {
             />
           </Col>
         </Row>
-      </Container>
+      </Container> */}
     </div>
   )
 }
