@@ -4,39 +4,60 @@ import { Card, CardDeck, Container, Row, Col } from 'react-bootstrap';
 import {Bar} from 'react-chartjs-2';
 import CountUp from 'react-countup';
 import OurLoader from '../Loader/Loader';
+import axios from 'axios';
 
 const Cards = (props) => {
+  let [barData, setBarData] = React.useState(null);
+  let { confirmed, recovered, deaths, active } = props.data; 
 
-  let { confirmed, recovered, deaths, active, districtData } = props.data; 
+  React.useEffect(() => {
+    if(!barData){
+      axios.get("https://api.covid19india.org/csv/latest/state_wise.csv")
+        .then(response => {
+          let dataLabels = [], dataValues = [];
+          let rows = response.data.split('\n');
+          // console.log(rows);
+          //First row is headers i.e. index 0
+          for (let i = 1; i < rows.length; i++) {
+            let values = rows[i].split(',');
+            if (values[0].toLowerCase() !== 'total' && values[0].toLowerCase() !== 'state unassigned' && values.length >= 11) {
+              dataLabels.push(values[0]);
+              dataValues.push(values[1]);
+            }
+          }
+          // console.log(dataLabels);
+          // console.log(dataValues);
+          setBarData({
+            labels: dataLabels,
+            datasets: [
+              {
+                label: 'Confirmed cases',
+                backgroundColor: '#0a5767',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data: dataValues
+              }
+            ]
+          })
+        }).catch(err => {
+          console.error(`Error while getting state data csv : ${err}`);
+        });
+    }
+  });
 
   if (!confirmed) {
     return <OurLoader />
   }
-  
-  // let dataLabels = [], dataValues = [];
-
-  // for(let i = 0; i < districtData.length; i++) {
-  //   dataLabels.push(districtData[i].name);
-  //   dataValues.push(districtData[i].confirmed);
-  // }
-
-  // const barData = {
-  //   labels: dataLabels,
-  //   datasets: [
-  //     {
-  //       label: 'Confirmed cases',
-  //       backgroundColor: '#0a5767',
-  //       borderColor: 'rgba(0,0,0,1)',
-  //       borderWidth: 2,
-  //       data: dataValues
-  //     }
-  //   ]
-  // }
 
   return (
     <div className="container">
       <h2>
         Coronavirus stats of India
+        <h6 style={{fontSize: 15}}>
+          (<a href="https://devcula.github.io/corona-monitor/" target="_blank" rel="noopener noreferrer">
+            See Global Stats
+          </a>)
+        </h6>
       </h2>
       <CardDeck>
         <Card
@@ -91,26 +112,31 @@ const Cards = (props) => {
         </Card>
       </CardDeck>
       <br/>
-      {/* <Container id="stateWiseData">
-        <Row>
-          <Col>
-            <Bar
-              data={barData}
-              options={{
-                title: {
-                  display: true,
-                  text: 'District wise distribution',
-                  fontSize: 20
-                },
-                legend: {
-                  display: true,
-                  position: 'right'
-                }
-              }}
-            />
-          </Col>
-        </Row>
-      </Container> */}
+      {
+        !barData && <OurLoader />
+      }
+      {
+        barData && <Container id="stateWiseData">
+          <Row>
+            <Col>
+              <Bar
+                data={barData}
+                options={{
+                  title: {
+                    display: true,
+                    text: 'State wise distribution',
+                    fontSize: 20
+                  },
+                  legend: {
+                    display: true,
+                    position: 'right'
+                  }
+                }}
+              />
+            </Col>
+          </Row>
+        </Container>
+      }
     </div>
   )
 }

@@ -23,6 +23,13 @@ export default class About extends Component {
           <Row>
             <Col sm={6} md={4}>
               <div className="profile">
+                <img alt="User" src={imgCard2} className="profile-img"></img>
+                <h3 className="user-name">Abhishek Prasad </h3>
+                <h5>Team lead</h5>
+              </div>
+            </Col>
+            <Col sm={6} md={4}>
+              <div className="profile">
                 <img alt="User" src={imgCard3} className="profile-img"></img>
                 <h3 className="user-name">Shlok Parida</h3>
                 <h5>Team lead</h5>
@@ -32,13 +39,6 @@ export default class About extends Component {
               <div className="profile">
                 <img alt="User" src={imgCard1} className="profile-img"></img>
                 <h3 className="user-name">Prakruti Chandak</h3>
-                <h5>Team lead</h5>
-              </div>
-            </Col>
-            <Col sm={6} md={4}>
-              <div className="profile">
-                <img alt="User" src={imgCard2} className="profile-img"></img>
-                <h3 className="user-name">Abhishek Prasad </h3>
                 <h5>Team lead</h5>
               </div>
             </Col>
